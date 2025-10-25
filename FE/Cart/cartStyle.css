@@ -14,6 +14,10 @@
     a:hover {
       text-decoration: underline;
     }
+    nav{
+      display: flex;
+      gap :10px;
+    }
     .empty-cart {
       padding: 2em;
       background: white;
@@ -22,3 +26,7 @@
       font-size: 1.2em;
       border-radius: 8px;
     }
+    .empty-cart img{
+      width: 250px;
+    }
+    
