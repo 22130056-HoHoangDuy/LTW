@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng nhập - Nội thất trẻ em</title>
-  <link rel="stylesheet" href="login.css">
-</head>
-<body>
-  <div class="auth-container">
-    <div class="auth-box">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - Nội thất trẻ em</title>
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-box">
+        <!-- ĐĂNG NHẬP -->
+        <form id="login-form" class="form active">
+          <h2>Đăng nhập</h2>
+          <input type="text" placeholder="Tên đăng nhập hoặc Email" required />
+          <input type="password" placeholder="Mật khẩu" required />
+          <button type="submit">Đăng nhập</button>
+          <p class="switch">
+            Chưa có tài khoản?
+            <a href="#" onclick="showForm('register')">Đăng ký</a>
+          </p>
+          <p class="forgot">
+            <a href="#" onclick="showForm('forgot')">Quên mật khẩu?</a>
+          </p>
+        </form>
 
-      <!-- ĐĂNG NHẬP -->
-      <form id="login-form" class="form active">
-        <h2>Đăng nhập</h2>
-        <input type="text" placeholder="Tên đăng nhập hoặc Email" required>
-        <input type="password" placeholder="Mật khẩu" required>
-        <button type="submit">Đăng nhập</button>
-        <p class="switch">Chưa có tài khoản? 
-          <a href="#" onclick="showForm('register')">Đăng ký</a>
-        </p>
-        <p class="forgot">
-          <a href="#" onclick="showForm('forgot')">Quên mật khẩu?</a>
-        </p>
-      </form>
+        <!-- ĐĂNG KÝ -->
+        <form id="register-form" class="form">
+          <h2>Đăng ký</h2>
+          <input type="text" placeholder="Tên người dùng" required />
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Mật khẩu" required />
+          <input type="password" placeholder="Xác nhận mật khẩu" required />
+          <button type="submit">Tạo tài khoản</button>
+          <p class="switch">
+            Đã có tài khoản?
+            <a href="#" onclick="showForm('login')">Đăng nhập</a>
+          </p>
+        </form>
 
-      <!-- ĐĂNG KÝ -->
-      <form id="register-form" class="form">
-        <h2>Đăng ký</h2>
-        <input type="text" placeholder="Tên người dùng" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Mật khẩu" required>
-        <input type="password" placeholder="Xác nhận mật khẩu" required>
-        <button type="submit">Tạo tài khoản</button>
-        <p class="switch">Đã có tài khoản?
-          <a href="#" onclick="showForm('login')">Đăng nhập</a>
-        </p>
-      </form>
-
-      <!-- QUÊN MẬT KHẨU -->
-      <form id="forgot-form" class="form">
-        <h2>Quên mật khẩu</h2>
-        <input type="email" placeholder="Nhập email của bạn" required>
-        <button type="submit">Gửi liên kết đặt lại</button>
-        <p class="switch">Quay lại
-          <a href="#" onclick="showForm('login')">Đăng nhập</a>
-        </p>
-      </form>
-
+        <!-- QUÊN MẬT KHẨU -->
+        <form id="forgot-form" class="form">
+          <h2>Quên mật khẩu</h2>
+          <input type="email" placeholder="Nhập email của bạn" required />
+          <button type="submit">Gửi liên kết đặt lại</button>
+          <p class="switch">
+            Quay lại
+            <a href="#" onclick="showForm('login')">Đăng nhập</a>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script >
-    function showForm(formName) {
-  const forms = document.querySelectorAll('.form');
-  forms.forEach(f => f.classList.remove('active'));
+    <script>
+      function showForm(formName) {
+        const forms = document.querySelectorAll(".form");
+        forms.forEach((f) => f.classList.remove("active"));
 
-  document.getElementById(`${formName}-form`).classList.add('active');
-}
-  </script>
-</body>
+        document.getElementById(`${formName}-form`).classList.add("active");
+      }
+    </script>
+  </body>
 </html>
