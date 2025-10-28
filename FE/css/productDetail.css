@@ -88,6 +88,9 @@ button.add-btn {
   justify-content: left;
   flex-direction: column;
 }
+.product-detail {
+  display: contents;
+}
 .product-detail .content {
   width: 50%;
   margin-top: 25px;

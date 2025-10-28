@@ -1,7 +1,7 @@
 const tabList = document.querySelectorAll(".nav-item");
 const productDetail = document.querySelector(".product-detail");
 //
-const detail = `<div class="product-detail">
+const detail = `
           <div class="content">
             <div class="highlight">🔥Mẫu bàn học cải tiến</div>
             <p>
@@ -11,7 +11,7 @@ const detail = `<div class="product-detail">
               tập — giải trí cho bé một cách tốt nhất.
             </p>
           </div>
-          <img src="img/detail/detail_1.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_1.png" alt="Hình ảnh bị lỗi" />
           <div class="content">
             <div class="highlight">☑️Bàn được cập nhật</div>
             <p>
@@ -20,7 +20,7 @@ const detail = `<div class="product-detail">
               tiện dụng của bàn học với mẫu mới.
             </p>
           </div>
-          <img src="img/detail/detail_2.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_2.png" alt="Hình ảnh bị lỗi" />
           <div class="content">
             <div class="highlight">
               ❤️ Bàn học thông minh cho bé ROS 100 có nhiều tiện ích hơn
@@ -43,7 +43,7 @@ const detail = `<div class="product-detail">
               <li>☑️ Bàn có trang bị thêm móc treo cặp tiện dụng cho bé</li>
             </ul>
           </div>
-          <img src="img/detail/detail_3.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_3.png" alt="Hình ảnh bị lỗi" />
           <div class="content">
             <div class="highlight">☑️Bàn được cập nhật</div>
             <p>
@@ -52,7 +52,7 @@ const detail = `<div class="product-detail">
               tiện dụng của bàn học với mẫu mới.
             </p>
           </div>
-          <img src="img/detail/detail_4.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_4.png" alt="Hình ảnh bị lỗi" />
           <div class="content">
             <div class="highlight">
               ⚡Bàn học có kích thước rộng rãi với các thông số:⚡
@@ -72,7 +72,7 @@ const detail = `<div class="product-detail">
               </li>
             </ul>
           </div>
-          <img src="img/detail/detail_5.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_4.png" alt="Hình ảnh bị lỗi" />
           <div class="content">
             <div class="highlight">
               🌳 Bàn được trang bị hoàn toàn từ gỗ tự nhiên từ mặt bàn đến các
@@ -93,9 +93,10 @@ const detail = `<div class="product-detail">
               </li>
             </ul>
           </div>
-          <img src="img/detail/detail_6.png" alt="Hình ảnh bị lỗi" />
+          <img src="../img/product_detail_img/detail_5.png" alt="Hình ảnh bị lỗi" />
         </div>`;
 const spec = "Đang cập nhật thêm";
+//Bấm vào tab
 tabList.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -108,6 +109,7 @@ tabList.forEach((link) => {
     }
   });
 });
+//Khi load trang
 window.addEventListener("DOMContentLoaded", () => {
   const activeTab = document.querySelector(".nav-link.active");
   if (activeTab) {
