@@ -7,9 +7,7 @@ body {
 .container {
   width: 80%;
   margin: 20px auto;
-  background-color: #fff;
   padding: 20px;
-  border: 1px solid #ccc;
 }
 
 .product-image {
@@ -21,6 +19,7 @@ body {
 .product-image img {
   width: 80%;
   border: 1px solid #ddd;
+  border-radius: 5px;
   padding: 10px;
   background-color: #fafafa;
 }
@@ -48,7 +47,7 @@ h2 {
 .buy-section {
   margin-top: 20px;
   display: flex;
-  gap: 8px;
+  gap: 20px;
 }
 
 input#quantity {
@@ -61,8 +60,9 @@ input#quantity {
 button {
   background-color: #007bff;
   font-size: 18px;
+  font-weight: 550;
   color: white;
-  padding: 20px 50px;
+  padding: 15px 30px;
   border: none;
   cursor: pointer;
   border-radius: 100px;
@@ -84,9 +84,14 @@ button.add-btn {
 
 .product-info {
   margin-top: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
   display: flex;
   justify-content: left;
   flex-direction: column;
+  background: #fff;
 }
 .product-detail {
   display: contents;
@@ -97,4 +102,48 @@ button.add-btn {
 }
 .product-detail .content .highlight {
   font-weight: 550;
+}
+.spec-box {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.spec-box h3 {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d1d52;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f9fbff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #333;
+  border-top: 1px solid #f0f0f0;
+}
+td:first-child {
+  color: #555;
+}
+
+td:last-child {
+  text-align: right;
+  color: #3b3b7e;
+  font-weight: 500;
+}
+
+tr:first-child td {
+  border-top: none;
 }
