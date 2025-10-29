@@ -1,4 +1,4 @@
-const tabList = document.querySelectorAll(".nav-item");
+const tabList = document.querySelectorAll(".nav-link");
 const productDetail = document.querySelector(".product-detail");
 //
 const detail = `
