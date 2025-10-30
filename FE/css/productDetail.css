@@ -31,6 +31,7 @@ body {
 
 h2 {
   margin-top: 0;
+  font-weight: 550;
 }
 
 .price {
@@ -58,13 +59,11 @@ input#quantity {
 }
 
 button {
-  background-color: #007bff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 550;
   color: white;
-  padding: 15px 30px;
+  padding: 20px 103px;
   border: none;
-  cursor: pointer;
   border-radius: 100px;
 }
 button.buy-btn {
@@ -83,13 +82,13 @@ button.add-btn {
 }
 
 .product-info {
-  margin-top: 40px;
+  margin-top: 30px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   flex-direction: column;
   background: #fff;
 }
@@ -135,7 +134,8 @@ td {
   border-top: 1px solid #f0f0f0;
 }
 td:first-child {
-  color: #555;
+  color: #4f547b;
+  font-weight: 700;
 }
 
 td:last-child {
@@ -146,4 +146,102 @@ td:last-child {
 
 tr:first-child td {
   border-top: none;
+}
+.product-detail textarea {
+  margin: 20px 20px;
+  border-radius: 2px;
+}
+.product-status {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4f72bb;
+  font-size: 15px;
+  font-weight: 550;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.stars {
+  color: #f6c000;
+  font-size: 14px;
+}
+
+.reviews {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.reviews:hover {
+  text-decoration: underline;
+}
+
+.status {
+  color: green;
+  font-weight: 500;
+}
+
+.dot {
+  color: #999;
+}
+.product-main-info {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 15px 25px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.buy-box {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 15px 25px;
+  overflow: hidden;
+  color: #4f547b;
+}
+.offer-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  font-family: "Segoe UI", sans-serif;
+  color: #2f3640;
+  line-height: 1.7;
+}
+
+.offer-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.offer-section p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #303952;
+  margin-bottom: 15px;
+}
+
+.offer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.offer-section li {
+  margin-bottom: 6px;
+  display: flex;
+  color: gray;
+  align-items: center;
+  font-size: 14px;
+}
+
+.offer-section li i {
+  color: #16a34a;
+  font-size: 16px;
+  margin-right: 8px;
 }

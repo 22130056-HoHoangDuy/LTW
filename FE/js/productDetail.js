@@ -95,6 +95,7 @@ const detail = `
           </div>
           <img src="../img/product_detail_img/detail_5.png" alt="Hình ảnh bị lỗi" />
         </div>`;
+const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows="5" cols="50"></textarea>`;
 const spec = "Đang cập nhật thêm";
 //Bấm vào tab
 tabList.forEach((link) => {
@@ -104,6 +105,8 @@ tabList.forEach((link) => {
     link.classList.add("active");
     if (link.textContent.trim() === "Chi tiết") {
       productDetail.innerHTML = detail;
+    } else if (link.textContent.trim() === "Feedback") {
+      productDetail.innerHTML = feedback;
     } else {
       productDetail.innerHTML = spec;
     }
@@ -111,12 +114,5 @@ tabList.forEach((link) => {
 });
 //Khi load trang
 window.addEventListener("DOMContentLoaded", () => {
-  const activeTab = document.querySelector(".nav-link.active");
-  if (activeTab) {
-    if (activeTab.textContent.trim() === "Chi tiết") {
-      productDetail.innerHTML = detail;
-    } else {
-      productDetail.innerHTML = spec;
-    }
-  }
+  productDetail.innerHTML = detail;
 });
