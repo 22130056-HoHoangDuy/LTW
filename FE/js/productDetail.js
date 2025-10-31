@@ -101,22 +101,53 @@ const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows
 const spec = "Đang cập nhật thêm";
 //Bấm vào tab
 tabList.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    tabList.forEach((l) => l.classList.remove("active"));
-    link.classList.add("active");
-    if (link.textContent.trim() === "Chi tiết") {
-      productDetail.innerHTML = detail;
-    } else if (link.textContent.trim() === "Feedback") {
-      productDetail.innerHTML = feedback;
-    } else {
-      productDetail.innerHTML = spec;
-    }
-  });
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        tabList.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+        if (link.textContent.trim() === "Chi tiết") {
+            productDetail.innerHTML = detail;
+        } else if (link.textContent.trim() === "Feedback") {
+            productDetail.innerHTML = feedback;
+            const comment = document.querySelector(".product-detail textarea");
+            const sendBtn = document.querySelector(".product-detail button");
+            const commentContainer = document.querySelector(".product-detail");
+
+            if (comment && sendBtn) {
+                const toggleSendBtnColor = (isFocused) => {
+                    sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
+                }
+                comment.addEventListener("focus", () => toggleSendBtnColor(true));
+                comment.addEventListener("blur", () => toggleSendBtnColor(false));
+                sendBtn.addEventListener("click", () => {
+                    const text = comment.value.trim();
+                    if (!text) return;
+                    // Tạo div comment
+                    const commentDiv = document.createElement("div");
+                    commentDiv.classList.add("comment");
+                    // Header: tên + icon + rating
+                    commentDiv.innerHTML = `
+                        <div class="comment-header">
+                            <span>Văn Tuấn</span>
+                            <span style="color:green;">✔ Đã mua tại BabyStore.com.vn</span>
+                        </div>
+                        <div class="comment-content">${text}</div>
+                        <div class="comment-date">${new Date().toLocaleDateString('vi-VN')}</div>
+                    `;
+                    commentContainer.appendChild(commentDiv);
+                    comment.value="";
+                    toggleSendBtnColor(false);
+                })
+
+            }
+        } else {
+            productDetail.innerHTML = spec;
+        }
+    });
 });
-const sendBtn = document.querySelector(".product-detail button");
-sendBtn.addEventListener(e, () => {});
 //Khi load trang
 window.addEventListener("DOMContentLoaded", () => {
-  productDetail.innerHTML = detail;
+    productDetail.innerHTML = detail;
 });
+
+
