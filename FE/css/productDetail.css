@@ -245,3 +245,6 @@ tr:first-child td {
   font-size: 16px;
   margin-right: 8px;
 }
+.product-left {
+  position: sticky;
+}
