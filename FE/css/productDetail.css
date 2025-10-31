@@ -1,3 +1,6 @@
+/* =============================
+   1. RESET & GLOBAL
+============================= */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,9 +13,30 @@ body {
   padding: 20px;
 }
 
+h2 {
+  margin-top: 0;
+  font-weight: 550;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/* =============================
+   2. PRODUCT LAYOUT
+============================= */
+.product-wrapper {
+  display: grid;
+  grid-template-columns: 40% 60%; /* Tỉ lệ ảnh : nội dung */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .product-image {
-  width: 40%;
-  float: left;
+  position: sticky;
+  top: 20px;
+  align-self: start;
   text-align: center;
 }
 
@@ -24,16 +48,27 @@ body {
   background-color: #fafafa;
 }
 
+/* =============================
+   3. PRODUCT DETAILS
+============================= */
 .product-details {
-  width: 55%;
-  float: right;
+  float: none;
+  width: auto;
 }
 
-h2 {
-  margin-top: 0;
-  font-weight: 550;
+.product-main-info,
+.buy-box,
+.spec-box,
+.offer-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
+/* ====== Giá, mô tả, trạng thái ====== */
 .price {
   color: #e60000;
   font-size: 20px;
@@ -45,122 +80,15 @@ h2 {
   line-height: 1.5;
 }
 
-.buy-section {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-}
-
-input#quantity {
-  width: 50px;
-  height: 30px;
-  padding: 5px;
-  text-align: center;
-}
-
-button {
-  font-size: 16px;
-  font-weight: 550;
-  color: white;
-  padding: 20px 103px;
-  border: none;
-  border-radius: 100px;
-}
-button.buy-btn {
-  background: #f14d35;
-}
-button.add-btn {
-  color: #1e34da;
-  background: #e6eaf9;
-}
-.btn:hover {
-  background-color: #0056b3;
-}
-
-.clearfix {
-  clear: both;
-}
-
-.product-info {
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background: #fff;
-}
-.product-detail {
-  display: contents;
-}
-.product-detail .content {
-  width: 50%;
-  margin-top: 25px;
-}
-.product-detail .content .highlight {
-  font-weight: 550;
-}
-.spec-box {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.spec-box h3 {
-  margin: 0;
-  padding: 16px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #2d1d52;
-  border-bottom: 1px solid #f0f0f0;
-  background-color: #f9fbff;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td {
-  padding: 12px 20px;
-  font-size: 15px;
-  color: #333;
-  border-top: 1px solid #f0f0f0;
-}
-td:first-child {
-  color: #4f547b;
-  font-weight: 700;
-}
-
-td:last-child {
-  text-align: right;
-  color: #3b3b7e;
-  font-weight: 500;
-}
-
-tr:first-child td {
-  border-top: none;
-}
-.product-detail textarea {
-  margin: 20px 20px;
-  border-radius: 2px;
-}
 .product-status {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #4f72bb;
-  font-size: 15px;
-  font-weight: 550;
-  color: #333;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   gap: 8px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 550;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .stars {
@@ -185,34 +113,89 @@ tr:first-child td {
 .dot {
   color: #999;
 }
-.product-main-info {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 15px 25px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.buy-box {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 15px 25px;
-  overflow: hidden;
-  color: #4f547b;
-}
-.offer-section {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-top: 20px;
-  width: 100%;
-  font-family: "Segoe UI", sans-serif;
-  color: #2f3640;
-  line-height: 1.7;
+
+/* =============================
+   4. SPECIFICATION TABLE
+============================= */
+.spec-box h3 {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d1d52;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f9fbff;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #333;
+  border-top: 1px solid #f0f0f0;
+}
+
+td:first-child {
+  color: #4f547b;
+  font-weight: 700;
+}
+
+td:last-child {
+  text-align: right;
+  color: #3b3b7e;
+  font-weight: 500;
+}
+
+tr:first-child td {
+  border-top: none;
+}
+
+/* =============================
+   5. BUY SECTION
+============================= */
+.buy-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+input#quantity {
+  width: 50px;
+  height: 30px;
+  padding: 5px;
+  text-align: center;
+}
+
+button {
+  font-size: 16px;
+  font-weight: 550;
+  color: white;
+  padding: 20px 103px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+button.buy-btn {
+  background: #f14d35;
+}
+
+button.add-btn {
+  color: #1e34da;
+  background: #e6eaf9;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* =============================
+   6. OFFER SECTION
+============================= */
 .offer-section h3 {
   font-size: 18px;
   font-weight: 600;
@@ -233,11 +216,11 @@ tr:first-child td {
 }
 
 .offer-section li {
-  margin-bottom: 6px;
   display: flex;
-  color: gray;
   align-items: center;
+  color: gray;
   font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .offer-section li i {
@@ -245,6 +228,41 @@ tr:first-child td {
   font-size: 16px;
   margin-right: 8px;
 }
-.product-left {
-  position: sticky;
+
+/* =============================
+   7. PRODUCT INFO (TAB)
+============================= */
+.product-info {
+  margin-top: 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-detail {
+  display: contents;
+}
+
+.product-detail .content {
+  width: 50%;
+  margin-top: 25px;
+}
+
+.product-detail .highlight {
+  font-weight: 550;
+}
+.product-detail button {
+  width: 150px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  right: 10px;
+  position: relative;
+  left: 1088px;
+  margin-top: 10px;
 }
