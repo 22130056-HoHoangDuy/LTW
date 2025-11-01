@@ -91,3 +91,13 @@ function applyPromo() {
     });
   }
 }
+async function submitPayment() {
+  await Swal.fire({
+    icon: "success",
+    title: "Thanh toán thành công",
+    text: "Cảm ơn bạn đã mua hàng!",
+    timer: 2000,
+    showConfirmButton: false,
+  });
+  window.location.href = "../html/productList.html";
+}

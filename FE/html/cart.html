@@ -110,7 +110,9 @@
               placeholder="CODE001"
               id="promoCode"
             />
-            <button class="promo-btn" onclick="applyPromo()">Áp dụng</button>
+            <button type="button" class="promo-btn" onclick="applyPromo()">
+              Áp dụng
+            </button>
           </div>
           <p class="promo-hint">
             Áp dụng lại Mã giảm giá khi Giỏ hàng có sự thay đổi
@@ -143,6 +145,9 @@
           <span class="label">Tổng thanh toán</span>
           <span class="value" id="total">3.910.000đ</span>
         </div>
+        <button type="button" class="submit-btn" onclick="submitPayment()">
+          Xác nhận thanh toán
+        </button>
       </div>
     </div>
     <script src="../js/cart.js"></script>
