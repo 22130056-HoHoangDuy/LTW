@@ -1,14 +1,23 @@
 let quantity = 1;
 let countItem = 1;
-const pricePerItem = 3910000;
-
 function updateTotal() {
+  //Giá theo số lượng
+  let pricePerItem = document.querySelector(".current-price").textContent;
+  pricePerItem = parseInt(pricePerItem.replace(/[^\d]/g, ""));
   const subtotal = quantity * pricePerItem;
+  //Tính thêm giảm giá
+  let discountAmount = document.getElementById("discount").textContent;
+  if (discountAmount) {
+    discountAmount = parseInt(discountAmount.replace(/[^\d]/g, "")); // bỏ dấu . và chữ đ
+  }
+  // Cập nhật subtotal
   document.getElementById("quantity").value = quantity;
   document.getElementById("subtotal").textContent =
     subtotal.toLocaleString("vi-VN") + "đ";
+  //Cập nhật tổng giá
+  const total = subtotal - discountAmount;
   document.getElementById("total").textContent =
-    subtotal.toLocaleString("vi-VN") + "đ";
+    total.toLocaleString("vi-VN") + "đ";
 }
 
 function increaseQuantity() {
@@ -39,26 +48,46 @@ function removeItem() {
       };
       //Hidden items
       const container = document.querySelector(".container");
-      const progressBar = document.querySelector(".progress-bar");
       const cartItem = document.querySelector(".cart-item");
       const emptyCart = document.querySelector(".empty-cart");
       const order = document.querySelector(".order-summary");
+      //Thực hiện phương thức
       hide(order);
       hide(cartItem);
-      hide(progressBar);
       showInline(container);
       showBlock(emptyCart);
     }
-
-    alert("Sản phẩm đã được xóa!");
+    //Hiển thị thông báo xoá
+    Swal.fire({
+      icon: "success",
+      title: "Đã xóa!",
+      text: "Sản phẩm đã được xóa khỏi giỏ hàng.",
+      timer: 1500,
+      showConfirmButton: false,
+    });
   }
 }
 
 function applyPromo() {
   const code = document.getElementById("promoCode").value.trim().toUpperCase();
+  let discount = document.getElementById("discount");
   if (code === "CODE001") {
-    alert("Mã giảm giá đã được áp dụng!");
-  } else if (code) {
-    alert("Mã giảm giá không hợp lệ!");
+    Swal.fire({
+      icon: "success",
+      title: "Áp dụng giảm giá",
+      text: "Mã giảm giá đã được áp dụng",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    discount.textContent = "1.500.000đ";
+    updateTotal();
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Áp dụng giảm giá",
+      text: "Mã giảm giá không tồn tại",
+      timer: 1500,
+      showConfirmButton: false,
+    });
   }
 }

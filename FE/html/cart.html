@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng của bạn</title>
     <link rel="stylesheet" href="../css/cartStyle.css" />
     <link
       rel="stylesheet"
@@ -11,7 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Giỏ hàng của bạn</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <nav>
@@ -19,20 +20,6 @@
       <span class="dot">•</span>
       <a href="">Giỏ hàng</a>
     </nav>
-    <div class="progress-bar">
-      <div class="progress-step active">
-        <div class="progress-icon">🛒</div>
-        <span class="progress-label">Giỏ hàng</span>
-      </div>
-      <div class="progress-step">
-        <div class="progress-icon">👤</div>
-        <span class="progress-label">Thông tin giao hàng</span>
-      </div>
-      <div class="progress-step">
-        <div class="progress-icon">✓</div>
-        <span class="progress-label">Hoàn thành</span>
-      </div>
-    </div>
     <h3 class="page-title">Giỏ hàng</h3>
     <div class="container">
       <div class="cart-items">
@@ -41,7 +28,7 @@
           <p style="font-weight: 550">Giỏ hàng trống</p>
           <p>
             Bạn tham khảo thêm các sản phẩm
-            <a href="https://topkids.com.vn">tại đây</a> nhé!
+            <a href="../html/productList.html">tại đây</a> nhé!
           </p>
         </div>
         <div class="cart-item">
@@ -146,7 +133,7 @@
 
         <div class="summary-row">
           <span class="label">Giá trị đơn</span>
-          <span class="value" id="subtotal">15.640.000đ</span>
+          <span class="value" id="subtotal">3.910.000đ</span>
         </div>
         <div class="summary-row">
           <span class="label">Tiết kiệm với mã giảm</span>
@@ -154,12 +141,8 @@
         </div>
         <div class="summary-row total">
           <span class="label">Tổng thanh toán</span>
-          <span class="value" id="total">15.640.000đ</span>
+          <span class="value" id="total">3.910.000đ</span>
         </div>
-
-        <button type="button" class="checkout-btn" onclick="checkout()">
-          Tiếp theo
-        </button>
       </div>
     </div>
     <script src="../js/cart.js"></script>
