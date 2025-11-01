@@ -25,6 +25,26 @@ h2 {
 /* =============================
    2. PRODUCT LAYOUT
 ============================= */
+nav {
+  padding: 1.5rem 4rem;
+  background: white;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: sticky;
+}
+
+nav a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #007bff;
+}
 .product-wrapper {
   display: grid;
   grid-template-columns: 40% 60%; /* Tỉ lệ ảnh : nội dung */
@@ -220,6 +240,7 @@ button:hover {
 }
 
 .offer-section p {
+  width: 1200px;
   font-size: 18px;
   font-weight: 600;
   color: #303952;
@@ -236,7 +257,7 @@ button:hover {
   display: flex;
   align-items: center;
   color: gray;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 6px;
 }
 
