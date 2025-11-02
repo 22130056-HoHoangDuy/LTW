@@ -1,3 +1,6 @@
+/* =============================
+   1. RESET & GLOBAL
+============================= */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,33 +10,85 @@ body {
 .container {
   width: 80%;
   margin: 20px auto;
-  background-color: #fff;
   padding: 20px;
-  border: 1px solid #ccc;
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: 550;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/* =============================
+   2. PRODUCT LAYOUT
+============================= */
+nav {
+  padding: 1.5rem 4rem;
+  background: white;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: sticky;
+}
+
+nav a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+.product-wrapper {
+  display: grid;
+  grid-template-columns: 40% 60%; /* Tỉ lệ ảnh : nội dung */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .product-image {
-  width: 40%;
-  float: left;
+  position: sticky;
+  top: 20px;
+  align-self: start;
   text-align: center;
 }
 
 .product-image img {
   width: 80%;
   border: 1px solid #ddd;
+  border-radius: 5px;
   padding: 10px;
   background-color: #fafafa;
 }
 
+/* =============================
+   3. PRODUCT DETAILS
+============================= */
 .product-details {
-  width: 55%;
-  float: right;
+  float: none;
+  width: auto;
 }
 
-h2 {
-  margin-top: 0;
+.product-main-info,
+.buy-box,
+.spec-box,
+.offer-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
+/* ====== Giá, mô tả, trạng thái ====== */
 .price {
   color: #e60000;
   font-size: 20px;
@@ -45,10 +100,87 @@ h2 {
   line-height: 1.5;
 }
 
+.product-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 550;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.stars {
+  color: #f6c000;
+  font-size: 14px;
+}
+
+.reviews {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.reviews:hover {
+  text-decoration: underline;
+}
+
+.status {
+  color: green;
+  font-weight: 500;
+}
+
+.dot {
+  color: #999;
+}
+
+/* =============================
+   4. SPECIFICATION TABLE
+============================= */
+.spec-box h3 {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d1d52;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f9fbff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #333;
+  border-top: 1px solid #f0f0f0;
+}
+
+td:first-child {
+  color: #4f547b;
+  font-weight: 700;
+}
+
+td:last-child {
+  text-align: right;
+  color: #3b3b7e;
+  font-weight: 500;
+}
+
+tr:first-child td {
+  border-top: none;
+}
+
+/* =============================
+   5. BUY SECTION
+============================= */
 .buy-section {
   margin-top: 20px;
   display: flex;
-  gap: 8px;
+  gap: 20px;
 }
 
 input#quantity {
@@ -59,42 +191,125 @@ input#quantity {
 }
 
 button {
-  background-color: #007bff;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 550;
   color: white;
-  padding: 20px 50px;
+  padding: 20px 103px;
   border: none;
-  cursor: pointer;
   border-radius: 100px;
+  cursor: pointer;
 }
-button.buy-btn {
+.buy-btn {
   background: #f14d35;
+  font-weight: 550;
+  color: #fff;
+  padding: 20px 95px;
+  border-radius: 30px;
+  text-decoration: none;
 }
-button.add-btn {
-  color: #1e34da;
-  background: #e6eaf9;
+.buy-btn:hover {
+  transition: 0.5s ease;
+  background: #f14e35e3;
+  color: #fff;
 }
-.btn:hover {
-  background-color: #0056b3;
+.add-btn {
+  background: #003dd4;
+  font-weight: 550;
+  color: #fff;
+  padding: 20px 95px;
+  border-radius: 30px;
+  text-decoration: none;
+}
+.add-btn:hover {
+  transition: 0.5s ease;
+  background: #002a9c;
+  color: #fff;
 }
 
-.clearfix {
-  clear: both;
+button:hover {
+  opacity: 0.9;
 }
 
-.product-info {
-  margin-top: 40px;
+/* =============================
+   6. OFFER SECTION
+============================= */
+.offer-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.offer-section p {
+  width: 1200px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #303952;
+  margin-bottom: 15px;
+}
+
+.offer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.offer-section li {
   display: flex;
-  justify-content: left;
-  flex-direction: column;
+  align-items: center;
+  color: gray;
+  font-size: 16px;
+  margin-bottom: 6px;
 }
+
+.offer-section li i {
+  color: #16a34a;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+/* =============================
+   7. PRODUCT INFO (TAB)
+============================= */
+.product-info {
+  margin-top: 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .product-detail {
   display: contents;
 }
+
 .product-detail .content {
   width: 50%;
   margin-top: 25px;
 }
-.product-detail .content .highlight {
+
+.product-detail .highlight {
+  font-weight: 550;
+}
+.product-detail button {
+  width: 150px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  right: 10px;
+  position: relative;
+  left: 1088px;
+  margin-top: 10px;
+}
+.product-detail .comment {
+  margin: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  background: #f4f7ff;
+}
+.comment .comment-content {
   font-weight: 550;
 }

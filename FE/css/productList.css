@@ -29,12 +29,14 @@ h4 {
   color: #4f548c;
   padding: 8px 16px;
   margin: 6px 8px 6px 0;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
+  font-weight: 550;
+  font-size: 15px;
 }
 
-.btn:hover {
+.filter-btn:hover {
   background: #1a73e8;
   color: #fff;
 }
@@ -89,7 +91,7 @@ h1 {
   font-weight: bold;
 }
 
-.btn {
+.detail-btn {
   background-color: #007bff;
   color: white;
   border: none;
@@ -98,12 +100,8 @@ h1 {
   margin-top: 10px;
 }
 
-.btn:hover {
+.detail-btn:hover {
   background-color: #0056b3;
-}
-
-.clearfix {
-  clear: both;
 }
 
 footer {
@@ -112,4 +110,52 @@ footer {
   text-align: center;
   padding: 10px;
   margin-top: 30px;
+}
+.demand-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+.img-button {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  width: 150px;
+  padding: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.img-button img {
+  width: 80px;
+  object-fit: contain;
+}
+.img-button a {
+  display: block;
+  color: #222;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.clearfix {
+  clear: both;
+}
+.image-slider img {
+  width: 100%;
+}
+.product-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.product-stats .stars {
+  color: #f6c000;
+  font-size: 14px;
+}
+.product-stats span {
+  color: #0066cc;
 }
