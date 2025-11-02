@@ -1,4 +1,4 @@
-const tabList = document.querySelectorAll(".nav-item");
+const tabList = document.querySelectorAll(".nav-link");
 const productDetail = document.querySelector(".product-detail");
 //
 const detail = `
@@ -95,6 +95,9 @@ const detail = `
           </div>
           <img src="../img/product_detail_img/detail_5.png" alt="Hình ảnh bị lỗi" />
         </div>`;
+const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows="5" cols="50"></textarea>
+  <button type="button">Gửi đánh giá</button>
+`;
 const spec = "Đang cập nhật thêm";
 //Bấm vào tab
 tabList.forEach((link) => {
@@ -104,6 +107,47 @@ tabList.forEach((link) => {
     link.classList.add("active");
     if (link.textContent.trim() === "Chi tiết") {
       productDetail.innerHTML = detail;
+    } else if (link.textContent.trim() === "Feedback") {
+      productDetail.innerHTML = feedback;
+      const comment = document.querySelector(".product-detail textarea");
+      const sendBtn = document.querySelector(".product-detail button");
+      const commentContainer = document.querySelector(".product-detail");
+
+      if (comment && sendBtn) {
+        const toggleSendBtnColor = (isFocused) => {
+          sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
+        };
+        comment.addEventListener("focus", () => toggleSendBtnColor(true));
+        comment.addEventListener("blur", () => toggleSendBtnColor(false));
+        const submitComment = () => {
+          const text = comment.value.trim();
+          if (!text) return;
+          // Tạo div comment
+          const commentDiv = document.createElement("div");
+          commentDiv.classList.add("comment");
+          // Header: tên + icon
+          commentDiv.innerHTML = `
+                        <div class="comment-header">
+                            <span>Lâm Doanh</span>
+                            <span style="color:green;">✔ Đã mua tại BabyStore.com.vn</span>
+                        </div>
+                        <div class="comment-content">${text}</div>
+                        <div class="comment-date">${new Date().toLocaleDateString(
+                          "vi-VN"
+                        )}</div>
+                    `;
+          commentContainer.appendChild(commentDiv);
+          comment.value = "";
+          toggleSendBtnColor(false);
+        };
+        sendBtn.addEventListener("click", submitComment);
+        comment.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            submitComment();
+          }
+        });
+      }
     } else {
       productDetail.innerHTML = spec;
     }
@@ -111,12 +155,5 @@ tabList.forEach((link) => {
 });
 //Khi load trang
 window.addEventListener("DOMContentLoaded", () => {
-  const activeTab = document.querySelector(".nav-link.active");
-  if (activeTab) {
-    if (activeTab.textContent.trim() === "Chi tiết") {
-      productDetail.innerHTML = detail;
-    } else {
-      productDetail.innerHTML = spec;
-    }
-  }
+  productDetail.innerHTML = detail;
 });
