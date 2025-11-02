@@ -198,3 +198,92 @@ body {
 .data-table tr:hover {
     background: #f9f9ff;
 }
+/* --- Voucher Management --- */
+
+/* === Voucher Management === */
+.voucher-form, .voucher-list {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.voucher-form h3, .voucher-list h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-item label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-item input, .form-item select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.btn-primary {
+    grid-column: 1 / -1;
+    background: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #005fa3;
+}
+
+/* Table style (giống bảng sản phẩm) */
+.data-table th, .data-table td {
+    text-align: center;
+}
+
+.status {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status.on {
+    background: #e7f7e9;
+    color: #2e7d32;
+}
+
+.status.off {
+    background: #fdecea;
+    color: #c62828;
+}
+
+.btn-small {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 6px;
+    margin: 0 2px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-on { background: #43a047; }
+.btn-off { background: #fb8c00; }
+.btn-delete { background: #d32f2f; }
+.btn-small:hover { opacity: 0.85; }
