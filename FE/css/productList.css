@@ -159,3 +159,24 @@ footer {
 .product-stats span {
   color: #0066cc;
 }
+/*Back To Top Page*/
+#backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 100px;
+  font-size: 20px;
+  background: #003dd4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+#backToTop.show {
+  display: block;
+  opacity: 1;
+}

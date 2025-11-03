@@ -67,7 +67,6 @@ function removeItem() {
     });
   }
 }
-
 function applyPromo() {
   const code = document.getElementById("promoCode").value.trim().toUpperCase();
   let discount = document.getElementById("discount");
@@ -81,6 +80,14 @@ function applyPromo() {
     });
     discount.textContent = "1.500.000đ";
     updateTotal();
+  } else if (code === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Chưa nhập mã",
+      text: "Vui lòng nhập mã giảm giá",
+      timer: 1500,
+      showConfirmButton: false,
+    });
   } else {
     Swal.fire({
       icon: "error",
@@ -90,6 +97,14 @@ function applyPromo() {
       showConfirmButton: false,
     });
   }
+}
+const promoInput = document.querySelector(".promo-input");
+if (promoInput) {
+  promoInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      applyPromo();
+    }
+  });
 }
 async function submitPayment() {
   await Swal.fire({
