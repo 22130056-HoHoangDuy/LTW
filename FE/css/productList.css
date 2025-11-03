@@ -24,7 +24,7 @@ h4 {
 
 .filter-btn {
   display: inline-block;
-  border: 1px solid #1a73e8;
+  border: none;
   background: #f4f7ff;
   color: #4f548c;
   padding: 8px 16px;
@@ -40,8 +40,24 @@ h4 {
   background: #1a73e8;
   color: #fff;
 }
+.filter-btn.cart-btn {
+  background: #00c9a7;
+  color: white;
+}
+.filter-btn.cart-btn:hover {
+  background: #00b192;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
 
-.btn-danger {
+.filter-btn.detail-btn {
+  background: #ff6f91;
+  color: white;
+}
+.filter-btn.detail-btn:hover {
+  background: #ff4f75;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+.remove-btn {
   background: #e74c3c;
   color: #fff;
   border: none;
@@ -49,7 +65,7 @@ h4 {
   font-weight: 550;
 }
 
-.btn-danger:hover {
+.remove-btn:hover {
   background: #c0392b;
 }
 /* Product List */
