@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Categories</title>
+    <link rel="stylesheet" href="../css/admin_style.css" />
+</head>
+<body>
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="logo">🎨</div>
+        <nav class="menu">
+            <a href="../html/admin_overview.html"><i>🏠</i></a>
+            <a href="../html/admin_orders.html"><i>📦</i></a>
+            <a href="../html/admin_accounts.html"><i>👤</i></a>
+            <a href="../html/admin_products.html"><i>🧸</i></a>
+            <a href="../html/admin_vouchers.html"><i>🎟️</i></a>
+            <a href="../html/admin_categories.html" class="active"><i>📚</i></a>
+        </nav>
+        <div class="bottom-btn"><i>⚙️</i></div>
+    </aside>
+
+    <main class="main">
+        <h2>Quản lý danh mục</h2>
+
+        <!-- Form thêm danh mục -->
+        <section class="voucher-form">
+            <h3>Thêm danh mục mới</h3>
+            <form class="form-grid">
+                <div class="form-item">
+                    <label for="cat-name">Tên danh mục</label>
+                    <input type="text" id="cat-name" placeholder="Nhập tên danh mục" />
+                </div>
+
+                <div class="form-item">
+                    <label for="cat-status">Trạng thái</label>
+                    <select id="cat-status">
+                        <option value="on">Hiển thị</option>
+                        <option value="off">Ẩn</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Thêm danh mục</button>
+            </form>
+        </section>
+
+        <!-- Danh sách danh mục -->
+        <section class="voucher-list">
+            <h3>Danh sách danh mục</h3>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Tên danh mục</th>
+                    <th>Số lượng sản phẩm</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Trang trí</td>
+                    <td>18</td>
+                    <td><span class="status on">Hiển thị</span></td>
+                    <td>
+                        <button class="btn-small btn-off">Ẩn</button>
+                        <button class="btn-small btn-delete">Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phòng bé</td>
+                    <td>9</td>
+                    <td><span class="status on">Hiển thị</span></td>
+                    <td>
+                        <button class="btn-small btn-off">Ẩn</button>
+                        <button class="btn-small btn-delete">Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nội thất</td>
+                    <td>12</td>
+                    <td><span class="status off">Ẩn</span></td>
+                    <td>
+                        <button class="btn-small btn-on">Hiện</button>
+                        <button class="btn-small btn-delete">Xóa</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <aside class="right-panel"></aside>
+</div>
+</body>
+</html>
