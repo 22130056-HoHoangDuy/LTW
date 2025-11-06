@@ -3,6 +3,22 @@ body {
   background-color: #f8f8f8;
   margin: 0;
 }
+iframe {
+    width: 100%;
+    border: none;
+    display: block;
+}
+
+/* Header iframe */
+#header-frame {
+    height: 150px; /* tạm thời, sẽ auto sau */
+}
+
+/* Footer iframe */
+#footer-frame {
+    height: 400px; /* tạm thời, sẽ auto sau */
+}
+
 /*Navigation*/
 nav {
   padding: 1.5rem 4rem;
