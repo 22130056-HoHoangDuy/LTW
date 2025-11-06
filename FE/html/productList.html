@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/productList.css" />
-  </head>
-  <body>
-    <div class="image-slider">
-      <img src="../img/slider_product_list.jpg" alt="" />
-    </div>
-    <div class="filter-box">
-      <div class="filter-demand-group">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/productList.css"/>
+    <link
+            rel="stylesheet"
+            href="../fontawesome-free-7.1.0-web/css/all.min.css"
+    />
+</head>
+<body>
+<iframe src="header.html" id="header-frame"></iframe>
+<nav>
+    <a href="">Home</a>
+    <span class="dot">•</span>
+    <a href="">Danh sách sản phẩm</a>
+</nav>
+<div class="image-slider">
+    <img src="../img/slider_product_list.jpg" alt=""/>
+</div>
+<div class="filter-box">
+    <div class="filter-demand-group">
         <h4>Chọn theo nhu cầu</h4>
         <div class="demand-group">
-          <div class="img-button">
-            <img
-              src="../img/combo-ban-hoc-thong-minh2-nc.jpg"
-              alt="Hình ảnh bị lỗi"
-            />
-            <a href="">BÀN HỌC THÔNG MINH</a>
-          </div>
-          <div class="img-button">
-            <img src="../img/ghe-chong-gu-nc.jpg" alt="Hình ảnh bị lỗi" />
-            <a href="">GHẾ CHỐNG GÙ</a>
-          </div>
-          <div class="img-button">
-            <img src="../img/den-chong-can-nc.jpg" alt="Hình ảnh bị lỗi" />
-            <a href="">ĐÈN CHỐNG CẬN</a>
-          </div>
+            <div class="img-button">
+                <img
+                        src="../img/combo-ban-hoc-thong-minh2-nc.jpg"
+                        alt="Hình ảnh bị lỗi"
+                />
+                <a href="">BÀN HỌC THÔNG MINH</a>
+            </div>
+            <div class="img-button">
+                <img src="../img/ghe-chong-gu-nc.jpg" alt="Hình ảnh bị lỗi"/>
+                <a href="">GHẾ CHỐNG GÙ</a>
+            </div>
+            <div class="img-button">
+                <img src="../img/den-chong-can-nc.jpg" alt="Hình ảnh bị lỗi"/>
+                <a href="">ĐÈN CHỐNG CẬN</a>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="filter-box">
-      <div class="filter-group">
+</div>
+<div class="filter-box">
+    <div class="filter-group">
         <h4>Chọn theo tiêu chí</h4>
         <button type="button" class="filter-btn">Thương hiệu</button>
         <button type="button" class="filter-btn">Giá tiền</button>
         <button type="button" class="filter-btn">Kích thước</button>
         <button type="button" class="filter-btn">Màu sắc</button>
         <button type="button" class="filter-btn">Chất liệu</button>
-      </div>
+    </div>
 
-      <div class="filter-group">
+    <div class="filter-group">
         <h4>Sắp xếp theo</h4>
         <button type="button" class="filter-btn">Giá tăng dần</button>
         <button type="button" class="filter-btn">Giá giảm dần</button>
@@ -50,222 +60,541 @@
         <button type="button" class="filter-btn">Cũ nhất</button>
         <button type="button" class="filter-btn">Tên A-Z</button>
         <button type="button" class="filter-btn">Tên Z-A</button>
-      </div>
-
-      <button type="button" class="filter-btn btn-danger">Xóa lọc</button>
     </div>
-    <div class="container">
-      <h1>Danh sách sản phẩm</h1>
 
-      <div class="product">
-        <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
+    <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
+</div>
+<div class="container">
+    <h1>Danh sách sản phẩm</h1>
+
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
         </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi" />
         <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
         <p class="price">4.090.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
         </a>
         <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
         </div>
-      </div>
-      <div class="product">
-        <img src="../img/fancy-h120-hong.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi" />
-        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
-        <p class="price">4.090.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/fancy-h120-hong.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi" />
-        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
-        <p class="price">4.090.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/fancy-h120-hong.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi" />
-        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
-        <p class="price">4.090.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <img src="../img/fancy-h120-hong.jpg" alt="Ảnh bị lỗi" />
-        <h3>Bàn Học Thông Minh FANCY ROS 100</h3>
-        <p class="price">3.910.000đ</p>
-        <a href="../html/productDetail.html"
-          ><button type="button" class="filter-btn">Xem chi tiết</button>
-        </a>
-        <div class="product-stats">
-          <span class="stars">★★★★★</span>
-          <a href="#" class="reviews">(0 đánh giá)</a>
-          <span class="dot">•</span>
-          <div>
-            Đã bán
-            <span>513</span>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="clearfix"></div>
-  </body>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/macaron-sku-xanh.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/tk4-hong.png" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <a href="../html/productDetail.html">
+            <img src="../img/d11pro-xam.jpg" alt="Ảnh bị lỗi"/>
+        </a>
+        <h3>Bàn Chống Gù Chống Cận GJHH105T và Y001</h3>
+        <p class="price">4.090.000đ</p>
+        <a title="Thêm vào giỏ hàng" href="#" class="filter-btn cart-btn">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
+        <a
+                title="Xem chi tiết"
+                href="../html/productDetail.html"
+                class="filter-btn detail-btn"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </a>
+        <div class="product-stats">
+            <span class="stars">★★★★★</span>
+            <a href="#" class="reviews">(0 đánh giá)</a>
+            <span class="dot">•</span>
+            <div>
+                Đã bán
+                <span>513</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<button type="button" id="backToTop" title="Back To Top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+<iframe src="footer.html" id="footer-frame"></iframe>
+
+<script src="../js/productList.js"></script>
+
+</body>
 </html>

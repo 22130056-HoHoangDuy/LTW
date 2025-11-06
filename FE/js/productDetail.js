@@ -98,7 +98,7 @@ const detail = `
 const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows="5" cols="50"></textarea>
   <button type="button">Gửi đánh giá</button>
 `;
-const spec = "Đang cập nhật thêm";
+const spec = `<img src="../img/thong_so_kt.png" alt="Đang cập nhật hình ảnh">`;
 //Bấm vào tab
 tabList.forEach((link) => {
   link.addEventListener("click", (e) => {

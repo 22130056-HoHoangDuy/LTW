@@ -12,10 +12,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="../fontawesome-free-7.1.0-web/css/all.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
-    <nav>
+  <iframe src="header.html" id="header-frame"></iframe>
+  <nav>
       <a href="">Home</a>
       <span class="dot">•</span>
       <a href="">Giỏ hàng</a>
@@ -49,8 +54,13 @@
             </div>
           </div>
           <div class="item-actions">
-            <button type="button" class="delete-btn" onclick="removeItem()">
-              🗑️
+            <button
+              type="button"
+              class="delete-btn"
+              title="Xóa sản phẩm"
+              onclick="removeItem()"
+            >
+              <i class="fa-solid fa-trash"></i>
             </button>
             <div class="quantity-control">
               <button
@@ -99,15 +109,13 @@
               />
             </svg>
             <span>Mã giảm giá</span>
-            <a href="#" style="margin-left: auto; font-size: 0.85rem"
-              >Chọn mã giảm giá</a
-            >
+            <a href="#">Chọn mã giảm giá</a>
           </div>
           <div class="promo-input-group">
             <input
               type="text"
               class="promo-input"
-              placeholder="CODE001"
+              placeholder="Nhập mã giảm giá"
               id="promoCode"
             />
             <button type="button" class="promo-btn" onclick="applyPromo()">
