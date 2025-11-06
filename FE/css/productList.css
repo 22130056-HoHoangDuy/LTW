@@ -232,7 +232,6 @@ footer {
   height: 40px;
   cursor: pointer;
   display: none;
-  transition: opacity 0.3s ease;
 }
 
 #backToTop.show {
