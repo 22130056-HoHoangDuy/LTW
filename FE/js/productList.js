@@ -1,3 +1,4 @@
+//Back to top page
 const backBtn = document.getElementById("backToTop");
 const footer = document.getElementById("footer-frame");
 window.addEventListener("scroll", () => {
@@ -20,3 +21,18 @@ window.addEventListener("scroll", () => {
 backBtn.addEventListener("click", () => {
     window.scrollTo({top: 0, behavior: "smooth"});
 });
+//Add favorite product
+const favorBtns = document.querySelectorAll(".filter-btn.favor-btn");
+favorBtns.forEach((favorBtn)=>{
+    favorBtn.addEventListener("click", () => {
+        Swal.fire({
+            icon: "success",
+            title: "Đã thêm",
+            text: "Sản phẩm đã được thêm vào danh sách yêu thích.",
+            timer: 1500,
+            showConfirmButton: false,
+        });
+    })
+})
+
+
