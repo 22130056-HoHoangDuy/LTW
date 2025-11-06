@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Overview</title>
     <link rel="stylesheet" href="../css/admin_style.css" />
+    <link rel="stylesheet" href="../css/admin_chart.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="dashboard">
@@ -20,16 +23,24 @@
             <a href="../html/admin_vouchers.html"><i>🎟️</i></a>
             <a href="../html/admin_categories.html"><i>📚</i></a>
         </nav>
-        <div class="bottom-btn"><i>⚙️</i></div>
+        <a href="../html/admin_settings.html" class="bottom-btn"><i>⚙️</i></a>
     </aside>
 
     <!-- Main content -->
     <main class="main">
         <section class="stats">
             <h2>Tổng quan tháng này</h2>
+
             <div class="charts">
-                <div class="chart-box">Biểu đồ doanh thu</div>
-                <div class="chart-box">Đơn hàng theo ngày</div>
+                <div class="chart-box">
+                    <h3>📈 Doanh thu theo tháng</h3>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+                <div class="chart-box">
+                    <h3>📊 Đơn hàng theo danh mục</h3>
+                    <canvas id="orderChart"></canvas>
+                </div>
             </div>
 
             <div class="cards">
@@ -52,5 +63,8 @@
         <button class="add-btn">+</button>
     </aside>
 </div>
+
+<!-- Script -->
+<script src="../js/admin_script.js"></script>
 </body>
 </html>
