@@ -15,12 +15,12 @@ iframe {
 
 /* Header iframe */
 #header-frame {
-    height: 120px; /* tạm thời, sẽ auto sau */
+    height: 115px;
 }
 
 /* Footer iframe */
 #footer-frame {
-    height: 400px; /* tạm thời, sẽ auto sau */
+    height: 386px;
 }
 
 .container {
