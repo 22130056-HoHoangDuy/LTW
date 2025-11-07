@@ -69,7 +69,21 @@ nav a:hover {
     max-width: 1200px;
     margin: 0 auto;
 }
+.nav-tabs .nav-link {
+    color: #333;
+    font-weight: 550;
+    transition: 0.3s;
+}
 
+.nav-tabs .nav-link:hover {
+    color: #007bff; /* Màu khi hover */
+}
+
+.nav-tabs .nav-link.active {
+    background-color:#0031da; /* Màu nền khi active */
+    color: #fff; /* Màu chữ khi active */
+    border-radius: 5px;
+}
 .product-image {
     position: sticky;
     top: 20px;
