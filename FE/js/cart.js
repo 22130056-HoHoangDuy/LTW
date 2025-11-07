@@ -41,6 +41,7 @@ function removeItem() {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
+        cancelButtonText: "Không, để lại đi",
         confirmButtonText: "Có"
     }).then((result) => {
         if (!result.isConfirmed) return;

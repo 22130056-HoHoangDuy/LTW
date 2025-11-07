@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Đăng nhập - Nội thất trẻ em</title>
     <link rel="stylesheet" href="../css/login.css"/>
+    <link
+            rel="stylesheet"
+            href="../fontawesome-free-7.1.0-web/css/all.min.css"
+    />
 </head>
 
 <body>
@@ -22,7 +26,8 @@
                         placeholder="Mật khẩu"
                         required
                 />
-                <span class="toggle-password" onclick="togglePassword('login-password', this)">👁️</span>
+                <span class="toggle-password"><i
+                    class="fa-solid fa-eye"></i></span>
             </div>
 
             <button type="submit">Đăng nhập</button>
@@ -48,7 +53,8 @@
                         placeholder="Mật khẩu"
                         required
                 />
-                <span class="toggle-password" onclick="togglePassword('register-password', this)">👁️</span>
+                <span class="toggle-password"><i
+                        class="fa-solid fa-eye"></i></span>
             </div>
 
             <div class="password-container">
@@ -58,7 +64,8 @@
                         placeholder="Xác nhận mật khẩu"
                         required
                 />
-                <span class="toggle-password" onclick="togglePassword('confirm-password', this)">👁️</span>
+                <span class="toggle-password"><i
+                        class="fa-solid fa-eye"></i></span>
             </div>
 
             <p id="password-error" class="error"></p>

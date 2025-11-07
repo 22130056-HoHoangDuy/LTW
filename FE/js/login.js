@@ -6,16 +6,28 @@ function showForm(formName) {
 }
 
 // --- Hiện / Ẩn mật khẩu ---
-function togglePassword(inputId, icon) {
-    const input = document.getElementById(inputId);
-    if (input.type === "password") {
-        input.type = "text";
-        icon.textContent = "🙈";
-    } else {
-        input.type = "password";
-        icon.textContent = "👁️";
-    }
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleIcons = document.querySelectorAll(".toggle-password");
+
+    toggleIcons.forEach(icon => {
+        icon.addEventListener("click", (e) => {
+            e.preventDefault();
+            const input = icon.closest(".password-container").querySelector("input");
+            const eyeIcon = icon.querySelector("i");
+
+            if (input.type === "password") {
+                input.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        });
+    });
+});
+
 
 // --- Kiểm tra mật khẩu ---
 const registerForm = document.getElementById("register-form");
