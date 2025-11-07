@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Đăng nhập - Nội thất trẻ em</title>
-    <link rel="stylesheet" href="../css/login.css" />
-    <style>
-        /* CSS nhỏ cho icon mắt */
-        .password-container {
-            position: relative;
-            width: 100%;
-        }
-        .password-container input {
-            width: 100%;
-            padding-right: 35px;
-        }
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 18px;
-            color: #666;
-        }
-        .error {
-            color: red;
-            font-size: 13px;
-            text-align: left;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/login.css"/>
 </head>
 
 <body>
@@ -39,7 +13,7 @@
         <!-- ĐĂNG NHẬP -->
         <form id="login-form" class="form active">
             <h2>Đăng nhập</h2>
-            <input type="text" placeholder="Tên đăng nhập hoặc Email" required />
+            <input type="text" placeholder="Tên đăng nhập hoặc Email" required/>
 
             <div class="password-container">
                 <input
@@ -64,8 +38,8 @@
         <!-- ĐĂNG KÝ -->
         <form id="register-form" class="form">
             <h2>Đăng ký</h2>
-            <input type="text" placeholder="Tên người dùng" required />
-            <input type="email" placeholder="Email" required />
+            <input type="text" placeholder="Tên người dùng" required/>
+            <input type="email" placeholder="Email" required/>
 
             <div class="password-container">
                 <input
@@ -98,7 +72,7 @@
         <!-- QUÊN MẬT KHẨU -->
         <form id="forgot-form" class="form">
             <h2>Quên mật khẩu</h2>
-            <input type="email" placeholder="Nhập email của bạn" required />
+            <input type="email" placeholder="Nhập email của bạn" required/>
             <button type="submit">Gửi liên kết đặt lại</button>
             <p class="switch">
                 Quay lại
@@ -107,56 +81,7 @@
         </form>
     </div>
 </div>
+<script src="../js/login.js"></script>
 
-<script>
-    // --- Chuyển đổi form ---
-    function showForm(formName) {
-        const forms = document.querySelectorAll(".form");
-        forms.forEach((f) => f.classList.remove("active"));
-        document.getElementById(`${formName}-form`).classList.add("active");
-    }
-
-    // --- Hiện / Ẩn mật khẩu ---
-    function togglePassword(inputId, icon) {
-        const input = document.getElementById(inputId);
-        if (input.type === "password") {
-            input.type = "text";
-            icon.textContent = "🙈";
-        } else {
-            input.type = "password";
-            icon.textContent = "👁️";
-        }
-    }
-
-    // --- Kiểm tra mật khẩu ---
-    const registerForm = document.getElementById("register-form");
-    const passwordInput = document.getElementById("register-password");
-    const confirmPasswordInput = document.getElementById("confirm-password");
-    const errorText = document.getElementById("password-error");
-
-    registerForm.addEventListener("submit", function (e) {
-        const password = passwordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
-
-        // Biểu thức kiểm tra độ mạnh
-        const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-        if (!passwordRegex.test(password)) {
-            e.preventDefault();
-            errorText.textContent =
-                "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            e.preventDefault();
-            errorText.textContent = "Mật khẩu xác nhận không khớp.";
-            return;
-        }
-
-        errorText.textContent = "";
-    });
-</script>
 </body>
 </html>

@@ -83,3 +83,30 @@ button:hover {
 .switch a:hover, .forgot a:hover {
   text-decoration: underline;
 }
+/* CSS nhỏ cho icon mắt */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 35px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 10px;
+}
