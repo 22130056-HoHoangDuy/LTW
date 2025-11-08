@@ -69,6 +69,7 @@ nav a:hover {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .nav-tabs .nav-link {
     color: #333;
     font-weight: 550;
@@ -80,10 +81,11 @@ nav a:hover {
 }
 
 .nav-tabs .nav-link.active {
-    background-color:#0031da; /* Màu nền khi active */
+    background-color: #0031da; /* Màu nền khi active */
     color: #fff; /* Màu chữ khi active */
     border-radius: 5px;
 }
+
 .product-image {
     position: sticky;
     top: 20px;
@@ -222,13 +224,7 @@ input#quantity {
 }
 
 button {
-    font-size: 16px;
-    font-weight: 550;
-    color: white;
-    padding: 20px 103px;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
+    padding: 20px 20px;
 }
 
 .buy-btn {
@@ -318,7 +314,8 @@ button:hover {
 }
 
 .product-detail {
-    display: contents;
+    display: block;
+    position: relative;
 }
 
 .product-detail .content {
@@ -350,4 +347,31 @@ button:hover {
 
 .comment .comment-content {
     font-weight: 550;
+}
+.product-detail img{
+    width: 100%;
+}
+/*Back To Top Page*/
+#backToTop {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    font-size: 20px;
+    background: #003dd4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+#backToTop.show {
+    display: flex;
+    opacity: 1;
 }
