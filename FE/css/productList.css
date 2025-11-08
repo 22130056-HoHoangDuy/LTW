@@ -243,19 +243,46 @@ footer {
 
 .product-stats {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 4px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #555;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #f9f9f9;
+    border-radius: 6px;
 }
 
-.product-stats .stars {
-    color: #f6c000;
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.product-rating .stars {
+    color: #ffc107;
     font-size: 14px;
+    letter-spacing: 1px;
 }
 
-.product-stats span {
-    color: #0066cc;
+.product-rating .reviews {
+    color: #888;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.product-rating .reviews:hover {
+    text-decoration: underline;
+}
+
+.product-stats div:last-child {
+    color: #333;
+    font-size: 13px;
+}
+
+.product-stats div:last-child span {
+    font-weight: 600;
+    color: #e60000;
 }
 
 /*Back To Top Page*/
