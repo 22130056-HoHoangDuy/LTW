@@ -3,10 +3,10 @@ const ctx1 = document.getElementById('revenueChart');
 new Chart(ctx1, {
     type: 'line',
     data: {
-        labels: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6'],
+        labels: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11'],
         datasets: [{
             label: 'Doanh thu (triệu VND)',
-            data: [12, 19, 14, 22, 30, 28],
+            data: [12, 19, 14, 22, 30, 28, 19, 23, 30, 29, 31],
             borderColor: '#6c63ff',
             backgroundColor: 'rgba(108,99,255,0.1)',
             borderWidth: 3,
@@ -40,7 +40,7 @@ const ctx2 = document.getElementById('orderChart');
 new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Sản phẩm trang trí', 'Sản phẩm nội thất', 'Đồ chơi trẻ em'],
+        labels: ['Sản phẩm trang trí', 'Sản phẩm nội thất'],
         datasets: [{
             label: 'Số đơn hàng',
             data: [45, 30, 20, 15, 10],
