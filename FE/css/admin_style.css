@@ -55,6 +55,21 @@ body {
     background: #6c63ff;
     color: #fff;
 }
+.sidebar .menu a i,
+.bottom-btn i {
+    font-size: 20px;
+    color: inherit;
+    font-style: normal; /* tránh nghiêng */
+    transform: none;
+}
+
+.sidebar .menu a i {
+    transition: transform 0.2s ease;
+}
+
+.sidebar .menu a:hover i {
+    transform: scale(1.1);
+}
 
 .bottom-btn {
     margin-top: auto;
