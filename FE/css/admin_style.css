@@ -70,6 +70,11 @@ body {
 .sidebar .menu a:hover i {
     transform: scale(1.1);
 }
+.sidebar .menu a i {
+    background: linear-gradient(45deg, #dc6060, #12dfd8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .bottom-btn {
     margin-top: auto;
