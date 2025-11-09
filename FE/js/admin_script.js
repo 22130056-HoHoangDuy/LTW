@@ -40,7 +40,7 @@ const ctx2 = document.getElementById('orderChart');
 new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Trang trí', 'Nội thất', 'Phòng bé', 'Văn phòng', 'Khác'],
+        labels: ['Sản phẩm trang trí', 'Sản phẩm nội thất', 'Đồ chơi trẻ em'],
         datasets: [{
             label: 'Số đơn hàng',
             data: [45, 30, 20, 15, 10],
