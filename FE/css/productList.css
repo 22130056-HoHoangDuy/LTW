@@ -223,9 +223,11 @@ footer {
 }
 
 .img-button img {
-    width: 70%;
+    width: 100px;
     border-radius: 8px;
     transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+
 }
 
 .img-button img:hover {
