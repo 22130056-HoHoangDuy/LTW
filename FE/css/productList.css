@@ -86,18 +86,31 @@ h4 {
 }
 
 .filter-btn.cart-btn:hover {
-    background: #00b192;
+    background: white;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    color: #00c9a7;
 }
 
 .filter-btn.detail-btn {
-    background: #ff6f91;
+    background: #1a73e8;
     color: white;
 }
 
 .filter-btn.detail-btn:hover {
-    background: #ff4f75;
+    background: white;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    color: #1a73e8;
+}
+
+.filter-btn.favor-btn {
+    background: #ff6f91;
+    color: white;
+}
+
+.filter-btn.favor-btn:hover {
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    color: #ff6f91;
 }
 
 .remove-btn {
@@ -196,20 +209,31 @@ footer {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.img-button img {
-    width: 80px;
-    object-fit: contain;
-}
-
 .img-button a {
-    display: block;
-    color: #222;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4f548c;
+    gap: 12px;
     font-weight: 600;
     font-size: 14px;
     padding: 10px 6px;
     text-decoration: none;
     transition: color 0.2s ease;
 }
+
+.img-button img {
+    width: 100px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+
+}
+
+.img-button img:hover {
+    transform: scale(1.05);
+}
+
 
 .clearfix {
     clear: both;
@@ -221,22 +245,49 @@ footer {
 
 .product-stats {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 4px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #555;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #f9f9f9;
+    border-radius: 6px;
 }
 
-.product-stats .stars {
-    color: #f6c000;
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.product-rating .stars {
+    color: #ffc107;
     font-size: 14px;
+    letter-spacing: 1px;
 }
 
-.product-stats span {
-    color: #0066cc;
+.product-rating .reviews {
+    color: #888;
+    font-size: 13px;
+    text-decoration: none;
 }
 
-/*Back To Top Page*/
+.product-rating .reviews:hover {
+    text-decoration: underline;
+}
+
+.product-stats div:last-child {
+    color: #333;
+    font-size: 13px;
+}
+
+.product-stats div:last-child span {
+    font-weight: 600;
+    color: #e60000;
+}
+
+/*Chuyển về đầu trang*/
 #backToTop {
     position: fixed;
     bottom: 40px;
@@ -249,10 +300,56 @@ footer {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 999;
 }
 
 #backToTop.show {
-    display: block;
     opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    background: #1a4bff;
+    box-shadow: 0 0 10px rgba(0, 61, 212, 0.5);
+}
+
+/*Phân trang*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 40px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 10px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    color: #333;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+    border-color: #999;
+}
+
+.pagination a.active {
+    background-color: #0031da;
+    color: white;
+    border-color: #2c7be5;
+}
+
+.pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
