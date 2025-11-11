@@ -99,6 +99,11 @@ nav a:hover {
     border-radius: 5px;
     padding: 10px;
     background-color: #fafafa;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover img {
+    transform: scale(1.05);
 }
 
 /* =============================
@@ -260,7 +265,24 @@ button {
 button:hover {
     opacity: 0.9;
 }
-
+.buy-btn, .add-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.buy-btn::after, .add-btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transition: width 0.3s ease;
+}
+.buy-btn:hover::after, .add-btn:hover::after {
+    width: 100%;
+}
 /* =============================
    6. OFFER SECTION
 ============================= */
@@ -348,9 +370,11 @@ button:hover {
 .comment .comment-content {
     font-weight: 550;
 }
-.product-detail img{
+
+.product-detail img {
     width: 100%;
 }
+
 /*Back To Top Page*/
 #backToTop {
     position: fixed;
@@ -367,11 +391,21 @@ button:hover {
     display: none;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 #backToTop.show {
     display: flex;
     opacity: 1;
+}
+/*Animation khi cuộn xuống*/
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
 }
