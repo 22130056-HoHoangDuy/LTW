@@ -99,61 +99,92 @@ const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows
   <button type="button">Gửi đánh giá</button>
 `;
 const spec = `<img src="../img/thong_so_kt.png" alt="Đang cập nhật hình ảnh">`;
+//
+// Khởi tạo backToTop luôn từ đầu
+const backBtn = document.getElementById("backToTop");
+const footer = document.getElementById("footer-frame");
+
+// Lắng nghe scroll 1 lần duy nhất
+window.addEventListener("scroll", () => {
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (window.scrollY > 400) {
+        backBtn.classList.add("show");
+    } else {
+        backBtn.classList.remove("show");
+    }
+    if (footerTop < windowHeight) {
+        backBtn.style.background = "white";
+        backBtn.style.color = "blue";
+    } else {
+        backBtn.style.background = "#003dd4";
+        backBtn.style.color = "white";
+    }
+});
+
+// Cuộn lên đầu
+backBtn.addEventListener("click", () => {
+    window.scrollTo({top: 0, behavior: "smooth"});
+});
 //Bấm vào tab
 tabList.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    tabList.forEach((l) => l.classList.remove("active"));
-    link.classList.add("active");
-    if (link.textContent.trim() === "Chi tiết") {
-      productDetail.innerHTML = detail;
-    } else if (link.textContent.trim() === "Feedback") {
-      productDetail.innerHTML = feedback;
-      const comment = document.querySelector(".product-detail textarea");
-      const sendBtn = document.querySelector(".product-detail button");
-      const commentContainer = document.querySelector(".product-detail");
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        tabList.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+        if (link.textContent.trim() === "Chi tiết") {
+            productDetail.innerHTML = detail;
+            backBtn.style.display = "block";
+        } else if (link.textContent.trim() === "Feedback") {
+            productDetail.innerHTML = feedback;
+            backBtn.style.display = "none";
+            const comment = document.querySelector(".product-detail textarea");
+            const sendBtn = document.querySelector(".product-detail button");
+            const commentContainer = document.querySelector(".product-detail");
 
-      if (comment && sendBtn) {
-        const toggleSendBtnColor = (isFocused) => {
-          sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
-        };
-        comment.addEventListener("focus", () => toggleSendBtnColor(true));
-        comment.addEventListener("blur", () => toggleSendBtnColor(false));
-        const submitComment = () => {
-          const text = comment.value.trim();
-          if (!text) return;
-          // Tạo div comment
-          const commentDiv = document.createElement("div");
-          commentDiv.classList.add("comment");
-          // Header: tên + icon
-          commentDiv.innerHTML = `
+            if (comment && sendBtn) {
+                const toggleSendBtnColor = (isFocused) => {
+                    sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
+                };
+                comment.addEventListener("focus", () => toggleSendBtnColor(true));
+                comment.addEventListener("blur", () => toggleSendBtnColor(false));
+                const submitComment = () => {
+                    const text = comment.value.trim();
+                    if (!text) return;
+                    // Tạo div comment
+                    const commentDiv = document.createElement("div");
+                    commentDiv.classList.add("comment");
+                    // Header: tên + icon
+                    commentDiv.innerHTML = `
                         <div class="comment-header">
                             <span>Lâm Doanh</span>
                             <span style="color:green;">✔ Đã mua tại BabyStore.com.vn</span>
                         </div>
                         <div class="comment-content">${text}</div>
                         <div class="comment-date">${new Date().toLocaleDateString(
-                          "vi-VN"
-                        )}</div>
+                        "vi-VN"
+                    )}</div>
                     `;
-          commentContainer.appendChild(commentDiv);
-          comment.value = "";
-          toggleSendBtnColor(false);
-        };
-        sendBtn.addEventListener("click", submitComment);
-        comment.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            submitComment();
-          }
-        });
-      }
-    } else {
-      productDetail.innerHTML = spec;
-    }
-  });
+                    commentContainer.appendChild(commentDiv);
+                    comment.value = "";
+                    toggleSendBtnColor(false);
+                };
+                sendBtn.addEventListener("click", submitComment);
+                comment.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        submitComment();
+                    }
+                });
+            }
+        } else {
+            productDetail.innerHTML = spec;
+            backBtn.style.display = "none";
+        }
+    });
 });
 //Khi load trang
 window.addEventListener("DOMContentLoaded", () => {
-  productDetail.innerHTML = detail;
+    productDetail.innerHTML = detail;
 });
+
