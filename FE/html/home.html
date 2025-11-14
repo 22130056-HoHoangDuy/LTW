@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
+<div id="header"></div>
 <!-- Banner chính -->
 <section class="hero">
     <img src="banner.jpg" alt="TopKids Việt Nam" class="hero-img">
@@ -158,4 +159,12 @@
     </div>
 </section>
 </body>
+<script>
+        fetch("../html/header.html")
+        .then(res => res.text())
+        .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
+</script>
+
 </html>
