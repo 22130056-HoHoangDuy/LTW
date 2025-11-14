@@ -81,6 +81,25 @@ body {
     display: block;
 }
 
+/* Logo nhiều màu */
+.multi-logo span {
+    font-size: 20px;
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+/* Màu từng chữ */
+.multi-logo span:nth-child(1) { color: #ff4d4d; } /* B - đỏ */
+.multi-logo span:nth-child(2) { color: #ff9f1c; } /* a - cam */
+.multi-logo span:nth-child(3) { color: #2ec4b6; } /* b - xanh mint */
+.multi-logo span:nth-child(4) { color: #3a86ff; } /* y - xanh dương */
+.multi-logo span:nth-child(5) { color: #8338ec; } /* S - tím */
+.multi-logo span:nth-child(6) { color: #ff006e; } /* h - hồng đậm */
+.multi-logo span:nth-child(7) { color: #fb5607; } /* o - cam đậm */
+.multi-logo span:nth-child(8) { color: #00b37e; } /* p - xanh lá */
+
+
 /* Search */
 .search-wrap {
     flex: 1;
