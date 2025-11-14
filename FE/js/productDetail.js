@@ -99,7 +99,6 @@ const feedback = `<textarea placeholder="Nhập đánh giá của bạn..." rows
   <button type="button">Gửi đánh giá</button>
 `;
 const spec = `<img src="../img/thong_so_kt.png" alt="Đang cập nhật hình ảnh">`;
-//
 // Khởi tạo backToTop luôn từ đầu
 const backBtn = document.getElementById("backToTop");
 const footer = document.getElementById("footer-frame");

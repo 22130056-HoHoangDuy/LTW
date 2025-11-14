@@ -64,6 +64,9 @@ function removeItem() {
     });
 }
 
+const promoInput = document.querySelector(".promo-input");
+
+//input sẽ rung nhẹ khi nhập mã sai
 
 function applyPromo() {
     const code = document.getElementById("promoCode").value.trim().toUpperCase();
@@ -87,6 +90,8 @@ function applyPromo() {
             showConfirmButton: false,
         });
     } else {
+        promoInput.classList.add("shake");
+        setTimeout(() => promoInput.classList.remove("shake"), 500);
         Swal.fire({
             icon: "error",
             title: "Áp dụng giảm giá",
@@ -97,7 +102,6 @@ function applyPromo() {
     }
 }
 
-const promoInput = document.querySelector(".promo-input");
 if (promoInput) {
     promoInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
