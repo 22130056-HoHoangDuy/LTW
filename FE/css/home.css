@@ -5,6 +5,22 @@
     font-family: "Segoe UI", sans-serif;
 }
 
+iframe {
+    width: 100%;
+    border: none;
+    display: block;
+}
+
+/* Header iframe */
+#header-frame {
+    height: 118px;
+}
+
+/* Footer iframe */
+#footer-frame {
+    height: 390px;
+}
+
 body {
     background: #f0f4ff;
     color: #333;
@@ -64,7 +80,7 @@ body {
     overflow: hidden;
 }
 .intro img {
-    width: 200px;
+    width: auto;
 }
 .intro-right {
     padding: 20px;

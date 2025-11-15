@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
-<div id="header"></div>
+<iframe src="header.html" id="header-frame"></iframe>
 <!-- Banner chính -->
 <section class="hero">
-    <img src="banner.jpg" alt="TopKids Việt Nam" class="hero-img">
+    <img src="../img/home/banner.png" alt="TopKids Việt Nam" class="hero-img">
 </section>
 
 <!-- Danh mục sản phẩm -->
@@ -18,37 +18,32 @@
     <h2>DANH MỤC SẢN PHẨM</h2>
     <div class="category-grid">
         <div class="cat-item">
-            <img src="ban1.jpg" alt="">
-            <p>Do noi that</p>
+            <img src="../img/categories/donoithat.png" alt="">
+            <p>ĐỒ NỘI THẤT</p>
         </div>
         <div class="cat-item">
-            <img src="ghe1.jpg" alt="">
-            <p>Do trang tri</p>
+            <img src="../img/categories/dotrangtri.jpg" alt=""><img>
+            <p>ĐỒ TRANG TRÍ</p>
         </div>
         <div class="cat-item">
-            <img src="den1.jpg" alt="">
-            <p>Do choi phong/p>
+            <img src="../img/categories/dochoi.jpg" alt="">
+            <p>ĐỒ CHƠI </p>
         </div>
     </div>
 </section>
 
 <!-- Giới thiệu -->
 <section class="intro">
-    <div class="intro-left">
-        <img src="ceo.png" alt="CEO">
-    </div>
-    <div class="intro-right">
-        <h3>BABYSHOP VIETNAM</h3>
-        <p>Tiên phong mang đến giải pháp học tập thông minh, bảo vệ sức khỏe cho trẻ nhỏ. Hàng chính hãng, bảo hành trọn đời, miễn phí vận chuyển và lắp đặt.</p>
-    </div>
+        <img src="../img/home/intro.jpg" alt="CEO">
 </section>
+<div>Chính sách bảo hành của BabyShop luôn đề cao đáp ứng nhu cầu khách hàng.</div>
 
 <!-- Chính sách -->
 <section class="policies">
-    <div class="policy">BẢO HÀNH CHÍNH HÃNG</div>
-    <div class="policy">BẢO TRÌ TRỌN ĐỜI</div>
-    <div class="policy">LẮP ĐẶT MIỄN PHÍ</div>
-    <div class="policy">MIỄN PHÍ VẬN CHUYỂN</div>
+    <div class="policy">BẢO HÀNH CHÍNH HÃNG </div>
+    <div class="policy">BẢO TRÌ TRỌN ĐỜI </div>
+    <div class="policy">LẮP ĐẶT MIỄN PHÍ </div>
+    <div class="policy">MIỄN PHÍ VẬN CHUYỂN </div>
 </section>
 
 <!-- Combo nổi bật -->
@@ -158,13 +153,7 @@
         </div>
     </div>
 </section>
+<iframe src="footer.html" id="footer-frame"></iframe>
 </body>
-<script>
-        fetch("../html/header.html")
-        .then(res => res.text())
-        .then(data => {
-        document.getElementById("header").innerHTML = data;
-    });
-</script>
 
 </html>
