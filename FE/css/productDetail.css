@@ -349,17 +349,6 @@ button:hover {
     font-weight: 550;
 }
 
-.product-detail button {
-    width: 150px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    right: 10px;
-    position: relative;
-    left: 1088px;
-    margin-top: 10px;
-}
-
 .product-detail .comment {
     margin: 10px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -367,6 +356,34 @@ button:hover {
     background: #f4f7ff;
 }
 
+.product-detail textarea {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.product-detail button {
+    /*background: #003dd4;*/
+    background: gray;
+    font-weight: 550;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    left: 1088px;
+    position: relative;
+    transition: 0.5s ease-in;
+}
+
+.product-detail button.focused {
+    background: #003dd4;
+    color: #fff;
+}
+
+.product-detail button:hover {
+    transition: 0.5s ease;
+    background: #fff;
+    color: #002a9c;
+}
 .comment .comment-content {
     font-weight: 550;
 }

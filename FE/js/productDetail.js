@@ -143,7 +143,12 @@ tabList.forEach((link) => {
 
             if (comment && sendBtn) {
                 const toggleSendBtnColor = (isFocused) => {
-                    sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
+                    // sendBtn.style.background = isFocused ? "#003dd4" : "#aab0b6";
+                    if (isFocused) {
+                        sendBtn.classList.add("focused");
+                    } else {
+                        sendBtn.classList.remove("focused");
+                    }
                 };
                 comment.addEventListener("focus", () => toggleSendBtnColor(true));
                 comment.addEventListener("blur", () => toggleSendBtnColor(false));
@@ -166,7 +171,7 @@ tabList.forEach((link) => {
                     `;
                     commentContainer.appendChild(commentDiv);
                     comment.value = "";
-                    toggleSendBtnColor(false);
+                    toggleSendBtnColor(true);
                 };
                 sendBtn.addEventListener("click", submitComment);
                 comment.addEventListener("keydown", (e) => {
