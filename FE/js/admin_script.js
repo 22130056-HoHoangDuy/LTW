@@ -18,25 +18,17 @@ new Chart(ctx1, {
         }]
     },
     options: {
-        animation: {
-            duration: 1000,
-            easing: 'easeOutQuart'
-        },
+        animation: { duration: 1000, easing: 'easeOutQuart' },
         plugins: { legend: { display: false }},
         scales: {
-            y: {
-                beginAtZero: true,
-                grid: { color: '#eee' }
-            },
-            x: {
-                grid: { display: false }
-            }
+            y: { beginAtZero: true, grid: { color: '#eee' }},
+            x: { grid: { display: false }}
         }
     }
 });
 
 // ===== Biểu đồ Đơn hàng theo danh mục =====
-const ctx2 = document.getElementById('orderChart');
+const ctx2 = document.getElementById('categoryChart'); // <--- Sửa đúng ID
 new Chart(ctx2, {
     type: 'bar',
     data: {
@@ -55,19 +47,11 @@ new Chart(ctx2, {
         }]
     },
     options: {
-        animation: {
-            duration: 800,
-            easing: 'easeOutCubic'
-        },
+        animation: { duration: 800, easing: 'easeOutCubic' },
         plugins: { legend: { display: false }},
         scales: {
-            y: {
-                beginAtZero: true,
-                grid: { color: '#eee' }
-            },
-            x: {
-                grid: { display: false }
-            }
+            y: { beginAtZero: true, grid: { color: '#eee' }},
+            x: { grid: { display: false }}
         }
     }
 });
