@@ -4,12 +4,28 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+iframe {
+    width: 100%;
+    border: none;
+    display: block;
+}
+
+/* Header iframe */
+#header-frame {
+    height: 118px;
+}
+
+/* Footer iframe */
+#footer-frame {
+    height: 390px;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f2f6fb;
     color: #333;
     line-height: 1.7;
-    padding: 40px 0;
 }
 
 /* Container */
@@ -17,6 +33,7 @@ body {
     width: 90%;
     max-width: 900px;
     margin: 0 auto;
+    padding-bottom: 40px;
 }
 
 /* Breadcrumb */
