@@ -305,3 +305,96 @@ body {
 .btn-off { background: #fb8c00; }
 .btn-delete { background: #d32f2f; }
 .btn-small:hover { opacity: 0.85; }
+
+/* --- UPGRADED DASHBOARD CARDS --- */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card-large,
+.card-small {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-large {
+    grid-column: span 2;
+    height: 140px;
+}
+
+.card-small {
+    height: 120px;
+}
+
+.card-info h4 {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.card-info .value {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.icon {
+    font-size: 38px;
+    opacity: 0.3;
+}
+
+.trend {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.trend.up {
+    color: #2ecc71;
+}
+
+.trend.down {
+    color: #e74c3c;
+}
+
+/* --- CHARTS UPGRADED --- */
+
+.charts-upgraded {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.chart-header select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* --- RECENT ORDERS --- */
+
+.recent-orders {
+    margin-top: 20px;
+}
+
