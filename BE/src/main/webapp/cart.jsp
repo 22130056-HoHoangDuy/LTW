@@ -1,16 +1,170 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lamdo
-  Date: 11/14/2025
-  Time: 7:25 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+
+<%
+    // Mock data khi chưa có DB
+    if (request.getAttribute("cartItems") == null) {
+        java.util.List<java.util.Map<String, Object>> cart = new java.util.ArrayList<>();
+
+        // Sản phẩm mẫu
+        java.util.Map<String, Object> item = new java.util.HashMap<>();
+        item.put("name", "Bàn Học Thông Minh FANCY ROS 100");
+        item.put("variant", "Bàn Hồng");
+        item.put("sku", "Banhong");
+        item.put("price", "3.910.000đ");
+        item.put("originalPrice", "6.517.000đ");
+        item.put("qty", 1);
+        item.put("image", "/img/combo-ban-hoc-thong-minh2-nc.jpg");
+
+        cart.add(item);
+
+        request.setAttribute("cartItems", cart);
+    }
+%>
+
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Giỏ hàng của bạn</title>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cartStyle.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
+<jsp:include page="/header"/>
+
+<nav>
+    <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+    <span class="dot">•</span>
+    <a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a>
+</nav>
+
+<h3 class="page-title">Giỏ hàng</h3>
+
+<div class="container">
+
+    <!-- Nếu giỏ hàng trống -->
+    <c:if test="${empty cartItems}">
+        <div class="empty-cart">
+            <img src="${pageContext.request.contextPath}/img/cart-null.png" alt=""/>
+            <p style="font-weight: 550">Giỏ hàng trống</p>
+            <p>
+                Bạn tham khảo thêm các sản phẩm
+                <a href="${pageContext.request.contextPath}/products/list">tại đây</a> nhé!
+            </p>
+        </div>
+    </c:if>
+
+    <!-- Nếu có sản phẩm -->
+    <c:if test="${not empty cartItems}">
+        <div class="cart-items">
+
+            <c:forEach var="item" items="${cartItems}">
+                <div class="cart-item">
+                    <div>
+                        <img src="${pageContext.request.contextPath}${item.image}"
+                             alt="${item.name}"
+                             class="item-image"/>
+                    </div>
+
+                    <div class="item-details">
+                        <h3 class="item-title">${item.name}</h3>
+                        <p class="item-variant">${item.variant}</p>
+                        <p class="item-sku">(SKU: ${item.sku})</p>
+                        <div class="item-price">
+                            <span class="current-price">${item.price}</span>
+                            <span class="original-price">${item.originalPrice}</span>
+                        </div>
+                    </div>
+
+                    <div class="item-actions">
+                        <button type="button"
+                                class="delete-btn"
+                                title="Xóa sản phẩm"
+                                onclick="removeItem()">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn" onclick="decreaseQuantity()">−</button>
+
+                            <input type="text"
+                                   class="quantity-input"
+                                   value="${item.qty}"
+                                   readonly/>
+
+                            <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
+        </div>
+    </c:if>
+
+    <!-- Thông tin thanh toán -->
+    <div class="order-summary">
+        <h2 class="summary-title">Thông tin thanh toán</h2>
+
+        <div class="promo-code">
+            <div class="promo-header">
+                <svg class="promo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                </svg>
+                <span>Mã giảm giá</span>
+                <a href="#">Chọn mã giảm giá</a>
+            </div>
+
+            <div class="promo-input-group">
+                <input type="text" class="promo-input" placeholder="Nhập mã giảm giá" id="promoCode"/>
+                <button type="button" class="promo-btn" onclick="applyPromo()">Áp dụng</button>
+            </div>
+
+            <p class="promo-hint">
+                Áp dụng lại Mã giảm giá khi Giỏ hàng có sự thay đổi
+            </p>
+        </div>
+
+        <div class="payment-methods">
+            <h3 style="font-size: 1rem; margin-bottom: 1rem; color: #666">💳 Phương thức thanh toán</h3>
+
+            <div class="payment-method">
+                <input type="radio" name="payment" id="payment1" checked/>
+                <label for="payment1">Thanh toán khi nhận hàng</label>
+            </div>
+
+            <div class="payment-method">
+                <input type="radio" name="payment" id="payment2"/>
+                <label for="payment2">Chuyển khoản qua Ngân hàng</label>
+            </div>
+        </div>
+
+        <div class="summary-row">
+            <span class="label">Giá trị đơn hàng</span>
+            <span class="value">3.910.000đ</span>
+        </div>
+
+        <div class="summary-row">
+            <span class="label">Tiết kiệm với mã giảm</span>
+            <span class="value" id="discount">0</span>
+        </div>
+
+        <div class="summary-row total">
+            <span class="label">Tổng thanh toán</span>
+            <span class="value" id="total">3.910.000đ</span>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="submitPayment()">Xác nhận thanh toán</button>
+    </div>
+</div>
+<jsp:include page="/footer.jsp"/>
+
+<script src="${pageContext.request.contextPath}/js/cart.js"></script>
 
 </body>
 </html>
