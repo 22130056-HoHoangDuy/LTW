@@ -19,7 +19,14 @@ iframe {
 
 /* Header iframe */
 #header-frame {
+    /*height: 118px;*/
+    /*position: fixed;*/
     height: 118px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    display: block;
 }
 
 nav {
