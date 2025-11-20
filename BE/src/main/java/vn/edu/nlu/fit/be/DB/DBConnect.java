@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.DAO;
+package vn.edu.nlu.fit.be.DB;
 
 import java.sql.*;
 
