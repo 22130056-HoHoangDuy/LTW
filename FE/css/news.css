@@ -31,15 +31,26 @@ iframe {
     flex-wrap: wrap;
 }
 
-/* Breadcrumb */
-.breadcrumb {
-    width: 100%;
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
+/*Navigation*/
+nav {
+    padding: 1.5rem 4rem;
+    background: white;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
 }
-.breadcrumb span {
-    color: #0077cc;
+
+nav a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #007bff;
 }
 
 /* News section */
