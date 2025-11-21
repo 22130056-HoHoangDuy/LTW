@@ -120,3 +120,17 @@ async function submitPayment() {
     });
     window.location.href = "../html/productList.html";
 }
+// Thêm hàm hiển thị/ẩn giỏ hàng trống
+function toggleEmptyCart() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    const emptyCart = document.querySelector('.empty-cart');
+    const orderSummary = document.querySelector('.order-summary');
+
+    if (cartItems.length === 0) {
+        emptyCart.style.display = 'block';
+        orderSummary.style.display = 'none';
+    } else {
+        emptyCart.style.display = 'none';
+        orderSummary.style.display = 'block';
+    }
+}
