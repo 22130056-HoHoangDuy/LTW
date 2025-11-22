@@ -55,3 +55,65 @@ new Chart(ctx2, {
         }
     }
 });
+//admin_orders
+    function updateStatusColor(select) {
+    select.classList.remove("processing", "shipping", "success", "cancel");
+
+    switch (select.value) {
+    case "Đang xử lý":
+    select.classList.add("processing");
+    break;
+    case "Đang giao":
+    select.classList.add("shipping");
+    break;
+    case "Hoàn tất":
+    select.classList.add("success");
+    break;
+    case "Đã hủy":
+    select.classList.add("cancel");
+    break;
+}
+}
+
+    // Auto apply màu cho tất cả status khi load
+    document.querySelectorAll(".status-select").forEach(s => updateStatusColor(s));
+
+//admin_accounts
+function toggleStatus(btn) {
+    if (btn.classList.contains("btn-on")) {
+        btn.classList.remove("btn-on");
+        btn.classList.add("btn-off");
+        btn.textContent = "Ngưng hoạt động";
+    } else {
+        btn.classList.remove("btn-off");
+        btn.classList.add("btn-on");
+        btn.textContent = "Đang hoạt động";
+    }
+}
+// admin_voucher
+    function toggleVoucherStatus(input) {
+    if (input.checked) {
+    console.log("Voucher đang hoạt động");
+} else {
+    console.log("Voucher đã bị tắt");
+}
+}
+    // Xử lý sự kiện tạo voucher (demo)
+    const form = document.getElementById("voucherForm");
+    form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("✅ Voucher mới đã được tạo (mô phỏng)!");
+    form.reset();
+});
+
+    // Các nút hành động demo
+    document.querySelectorAll(".btn-on").forEach(btn =>
+    btn.addEventListener("click", () => alert("🟢 Voucher đã được bật."))
+    );
+    document.querySelectorAll(".btn-off").forEach(btn =>
+    btn.addEventListener("click", () => alert("🔴 Voucher đã bị tắt."))
+    );
+    document.querySelectorAll(".btn-delete").forEach(btn =>
+    btn.addEventListener("click", () => confirm("⚠️ Xác nhận xóa voucher này?"))
+    );
+
