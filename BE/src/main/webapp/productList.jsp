@@ -6,14 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/productList.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}//css/productList.css"/>
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
@@ -125,56 +125,71 @@
 </div>
 
 <div class="container">
-    <h1>Danh sách sản phẩm</h1>
-    <div class="product-list">
-        <!-- Lặp danh sách sản phẩm -->
-        <c:forEach var="product" items="${products}">
-        <div class="product">
-            <a href="<c:url value='/productDetail?id=${product.id}'/>">
-                <img alt="Ảnh bị lỗi" src="${product.imageUrl}"/>
-            </a>
-            <h3>${product.name}</h3>
+<h1>Danh sách sản phẩm</h1>
+<div class="product-list">
+<!-- Lặp danh sách sản phẩm -->
+<c:forEach var="product" items="${products}">
+    <div class="product">
+        <a href="<c:url value='/productDetail?id=${product.id}'/>">
+            <img alt="Ảnh bị lỗi" src="${product.imageUrl}"/>
+        </a>
+        <h3>${product.name}</h3>
 
-            <!-- Nếu price là số, bạn có thể format, còn không thì in thẳng -->
-            <p class="price">
-                    ${product.price}đ
-            </p>
+        <!-- Nếu price là số, bạn có thể format, còn không thì in thẳng -->
+        <p class="price">
+                ${product.price}đ
+        </p>
 
-            <a class="filter-btn cart-btn"
-               href="<c:url value='/cart/add?id=${product.id}'/>"
-               title="Thêm vào giỏ hàng">
-                <i class="fa-solid fa-cart-plus"></i>
-            </a>
+        <a class="filter-btn cart-btn"
+           href="<c:url value='/cart/add?id=${product.id}'/>"
+           title="Thêm vào giỏ hàng">
+            <i class="fa-solid fa-cart-plus"></i>
+        </a>
 
-            <a class="filter-btn detail-btn"
-               href="<c:url value='/productDetail?id=${product.id}'/>"
-               title="Xem chi tiết">
-                <i class="fa-solid fa-eye"></i>
-            </a>
+        <a class="filter-btn detail-btn"
+           href="<c:url value='/productDetail?id=${product.id}'/>"
+           title="Xem chi tiết">
+            <i class="fa-solid fa-eye"></i>
+        </a>
 
-            <a class="filter-btn favor-btn"
-               href="<c:url value='/favorite/add?id=${product.id}'/>"
-               title="Thêm vào danh sách yêu thích">
-                <i class="fa-solid fa-heart"></i>
-            </a>
+        <a class="filter-btn favor-btn"
+           href="<c:url value='/favorite/add?id=${product.id}'/>"
+           title="Thêm vào danh sách yêu thích">
+            <i class="fa-solid fa-heart"></i>
+        </a>
 
-            <div class="product-stats">
-                <div class="product-rating">
-                    <!-- Tạm fix 5 sao, hoặc render theo product.rating -->
-                    <span class="stars">★★★★★</span>
-                    <a class="reviews" href="#"></a>
-                </div>
-                <div>
-                    Đã bán
-                    <span>
+        <div class="product-stats">
+            <div class="product-rating">
+                <!-- Tạm fix 5 sao, hoặc render theo product.rating -->
+                <span class="stars">★★★★★</span>
+                <a class="reviews" href="#"></a>
+            </div>
+            <div>
+                Đã bán
+                <span>
                             <c:out value="${product.sold}"/>
                         </span>
-                </div>
             </div>
         </div>
-        </c:forEach>
+    </div>
+</c:forEach>
 
-        <!-- Trường hợp không có sản phẩm -->
-        <c:if test="${empty products}">
-        <p>Không có sản phẩm
+<!-- Trường hợp không có sản phẩm -->
+<c:if test="${empty products}">
+    <p>Không có sản phẩm
 
+    <button type="button" id="backToTop" title="Back To Top">
+    <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <div class="pagination">
+    <a href="#" class="prev-page">&laquo;</a>
+    <a href="#" class="page-number active">1</a>
+    <a href="#" class="page-number">2</a>
+    <a href="#" class="page-number">3</a>
+    <a href="#" class="next-page">&raquo;</a>
+    </div>
+    </div>
+    <iframe src="footer.html" id="footer-frame"></iframe>
+    <script src="../js/productList.js"></script>
+
+    </body> </html>
