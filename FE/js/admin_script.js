@@ -117,3 +117,12 @@ function toggleStatus(btn) {
     btn.addEventListener("click", () => confirm("⚠️ Xác nhận xóa voucher này?"))
     );
 
+//admin_product
+    document.querySelectorAll(".btn-on").forEach(btn =>
+    btn.addEventListener("click", () => alert("Sửa"))
+    );
+
+    document.querySelectorAll(".btn-delete").forEach(btn =>
+    btn.addEventListener("click", () => confirm("Xóa"))
+    );
+

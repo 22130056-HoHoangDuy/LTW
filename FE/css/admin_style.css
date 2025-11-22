@@ -543,6 +543,16 @@ body {
 .switch input:checked + .slider::before {
     transform: translateX(22px);
 }
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.add-product-btn i {
+    margin-right: 6px;
+}
 
 
 
