@@ -47,6 +47,19 @@
 
     <main class="main">
         <h2>Quản lý sản phẩm</h2>
+
+        <!-- Nút thêm sản phẩm + thanh tìm kiếm -->
+        <div class="product-header">
+            <button class="btn-primary add-product-btn">
+                <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+            </button>
+
+            <div class="search-box">
+                <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
         <table class="data-table">
             <thead>
             <tr>
@@ -54,17 +67,48 @@
                 <th>Tên sản phẩm</th>
                 <th>Danh mục</th>
                 <th>Giá</th>
+                <th>Hành động</th>
             </tr>
             </thead>
+
             <tbody>
-            <tr><td>SP001</td><td>Bộ bàn ghế học sinh chống gù 001</td><td>Đồ nội thất</td><td>6.500.000đ</td></tr>
-            <tr><td>SP002</td><td>Tranh trang trí tường phòng bé TG081</td><td>Đồ trang trí phòng</td><td>950.000đ</td></tr>
-            <tr><td>SP003</td><td>Đồ treo nôi</td><td>Đồ chơi & Vật phẩm trang trí</td><td>890.000đ</td></tr>
+            <tr>
+                <td>SP001</td>
+                <td>Bộ bàn ghế học sinh chống gù 001</td>
+                <td>Đồ nội thất</td>
+                <td>6.500.000đ</td>
+                <td>
+                    <button class="btn-small btn-on">Sửa</button>
+                    <button class="btn-small btn-delete">Xóa</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>SP002</td>
+                <td>Tranh trang trí tường phòng bé TG081</td>
+                <td>Đồ trang trí phòng</td>
+                <td>950.000đ</td>
+                <td>
+                    <button class="btn-small btn-on">Sửa</button>
+                    <button class="btn-small btn-delete">Xóa</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>SP003</td>
+                <td>Đồ treo nôi</td>
+                <td>Đồ chơi & Vật phẩm trang trí</td>
+                <td>890.000đ</td>
+                <td>
+                    <button class="btn-small btn-on">Sửa</button>
+                    <button class="btn-small btn-delete">Xóa</button>
+                </td>
+            </tr>
             </tbody>
         </table>
     </main>
-
     <aside class="right-panel"></aside>
 </div>
+<script src="../js/admin_script.js"></script>
 </body>
 </html>
