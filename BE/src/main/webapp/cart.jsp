@@ -20,16 +20,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<header id="header-frame">
-    <%@ include file="header.jsp" %>
-</header>
-<nav>
+<%@ include file="header.jsp" %>
+<nav class="breadcrumb-nav">
     <a href="">Home</a>
     <span class="dot">•</span>
     <a href="">Giỏ hàng</a>
 </nav>
 <h3 class="page-title">Giỏ hàng</h3>
-<div class="container">
+<div class="cart-container">
     <div class="cart-items">
         <div class="empty-cart">
             <img src="../img/cart-null.png" alt=""/>
