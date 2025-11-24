@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     margin: 0;
+    padding: 0;
 }
 
 iframe {
@@ -21,7 +22,7 @@ iframe {
 }
 
 /*Navigation*/
-nav {
+.breadcrumb-nav {
     padding: 1.5rem 4rem;
     background: white;
     display: flex;
@@ -32,13 +33,13 @@ nav {
     position: sticky;
 }
 
-nav a {
+.breadcrumb-nav a {
     color: #666;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-nav a:hover {
+.breadcrumb-nav a:hover {
     color: #007bff;
 }
 
@@ -126,7 +127,7 @@ h4 {
 }
 
 /* Product List */
-.container {
+.product-container {
     width: 80%;
     margin: 20px auto;
     overflow: hidden;

@@ -9,14 +9,14 @@
 <%--    <meta charset="UTF-8"/>--%>
 <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>--%>
 <%--    <title>Header - Nội thất trẻ em</title>--%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
+<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>--%>
 <%--</head>--%>
 <%--<body>--%>
 <!-- HEADER -->
 <header class="site-header">
     <!-- 🔹 Thanh trên cùng -->
     <div class="top-bar">
-        <div class="container top-bar-inner">
+        <div class="header-container top-bar-inner">
             <div class="hotline">
                 <span>Hotline: <a href="tel:0964163168">0964 163 168</a></span>
             </div>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- 🔹 Header chính -->
-    <div class="container main-header">
+    <div class="header-container main-header">
         <div class="brand">
             <a href="../html/home.html" target="_top" class="logo" aria-label="BabyShop">
         <span class="brand-text multi-logo">
@@ -94,28 +94,6 @@
         </ul>
     </div>
 </header>
-
-<!-- JS -->
-<script>
-    (function () {
-        const hamburger = document.querySelector(".hamburger");
-        const mobileMenu = document.querySelector(".mobile-menu");
-
-        hamburger?.addEventListener("click", function () {
-            const expanded = this.getAttribute("aria-expanded") === "true";
-            this.setAttribute("aria-expanded", String(!expanded));
-            mobileMenu.style.display = expanded ? "none" : "block";
-            mobileMenu.setAttribute("aria-hidden", expanded ? "true" : "false");
-        });
-
-        document.addEventListener("click", function (e) {
-            if (!e.target.closest(".site-header")) {
-                mobileMenu.style.display = "none";
-                hamburger.setAttribute("aria-expanded", "false");
-            }
-        });
-    })();
-</script>
 <%--</body>--%>
 <%--</html>--%>
 

@@ -52,7 +52,7 @@ function removeItem() {
 
             hide(document.querySelector(".order-summary"));
             hide(document.querySelector(".cart-item"));
-            show(document.querySelector(".container"), "inline");
+            show(document.querySelector(".cart-container"), "inline");
             show(document.querySelector(".empty-cart"));
         }
 

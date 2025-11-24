@@ -5,7 +5,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Giỏ hàng của bạn</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cartStyle.css"/>
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -18,9 +17,11 @@
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cartStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<jsp:include page="header.jsp"/>
 <nav class="breadcrumb-nav">
     <a href="">Home</a>
     <span class="dot">•</span>
@@ -159,6 +160,7 @@
         </button>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
 <script src="js/cart.js"></script>
 </body>
 </html>
