@@ -9,7 +9,6 @@
 <%--    <meta charset="UTF-8"/>--%>
 <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>--%>
 <%--    <title>Header - Nội thất trẻ em</title>--%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
 <link
         rel="stylesheet"
         href="../fontawesome-free-7.1.0-web/css/all.min.css"

@@ -6,20 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
@@ -47,13 +49,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../img/slider_product_list.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
             <div class="carousel-item">
-                <img src="../img/slider_product_list_2.png" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list_2.png" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
             <div class="carousel-item">
-                <img src="../img/slider_product_list_3.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list_3.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -76,7 +78,7 @@
             <div class="img-button">
                 <a href="">
                     <img
-                            src="../img/combo-ban-hoc-thong-minh2-nc.jpg"
+                            src="img/categories/donoithat.png"
                             alt="Hình ảnh bị lỗi"
                     />
                     <span>ĐỒ NỘI THẤT</span>
@@ -85,7 +87,7 @@
             <div class="img-button">
                 <a href="">
                     <img
-                            src="../img/trang_tri/tranh-treo-tuong-trang-guong-129-100x100.jpg"
+                            src="img/categories/dotrangtri.jpg"
                             alt="Hình ảnh bị lỗi"
                     />
                     <span>ĐỒ TRANG TRÍ</span>
@@ -93,7 +95,7 @@
             </div>
             <div class="img-button">
                 <a href="">
-                    <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
+                    <img src="img/categories/dochoi.jpg" alt="Hình ảnh bị lỗi"/>
                     <span>ĐỒ CHƠI</span>
                 </a>
             </div>
@@ -175,7 +177,7 @@
         </c:forEach>
     </div>
     <!-- Trường hợp không có sản phẩm -->
-    <c:if test="${empty products}">
+    <c:if test="${empty products}"/>
     <p>Không có sản phẩm</p>
 
     <button type="button" id="backToTop" title="Back To Top">
@@ -191,6 +193,6 @@
 </div>
 <jsp:include page="footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
-<script src="../js/productList.js"></script>
+<script src="js/productList.js"></script>
 </body>
 </html>
