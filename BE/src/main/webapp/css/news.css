@@ -31,17 +31,6 @@ iframe {
     flex-wrap: wrap;
 }
 
-/* Breadcrumb */
-.breadcrumb {
-    width: 100%;
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
-}
-.breadcrumb span {
-    color: #0077cc;
-}
-
 /* News section */
 .news-section {
     flex: 1 1 480px;
