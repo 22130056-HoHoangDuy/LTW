@@ -13,7 +13,6 @@
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
     <link
             rel="stylesheet"
