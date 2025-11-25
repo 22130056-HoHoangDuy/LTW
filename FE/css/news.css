@@ -19,6 +19,20 @@ iframe {
     display: block;
 }
 
+/* Header iframe */
+#header-frame {
+    height: 118px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    display: block;
+}
+
+/* Footer iframe */
+#footer-frame {
+    height: 390px;
+}
 /* Main container */
 .news-container {
     display: flex;

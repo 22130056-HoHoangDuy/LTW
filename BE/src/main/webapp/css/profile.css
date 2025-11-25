@@ -4,44 +4,6 @@ body {
     background-color: #f5f4ff;
 }
 
-/* Iframe header & footer */
-iframe {
-    width: 100%;
-    border: none;
-    display: block;
-}
-
-/* Header iframe */
-#header-frame {
-    height: 118px;
-}
-
-/* Footer iframe */
-#footer-frame {
-    height: 390px;
-}
-
-/*Navigation*/
-nav {
-    padding: 1.5rem 4rem;
-    background: white;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    font-size: 0.9rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    position: sticky;
-}
-
-nav a {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #007bff;
-}
 
 /* Layout tổng */
 .profile-container {
@@ -61,7 +23,6 @@ nav a:hover {
 .sidebar h2 {
     font-size: 22px;
     margin-bottom: 30px;
-    color: #0077cc;
 }
 
 .sidebar ul {
@@ -79,12 +40,10 @@ nav a:hover {
 }
 
 .sidebar li:hover {
-    background-color: #0077cc;
     color: #fff;
 }
 
 .sidebar li.active {
-    background-color: #0077cc;
     color: #fff;
 }
 
@@ -103,7 +62,6 @@ nav a:hover {
 }
 
 h3 {
-    color: #0077cc;
     font-size: 22px;
     margin-bottom: 25px;
 }
@@ -132,14 +90,12 @@ h3 {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid #0077cc;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
 .upload-btn {
     display: inline-block;
-    background-color: #0077cc;
     color: white;
     padding: 8px 15px;
     border-radius: 6px;
@@ -184,7 +140,6 @@ h3 {
 }
 
 #save-btn {
-    background-color: #0077cc;
     color: white;
     padding: 10px 25px;
     border: none;

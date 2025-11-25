@@ -281,8 +281,8 @@ body {
 }
 
 .btn-on { background: #43A047; }
-.btn-off { background: #FB8C00; }
-.btn-delete { background: #D32F2F; }
+.btn-off { background: #ec300e; }
+.btn-delete { background: #d3c52f; }
 /* ----------------------------- */
 /*  FIX CHO VOUCHER - CATEGORY - WAREHOUSE  */
 /* ----------------------------- */
@@ -428,4 +428,131 @@ body {
 .btn-small.btn-delete {
     background: #FF6B6B;
 }
+/* --------------------------- */
+/*  Search Box cho Orders      */
+/* --------------------------- */
+
+.search-box {
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 38px 10px 14px;
+    border-radius: 12px;
+    border: 1px solid #D7D5FF;
+    background: #fafaff;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.search-box input:focus {
+    border-color: #A696FF;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(166,150,255,0.25);
+}
+
+.search-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+}
+.status-select {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #D9D6FF;
+    background: #F4F3FF;
+    color: #4D4A7E;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.status-select:focus {
+    border-color: #A696FF;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(166,150,255,0.25);
+}
+.status-select.processing {
+    background: #FFF6D9;
+    border-color: #FFDD8A;
+    color: #C79300;
+}
+
+.status-select.shipping {
+    background: #E4F1FF;
+    border-color: #A7D0FF;
+    color: #2E7CD9;
+}
+
+.status-select.success {
+    background: #E9FAEF;
+    border-color: #9EE6B1;
+    color: #2ECC71;
+}
+
+.status-select.cancel {
+    background: #FFE8E8;
+    border-color: #FFB7B7;
+    color: #E74C3C;
+}
+.switch {
+    position: relative;
+    width: 46px;
+    height: 24px;
+    display: inline-block;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #FFB7C5;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.switch input:checked + .slider {
+    background: #7CD67C;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.add-product-btn i {
+    margin-right: 6px;
+}
+
+
 

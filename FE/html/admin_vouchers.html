@@ -105,25 +105,41 @@
                 </tr>
                 </thead>
                 <tbody id="voucherTableBody">
+
+                <!-- Row 1 -->
                 <tr>
                     <td>SALE50</td>
                     <td>50%</td>
                     <td>Phần trăm</td>
                     <td>120</td>
-                    <td><span class="status on">Hoạt động</span></td>
+                    <!-- Trạng thái kiểu iOS -->
                     <td>
-                        <button class="btn-small btn-off">Tắt</button>
+                        <label class="switch">
+                            <input type="checkbox" checked onchange="toggleVoucherStatus(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <!-- Hành động -->
+                    <td>
+                        <button class="btn-small btn-on">Sửa</button>
                         <button class="btn-small btn-delete">Xóa</button>
                     </td>
                 </tr>
+                <!-- Row 2 -->
                 <tr>
                     <td>NEWYEAR2025</td>
                     <td>200,000đ</td>
                     <td>Giá trị</td>
                     <td>50</td>
-                    <td><span class="status off">Tạm tắt</span></td>
+
                     <td>
-                        <button class="btn-small btn-on">Bật</button>
+                        <label class="switch">
+                            <input type="checkbox" onchange="toggleVoucherStatus(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <button class="btn-small btn-on">Sửa</button>
                         <button class="btn-small btn-delete">Xóa</button>
                     </td>
                 </tr>
@@ -135,26 +151,6 @@
     <!-- Right panel -->
     <aside class="right-panel"></aside>
 </div>
-
-<script>
-    // Xử lý sự kiện tạo voucher (demo)
-    const form = document.getElementById("voucherForm");
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("✅ Voucher mới đã được tạo (mô phỏng)!");
-        form.reset();
-    });
-
-    // Các nút hành động demo
-    document.querySelectorAll(".btn-on").forEach(btn =>
-        btn.addEventListener("click", () => alert("🟢 Voucher đã được bật."))
-    );
-    document.querySelectorAll(".btn-off").forEach(btn =>
-        btn.addEventListener("click", () => alert("🔴 Voucher đã bị tắt."))
-    );
-    document.querySelectorAll(".btn-delete").forEach(btn =>
-        btn.addEventListener("click", () => confirm("⚠️ Xác nhận xóa voucher này?"))
-    );
-</script>
+<script src="../js/admin_script.js"></script>
 </body>
 </html>

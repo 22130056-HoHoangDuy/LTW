@@ -47,6 +47,13 @@
 
     <main class="main">
         <h2>Quản lý tài khoản</h2>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm tài khoản...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
         <table class="data-table">
             <thead>
             <tr>
@@ -57,15 +64,42 @@
                 <th>Trạng thái</th>
             </tr>
             </thead>
+
             <tbody>
-            <tr><td>KH001</td><td>Nguyễn An</td><td>an@gmail.com</td><td>10/01/2025</td><td>Hoạt động</td></tr>
-            <tr><td>KH002<td>Lan Anh</td><td>lan@gmail.com</td><td>03/02/2025</td><td>Tạm khóa</td></tr>
-            <tr><td>KH003</td><td>Minh Phúc</td><td>phuc@gmail.com</td><td>17/03/2025</td><td>Hoạt động</td></tr>
+            <tr>
+                <td>KH001</td>
+                <td>Nguyễn An</td>
+                <td>an@gmail.com</td>
+                <td>10/01/2025</td>
+                <td>
+                    <button class="btn-small btn-on" onclick="toggleStatus(this)">Đang hoạt động</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>KH002</td>
+                <td>Lan Anh</td>
+                <td>lan@gmail.com</td>
+                <td>03/02/2025</td>
+                <td>
+                    <button class="btn-small btn-off" onclick="toggleStatus(this)">Ngưng hoạt động</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>KH003</td>
+                <td>Minh Phúc</td>
+                <td>phuc@gmail.com</td>
+                <td>17/03/2025</td>
+                <td>
+                    <button class="btn-small btn-on" onclick="toggleStatus(this)">Đang hoạt động</button>
+                </td>
+            </tr>
             </tbody>
         </table>
     </main>
-
     <aside class="right-panel"></aside>
 </div>
+<script src="../js/admin_script.js"></script>
 </body>
 </html>
