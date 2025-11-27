@@ -13,13 +13,15 @@
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/productList.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
@@ -29,10 +31,10 @@
 
 <jsp:include page="header.jsp"/>
 
-<nav>
-    <a href="<c:url value='/'/>">Home</a>
+<nav class="breadcrumb-nav">
+    <a href="">Home</a>
     <span class="dot">•</span>
-    <a href="<c:url value='/products'/>">Danh sách sản phẩm</a>
+    <a href="">Danh sách sản phẩm</a>
 </nav>
 
 <div class="image-slider">
@@ -47,13 +49,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../img/slider_product_list.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
             <div class="carousel-item">
-                <img src="../img/slider_product_list_2.png" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list_2.png" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
             <div class="carousel-item">
-                <img src="../img/slider_product_list_3.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
+                <img src="img/slider_product_list_3.jpg" class="d-block w-100" alt="Hình ảnh bị lỗi">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -76,7 +78,7 @@
             <div class="img-button">
                 <a href="">
                     <img
-                            src="../img/combo-ban-hoc-thong-minh2-nc.jpg"
+                            src="img/categories/donoithat.png"
                             alt="Hình ảnh bị lỗi"
                     />
                     <span>ĐỒ NỘI THẤT</span>
@@ -85,7 +87,7 @@
             <div class="img-button">
                 <a href="">
                     <img
-                            src="../img/trang_tri/tranh-treo-tuong-trang-guong-129-100x100.jpg"
+                            src="img/categories/dotrangtri.jpg"
                             alt="Hình ảnh bị lỗi"
                     />
                     <span>ĐỒ TRANG TRÍ</span>
@@ -93,7 +95,7 @@
             </div>
             <div class="img-button">
                 <a href="">
-                    <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
+                    <img src="img/categories/dochoi.jpg" alt="Hình ảnh bị lỗi"/>
                     <span>ĐỒ CHƠI</span>
                 </a>
             </div>
@@ -124,57 +126,73 @@
     <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
 </div>
 
-<div class="container">
+<div class="product-container">
     <h1>Danh sách sản phẩm</h1>
     <div class="product-list">
         <!-- Lặp danh sách sản phẩm -->
         <c:forEach var="product" items="${products}">
-        <div class="product">
-            <a href="<c:url value='/productDetail?id=${product.id}'/>">
-                <img alt="Ảnh bị lỗi" src="${product.imageUrl}"/>
-            </a>
-            <h3>${product.name}</h3>
+            <div class="product">
+                <a href=" <%--<c:url value='/productDetail?id=${product.id}'/>--%>">
+                    <img alt="Ảnh bị lỗi" src="${product.imageUrl}"/>
+                </a>
+                <h3>${product.name}</h3>
 
-            <!-- Nếu price là số, bạn có thể format, còn không thì in thẳng -->
-            <p class="price">
-                    ${product.price}đ
-            </p>
+                <!-- Nếu price là số, bạn có thể format, còn không thì in thẳng -->
+                <p class="price">
+                        ${product.price}đ
+                </p>
 
-            <a class="filter-btn cart-btn"
-               href="<c:url value='/cart/add?id=${product.id}'/>"
-               title="Thêm vào giỏ hàng">
-                <i class="fa-solid fa-cart-plus"></i>
-            </a>
+                <a class="filter-btn cart-btn"
+                   href=""
+                   title="Thêm vào giỏ hàng">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
 
-            <a class="filter-btn detail-btn"
-               href="<c:url value='/productDetail?id=${product.id}'/>"
-               title="Xem chi tiết">
-                <i class="fa-solid fa-eye"></i>
-            </a>
+                <a class="filter-btn detail-btn"
+                   href=""
+                   title="Xem chi tiết">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
 
-            <a class="filter-btn favor-btn"
-               href="<c:url value='/favorite/add?id=${product.id}'/>"
-               title="Thêm vào danh sách yêu thích">
-                <i class="fa-solid fa-heart"></i>
-            </a>
+                <a class="filter-btn favor-btn"
+                   href=""
+                   title="Thêm vào danh sách yêu thích">
+                    <i class="fa-solid fa-heart"></i>
+                </a>
 
-            <div class="product-stats">
-                <div class="product-rating">
-                    <!-- Tạm fix 5 sao, hoặc render theo product.rating -->
-                    <span class="stars">★★★★★</span>
-                    <a class="reviews" href="#"></a>
-                </div>
-                <div>
-                    Đã bán
-                    <span>
-                            <c:out value="${product.sold}"/>
-                        </span>
+                <div class="product-stats">
+                    <div class="product-rating">
+                        <!-- Tạm fix 5 sao, hoặc render theo product.rating -->
+                        <span class="stars">★★★★★</span>
+                        <a class="reviews" href="#"></a>
+                    </div>
+                    <div>
+                        Đã bán
+                        <span>
+                    <c:out value="${product.sold}"/>
+                </span>
+                    </div>
                 </div>
             </div>
-        </div>
         </c:forEach>
+    </div>
+    <!-- Trường hợp không có sản phẩm -->
+    <c:if test="${empty products}"/>
+    <p>Không có sản phẩm</p>
 
-        <!-- Trường hợp không có sản phẩm -->
-        <c:if test="${empty products}">
-        <p>Không có sản phẩm
-
+    <button type="button" id="backToTop" title="Back To Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <div class="pagination">
+        <a href="#" class="prev-page">&laquo;</a>
+        <a href="#" class="page-number active">1</a>
+        <a href="#" class="page-number">2</a>
+        <a href="#" class="page-number">3</a>
+        <a href="#" class="next-page">&raquo;</a>
+    </div>
+</div>
+<jsp:include page="footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
+<script src="js/productList.js"></script>
+</body>
+</html>

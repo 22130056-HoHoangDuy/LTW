@@ -57,8 +57,9 @@ nav a:hover {
     font-size: 22px;
     display: flex;
     position: relative;
-    left: 150px;
+    /*left: 150px;*/
     margin: 20px;
+    padding: 0 11rem;
 }
 
 .container {

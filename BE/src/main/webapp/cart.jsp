@@ -1,17 +1,39 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Giỏ hàng của bạn</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link
+            rel="stylesheet"
+            href="../fontawesome-free-7.1.0-web/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cartStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 </head>
 <body>
-<iframe src="header.html" id="header-frame"></iframe>
-<nav>
+<jsp:include page="header.jsp"/>
+<nav class="breadcrumb-nav">
     <a href="">Home</a>
     <span class="dot">•</span>
     <a href="">Giỏ hàng</a>
 </nav>
 <h3 class="page-title">Giỏ hàng</h3>
-<div class="container">
+ ldoanh
+<div class="cart-container">
     <div class="cart-items">
         <div class="empty-cart">
-            <img src="../img/cart-null.png" alt="" />
+            <img src="../img/cart-null.png" alt=""/>
+
             <p style="font-weight: 550">Giỏ hàng trống</p>
             <p>
                 Bạn tham khảo thêm các sản phẩm
@@ -21,9 +43,7 @@
         <div class="cart-item">
             <div>
                 <img
-                        src="../img/combo-ban-hoc-thong-minh2-nc.jpg"
-                        alt="Bàn học"
-                        class="item-image"
+                        src="../img/ban-hoc-thong-minh.png"
                 />
             </div>
             <div class="item-details">
@@ -114,11 +134,11 @@
                 💳 Phương thức thanh toán
             </h3>
             <div class="payment-method">
-                <input type="radio" name="payment" id="payment1" checked />
+                <input type="radio" name="payment" id="payment1" checked/>
                 <label for="payment1">Thanh toán khi nhận hàng</label>
             </div>
             <div class="payment-method">
-                <input type="radio" name="payment" id="payment2" />
+                <input type="radio" name="payment" id="payment2"/>
                 <label for="payment2">Chuyển khoản qua Ngân hàng</label>
             </div>
         </div>
@@ -140,6 +160,8 @@
         </button>
     </div>
 </div>
-<script src="../js/cart.js"></script>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>
+

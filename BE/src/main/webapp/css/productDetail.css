@@ -41,7 +41,7 @@ h2 {
 /* =============================
    2. PRODUCT LAYOUT
 ============================= */
-nav {
+.breadcrumb-nav {
     padding: 1.5rem 4rem;
     background: white;
     display: flex;
@@ -52,7 +52,7 @@ nav {
     position: sticky;
 }
 
-nav a {
+.breadcrumb-nav a {
     color: #666;
     text-decoration: none;
     transition: color 0.3s;
@@ -62,7 +62,7 @@ nav a:hover {
     color: #007bff;
 }
 
-.product-wrapper {
+.product-wrap   per {
     display: grid;
     grid-template-columns: 40% 60%; /* Tỉ lệ ảnh : nội dung */
     gap: 30px;

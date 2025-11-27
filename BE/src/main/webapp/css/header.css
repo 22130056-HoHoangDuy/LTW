@@ -7,21 +7,19 @@
     --container-max: 1200px;
 }
 
-* {
+.site-header * {
     box-sizing: border-box;
 }
 
-body {
+.site-header {
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    margin: 0;
-    color: #333;
 }
 
 /* 🔹 Top bar */
 .top-bar {
     background: var(--primary);
     color: white;
-    font-size: 14px;
+    font-size: 1rem;
 }
 .top-bar-inner {
     max-width: var(--container-max);
@@ -48,9 +46,11 @@ body {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    font-size:14px;
+    line-height:1.5;
 }
 
-.site-header .container {
+.site-header .header-container {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 12px 20px;
@@ -151,6 +151,7 @@ body {
     text-decoration: none;
     color: var(--muted);
     font-weight: 600;
+    font-size:14px;
     padding: 8px 6px;
     border-radius: 8px;
     transition: 0.2s;
@@ -228,7 +229,7 @@ body {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .nav-links {
+    .header-nav-links {
         display: none;
     }
     .search-wrap {
