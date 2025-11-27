@@ -28,10 +28,12 @@
     <a href="">Giỏ hàng</a>
 </nav>
 <h3 class="page-title">Giỏ hàng</h3>
+ ldoanh
 <div class="cart-container">
     <div class="cart-items">
         <div class="empty-cart">
             <img src="../img/cart-null.png" alt=""/>
+
             <p style="font-weight: 550">Giỏ hàng trống</p>
             <p>
                 Bạn tham khảo thêm các sản phẩm
@@ -42,8 +44,6 @@
             <div>
                 <img
                         src="../img/ban-hoc-thong-minh.png"
-                        alt="Bàn học"
-                        class="item-image"
                 />
             </div>
             <div class="item-details">

@@ -4,6 +4,7 @@ body {
     background-color: #f5f4ff;
 }
 
+
 /* Layout tổng */
 .profile-container {
     display: flex;
@@ -22,7 +23,6 @@ body {
 .sidebar h2 {
     font-size: 22px;
     margin-bottom: 30px;
-    color: #7e57ff;
 }
 
 .sidebar ul {
@@ -40,12 +40,10 @@ body {
 }
 
 .sidebar li:hover {
-    background-color: #7e57ff;
     color: #fff;
 }
 
 .sidebar li.active {
-    background-color: #7e57ff;
     color: #fff;
 }
 
@@ -64,7 +62,6 @@ body {
 }
 
 h3 {
-    color: #7e57ff;
     font-size: 22px;
     margin-bottom: 25px;
 }
@@ -93,14 +90,12 @@ h3 {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid #7e57ff;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
 .upload-btn {
     display: inline-block;
-    background-color: #7e57ff;
     color: white;
     padding: 8px 15px;
     border-radius: 6px;
@@ -145,7 +140,6 @@ h3 {
 }
 
 #save-btn {
-    background-color: #7e57ff;
     color: white;
     padding: 10px 25px;
     border: none;
