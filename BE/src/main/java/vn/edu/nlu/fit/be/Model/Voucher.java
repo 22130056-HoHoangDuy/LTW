@@ -3,36 +3,66 @@ package vn.edu.nlu.fit.be.Model;
 import java.sql.Date;
 
 public class Voucher {
-    String voucher_code;
-    String img_voucher;
-    String description;
-    int discount_amount;
-    Date created_voucher;
-    String status;
+    private String voucherCode;
+    private String imgVoucher;
+    private String description;
+    private int discountAmount;
+    private Date createdVoucher;
+    private Date endVoucher;
+    private String status;
 
-    public Voucher(String voucher_code, String img_voucher, String description, int discount_amount, Date created_voucher, String status) {
-        this.voucher_code = voucher_code;
-        this.img_voucher = img_voucher;
+    //Constructor
+
+    public Voucher(String voucherCode, String status, Date endVoucher, Date createdVoucher, int discountAmount, String description, String imgVoucher) {
+        this.voucherCode = voucherCode;
+        this.status = status;
+        this.endVoucher = endVoucher;
+        this.createdVoucher = createdVoucher;
+        this.discountAmount = discountAmount;
         this.description = description;
-        this.discount_amount = discount_amount;
-        this.created_voucher = created_voucher;
+        this.imgVoucher = imgVoucher;
+    }
+
+    //Getting and Setting
+
+    public String getVoucherCode() {
+        return voucherCode;
+    }
+
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getVoucher_code() {
-        return voucher_code;
+    public Date getEndVoucher() {
+        return endVoucher;
     }
 
-    public void setVoucher_code(String voucher_code) {
-        this.voucher_code = voucher_code;
+    public void setEndVoucher(Date endVoucher) {
+        this.endVoucher = endVoucher;
     }
 
-    public String getImg_voucher() {
-        return img_voucher;
+    public Date getCreatedVoucher() {
+        return createdVoucher;
     }
 
-    public void setImg_voucher(String img_voucher) {
-        this.img_voucher = img_voucher;
+    public void setCreatedVoucher(Date createdVoucher) {
+        this.createdVoucher = createdVoucher;
+    }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(int discountAmount) {
+        this.discountAmount = discountAmount;
     }
 
     public String getDescription() {
@@ -43,27 +73,11 @@ public class Voucher {
         this.description = description;
     }
 
-    public int getDiscount_amount() {
-        return discount_amount;
+    public String getImgVoucher() {
+        return imgVoucher;
     }
 
-    public void setDiscount_amount(int discount_amount) {
-        this.discount_amount = discount_amount;
-    }
-
-    public Date getCreated_voucher() {
-        return created_voucher;
-    }
-
-    public void setCreated_voucher(Date created_voucher) {
-        this.created_voucher = created_voucher;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setImgVoucher(String imgVoucher) {
+        this.imgVoucher = imgVoucher;
     }
 }
