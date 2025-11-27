@@ -3,17 +3,20 @@ package vn.edu.nlu.fit.be.Model;
 import java.sql.Date;
 
 public class Voucher {
+
     private String voucherCode;
     private String imgVoucher;
     private String description;
     private int discountAmount;
     private Date createdVoucher;
     private Date endVoucher;
-    private String status;
+    private VoucherStatus status;
 
     //Constructor
 
-    public Voucher(String voucherCode, String status, Date endVoucher, Date createdVoucher, int discountAmount, String description, String imgVoucher) {
+    public Voucher() {}
+
+    public Voucher(String voucherCode, VoucherStatus status, Date endVoucher, Date createdVoucher, int discountAmount, String description, String imgVoucher) {
         this.voucherCode = voucherCode;
         this.status = status;
         this.endVoucher = endVoucher;
@@ -25,6 +28,7 @@ public class Voucher {
 
     //Getting and Setting
 
+
     public String getVoucherCode() {
         return voucherCode;
     }
@@ -33,11 +37,11 @@ public class Voucher {
         this.voucherCode = voucherCode;
     }
 
-    public String getStatus() {
+    public VoucherStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(VoucherStatus status) {
         this.status = status;
     }
 
@@ -79,5 +83,15 @@ public class Voucher {
 
     public void setImgVoucher(String imgVoucher) {
         this.imgVoucher = imgVoucher;
+    }
+
+    /*
+     * status ENUM('Available', 'Expired')
+     * - Available: voucher đang có thể sử dụng
+     * - Expired: voucher đã hết hạn, không thể dùng
+     */
+
+    public enum VoucherStatus {
+        Available,Expired;
     }
 }

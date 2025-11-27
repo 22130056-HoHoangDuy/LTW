@@ -1,20 +1,28 @@
 package vn.edu.nlu.fit.be.Model;
 
 public class Category {
-    String category_name;
-    String description ;
+    private int categoryId;
+    private String categoryName;
+    private String description;
 
-    public Category(String category_name, String description) {
-        this.category_name = category_name;
+    //Constructor
+
+    public Category() {}
+
+    public Category(String description, String categoryName, int categoryId) {
         this.description = description;
+        this.categoryName = categoryName;
+        this.categoryId = categoryId;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    //Getting and Setting
+
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getDescription() {
@@ -23,5 +31,13 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

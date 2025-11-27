@@ -9,14 +9,7 @@ public class Account {
     private String password;
     private String email;
     private Timestamp createdAt;
-
-    /*
-     * status ENUM('Active', 'Inactive')
-     * - Active: tài khoản đang hoạt động
-     * - Inactive: tài khoản bị khóa hoặc chưa kích hoạt
-     */
-    private String status;
-
+    private AccountStatus status; //accountStatus
     private int role;
     private int profileId;
 
@@ -26,7 +19,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(Profile profile, int profileId, int role, String status, Timestamp createdAt, String email, String password, String userName, int userId) {
+    public Account(Profile profile, int profileId, int role, AccountStatus status, Timestamp createdAt, String email, String password, String userName, int userId) {
         this.profile = profile;
         this.profileId = profileId;
         this.role = role;
@@ -64,11 +57,11 @@ public class Account {
         this.role = role;
     }
 
-    public String getStatus() {
+    public AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(AccountStatus status) {
         this.status = status;
     }
 
@@ -110,5 +103,15 @@ public class Account {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    /*
+     * status ENUM('Active', 'Inactive')
+     * - Active: tài khoản đang hoạt động
+     * - Inactive: tài khoản bị khóa hoặc chưa kích hoạt
+     */
+
+    public enum AccountStatus {
+        ACTIVE, INACTIVE;
     }
 }
