@@ -1,56 +1,65 @@
 package vn.edu.nlu.fit.be.Model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Profile {
-    String full_name;
-    String phone;
-    String address;
-    String avatar_url;
-    String gender;
-    Date birth_date;
-    Date updated_at;
+    private int profileId;
+    private String fullName;
+    private String phone;
+    private String address;
+    private String gender;
+    private String avatarUrl;
+    private Date birthDate;
+    private Timestamp updatedAt;
 
-    public Profile(String full_name, String phone, String address, String avatar_url, String gender, Date birth_date, Date updated_at) {
-        this.full_name = full_name;
-        this.phone = phone;
-        this.address = address;
-        this.avatar_url = avatar_url;
+    //Constructor
+
+    public Profile() {}
+
+    public Profile(int profileId, Timestamp updatedAt, Date birthDate, String avatarUrl, String gender, String address, String phone, String fullName) {
+        this.profileId = profileId;
+        this.updatedAt = updatedAt;
+        this.birthDate = birthDate;
+        this.avatarUrl = avatarUrl;
         this.gender = gender;
-        this.birth_date = birth_date;
-        this.updated_at = updated_at;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
+        this.phone = phone;
+        this.fullName = fullName;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    //Getting and Setting
+
+    public int getProfileId() {
+        return profileId;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getGender() {
@@ -61,19 +70,27 @@ public class Profile {
         this.gender = gender;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

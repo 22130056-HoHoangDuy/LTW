@@ -1,32 +1,83 @@
 package vn.edu.nlu.fit.be.Model;
 
-public class Account {
-    String user_name;
-    String password;
-    String email;
-    int role;
+import java.sql.Timestamp;
 
-    public Account(String user_name, String password, String email, int role) {
-        this.user_name = user_name;
-        this.password = password;
+public class Account {
+
+    private int userId;
+    private String userName;
+    private String password;
+    private String email;
+    private Timestamp createdAt;
+
+    /*
+     * status ENUM('Active', 'Inactive')
+     * - Active: tài khoản đang hoạt động
+     * - Inactive: tài khoản bị khóa hoặc chưa kích hoạt
+     */
+    private String status;
+
+    private int role;
+    private int profileId;
+
+    private Profile profile;
+
+    //Constructor
+
+    public Account() {}
+
+    public Account(Profile profile, int profileId, int role, String status, Timestamp createdAt, String email, String password, String userName, int userId) {
+        this.profile = profile;
+        this.profileId = profileId;
+        this.role = role;
+        this.status = status;
+        this.createdAt = createdAt;
         this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.userId = userId;
+    }
+
+    //Getting and Setting
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public int getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
         this.role = role;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getStatus() {
+        return status;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getPassword() {
-        return password;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getEmail() {
@@ -37,11 +88,27 @@ public class Account {
         this.email = email;
     }
 
-    public int getRole() {
-        return role;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
