@@ -43,7 +43,7 @@
 
             <!-- CỘT 2: LIÊN KẾT -->
             <div class="footer-links">
-                <h4>Hỗ trợ khách hàng</h4>
+                <h4 style="font-size: 18px;font-weight: 550">Hỗ trợ khách hàng</h4>
                 <ul>
                     <li><a href="#">Chính sách bảo hành</a></li>
                     <li><a href="#">Chính sách đổi trả</a></li>
@@ -54,7 +54,7 @@
 
             <!-- CỘT 3: MẠNG XÃ HỘI & THANH TOÁN -->
             <div class="footer-socials">
-                <h4>Kết nối với chúng tôi</h4>
+                <h4 style="font-size: 18px;font-weight: 550">Kết nối với chúng tôi</h4>
                 <div class="social-icons">
                     <a href="#" aria-label="Facebook" title="Facebook"
                     ><i class="fa-brands fa-facebook-f"></i
@@ -70,7 +70,7 @@
                     ></a>
                 </div>
 
-                <h4>Phương thức thanh toán</h4>
+                <h4 style="font-size: 18px;font-weight: 550">Phương thức thanh toán</h4>
                 <div class="payment-icons">
 
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
@@ -82,12 +82,12 @@
 
             <!-- CỘT 4: ĐĂNG KÝ NHẬN TIN -->
             <div class="footer-newsletter">
-                <h4>Đăng ký nhận tin</h4>
+                <h4 style="font-size: 18px;font-weight: 550">Đăng ký nhận tin</h4>
                 <p>Nhận thông tin khuyến mãi và sản phẩm mới nhất.</p>
                 <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="Nhập email của bạn" required />
+                    <input  style="font-size: 15px" type="email" placeholder="Nhập email của bạn" required/>
 
-                    <button type="submit">Đăng ký</button>
+                    <button  style="font-size: 15px;font-weight: 550"type="submit">Đăng ký</button>
                 </form>
             </div>
         </div>

@@ -1,4 +1,6 @@
-/* Các container trong product list */
+.product-list-page {
+    background-color: #f8f8f8;
+}
 .product-list-page .product-container,
 .product-list-page .breadcrumb-nav,
 .product-list-page .filter-box,
@@ -7,13 +9,6 @@
 .product-list-page .demand-group {
     font-family: Arial, sans-serif;
 }
-
-/* Background cho toàn trang */
-/* Nền riêng cho trang product list */
-.product-list-page {
-    background-color: #f8f8f8;
-}
-
 iframe {
     width: 100%;
     border: none;
@@ -249,81 +244,6 @@ iframe {
 
 .product-list-page .image-slider img {
     width: 100%;
-}
-
-/* Carousel custom (thay thế Bootstrap) */
-.product-list-page .carousel {
-    position: relative;
-    overflow: hidden;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.product-list-page .carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.product-list-page .carousel-slide {
-    min-width: 100%;
-    flex-shrink: 0;
-}
-
-.product-list-page .carousel-slide img {
-    display: block;
-    width: 100%;
-}
-
-.product-list-page .carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 2;
-}
-
-.product-list-page .carousel-control.prev {
-    left: 12px;
-}
-
-.product-list-page .carousel-control.next {
-    right: 12px;
-}
-
-.product-list-page .carousel-control:hover {
-    background: rgba(0, 0, 0, 0.65);
-}
-
-.product-list-page .carousel-dots {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-}
-
-.product-list-page .carousel-dots .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-}
-
-.product-list-page .carousel-dots .dot.active {
-    background: #0031da;
 }
 
 .product-list-page .product-stats {
