@@ -1,24 +1,55 @@
-// Chuyển đổi giữa các mục trong menu
+// ===============================
+// LẤY CÁC NÚT TRONG SIDEBAR
+// ===============================
 const btnInfo = document.getElementById("btn-info");
 const btnOrders = document.getElementById("btn-orders");
+const btnFavorite = document.getElementById("btn-favorite");
+
+// ===============================
+// LẤY CÁC SECTION
+// ===============================
 const infoSection = document.getElementById("info-section");
 const ordersSection = document.getElementById("orders-section");
+const favoriteSection = document.getElementById("favorite-section");
 
+// ===============================
+// HÀM RESET ACTIVE
+// ===============================
+function resetActive() {
+    document.querySelectorAll(".sidebar li").forEach(li => li.classList.remove("active"));
+    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+}
+
+// ===============================
+// CLICK — THÔNG TIN CÁ NHÂN
+// ===============================
 btnInfo.addEventListener("click", () => {
+    resetActive();
     btnInfo.classList.add("active");
-    btnOrders.classList.remove("active");
     infoSection.classList.add("active");
-    ordersSection.classList.remove("active");
 });
 
+// ===============================
+// CLICK — ĐƠN HÀNG ĐÃ MUA
+// ===============================
 btnOrders.addEventListener("click", () => {
+    resetActive();
     btnOrders.classList.add("active");
-    btnInfo.classList.remove("active");
     ordersSection.classList.add("active");
-    infoSection.classList.remove("active");
 });
 
-// Xử lý tải ảnh avatar
+// ===============================
+// CLICK — YÊU THÍCH
+// ===============================
+btnFavorite.addEventListener("click", () => {
+    resetActive();
+    btnFavorite.classList.add("active");
+    favoriteSection.classList.add("active");
+});
+
+// ===============================
+// PREVIEW ẢNH AVATAR
+// ===============================
 const avatarInput = document.getElementById("avatar-upload");
 const avatarPreview = document.getElementById("avatar-preview");
 
@@ -33,15 +64,17 @@ avatarInput.addEventListener("change", function () {
     }
 });
 
-// Lưu thông tin
+// ===============================
+// LƯU THÔNG TIN
+// ===============================
 document.getElementById("save-btn").addEventListener("click", () => {
     const info = {
         full_name: document.getElementById("full_name").value,
         phone: document.getElementById("phone").value,
         address: document.getElementById("address").value,
         gender: document.getElementById("gender").value,
-        bod: document.getElementById("bod").value,
+        bod: document.getElementById("bod").value
     };
+
     alert("Thông tin đã được lưu:\n" + JSON.stringify(info, null, 2));
 });
-

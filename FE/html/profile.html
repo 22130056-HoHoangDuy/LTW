@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Thông tin cá nhân</title>
     <link rel="stylesheet" href="../css/profile.css">
 </head>
 
@@ -22,38 +22,38 @@
         <ul>
             <li class="active" id="btn-info">Thông tin cá nhân</li>
             <li id="btn-orders">Đơn hàng đã mua</li>
+            <li id="btn-favorite">Yêu thích</li>
         </ul>
     </aside>
 
     <!-- Main content -->
     <main class="content">
+
         <!-- Thông tin cá nhân -->
         <section class="section active" id="info-section">
             <h3>Thông tin cá nhân</h3>
             <div class="info-box">
                 <div class="profile-info">
                     <div class="avatar-box">
-                        <img
-                                id="avatar-preview"
-                                src="https://img.lovepik.com/png/20231108/avatar-the-last-airbender-coloring-pages-outline-sketch-drawing-vector_526906_wh860.png"
-                                alt="Avatar"
-                        />
+                        <img id="avatar-preview"
+                             src="https://img.lovepik.com/png/20231108/avatar-the-last-airbender-coloring-pages-outline-sketch-drawing-vector_526906_wh860.png"
+                             alt="Avatar"/>
                         <label for="avatar-upload" class="upload-btn">Tải ảnh lên</label>
-                        <input type="file" id="avatar-upload" accept="image/*" />
+                        <input type="file" id="avatar-upload" accept="image/*"/>
                     </div>
 
                     <form class="info-form">
                         <div class="form-group">
                             <label>Họ và tên</label>
-                            <input type="text" id="full_name" placeholder="Nhập họ tên" />
+                            <input type="text" id="full_name" placeholder="Nhập họ tên"/>
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại</label>
-                            <input type="text" id="phone" placeholder="Nhập số điện thoại" />
+                            <input type="text" id="phone" placeholder="Nhập số điện thoại"/>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input type="text" id="address" placeholder="Nhập địa chỉ" />
+                            <input type="text" id="address" placeholder="Nhập địa chỉ"/>
                         </div>
                         <div class="form-group">
                             <label>Giới tính</label>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label>Ngày sinh</label>
-                            <input type="date" id="bod" />
+                            <input type="date" id="bod"/>
                         </div>
                         <button type="button" id="save-btn">Lưu thay đổi</button>
                     </form>
@@ -80,9 +80,31 @@
                 <p>Bạn chưa có đơn hàng nào.</p>
             </div>
         </section>
+
+        <!-- Danh sách yêu thích -->
+        <section class="section" id="favorite-section">
+            <h3>Sản phẩm yêu thích</h3>
+
+            <div class="favorite-list-line">
+
+                <!-- Sản phẩm yêu thích 1 -->
+                <div class="favorite-row">
+                    <img src="../img/ban-hoc-thong-minh.png">
+                    <div class="fav-info">
+                        <h4>Ba học thông minh</h4>
+                        <p class="price">21.990.000₫</p>
+                    </div>
+                    <button class="remove-fav">Bỏ yêu thích</button>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 </div>
+
 <iframe src="footer.html" id="footer-frame"></iframe>
+
 <script src="../js/profile.js"></script>
 </body>
 </html>

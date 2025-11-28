@@ -210,3 +210,65 @@ h3 {
     border-radius: 10px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
+
+/* ===============================
+   FAVORITE SECTION – LIST VIEW
+   =============================== */
+
+.favorite-list-line {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.favorite-row {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.favorite-row:hover {
+    transform: translateY(-3px);
+}
+
+.favorite-row img {
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.favorite-row .fav-info {
+    flex: 1;
+}
+
+.favorite-row h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.favorite-row .price {
+    margin-top: 6px;
+    color: #0077cc;
+    font-weight: bold;
+}
+
+.favorite-row .remove-fav {
+    padding: 10px 16px;
+    background: #ff4d4f;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.favorite-row .remove-fav:hover {
+    background: #d9363e;
+}
