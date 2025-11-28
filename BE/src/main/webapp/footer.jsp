@@ -13,6 +13,7 @@
         rel="stylesheet"
         href="../fontawesome-free-7.1.0-web/css/all.min.css"
 />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
 <%--</head>--%>
 <%--<body>--%>
 <footer class="shop-footer">
@@ -84,7 +85,7 @@
                 <h4>Đăng ký nhận tin</h4>
                 <p>Nhận thông tin khuyến mãi và sản phẩm mới nhất.</p>
                 <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="Nhập email của bạn" required/>
+                    <input type="email" placeholder="Nhập email của bạn" required />
 
                     <button type="submit">Đăng ký</button>
                 </form>

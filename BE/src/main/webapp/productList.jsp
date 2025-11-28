@@ -16,8 +16,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
@@ -31,14 +29,16 @@
 
 <jsp:include page="header.jsp"/>
 
-<nav class="breadcrumb-nav">
-    <a href="">Home</a>
-    <span class="dot">•</span>
-    <a href="">Danh sách sản phẩm</a>
-</nav>
+<div class="product-list-page">
 
-<div class="image-slider">
-    <div id="carouselExampleIndicators" class="carousel slide">
+    <nav class="breadcrumb-nav">
+        <a href="">Home</a>
+        <span class="dot">•</span>
+        <a href="">Danh sách sản phẩm</a>
+    </nav>
+
+    <div class="image-slider">
+        <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -71,64 +71,64 @@
     </div>
 </div>
 
-<div class="filter-box">
-    <div class="filter-demand-group">
-        <h4>Chọn theo nhu cầu</h4>
-        <div class="demand-group">
-            <div class="img-button">
-                <a href="">
-                    <img
-                            src="img/categories/donoithat.png"
-                            alt="Hình ảnh bị lỗi"
-                    />
-                    <span>ĐỒ NỘI THẤT</span>
-                </a>
-            </div>
-            <div class="img-button">
-                <a href="">
-                    <img
-                            src="img/categories/dotrangtri.jpg"
-                            alt="Hình ảnh bị lỗi"
-                    />
-                    <span>ĐỒ TRANG TRÍ</span>
-                </a>
-            </div>
-            <div class="img-button">
-                <a href="">
-                    <img src="img/categories/dochoi.jpg" alt="Hình ảnh bị lỗi"/>
-                    <span>ĐỒ CHƠI</span>
-                </a>
+    <div class="filter-box">
+        <div class="filter-demand-group">
+            <h4>Chọn theo nhu cầu</h4>
+            <div class="demand-group">
+                <div class="img-button">
+                    <a href="">
+                        <img
+                                src="img/categories/donoithat.png"
+                                alt="Hình ảnh bị lỗi"
+                        />
+                        <span>ĐỒ NỘI THẤT</span>
+                    </a>
+                </div>
+                <div class="img-button">
+                    <a href="">
+                        <img
+                                src="img/categories/dotrangtri.jpg"
+                                alt="Hình ảnh bị lỗi"
+                        />
+                        <span>ĐỒ TRANG TRÍ</span>
+                    </a>
+                </div>
+                <div class="img-button">
+                    <a href="">
+                        <img src="img/categories/dochoi.jpg" alt="Hình ảnh bị lỗi"/>
+                        <span>ĐỒ CHƠI</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="filter-box">
-    <div class="filter-group">
-        <h4>Chọn theo tiêu chí</h4>
-        <button type="button" class="filter-btn">Thương hiệu</button>
-        <button type="button" class="filter-btn">Giá tiền</button>
-        <button type="button" class="filter-btn">Kích thước</button>
-        <button type="button" class="filter-btn">Màu sắc</button>
-        <button type="button" class="filter-btn">Chất liệu</button>
+    <div class="filter-box">
+        <div class="filter-group">
+            <h4>Chọn theo tiêu chí</h4>
+            <button type="button" class="filter-btn">Thương hiệu</button>
+            <button type="button" class="filter-btn">Giá tiền</button>
+            <button type="button" class="filter-btn">Kích thước</button>
+            <button type="button" class="filter-btn">Màu sắc</button>
+            <button type="button" class="filter-btn">Chất liệu</button>
+        </div>
+
+        <div class="filter-group">
+            <h4>Sắp xếp theo</h4>
+            <button type="button" class="filter-btn">Giá tăng dần</button>
+            <button type="button" class="filter-btn">Giá giảm dần</button>
+            <button type="button" class="filter-btn">Mới nhất</button>
+            <button type="button" class="filter-btn">Cũ nhất</button>
+            <button type="button" class="filter-btn">Tên A-Z</button>
+            <button type="button" class="filter-btn">Tên Z-A</button>
+        </div>
+
+        <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
     </div>
 
-    <div class="filter-group">
-        <h4>Sắp xếp theo</h4>
-        <button type="button" class="filter-btn">Giá tăng dần</button>
-        <button type="button" class="filter-btn">Giá giảm dần</button>
-        <button type="button" class="filter-btn">Mới nhất</button>
-        <button type="button" class="filter-btn">Cũ nhất</button>
-        <button type="button" class="filter-btn">Tên A-Z</button>
-        <button type="button" class="filter-btn">Tên Z-A</button>
-    </div>
-
-    <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
-</div>
-
-<div class="product-container">
-    <h1>Danh sách sản phẩm</h1>
-    <div class="product-list">
+    <div class="product-container">
+        <h1>Danh sách sản phẩm</h1>
+        <div class="product-list">
         <!-- Lặp danh sách sản phẩm -->
         <c:forEach var="product" items="${products}">
             <div class="product">
@@ -175,24 +175,26 @@
                 </div>
             </div>
         </c:forEach>
-    </div>
-    <!-- Trường hợp không có sản phẩm -->
-    <c:if test="${empty products}"/>
-    <p>Không có sản phẩm</p>
+        </div>
+        <!-- Trường hợp không có sản phẩm -->
+        <c:if test="${empty products}"/>
+        <p>Không có sản phẩm</p>
 
-    <button type="button" id="backToTop" title="Back To Top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-    <div class="pagination">
-        <a href="#" class="prev-page">&laquo;</a>
-        <a href="#" class="page-number active">1</a>
-        <a href="#" class="page-number">2</a>
-        <a href="#" class="page-number">3</a>
-        <a href="#" class="next-page">&raquo;</a>
+        <button type="button" id="backToTop" title="Back To Top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <div class="pagination">
+            <a href="#" class="prev-page">&laquo;</a>
+            <a href="#" class="page-number active">1</a>
+            <a href="#" class="page-number">2</a>
+            <a href="#" class="page-number">3</a>
+            <a href="#" class="next-page">&raquo;</a>
+        </div>
     </div>
+
 </div>
 <jsp:include page="footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
-<script src="js/productList.js"></script>
+<script src="${pageContext.request.contextPath}/js/productList.js"></script>
 </body>
 </html>
