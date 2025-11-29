@@ -45,4 +45,51 @@ pages.forEach((page) => {
     });
 });
 
+// Carousel custom (thay thế Bootstrap)
+const carousel = document.getElementById("productListCarousel");
+if (carousel) {
+    const slidesContainer = carousel.querySelector(".carousel-slides");
+    const slides = carousel.querySelectorAll(".carousel-slide");
+    const prevBtn = carousel.querySelector(".carousel-control.prev");
+    const nextBtn = carousel.querySelector(".carousel-control.next");
+    const dots = carousel.querySelectorAll(".carousel-dots .dot");
+
+    let currentIndex = 0;
+
+    const updateCarousel = (index) => {
+        const offset = -index * 100;
+        slidesContainer.style.transform = `translateX(${offset}%)`;
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+    };
+
+    const goToNext = () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel(currentIndex);
+    };
+
+    const goToPrev = () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel(currentIndex);
+    };
+
+    nextBtn.addEventListener("click", goToNext);
+    prevBtn.addEventListener("click", goToPrev);
+
+    dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+            const index = parseInt(dot.getAttribute("data-index"), 10);
+            currentIndex = index;
+            updateCarousel(currentIndex);
+        });
+    });
+
+    // Tự động chạy slide mỗi 5s
+    setInterval(goToNext, 5000);
+}
+
 

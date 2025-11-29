@@ -18,7 +18,6 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cartStyle.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -28,7 +27,6 @@
     <a href="">Giỏ hàng</a>
 </nav>
 <h3 class="page-title">Giỏ hàng</h3>
- ldoanh
 <div class="cart-container">
     <div class="cart-items">
         <div class="empty-cart">
@@ -161,7 +159,7 @@
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
-<script src="js/cart.js"></script>
+<script src="${pageContext.request.contextPath}/js/cart.js"></script>
 </body>
 </html>
 
