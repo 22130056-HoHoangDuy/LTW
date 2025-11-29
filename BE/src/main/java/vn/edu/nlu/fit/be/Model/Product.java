@@ -13,13 +13,13 @@ public class Product {
     private boolean isAvailable;
     private int categoryId;
 
-    private Category category;
+    private vn.edu.nlu.fit.be.Model.Category category;
 
 
     //Constructor
     public Product() {}
 
-    public Product(int productId, Category category, int categoryId, boolean isAvailable, String material, int weight, String size, String description, String brandName, String imgUrl, int price, String productName) {
+    public Product(int productId, vn.edu.nlu.fit.be.Model.Category category, int categoryId, boolean isAvailable, String material, int weight, String size, String description, String brandName, String imgUrl, int price, String productName) {
         this.productId = productId;
         this.category = category;
         this.categoryId = categoryId;
@@ -124,11 +124,11 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public Category getCategory() {
+    public vn.edu.nlu.fit.be.Model.Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(vn.edu.nlu.fit.be.Model.Category category) {
         this.category = category;
     }
 }
