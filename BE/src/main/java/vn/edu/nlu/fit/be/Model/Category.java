@@ -1,18 +1,21 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     private int categoryId;
     private String categoryName;
     private String description;
 
     //Constructor
 
-    public Category() {}
+    public Category() {
+    }
 
-    public Category(String description, String categoryName, int categoryId) {
-        this.description = description;
-        this.categoryName = categoryName;
+    public Category(int categoryId, String categoryName, String description) {
         this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.description = description;
     }
 
     //Getting and Setting

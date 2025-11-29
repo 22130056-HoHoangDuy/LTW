@@ -15,14 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
     <link
-        rel="stylesheet"
-        href="../fontawesome-free-7.1.0-web/css/all.min.css"
+            rel="stylesheet"
+            href="../fontawesome-free-7.1.0-web/css/all.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap chỉ dùng cho trang product list -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -130,44 +130,37 @@
             <!-- Lặp danh sách sản phẩm -->
             <c:forEach var="product" items="${products}">
                 <div class="product">
-                    <a href=" <%--<c:url value='/productDetail?id=${product.id}'/>--%>">
-                        <img alt="Ảnh bị lỗi" src="${product.imageUrl}"/>
+                    <a href="<c:url value='/productDetail?id=${product.productId}'/>">
+                        <img alt="Ảnh bị lỗi" src="${product.imgUrl}"/>
                     </a>
-                    <h3>${product.name}</h3>
 
-                    <!-- Nếu price là số, bạn có thể format, còn không thì in thẳng -->
+                    <h3>${product.productName}</h3>
+
                     <p class="price">
-                            ${product.price}đ
+                        <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="₫"/>
                     </p>
 
-                    <a class="filter-btn cart-btn"
-                       href=""
-                       title="Thêm vào giỏ hàng">
+                    <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
                         <i class="fa-solid fa-cart-plus"></i>
                     </a>
 
-                    <a class="filter-btn detail-btn"
-                       href=""
-                       title="Xem chi tiết">
+                    <a class="filter-btn detail-btn" href="" title="Xem chi tiết">
                         <i class="fa-solid fa-eye"></i>
                     </a>
 
-                    <a class="filter-btn favor-btn"
-                       href=""
-                       title="Thêm vào danh sách yêu thích">
+                    <a class="filter-btn favor-btn" href="" title="Thêm vào danh sách yêu thích">
                         <i class="fa-solid fa-heart"></i>
                     </a>
 
                     <div class="product-stats">
                         <div class="product-rating">
-                            <!-- Tạm fix 5 sao, hoặc render theo product.rating -->
                             <span class="stars">★★★★★</span>
                             <a class="reviews" href="#"></a>
                         </div>
                         <div>
                             Đã bán
                             <span>
-                    <c:out value="${product.sold}"/>
+                    513
                 </span>
                         </div>
                     </div>
@@ -175,9 +168,9 @@
             </c:forEach>
         </div>
         <!-- Trường hợp không có sản phẩm -->
-        <c:if test="${empty products}"/>
-        <p>Không có sản phẩm</p>
-
+        <c:if test="${empty products}">
+            <p>Không có sản phẩm</p>
+        </c:if>
         <button type="button" id="backToTop" title="Back To Top">
             <i class="fa-solid fa-arrow-up"></i>
         </button>

@@ -1,6 +1,8 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int productId;
     private String productName;
     private int price;
@@ -13,13 +15,14 @@ public class Product {
     private boolean isAvailable;
     private int categoryId;
 
-    private vn.edu.nlu.fit.be.Model.Category category;
+    private vn.edu.nlu.fit.be.model.Category category;
 
 
     //Constructor
-    public Product() {}
+    public Product() {
+    }
 
-    public Product(int productId, vn.edu.nlu.fit.be.Model.Category category, int categoryId, boolean isAvailable, String material, int weight, String size, String description, String brandName, String imgUrl, int price, String productName) {
+    public Product(int productId, vn.edu.nlu.fit.be.model.Category category, int categoryId, boolean isAvailable, String material, int weight, String size, String description, String brandName, String imgUrl, int price, String productName) {
         this.productId = productId;
         this.category = category;
         this.categoryId = categoryId;
@@ -124,11 +127,11 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public vn.edu.nlu.fit.be.Model.Category getCategory() {
+    public vn.edu.nlu.fit.be.model.Category getCategory() {
         return category;
     }
 
-    public void setCategory(vn.edu.nlu.fit.be.Model.Category category) {
+    public void setCategory(vn.edu.nlu.fit.be.model.Category category) {
         this.category = category;
     }
 }

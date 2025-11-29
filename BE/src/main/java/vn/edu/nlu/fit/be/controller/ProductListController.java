@@ -13,7 +13,10 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService ps = new ProductService();
-        List<vn.edu.nlu.fit.be.Model.Product> list = ps.getListProduct();
+        List<vn.edu.nlu.fit.be.model.Product> list = ps.getListProduct();
+
+        //Save into request
+        request.setAttribute("products",list);
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 
