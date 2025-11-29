@@ -13,7 +13,7 @@ iframe {
 
 /* Header iframe */
 #header-frame {
-    position: fixed;      /* Giữ cố định khi cuộn */
+    position: sticky;      /* Giữ cố định khi cuộn */
     top: 0;
     left: 0;
     width: 100%;
