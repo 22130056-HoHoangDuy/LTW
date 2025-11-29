@@ -4,6 +4,7 @@
 const btnInfo = document.getElementById("btn-info");
 const btnOrders = document.getElementById("btn-orders");
 const btnFavorite = document.getElementById("btn-favorite");
+const btnChangePass = document.getElementById("btn-change-pass");
 
 // ===============================
 // LẤY CÁC SECTION
@@ -11,6 +12,7 @@ const btnFavorite = document.getElementById("btn-favorite");
 const infoSection = document.getElementById("info-section");
 const ordersSection = document.getElementById("orders-section");
 const favoriteSection = document.getElementById("favorite-section");
+const passwordSection = document.getElementById("password-section");
 
 // ===============================
 // HÀM RESET ACTIVE
@@ -48,6 +50,15 @@ btnFavorite.addEventListener("click", () => {
 });
 
 // ===============================
+// CLICK — ĐỔI MẬT KHẨU
+// ===============================
+btnChangePass.addEventListener("click", () => {
+    resetActive();
+    btnChangePass.classList.add("active");
+    passwordSection.classList.add("active");
+});
+
+// ===============================
 // PREVIEW ẢNH AVATAR
 // ===============================
 const avatarInput = document.getElementById("avatar-upload");
@@ -65,7 +76,7 @@ avatarInput.addEventListener("change", function () {
 });
 
 // ===============================
-// LƯU THÔNG TIN
+// LƯU THÔNG TIN CÁ NHÂN
 // ===============================
 document.getElementById("save-btn").addEventListener("click", () => {
     const info = {
@@ -77,4 +88,49 @@ document.getElementById("save-btn").addEventListener("click", () => {
     };
 
     alert("Thông tin đã được lưu:\n" + JSON.stringify(info, null, 2));
+
+    // Nếu cần gửi lên Server Servlet:
+    // fetch("/UpdateProfileServlet", { method: "POST", body: JSON.stringify(info) })
+});
+
+// ===============================
+// ĐỔI MẬT KHẨU
+// ===============================
+document.getElementById("change-pass-btn").addEventListener("click", () => {
+
+    const oldPass = document.getElementById("old_password").value;
+    const newPass = document.getElementById("new_password").value;
+    const confirmPass = document.getElementById("confirm_password").value;
+
+    // Validate
+    if (!oldPass || !newPass || !confirmPass) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    if (newPass.length < 6) {
+        alert("Mật khẩu mới phải ít nhất 6 ký tự!");
+        return;
+    }
+
+    if (newPass !== confirmPass) {
+        alert("Mật khẩu nhập lại không khớp!");
+        return;
+    }
+
+    alert("Đổi mật khẩu thành công!");
+
+    // Gửi Servlet khi bạn có API
+    /*
+    fetch("/ChangePasswordServlet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            old_password: oldPass,
+            new_password: newPass
+        })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+    */
 });
