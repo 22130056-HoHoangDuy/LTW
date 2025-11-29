@@ -13,13 +13,12 @@ iframe {
 
 /* Header iframe */
 #header-frame {
-    position: sticky; /* Giữ cố định khi cuộn */
+    position: sticky;      /* Giữ cố định khi cuộn */
     top: 0;
     left: 0;
     width: 100%;
     height: 118px;
-    z-index: 9999;
-    background: transparent;
+    z-index: 999;
 }
 
 /* Footer iframe */
