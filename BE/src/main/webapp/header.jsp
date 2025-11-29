@@ -9,43 +9,44 @@
 <%--    <meta charset="UTF-8"/>--%>
 <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>--%>
 <%--    <title>Header - Nội thất trẻ em</title>--%>
-<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>--%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 <%--</head>--%>
 <%--<body>--%>
 <!-- HEADER -->
 <header class="site-header">
     <!-- 🔹 Thanh trên cùng -->
-    <div class="top-bar">
-        <div class="header-container top-bar-inner">
-            <div class="hotline">
-                <span>Hotline: <a href="tel:0964163168">0964 163 168</a></span>
+    <div class="sh-top-bar">
+        <div class="sh-header-container sh-top-bar-inner">
+            <div class="sh-hotline">
+                <span>Hotline: <a href="tel:0964163168" style="font-size: 1rem;">0964 163 168</a></span>
             </div>
-            <div class="auth-links">
-                <a href="../html/login.html" target="_top">Đăng nhập</a> / <a href="../html/login.html?form=register"
-                                                                              target="_top">Đăng ký</a>
+            <div class="sh-auth-links">
+                <a href="../html/login.html" target="_top" style="font-size: 1rem;">Đăng nhập</a> /
+                <a href="../html/login.html?form=register"
+                   target="_top" style="font-size: 1rem;">Đăng ký</a>
             </div>
         </div>
     </div>
 
     <!-- 🔹 Header chính -->
-    <div class="header-container main-header">
-        <div class="brand">
-            <a href="../html/home.html" target="_top" class="logo" aria-label="BabyShop">
-        <span class="brand-text multi-logo">
+    <div class="sh-header-container main-header">
+        <div class="sh-brand">
+            <a href="../html/home.html" target="_top" class="sh-logo" aria-label="BabyShop">
+        <span class="sh-brand-text sh-multi-logo">
             <span>B</span><span>a</span><span>b</span><span>y</span><span>S</span><span>h</span><span>o</span><span>p</span>
         </span>
             </a>
         </div>
 
         <!-- Search -->
-        <div class="search-wrap">
-            <form class="search-form" role="search" aria-label="Tìm sản phẩm">
-                <button type="submit" class="search-btn" aria-label="Tìm">
+        <div class="sh-search-wrap">
+            <form class="sh-search-form" role="search" aria-label="Tìm sản phẩm">
+                <button type="submit" class="sh-search-btn" aria-label="Tìm">
                     🔍
                 </button>
                 <input
                         type="search"
-                        class="search-input"
+                        class="sh-search-input"
                         placeholder="Tìm bàn ghế, tủ, đồ chơi..."
                         aria-label="Tìm sản phẩm"
                 />
@@ -53,8 +54,8 @@
         </div>
 
         <!-- Nav + actions -->
-        <nav class="nav-actions">
-            <ul class="nav-links">
+        <nav class="sh-nav-actions">
+            <ul class="sh-nav-links">
                 <li><a href="../html/home.html" target="_top">Trang chủ</a></li>
                 <li><a href="../html/productList.html" target="_top">Danh sách sản phẩm</a></li>
                 <li><a href="../html/news.html" target="_top">Tin tức</a></li>
@@ -62,14 +63,14 @@
                 <li><a href="../html/contact.html" target="_top">Liên hệ</a></li>
             </ul>
 
-            <div class="actions">
+            <div class="sh-actions">
                 <a href="../html/profile.html" target="_top" class="account" aria-label="Tài khoản">👤</a>
                 <a href="../html/cart.html" target="_top" class="cart" aria-label="Giỏ hàng">
-                    🛒<span class="cart-badge" aria-hidden="true">2</span>
+                    🛒<span class="sh-cart-badge" aria-hidden="true">2</span>
                 </a>
 
                 <!-- Hamburger -->
-                <button class="hamburger" aria-label="Mở menu" aria-expanded="false">
+                <button class="sh-hamburger" aria-label="Mở menu" aria-expanded="false">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -79,11 +80,11 @@
     </div>
 
     <!-- 🔹 Mobile menu -->
-    <div class="mobile-menu" aria-hidden="true">
-        <form class="mobile-search" role="search">
+    <div class="sh-mobile-menu" aria-hidden="true">
+        <form class="sh-mobile-search" role="search">
             <input type="search" placeholder="Tìm sản phẩm..."/>
         </form>
-        <ul class="mobile-links">
+        <ul class="sh-mobile-links">
             <li><a href="#">Trang chủ</a></li>
             <li><a href="#">Danh sách sản phẩm</a></li>
             <li><a href="#">Tin tức</a></li>
