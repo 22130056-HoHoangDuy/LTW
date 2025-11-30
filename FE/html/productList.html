@@ -88,25 +88,92 @@
     </div>
 </div>
 <div class="filter-box">
-    <div class="filter-group">
-        <h4>Chọn theo tiêu chí</h4>
-        <button type="button" class="filter-btn">Thương hiệu</button>
-        <button type="button" class="filter-btn">Giá tiền</button>
-        <button type="button" class="filter-btn">Kích thước</button>
-        <button type="button" class="filter-btn">Chất liệu</button>
+    <h3>Bộ lọc tìm kiếm</h3>
+
+    <div class="filter-group active">
+        <div class="filter-header">
+            <span>Thương hiệu</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="checkbox-list">
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="bobby"> Bobby <span class="count">(15)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="huggies"> Huggies <span class="count">(12)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="moony"> Moony <span class="count">(8)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="pampers"> Pampers <span class="count">(10)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="mamamy"> Mamamy <span class="count">(5)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="chicco"> Chicco <span class="count">(3)</span>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="combi"> Combi <span class="count">(4)</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-group active">
+        <div class="filter-header">
+            <span>Khoảng giá</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="price-range">
+                <div class="inputs">
+                    <input type="number" id="price-min" placeholder="Từ">
+                    <span class="sep">-</span>
+                    <input type="number" id="price-max" placeholder="Đến">
+                </div>
+                <button type="button" class="btn-apply-price">Áp dụng</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-group active">
+        <div class="filter-header">
+            <span>Kích thước</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="size-grid">
+                <label class="size-tag"><input type="checkbox" name="size" value="S"><span>S</span></label>
+                <label class="size-tag"><input type="checkbox" name="size" value="M"><span>M</span></label>
+                <label class="size-tag"><input type="checkbox" name="size" value="L"><span>L</span></label>
+                <label class="size-tag"><input type="checkbox" name="size" value="XL"><span>XL</span></label>
+                <label class="size-tag"><input type="checkbox" name="size" value="XXL"><span>XXL</span></label>
+            </div>
+        </div>
     </div>
 
     <div class="filter-group">
-        <h4>Sắp xếp theo</h4>
-        <button type="button" class="filter-btn">Giá tăng dần</button>
-        <button type="button" class="filter-btn">Giá giảm dần</button>
-        <button type="button" class="filter-btn">Mới nhất</button>
-        <button type="button" class="filter-btn">Cũ nhất</button>
-        <button type="button" class="filter-btn">Tên A-Z</button>
-        <button type="button" class="filter-btn">Tên Z-A</button>
+        <div class="filter-header">
+            <span>Chất liệu</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="checkbox-list">
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="cotton"> Cotton 100%
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="bamboo"> Sợi tre (Bamboo)
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" value="xo"> Vải xô (Muslin)
+                </label>
+            </div>
+        </div>
     </div>
-
-    <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
 </div>
 <div class="container">
     <h1>Danh sách sản phẩm</h1>
