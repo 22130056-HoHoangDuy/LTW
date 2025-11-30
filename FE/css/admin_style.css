@@ -553,6 +553,117 @@ body {
 .add-product-btn i {
     margin-right: 6px;
 }
+.form-item textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #D7D5FF;
+    background: #fafaff;
+    transition: 0.2s ease;
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-item textarea:focus {
+    border-color: #A696FF;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(166,150,255,0.25);
+}
+.product-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.product-modal {
+    background: #fff;
+    width: 650px;
+    border-radius: 22px;
+    padding: 25px 30px;
+    border: 1px solid #ECEBFF;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    animation: fadeIn 0.25s ease;
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.product-modal {
+    position: relative;
+    z-index: 10000;
+}
+/* ==============================
+   FIX PRODUCT OVERLAY GRID
+   ============================== */
+
+.product-modal {
+    background: #fff;
+    width: 780px;             /* rộng hơn cho cân đối */
+    border-radius: 22px;
+    padding: 30px;
+    border: 1px solid #ECEBFF;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    animation: fadeIn 0.25s ease;
+}
+
+/* Grid riêng cho Product Form */
+.product-modal .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* CHUẨN 2 CỘT */
+    gap: 20px 25px;
+}
+
+/* Label */
+.product-modal .form-item label {
+    font-weight: 600;
+    color: #514EA5;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Input - Select */
+.product-modal .form-item input,
+.product-modal .form-item select,
+.product-modal .form-item textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #D7D5FF;
+    background: #fafaff;
+    transition: 0.2s ease;
+    font-size: 14px;
+}
+
+/* Focus đẹp */
+.product-modal .form-item input:focus,
+.product-modal .form-item select:focus,
+.product-modal .form-item textarea:focus {
+    border-color: #A696FF;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(166,150,255,0.25);
+}
+
+/* Textarea mô tả – full width */
+.product-modal .form-item.textarea-full {
+    grid-column: span 2;
+}
+
+/* Nút ở dưới modal */
+.modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
 
 
 
