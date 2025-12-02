@@ -19,7 +19,10 @@
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Bootstrap chỉ dùng cho trang product list -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Bootstrap cho trang product list -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
@@ -102,28 +105,53 @@
     </div>
 
     <div class="filter-box">
-        <div class="filter-group">
-            <h4>Chọn theo tiêu chí</h4>
-            <button type="button" class="filter-btn">Thương hiệu</button>
-            <button type="button" class="filter-btn">Giá tiền</button>
-            <button type="button" class="filter-btn">Kích thước</button>
-            <button type="button" class="filter-btn">Màu sắc</button>
-            <button type="button" class="filter-btn">Chất liệu</button>
-        </div>
+        <h3>Bộ lọc tìm kiếm</h3>
+        <div class="filter-group active">
+            <div class="filter-header">
+                <span>Theo thương hiệu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="filter-content">
+                <div class="checkbox-list">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="bobby"> Bobby <span class="count">(15)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="huggies"> Huggies <span class="count">(12)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="moony"> Moony <span class="count">(8)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="pampers"> Pampers <span class="count">(10)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="mamamy"> Mamamy <span class="count">(5)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="chicco"> Chicco <span class="count">(3)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="combi"> Combi <span class="count">(4)</span>
+                    </label>
+                </div>
+            </div>
 
-        <div class="filter-group">
+        </div>
+    </div>
+    <div class="filter-box">
+        <div class="filter-group active">
             <h4>Sắp xếp theo</h4>
-            <button type="button" class="filter-btn">Giá tăng dần</button>
-            <button type="button" class="filter-btn">Giá giảm dần</button>
-            <button type="button" class="filter-btn">Mới nhất</button>
-            <button type="button" class="filter-btn">Cũ nhất</button>
-            <button type="button" class="filter-btn">Tên A-Z</button>
-            <button type="button" class="filter-btn">Tên Z-A</button>
+            <div class="filter-content">
+                <button type="button" class="filter-btn">Giá tăng dần</button>
+                <button type="button" class="filter-btn">Giá giảm dần</button>
+                <button type="button" class="filter-btn">Mới nhất</button>
+                <button type="button" class="filter-btn">Cũ nhất</button>
+            </div>
         </div>
 
         <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
     </div>
-
     <div class="product-container">
         <h1>Danh sách sản phẩm</h1>
         <div class="product-list">
@@ -153,15 +181,11 @@
                     </a>
 
                     <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#"></a>
-                        </div>
                         <div>
                             Đã bán
                             <span>
-                    513
-                </span>
+                                    513
+                                 </span>
                         </div>
                     </div>
                 </div>
@@ -183,9 +207,9 @@
         </div>
     </div>
 
-</div>
-<jsp:include page="footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/header.js"></script>
-<script src="${pageContext.request.contextPath}/js/productList.js"></script>
+
+    <jsp:include page="footer.jsp"/>
+    <script src="${pageContext.request.contextPath}/js/header.js"></script>
+    <script src="${pageContext.request.contextPath}/js/productList.js"></script>
 </body>
 </html>
