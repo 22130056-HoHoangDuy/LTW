@@ -77,31 +77,19 @@
     <div class="filter-box">
         <div class="filter-demand-group">
             <h4>Chọn theo nhu cầu</h4>
+
             <div class="demand-group">
-                <div class="img-button">
-                    <a href="">
-                        <img
-                                src="img/categories/donoithat.png"
-                                alt="Hình ảnh bị lỗi"
-                        />
-                        <span>ĐỒ NỘI THẤT</span>
-                    </a>
-                </div>
-                <div class="img-button">
-                    <a href="">
-                        <img
-                                src="img/categories/dotrangtri.jpg"
-                                alt="Hình ảnh bị lỗi"
-                        />
-                        <span>ĐỒ TRANG TRÍ</span>
-                    </a>
-                </div>
-                <div class="img-button">
-                    <a href="">
-                        <img src="img/categories/dochoi.jpg" alt="Hình ảnh bị lỗi"/>
-                        <span>ĐỒ CHƠI</span>
-                    </a>
-                </div>
+                <c:forEach var="category" items="${categories}">
+                    <div class="img-button">
+                        <a href="">
+                            <img
+                                    src="${category.categoryImg}"
+                                    alt="Hình ảnh bị lỗi"
+                            />
+                            <span>${category.categoryName}</span>
+                        </a>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -160,25 +148,24 @@
             <!-- Lặp danh sách sản phẩm -->
             <c:forEach var="product" items="${products}">
                 <div class="product">
-                    <a href="<c:url value='/product-detail?id=${product.productId}'/>">
+                    <a href="<c:url value='/product-detail?product_id=${product.productId}'/>">
                         <img alt="Ảnh bị lỗi" src="${product.imgUrl}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
 
                     <p class="price">
-                        ${product.price}đ
+                            ${product.price}đ
                     </p>
 
                     <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
                         <i class="fa-solid fa-cart-plus"></i>
                     </a>
 
-                    <a class="filter-btn detail-btn" href="<c:url value='/product-detail?id=${product.productId}'/>"
+                    <a class="filter-btn detail-btn"
+                       href="<c:url value='/product-detail?product_id=${product.productId}'/>"
                        title="Xem chi tiết">
-                        <i class="fa-solid fa-eye">
-
-                        </i>
+                        <i class="fa-solid fa-eye"></i>
                     </a>
 
                     <a class="filter-btn favor-btn" href="" title="Thêm vào danh sách yêu thích">

@@ -54,7 +54,7 @@
             <div class="product-details">
                 <div class="product-main-info">
                     <h2>${product.productName}</h2>
-                    <p class="price">${product.price} đ</p>
+                    <p class="price">${product.price}đ</p>
                     <p class="product-id">Mã sản phẩm: ${product.productId}</p>
 
                     <div class="product-status">
@@ -78,6 +78,10 @@
                     <h3>Thông số chi tiết</h3>
                     <table>
                         <tr>
+                            <td>Loại sản phẩm</td>
+                            <td>${category.categoryName}</td>
+                        </tr>
+                        <tr>
                             <td>Thương hiệu</td>
                             <td>${product.brandName}</td>
                         </tr>
@@ -92,11 +96,19 @@
                     </table>
                 </div>
                 <div class="buy-box">
-                    <label for="quantity"><strong>Số lượng:</strong></label>
-                    <input type="number" id="quantity" value="1" min="1"/>
+                    <div class="quantity-control-group">
+                        <label class="label-qty">Số lượng:</label>
+                        <div class="quantity-input-box">
+                            <button class="qty-btn" onclick="decreaseQty()"><i class="fa-solid fa-minus"></i></button>
+                            <input type="number" id="quantity" value="1" min="1" readonly/>
+                            <button class="qty-btn" onclick="increaseQty()"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
                     <div class="buy-section">
+                        <a href="#" class="add-btn">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                        </a>
                         <a href="../html/cart.html" class="buy-btn">Mua Ngay</a>
-                        <a href="#" class="add-btn">Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>

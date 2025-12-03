@@ -130,11 +130,11 @@ nav a:hover {
 }
 
 /* ====== Giá, mô tả, trạng thái ====== */
-.price {
-    color: #e60000;
-    font-size: 20px;
-    font-weight: bold;
-}
+/*.price {*/
+/*    color: #e60000;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*}*/
 
 .product-id {
     margin: 15px 0;
@@ -212,7 +212,7 @@ nav a:hover {
 
 .price {
     color: #dc3545; /* Đỏ tươi hơn */
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     margin: 10px 0;
     letter-spacing: -0.5px;
@@ -232,6 +232,7 @@ nav a:hover {
     font-weight: 500;
     margin-top: 10px;
 }
+
 /* Bảng thông số kỹ thuật */
 .spec-box {
     background: #f8f9fa;
@@ -508,4 +509,51 @@ button:hover {
 .fade-in.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.quantity-control-group {
+    margin-bottom: 30px;
+}
+
+.label-qty {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+}
+
+.quantity-input-box {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quantity-input-box input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+    appearance: none;
+}
+
+.qty-btn {
+    background: #f8f9fa;
+    border: none;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.qty-btn:hover {
+    background: #e9ecef;
+    color: #0031da;
 }

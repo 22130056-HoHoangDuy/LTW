@@ -114,6 +114,10 @@ iframe {
     margin: 20px auto;
 }
 
+.product-list-page .filter-box h3 {
+    font-weight: 550;
+}
+
 .product-list-page .filter-box h4,
 .product-list-page .filter-demand-group h4 {
     margin-bottom: 10px;
@@ -260,7 +264,7 @@ iframe {
 .product-list-page .price {
     color: #e60000;
     font-weight: bold;
-    font-size :20px;
+    font-size: 20px;
     margin-top: auto;
     padding-top: 20px;
 }
