@@ -7,13 +7,13 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"
@@ -26,6 +26,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productList.css"/>
+
 </head>
 <body>
 
@@ -158,22 +160,25 @@
             <!-- Lặp danh sách sản phẩm -->
             <c:forEach var="product" items="${products}">
                 <div class="product">
-                    <a href="<c:url value='/productDetail?id=${product.productId}'/>">
+                    <a href="<c:url value='/product-detail?id=${product.productId}'/>">
                         <img alt="Ảnh bị lỗi" src="${product.imgUrl}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
 
                     <p class="price">
-                        <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="₫"/>
+                        ${product.price}đ
                     </p>
 
                     <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
                         <i class="fa-solid fa-cart-plus"></i>
                     </a>
 
-                    <a class="filter-btn detail-btn" href="" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
+                    <a class="filter-btn detail-btn" href="<c:url value='/product-detail?id=${product.productId}'/>"
+                       title="Xem chi tiết">
+                        <i class="fa-solid fa-eye">
+
+                        </i>
                     </a>
 
                     <a class="filter-btn favor-btn" href="" title="Thêm vào danh sách yêu thích">

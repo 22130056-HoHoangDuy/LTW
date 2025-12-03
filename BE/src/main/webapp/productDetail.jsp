@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,33 +19,33 @@
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
             crossorigin="anonymous"
     />
-    <link
-            rel="stylesheet"
-            href="../fontawesome-free-7.1.0-web/css/all.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productDetail.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productDetail.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 <nav class="breadcrumb-nav">
-    <a href="../html/home.html">Home</a>
+    <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
     <span class="dot">•</span>
-    <a href="../html/productList.html">Danh sách sản phẩm</a>
+    <a href="${pageContext.request.contextPath}/product-list">Danh sách sản phẩm</a>
     <span class="dot">•</span>
-    <a href="">Bàn Học Thông Minh FANCY ROS 100</a>
+    <a href="">${product.productName}</a>
 </nav>
 <div class="container">
     <div class="product-wrapper">
         <div class="product-image">
             <img
-                    src="img/d11pro-xam.jpg"
+                    src="${product.imgUrl}"
                     class="d-block w-100"
                     alt="Hình ảnh bị lỗi"
             />
@@ -52,13 +53,25 @@
         <div class="product-right">
             <div class="product-details">
                 <div class="product-main-info">
-                    <h2>Bàn Học Thông Minh FANCY ROS 100</h2>
-                    <p class="price">3.910.000đ</p>
-                    <p class="product-id">Mã sản phẩm: 001</p>
+                    <h2>${product.productName}</h2>
+                    <p class="price">${product.price} đ</p>
+                    <p class="product-id">Mã sản phẩm: ${product.productId}</p>
+
                     <div class="product-status">
                         <span>Đã bán 513</span>
                         <span class="dot">•</span>
-                        <span>Tình trạng: <span class="status">Còn hàng</span></span>
+                        <span>Tình trạng:
+                                <c:if test="${product.available}">
+                                   <span class="status in-stock">
+                                        <i class="fa-solid fa-check-circle"></i> Còn hàng
+                                   </span>
+                                </c:if>
+                                <c:if test="${!product.available}">
+                                   <span class="status out-of-stock">
+                                       <i class="fa-solid fa-circle-xmark"></i> Hết hàng
+                                   </span>
+                                </c:if>
+                        </span>
                     </div>
                 </div>
                 <div class="spec-box">
@@ -66,23 +79,15 @@
                     <table>
                         <tr>
                             <td>Thương hiệu</td>
-                            <td>Fancy TopKids</td>
+                            <td>${product.brandName}</td>
                         </tr>
                         <tr>
                             <td>Vật liệu</td>
-                            <td>Gỗ tự nhiên</td>
+                            <td>${product.material}</td>
                         </tr>
                         <tr>
                             <td>Kích thước</td>
-                            <td>Bàn size 1m</td>
-                        </tr>
-                        <tr>
-                            <td>Bảo hành</td>
-                            <td>1 năm</td>
-                        </tr>
-                        <tr>
-                            <td>Bảo trì</td>
-                            <td>Trọn đời</td>
+                            <td>${product.size}</td>
                         </tr>
                     </table>
                 </div>

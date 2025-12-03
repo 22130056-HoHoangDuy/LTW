@@ -118,6 +118,7 @@ iframe {
 .product-list-page .filter-demand-group h4 {
     margin-bottom: 10px;
     color: #2c3e50;
+    font-weight: 550;
 }
 
 .product-list-page .filter-group {
@@ -208,6 +209,7 @@ iframe {
 
 .product-list-page .product-container h1 {
     text-align: center;
+    font-weight: 550;
     color: #333;
 }
 
@@ -228,9 +230,13 @@ iframe {
 }
 
 .product-list-page .product img {
-    width: 100%;
+    width: auto;
     height: auto;
     transition: 0.75s ease;
+    padding-bottom: 20px;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain
 }
 
 .product-list-page .product img:hover {
@@ -241,11 +247,22 @@ iframe {
 .product-list-page .product h3 {
     font-size: 18px;
     color: #333;
+    font-weight: 550;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    /*overflow: hidden;*/
+    line-height: 1.5em;
+    height: 3em;
 }
 
 .product-list-page .price {
     color: #e60000;
     font-weight: bold;
+    font-size :20px;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .product-list-page .detail-btn {
@@ -313,6 +330,15 @@ iframe {
     width: 100%;
 }
 
+.product-list-page .product a:first-child {
+    display: block;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .product-list-page .product-stats {
     display: flex;
     justify-content: space-between;
@@ -323,6 +349,7 @@ iframe {
     padding: 6px 10px;
     background: #f9f9f9;
     border-radius: 6px;
+    margin-top: auto;
 }
 
 .product-list-page .product-rating {
