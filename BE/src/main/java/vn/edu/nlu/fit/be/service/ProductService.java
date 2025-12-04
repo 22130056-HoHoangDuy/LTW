@@ -12,7 +12,13 @@ public class ProductService {
         return pdao.getListProduct();
     }
 
+    //Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
+    }
+
+    //Filter products
+    public List<Product> getProductsByCategory(int categoryId) {
+        return pdao.getProductsByCategory(categoryId);
     }
 }

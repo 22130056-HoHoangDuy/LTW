@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -81,7 +81,7 @@
             <div class="demand-group">
                 <c:forEach var="category" items="${categories}">
                     <div class="img-button">
-                        <a href="">
+                        <a href="<c:url value='/product-list?category_id=${category.categoryId}'/>">
                             <img
                                     src="${category.categoryImg}"
                                     alt="Hình ảnh bị lỗi"
@@ -140,7 +140,7 @@
             </div>
         </div>
 
-        <button type="button" class="filter-btn remove-btn">Xóa lọc</button>
+        <a class="filter-btn remove-btn" href="<c:url value='/product-list'/>">Xóa lọc</a>
     </div>
     <div class="product-container">
         <h1>Danh sách sản phẩm</h1>

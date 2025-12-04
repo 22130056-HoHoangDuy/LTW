@@ -11,7 +11,7 @@ public class ProductDao {
 
     public List<Product> getListProduct() {
         products.add(new Product(
-                1,  1, true, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
+                1, 1, true, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
                 "Mô tả sản phẩm...", "LUXURY TopKids",
                 "https://topkids.com.vn/img/upload/images/Temp_thumb/600x600/d11pro-xam-web_g9k2yX3RuAxH1R5zKWYmP3NbhYmgWLUPKYJEoTfjDZzM3hU1a72511686780169.webp",
                 12220000, "Bàn Ghế Thông Minh Chống Gù Chống Cận D11 Pro"
@@ -19,7 +19,7 @@ public class ProductDao {
 
         // 2. Bàn Học Thông Minh A12 Fancy (Nội thất)
         products.add(new Product(
-                2,  1, false, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
+                2, 1, false, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
                 "Mô tả sản phẩm...", "Fancy TopKids",
                 "https://topkids.com.vn//img/upload/images/Temp_thumb/600x600/fancy-a12-xanh-web_AmvqdvIOE99w7QZ2QS2xFeaZIQIjidK8HhV5e9wrvtDiiRAzU92519937312795.webp",
                 9650000, "Bàn Học Thông Minh Chống Gù Chống Cận A12 Fancy"
@@ -27,7 +27,7 @@ public class ProductDao {
 
         // 3. Đèn Bàn Chống Cận T9 (Nội thất - Đèn)
         products.add(new Product(
-                3,  1, true, "Nhựa", 0, "Khác",
+                3, 1, true, "Nhựa", 0, "Khác",
                 "Đèn chống cận cao cấp", "Thương hiệu TopKids",
                 "https://topkids.com.vn//img/upload/images/Temp_thumb/600x600/t9-19qssTV81wYv2vkP35u2Wn3WKQmcZipPZsA39foDxmrlSgMIQI72552322239725.webp",
                 5590000, "Đèn Bàn Chống Cận Cao Cấp T9"
@@ -43,7 +43,7 @@ public class ProductDao {
 
         // 5. Tranh trang trí tường phòng bé TG081 (Trang trí)
         products.add(new Product(
-                5,2, true, "In UV trực tiếp lên Mica tráng gương", 0, "40x60cm (bộ 3 tấm)",
+                5, 2, true, "In UV trực tiếp lên Mica tráng gương", 0, "40x60cm (bộ 3 tấm)",
                 "Tranh treo tường đẹp", null, // Brand null trong SQL
                 "https://tuongxinh.com.vn/wp-content/uploads/2021/04/tranh-treo-tuong-trang-guong-187-800x800.jpg",
                 950000, "Tranh trang trí tường phòng bé TG081"
@@ -83,7 +83,7 @@ public class ProductDao {
 
         // 10. Bàn Học Thông Minh FANCY H120 (Nội thất - Giá rẻ hơn)
         products.add(new Product(
-                10,  1, false, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
+                10, 1, false, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
                 "Mô tả sản phẩm...", "Fancy TopKids",
                 "https://topkids.com.vn//img/upload/images/Temp_thumb/600x600/fancy-h120-hong-web_SLh53OuegheTK8kUm1x5vzz3Vd9WxoIYEqtZvZbaqukzOZclNX2511481748035.webp",
                 5310000, "Bàn Thông Minh Chống Gù Chống Cận FANCY H120"
@@ -93,10 +93,20 @@ public class ProductDao {
 
     public Product getProductById(int id) {
         Product res = null;
-        for( Product product: getListProduct()){
-            if(product.getProductId()==id)
+        for (Product product : getListProduct()) {
+            if (product.getProductId() == id)
                 res = product;
         }
         return res;
+    }
+
+    public List<Product> getProductsByCategory(int categoryId) {
+        List<Product> result = new ArrayList<>();
+        for (Product product : getListProduct()) {
+            if (product.getCategoryId() == categoryId) {
+                result.add(product);
+            }
+        }
+        return result;
     }
 }
