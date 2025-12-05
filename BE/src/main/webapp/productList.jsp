@@ -133,8 +133,22 @@
         <div class="filter-group active">
             <h4>Sắp xếp theo</h4>
             <div class="filter-content">
-                <button type="button" class="filter-btn">Giá tăng dần</button>
-                <button type="button" class="filter-btn">Giá giảm dần</button>
+                <a href="<c:url value='/product-list'>
+                <c:param name='category_id' value='${currentCategoryId}'/>
+                <c:param name='sort' value='price_asc'/>
+             </c:url>"
+                   class="filter-btn ${currentSort == 'price_asc' ? 'active' : ''}">
+                    Giá tăng dần
+                </a>
+
+                <a href="<c:url value='/product-list'>
+                <c:param name='category_id' value='${currentCategoryId}'/>
+                <c:param name='sort' value='price_desc'/>
+             </c:url>"
+                   class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
+                    Giá giảm dần
+                </a>
+
                 <button type="button" class="filter-btn">Mới nhất</button>
                 <button type="button" class="filter-btn">Cũ nhất</button>
             </div>

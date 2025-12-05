@@ -12,6 +12,10 @@ public class ProductService {
         return pdao.getListProduct();
     }
 
+    public List<Product> getProductBySort(String sort) {
+        return pdao.getProductBySort(sort);
+    }
+
     //Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
@@ -20,5 +24,9 @@ public class ProductService {
     //Filter products
     public List<Product> getProductsByCategory(int categoryId) {
         return pdao.getProductsByCategory(categoryId);
+    }
+
+    public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
+        return pdao.getProductsByCategoryAndSort(categoryId, sort);
     }
 }

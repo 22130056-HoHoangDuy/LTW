@@ -4,7 +4,9 @@ import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class ProductDao {
     List<Product> products = new ArrayList<>();
@@ -109,4 +111,25 @@ public class ProductDao {
         }
         return result;
     }
+
+    public List<Product> getProductBySort(String sort) {
+        List<Product> res = getListProduct();
+        if ("price_asc".equals(sort)) {
+            res.sort(Comparator.comparingInt(Product::getPrice));
+        } else if ("price_desc".equals(sort)) {
+            res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+        }
+        return res;
+    }
+
+    public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
+        List<Product> res = getProductsByCategory(categoryId);
+        if ("price_asc".equals(sort)) {
+            res.sort(Comparator.comparingInt(Product::getPrice));
+        } else if ("price_desc".equals(sort)) {
+            res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+        }
+        return res;
+    }
 }
+

@@ -141,6 +141,7 @@ iframe {
     transition: all 0.2s;
     font-weight: 550;
     font-size: 15px;
+    text-decoration: none !important;
 }
 
 .product-list-page .filter-content {
