@@ -136,7 +136,7 @@
                 <a href="<c:url value='/product-list'>
                 <c:param name='category_id' value='${currentCategoryId}'/>
                 <c:param name='sort' value='price_asc'/>
-             </c:url>"
+                        </c:url>"
                    class="filter-btn ${currentSort == 'price_asc' ? 'active' : ''}">
                     Giá tăng dần
                 </a>
@@ -148,9 +148,20 @@
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
                     Giá giảm dần
                 </a>
+                <a href="<c:url value='/product-list'>
+                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
+                    <c:param name='sort' value='latest'></c:param>
+                </c:url>" class="filter-btn">Mới nhất</a>
 
-                <button type="button" class="filter-btn">Mới nhất</button>
-                <button type="button" class="filter-btn">Cũ nhất</button>
+                <a href="<c:url value='/product-list'>
+                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
+                    <c:param name='sort' value='oldest'></c:param>
+                </c:url>" class="filter-btn">Cũ nhất</a>
+
+                <a href="<c:url value='/product-list'>
+                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
+                    <c:param name='sort' value='hotest'></c:param>
+                </c:url>" class="filter-btn">Bán chạy nhất</a>
             </div>
         </div>
 

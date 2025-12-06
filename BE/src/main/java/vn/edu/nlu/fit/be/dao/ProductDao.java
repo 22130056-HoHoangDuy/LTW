@@ -114,20 +114,43 @@ public class ProductDao {
 
     public List<Product> getProductBySort(String sort) {
         List<Product> res = getListProduct();
-        if ("price_asc".equals(sort)) {
-            res.sort(Comparator.comparingInt(Product::getPrice));
-        } else if ("price_desc".equals(sort)) {
-            res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+        switch (sort) {
+            case "price_asc":
+                res.sort(Comparator.comparingInt(Product::getPrice));
+                break;
+            case "price_desc":
+                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                break;
+            case "latest":
+                res.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+                break;
+            case "oldest":
+                res.sort(Comparator.comparingInt(Product::getProductId));
+                break;
+            default:
+                break;
         }
         return res;
     }
 
     public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
         List<Product> res = getProductsByCategory(categoryId);
-        if ("price_asc".equals(sort)) {
-            res.sort(Comparator.comparingInt(Product::getPrice));
-        } else if ("price_desc".equals(sort)) {
-            res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+        switch (sort) {
+            case "price_asc":
+                res.sort(Comparator.comparingInt(Product::getPrice));
+                break;
+            case "price_desc":
+                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                break;
+            case "oldest":
+                res.sort(Comparator.comparing(Product::getProductId));
+                break;
+            case "latest":
+                res.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+                break;
+            default:
+                // không sort hoặc sort mặc định
+                break;
         }
         return res;
     }

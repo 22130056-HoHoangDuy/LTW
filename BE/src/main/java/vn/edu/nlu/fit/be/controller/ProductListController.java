@@ -25,8 +25,8 @@ public class ProductListController extends HttpServlet {
         String categoryIdToStr = request.getParameter("category_id");
         String sort = request.getParameter("sort");
 
+        //Chia làm hai: không lọc theo category và lọc theo category
         if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
-            // SỬA Ở ĐÂY: Đổi || thành &&
             if (sort != null && !sort.isEmpty()) {
                 products = ps.getProductBySort(sort);
             } else {
@@ -35,7 +35,6 @@ public class ProductListController extends HttpServlet {
 
         } else {
             int categoryId = Integer.parseInt(categoryIdToStr);
-            // SỬA Ở ĐÂY NỮA: Đổi || thành &&
             if (sort != null && !sort.isEmpty()) {
                 products = ps.getProductsByCategoryAndSort(categoryId, sort);
             } else {
