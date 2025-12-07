@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
 public class Stock {
     private int stockId;
@@ -10,10 +10,10 @@ public class Stock {
 
     //Constructor
 
-    public Stock() {}
+    public Stock() {
+    }
 
-    public Stock(Product product, int productId, String stockAddress, String stockName, int stockId) {
-        this.product = product;
+    public Stock(int productId, String stockAddress, String stockName, int stockId) {
         this.productId = productId;
         this.stockAddress = stockAddress;
         this.stockName = stockName;

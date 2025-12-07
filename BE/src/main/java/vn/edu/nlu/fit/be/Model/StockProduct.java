@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
 import java.sql.Timestamp;
 
@@ -15,12 +15,11 @@ public class StockProduct {
 
     //Constructor
 
-    public StockProduct() {}
+    public StockProduct() {
+    }
 
-    public StockProduct(int stockProductId, Product product, Stock stock, int productId, int stockId, Timestamp totalUpdatedDate, int soldQuantity, int totalQuantity) {
+    public StockProduct(int stockProductId, int productId, int stockId, Timestamp totalUpdatedDate, int soldQuantity, int totalQuantity) {
         this.stockProductId = stockProductId;
-        this.product = product;
-        this.stock = stock;
         this.productId = productId;
         this.stockId = stockId;
         this.totalUpdatedDate = totalUpdatedDate;

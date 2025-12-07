@@ -192,3 +192,13 @@ window.addEventListener("DOMContentLoaded", () => {
     productDetail.innerHTML = detail;
 });
 
+function increaseQty() {
+    var input = document.getElementById('quantity');
+    input.value = parseInt(input.value) + 1;
+}
+function decreaseQty() {
+    var input = document.getElementById('quantity');
+    if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+    }
+}

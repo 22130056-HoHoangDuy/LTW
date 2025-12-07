@@ -79,17 +79,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png" alt="ZaloPay">
                 </div>
             </div>
-
-            <!-- CỘT 4: ĐĂNG KÝ NHẬN TIN -->
-            <div class="footer-newsletter">
-                <h4 style="font-size: 18px;font-weight: 550">Đăng ký nhận tin</h4>
-                <p>Nhận thông tin khuyến mãi và sản phẩm mới nhất.</p>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input  style="font-size: 15px" type="email" placeholder="Nhập email của bạn" required/>
-
-                    <button  style="font-size: 15px;font-weight: 550"type="submit">Đăng ký</button>
-                </form>
-            </div>
+            
         </div>
 
         <!-- DÒNG DƯỚI CÙNG -->

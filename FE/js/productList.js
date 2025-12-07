@@ -44,5 +44,17 @@ pages.forEach((page) => {
         page.classList.add("active");
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const filterHeaders = document.querySelectorAll('.filter-header');
 
+    filterHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            // Tìm thẻ cha .filter-group
+            const group = header.parentElement;
+
+            // Toggle class 'active' để mở/đóng
+            group.classList.toggle('active');
+        });
+    });
+});
 
