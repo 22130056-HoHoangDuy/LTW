@@ -1,8 +1,6 @@
-package vn.edu.nlu.fit.be.model;
+package vn.edu.nlu.fit.be.Model;
 
 import java.io.Serializable;
-
-import vn.edu.nlu.fit.be.model.Category;
 
 public class Product implements Serializable {
     private int productId;
@@ -129,11 +127,11 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public vn.edu.nlu.fit.be.model.Category getCategory() {
+    public vn.edu.nlu.fit.be.Model.Category getCategory() {
         return category;
     }
 
-    public void setCategory(vn.edu.nlu.fit.be.model.Category category) {
+    public void setCategory(vn.edu.nlu.fit.be.Model.Category category) {
         this.category = category;
     }
 }

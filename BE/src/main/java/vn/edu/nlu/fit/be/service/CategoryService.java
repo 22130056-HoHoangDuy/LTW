@@ -1,7 +1,7 @@
 package vn.edu.nlu.fit.be.service;
 
 import vn.edu.nlu.fit.be.dao.CategoryDao;
-import vn.edu.nlu.fit.be.model.Category;
+import vn.edu.nlu.fit.be.Model.Category;
 
 import java.util.List;
 
