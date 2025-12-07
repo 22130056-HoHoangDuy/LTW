@@ -1,6 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
 
-import vn.edu.nlu.fit.be.model.Category;
+import vn.edu.nlu.fit.be.Model.Category;
 
 import java.util.ArrayList;
 import java.util.List;

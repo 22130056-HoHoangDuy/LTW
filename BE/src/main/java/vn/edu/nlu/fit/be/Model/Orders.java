@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.model;
+package vn.edu.nlu.fit.be.Model;
 
 import java.sql.Date;
 

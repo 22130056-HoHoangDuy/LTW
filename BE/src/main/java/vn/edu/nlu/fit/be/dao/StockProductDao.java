@@ -1,6 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
 
-import vn.edu.nlu.fit.be.model.StockProduct;
+import vn.edu.nlu.fit.be.Model.StockProduct;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

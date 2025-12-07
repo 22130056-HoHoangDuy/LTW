@@ -1,7 +1,7 @@
 package vn.edu.nlu.fit.be.service;
 
 import vn.edu.nlu.fit.be.dao.StockProductDao;
-import vn.edu.nlu.fit.be.model.StockProduct;
+import vn.edu.nlu.fit.be.Model.StockProduct;
 
 import java.util.List;
 
