@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
 public class Stock {
     private int stockId;

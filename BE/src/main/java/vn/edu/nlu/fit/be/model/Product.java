@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
 import java.io.Serializable;
 
@@ -127,11 +127,11 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public vn.edu.nlu.fit.be.Model.Category getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(vn.edu.nlu.fit.be.Model.Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.Model;
+package vn.edu.nlu.fit.be.model;
 
 import java.io.Serializable;
 

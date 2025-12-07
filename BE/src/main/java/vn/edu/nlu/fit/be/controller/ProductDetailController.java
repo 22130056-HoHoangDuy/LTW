@@ -3,8 +3,8 @@ package vn.edu.nlu.fit.be.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.be.Model.Category;
-import vn.edu.nlu.fit.be.Model.Product;
+import vn.edu.nlu.fit.be.model.Category;
+import vn.edu.nlu.fit.be.model.Product;
 import vn.edu.nlu.fit.be.service.CategoryService;
 import vn.edu.nlu.fit.be.service.ProductService;
 
