@@ -31,7 +31,7 @@
     <!-- 🔹 Header chính -->
     <div class="sh-header-container main-header">
         <div class="sh-brand">
-            <a href="../html/home.html" target="_top" class="sh-logo" aria-label="BabyShop">
+            <a href="${pageContext.request.contextPath}/home" target="_top" class="sh-logo" aria-label="BabyShop">
         <span class="sh-brand-text sh-multi-logo">
             <span>B</span><span>a</span><span>b</span><span>y</span><span>S</span><span>h</span><span>o</span><span>p</span>
         </span>
@@ -56,16 +56,16 @@
         <!-- Nav + actions -->
         <nav class="sh-nav-actions">
             <ul class="sh-nav-links">
-                <li><a href="../html/home.html" target="_top">Trang chủ</a></li>
-                <li><a href="../html/productList.html" target="_top">Danh sách sản phẩm</a></li>
-                <li><a href="../html/news.html" target="_top">Tin tức</a></li>
-                <li><a href="../html/voucherList.html" target="_top">Ưu đãi</a></li>
-                <li><a href="../html/contact.html" target="_top">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/home" target="_top">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/product-list" target="_top">Danh sách sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/news" target="_top">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/voucher-list" target="_top">Ưu đãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/contact" target="_top">Liên hệ</a></li>
             </ul>
 
             <div class="sh-actions">
-                <a href="../html/profile.html" target="_top" class="account" aria-label="Tài khoản">👤</a>
-                <a href="../html/cart.html" target="_top" class="cart" aria-label="Giỏ hàng">
+                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account" aria-label="Tài khoản">👤</a>
+                <a href="${pageContext.request.contextPath}/cart" target="_top" class="cart" aria-label="Giỏ hàng">
                     🛒<span class="sh-cart-badge" aria-hidden="true">2</span>
                 </a>
 

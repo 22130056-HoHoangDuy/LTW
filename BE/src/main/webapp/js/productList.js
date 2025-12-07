@@ -23,7 +23,7 @@ backBtn.addEventListener("click", () => {
 });
 //Add favorite product
 const favorBtns = document.querySelectorAll(".filter-btn.favor-btn");
-favorBtns.forEach((favorBtn)=>{
+favorBtns.forEach((favorBtn) => {
     favorBtn.addEventListener("click", () => {
         Swal.fire({
             icon: "success",
@@ -91,5 +91,35 @@ if (carousel) {
     // Tự động chạy slide mỗi 5s
     setInterval(goToNext, 5000);
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const filterHeaders = document.querySelectorAll('.filter-header');
+
+    filterHeaders.forEach(header => {
+        const group = header.closest('.filter-group');
+        if (!group) {
+            return;
+        }
+
+        const toggleGroup = () => {
+            group.classList.toggle('active');
+            const expanded = group.classList.contains('active');
+            header.setAttribute('aria-expanded', String(expanded));
+        };
+
+        header.addEventListener('click', () => {
+            toggleGroup();
+        });
+
+        header.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleGroup();
+            }
+        });
+
+        header.setAttribute('aria-expanded', String(group.classList.contains('active')));
+    });
+});
+
 
 

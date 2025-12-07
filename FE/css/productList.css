@@ -363,3 +363,155 @@ footer {
     pointer-events: none;
     opacity: 0.4;
 }
+/* --- UI Bộ lọc Accordion --- */
+.filter-group {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+}
+
+.filter-header i {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Hiệu ứng xoay mũi tên khi mở */
+.filter-group.active .filter-header i {
+    transform: rotate(180deg);
+}
+
+/* Ẩn nội dung mặc định */
+.filter-content {
+    display: none;
+    padding-top: 5px;
+    animation: slideDown 0.3s ease;
+}
+
+.filter-group.active .filter-content {
+    display: block;
+}
+
+/* -- Style Checkbox (Thương hiệu/Chất liệu) -- */
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: #003dd4; /* Màu xanh chủ đạo */
+}
+
+.custom-checkbox .count {
+    color: #999;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+/* -- Style Giá tiền -- */
+.price-range .inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.price-range input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+}
+
+.price-range .sep {
+    font-weight: bold;
+    color: #999;
+}
+
+.btn-apply-price {
+    width: 100%;
+    background: #003dd4;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-apply-price:hover {
+    background: #002a9e;
+}
+
+/* -- Style Size (Dạng nút bấm) -- */
+.size-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.size-tag input {
+    display: none; /* Ẩn checkbox thật */
+}
+
+.size-tag span {
+    display: inline-block;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s;
+}
+
+/* Khi chọn size */
+.size-tag input:checked + span {
+    border-color: #003dd4;
+    background-color: #003dd4;
+    color: white;
+    font-weight: bold;
+}
+
+.size-tag span:hover {
+    border-color: #003dd4;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

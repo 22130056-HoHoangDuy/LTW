@@ -4,7 +4,8 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
 iframe {
@@ -24,9 +25,10 @@ iframe {
 }
 
 .container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 1200px;
+    width: 95%;
+    margin: 30px auto;
+    padding: 0px;
 }
 
 h2 {
@@ -43,7 +45,7 @@ h2 {
 ============================= */
 .breadcrumb-nav {
     padding: 1.5rem 4rem;
-    background: white;
+    background: transparent;
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -62,12 +64,13 @@ nav a:hover {
     color: #007bff;
 }
 
-.product-wrap   per {
+.product-wrapper {
     display: grid;
-    grid-template-columns: 40% 60%; /* Tỉ lệ ảnh : nội dung */
-    gap: 30px;
+    grid-template-columns: 4fr 6fr;
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
+    /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);*/
 }
 
 .nav-tabs .nav-link {
@@ -127,13 +130,13 @@ nav a:hover {
 }
 
 /* ====== Giá, mô tả, trạng thái ====== */
-.price {
-    color: #e60000;
-    font-size: 20px;
-    font-weight: bold;
-}
+/*.price {*/
+/*    color: #e60000;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.description {
+.product-id {
     margin: 15px 0;
     line-height: 1.5;
 }
@@ -149,11 +152,6 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
-.stars {
-    color: #f6c000;
-    font-size: 14px;
-}
-
 .reviews {
     color: #0066cc;
     text-decoration: none;
@@ -164,8 +162,28 @@ nav a:hover {
 }
 
 .status {
-    color: green;
+    color: #198754;
     font-weight: 500;
+    background: #d1e7dd;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.in-stock {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status.out-of-stock {
+    background-color: #f8d7da;
+    color: #842029;
+    opacity: 0.8;
 }
 
 .dot {
@@ -173,16 +191,63 @@ nav a:hover {
 }
 
 /* =============================
-   4. SPECIFICATION TABLE
+   4. PRODUCT INFO (RIGHT SIDE)
 ============================= */
+.product-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Giá và Tiêu đề */
+.product-main-info {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.product-main-info h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #dc3545; /* Đỏ tươi hơn */
+    font-size: 28px;
+    font-weight: 700;
+    margin: 10px 0;
+    letter-spacing: -0.5px;
+}
+
+.product-id {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.product-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Bảng thông số kỹ thuật */
+.spec-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+}
+
 .spec-box h3 {
-    margin: 0;
-    padding: 16px 20px;
-    font-size: 16px;
+    margin: 0 0 15px 0;
+    font-size: 18px;
     font-weight: 600;
-    color: #2d1d52;
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #f9fbff;
+    color: #333;
+    border-bottom: none;
+    background: transparent;
+    padding: 0;
 }
 
 table {
@@ -191,25 +256,25 @@ table {
 }
 
 td {
-    padding: 12px 20px;
+    padding: 10px 0;
     font-size: 15px;
-    color: #333;
-    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 td:first-child {
-    color: #4f547b;
-    font-weight: 700;
+    color: #6c757d;
+    font-weight: 500;
+    width: 40%;
 }
 
 td:last-child {
     text-align: right;
-    color: #3b3b7e;
-    font-weight: 500;
-}
-
-tr:first-child td {
-    border-top: none;
+    color: #333;
+    font-weight: 600;
 }
 
 /* =============================
@@ -265,11 +330,25 @@ button {
 button:hover {
     opacity: 0.9;
 }
+
 .buy-btn, .add-btn {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
+
 .buy-btn::after, .add-btn::after {
     content: '';
     position: absolute;
@@ -277,12 +356,14 @@ button:hover {
     top: 0;
     width: 0;
     height: 100%;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     transition: width 0.3s ease;
 }
+
 .buy-btn:hover::after, .add-btn:hover::after {
     width: 100%;
 }
+
 /* =============================
    6. OFFER SECTION
 ============================= */
@@ -369,7 +450,7 @@ button:hover {
     padding: 15px 20px;
     border-radius: 5px;
     text-decoration: none;
-    left: 1088px;
+    left: 88%;
     position: relative;
     transition: 0.5s ease-in;
 }
@@ -384,6 +465,7 @@ button:hover {
     background: #fff;
     color: #002a9c;
 }
+
 .comment .comment-content {
     font-weight: 550;
 }
@@ -416,13 +498,62 @@ button:hover {
     display: flex;
     opacity: 1;
 }
+
 /*Animation khi cuộn xuống*/
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.6s ease;
 }
+
 .fade-in.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.quantity-control-group {
+    margin-bottom: 30px;
+}
+
+.label-qty {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+}
+
+.quantity-input-box {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quantity-input-box input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+    appearance: none;
+}
+
+.qty-btn {
+    background: #f8f9fa;
+    border: none;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.qty-btn:hover {
+    background: #e9ecef;
+    color: #0031da;
 }
