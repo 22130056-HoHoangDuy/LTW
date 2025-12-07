@@ -2,8 +2,6 @@ package vn.edu.nlu.fit.be.model;
 
 import java.io.Serializable;
 
-import vn.edu.nlu.fit.be.model.Category;
-
 public class Product implements Serializable {
     private int productId;
     private String productName;

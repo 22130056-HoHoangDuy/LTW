@@ -8,7 +8,6 @@ import vn.edu.nlu.fit.be.service.CategoryService;
 import vn.edu.nlu.fit.be.service.ProductService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
