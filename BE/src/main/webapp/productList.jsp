@@ -201,7 +201,7 @@
                         <div>
                             Đã bán
                             <span>
-                                    513
+                                    ${soldMap[product.productId]}
                                  </span>
                         </div>
                     </div>

@@ -10,8 +10,10 @@ import vn.edu.nlu.fit.be.service.ProductService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import vn.edu.nlu.fit.be.model.Product;
+import vn.edu.nlu.fit.be.service.StockProductService;
 
 @WebServlet(name = "ProductListController", value = "/product-list")
 public class ProductListController extends HttpServlet {
@@ -19,6 +21,7 @@ public class ProductListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService ps = new ProductService();
         CategoryService cs = new CategoryService();
+        StockProductService ss = new StockProductService();
         List<Product> products;
 
         // Filter product by category
@@ -27,7 +30,7 @@ public class ProductListController extends HttpServlet {
 
         //Chia làm hai: không lọc theo category và lọc theo category
         if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
-            if (sort != null && !sort.isEmpty()) {
+            if (sort != null && !sort.equals("hotest")) {
                 products = ps.getProductBySort(sort);
             } else {
                 products = ps.getListProduct();
@@ -35,11 +38,17 @@ public class ProductListController extends HttpServlet {
 
         } else {
             int categoryId = Integer.parseInt(categoryIdToStr);
-            if (sort != null && !sort.isEmpty()) {
+            if (sort != null && !sort.equals("hotest")) {
                 products = ps.getProductsByCategoryAndSort(categoryId, sort);
             } else {
                 products = ps.getProductsByCategory(categoryId);
             }
+        }
+
+        //Lọc bán chạy nhất
+        Map<Integer, Integer> soldMap = ps.getBestSellingProducts();
+        if ("hotest".equals(sort)) {
+            ps.sortProductsByHotest(products, soldMap);
         }
 
         List<Category> categories = cs.getCategoryList();
@@ -52,6 +61,7 @@ public class ProductListController extends HttpServlet {
         // Bạn nên thêm dòng này để JSP biết đang sort theo cái gì mà tô đậm nút
         request.setAttribute("currentSort", sort);
 
+        request.setAttribute("soldMap", soldMap);
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 

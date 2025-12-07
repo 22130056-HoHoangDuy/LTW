@@ -4,6 +4,7 @@ import vn.edu.nlu.fit.be.model.Product;
 import vn.edu.nlu.fit.be.dao.ProductDao;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProductService {
     ProductDao pdao = new ProductDao();
@@ -28,5 +29,11 @@ public class ProductService {
 
     public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
         return pdao.getProductsByCategoryAndSort(categoryId, sort);
+    }
+    public Map<Integer, Integer> getBestSellingProducts() {
+        return pdao.getBestSellingProducts();
+    }
+    public List<Product> sortProductsByHotest(List<Product> products, Map<Integer, Integer> soldMap) {
+        return pdao.sortProductsByHotest(products, soldMap);
     }
 }

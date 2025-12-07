@@ -2,14 +2,13 @@ package vn.edu.nlu.fit.be.dao;
 
 import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
+import vn.edu.nlu.fit.be.model.StockProduct;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class ProductDao {
     List<Product> products = new ArrayList<>();
+    StockProductDao stockProductDao = new StockProductDao();
 
     public List<Product> getListProduct() {
         products.add(new Product(
@@ -133,6 +132,28 @@ public class ProductDao {
         return res;
     }
 
+    public Map<Integer, Integer> getBestSellingProducts() {
+        Map<Integer, Integer> soldMap = new HashMap<>();
+        for (Product product : getListProduct()) {
+            int productId = product.getProductId();
+            int soldQuantity = stockProductDao.getTotalSoldQuantity(productId);
+            soldMap.put(productId, soldQuantity);
+        }
+        return soldMap;
+    }
+
+    public List<Product> sortProductsByHotest(List<Product> products, Map<Integer, Integer> soldMap) {
+
+        Collections.sort(products, (p1, p2) -> {
+            int sold1 = soldMap.getOrDefault(p1.getProductId(), 0);
+            int sold2 = soldMap.getOrDefault(p2.getProductId(), 0);
+            return Integer.compare(sold2, sold1);
+        });
+
+        return products;
+    }
+
+
     public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
         List<Product> res = getProductsByCategory(categoryId);
         switch (sort) {
@@ -154,5 +175,7 @@ public class ProductDao {
         }
         return res;
     }
+
+
 }
 
