@@ -28,8 +28,7 @@
 <jsp:include page="header.jsp"/>
 <!-- Banner chính -->
 <section class="hero">
-        <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="slide">
-
+    <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img">
 </section>
 
 <!-- Danh mục sản phẩm -->

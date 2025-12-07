@@ -21,8 +21,8 @@
                 <span>Hotline: <a href="tel:0964163168" style="font-size: 1rem;">0964 163 168</a></span>
             </div>
             <div class="sh-auth-links">
-                <a href="../html/login.html" target="_top" style="font-size: 1rem;">Đăng nhập</a> /
-                <a href="../html/login.html?form=register"
+                <a href="${pageContext.request.contextPath}/login" target="_top" style="font-size: 1rem;">Đăng nhập</a> /
+                <a href="${pageContext.request.contextPath}/login?form=register"
                    target="_top" style="font-size: 1rem;">Đăng ký</a>
             </div>
         </div>
