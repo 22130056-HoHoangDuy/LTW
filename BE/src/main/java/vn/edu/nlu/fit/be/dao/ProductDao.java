@@ -1,14 +1,12 @@
 package vn.edu.nlu.fit.be.dao;
 
-import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
-import vn.edu.nlu.fit.be.model.StockProduct;
 
 import java.util.*;
 
 public class ProductDao {
     List<Product> products = new ArrayList<>();
-    StockProductDao stockProductDao = new StockProductDao();
+    vn.edu.nlu.fit.be.dao.StockProductDao stockProductDao = new vn.edu.nlu.fit.be.dao.StockProductDao();
 
     public List<Product> getListProduct() {
         products.add(new Product(

@@ -13,6 +13,12 @@ iframe {
 
 /* Header iframe */
 #header-frame {
+    position: sticky;      /* Giữ cố định khi cuộn */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 118px;
+    z-index: 999;
 }
 
 /* Footer iframe */
@@ -26,30 +32,17 @@ body {
 }
 
 /* Banner */
-/* Banner */
-.slider {
+.hero {
     width: 100%;
-    height: 400px;
     overflow: hidden;
-    position: relative;
-    opacity: 0;
-    transition: opacity 0.5s;
 }
 
-/* Khi ảnh load xong thì hiện */
-.slider.loaded {
-    opacity: 1;
-}
-
-/* Mỗi ảnh */
-.slider .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero .banner-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
+    height: 400px;         /* Bạn có thể đổi: 300px / 500px hoặc 50vh */
+    object-fit: cover;     /* Giúp ảnh fill đẹp không méo */
+    display: block;        /* Xóa khoảng trắng dưới ảnh */
+    border-radius: 0;      /* Không bo góc */
 }
 
 /* Danh mục */
@@ -217,8 +210,8 @@ body {
     gap: 5px;
 }
 .filter-btn {
-      flex: 1;
-      padding: 8px 0;
+    flex: 1;
+    padding: 8px 0;
     border-radius: 8px;
     font-size: 14px;
     color: #fff;
@@ -226,7 +219,7 @@ body {
     transition: background 0.3s;
 }
 .cart-btn {
-      background: #28a745;
+    background: #28a745;
 }
 .cart-btn:hover {
     background: #218838;

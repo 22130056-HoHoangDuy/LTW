@@ -3,47 +3,37 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="vi">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8"/>--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>--%>
-<%--    <title>Header - Nội thất trẻ em</title>--%>
-<link
-        rel="stylesheet"
-        href="../fontawesome-free-7.1.0-web/css/all.min.css"
-/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css"/>
-<%--</head>--%>
-<%--<body>--%>
+
+<!-- Font Awesome 7.1.0 -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0l8R1uMb9ll7nMLPZ9a0qU1xXrVbJDPxSx1o6jVx1Q=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+<!-- Footer CSS -->
+<link rel="stylesheet" type="text/css"
+      href="${pageContext.request.contextPath}/css/footer.css"/>
+
 <footer class="shop-footer">
     <div class="container">
         <div class="footer-grid">
-            <!-- CỘT 1: THƯƠNG HIỆU -->
+
+            <!-- CỘT 1 -->
             <div class="footer-brand">
                 <h3 class="brand-name">BabyStore</h3>
-                <p class="brand-desc">
-                    Cung cấp linh kiện, laptop chính hãng với giá tốt nhất.
-                </p>
+                <p class="brand-desc">Cung cấp linh kiện, laptop chính hãng với giá tốt nhất.</p>
+
                 <div class="contact-info">
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i> 123 Đường ABC, TP. Hồ Chí
-                        Minh
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="tel:0123456789">0123 456 789</a>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:laptopzone@gmail.com">babystore@gmail.com</a>
-                    </p>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Đường ABC, TP. Hồ Chí Minh</p>
+                    <p><i class="fa-solid fa-phone"></i> <a href="tel:0123456789">0123 456 789</a></p>
+                    <p><i class="fa-solid fa-envelope"></i> <a href="mailto:babystore@gmail.com">babystore@gmail.com</a></p>
                 </div>
             </div>
 
-            <!-- CỘT 2: LIÊN KẾT -->
+            <!-- CỘT 2 -->
             <div class="footer-links">
-                <h4 style="font-size: 18px;font-weight: 550">Hỗ trợ khách hàng</h4>
+                <h4>Hỗ trợ khách hàng</h4>
                 <ul>
                     <li><a href="#">Chính sách bảo hành</a></li>
                     <li><a href="#">Chính sách đổi trả</a></li>
@@ -52,39 +42,43 @@
                 </ul>
             </div>
 
-            <!-- CỘT 3: MẠNG XÃ HỘI & THANH TOÁN -->
+            <!-- CỘT 3 -->
             <div class="footer-socials">
-                <h4 style="font-size: 18px;font-weight: 550">Kết nối với chúng tôi</h4>
+                <h4>Kết nối với chúng tôi</h4>
+
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook" title="Facebook"
-                    ><i class="fa-brands fa-facebook-f"></i
-                    ></a>
-                    <a href="#" aria-label="Instagram" title="Instagram"
-                    ><i class="fa-brands fa-instagram"></i
-                    ></a>
-                    <a href="#" aria-label="TikTok" title="TikTok"
-                    ><i class="fa-brands fa-tiktok"></i
-                    ></a>
-                    <a href="#" aria-label="YouTube" title="YouTube"
-                    ><i class="fa-brands fa-youtube"></i
-                    ></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
 
-                <h4 style="font-size: 18px;font-weight: 550">Phương thức thanh toán</h4>
-                <div class="payment-icons">
 
+                <h4>Phương thức thanh toán</h4>
+                <div class="payment-icons">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
                     <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="Momo">
                     <img src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png" alt="ZaloPay">
                 </div>
             </div>
-            
+
+            <!-- CỘT 4 -->
+            <div class="footer-newsletter">
+                <h4>Đăng ký nhận tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới nhất.</p>
+
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input type="email" placeholder="Nhập email của bạn" required/>
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
         </div>
 
-        <!-- DÒNG DƯỚI CÙNG -->
+        <!-- DÒNG CUỐI -->
         <div class="footer-bottom">
-            <p>© <span id="year"></span> BabyShop. All rights reserved.</p>
+            <p>© <span id="year"></span> BabyStore. All rights reserved.</p>
+
             <ul class="legal-links">
                 <li><a href="#">Điều khoản sử dụng</a></li>
                 <li><a href="#">Chính sách bảo mật</a></li>
@@ -93,15 +87,6 @@
     </div>
 </footer>
 
-<!-- Font Awesome CDN -->
-<script
-        src="https://kit.fontawesome.com/a2e0e6e6a8.js"
-        crossorigin="anonymous"
-></script>
-
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
 </script>
-<%--</body>--%>
-<%--</html>--%>
