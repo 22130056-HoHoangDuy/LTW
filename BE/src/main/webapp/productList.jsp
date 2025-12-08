@@ -202,7 +202,7 @@
                             Đã bán
                             <span>
                                     ${soldMap[product.productId]}
-                                 </span>
+                            </span>
                         </div>
                     </div>
                 </div>

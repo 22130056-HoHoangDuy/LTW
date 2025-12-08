@@ -174,6 +174,18 @@ public class ProductDao {
         return res;
     }
 
-
+    public List<Product> searchProducts(String keyword) {
+        List<Product> res = new ArrayList<>();
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return res; // Trả về list rỗng nếu không nhập gì
+        }
+        String keyLower = keyword.toLowerCase();
+        for (Product product : getListProduct()) {
+            if (product.getProductName().toLowerCase().contains(keyLower)) {
+                res.add(product);
+            }
+        }
+        return res;
+    }
 }
 

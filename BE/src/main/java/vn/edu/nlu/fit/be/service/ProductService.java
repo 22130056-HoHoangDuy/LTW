@@ -36,4 +36,7 @@ public class ProductService {
     public List<Product> sortProductsByHotest(List<Product> products, Map<Integer, Integer> soldMap) {
         return pdao.sortProductsByHotest(products, soldMap);
     }
+    public List<Product> searchProducts(String keyword) {
+        return  pdao.searchProducts(keyword);
+    }
 }
