@@ -98,12 +98,6 @@ iframe {
     cursor: pointer;
 }
 
-.product-list-page .count {
-    color: #999;
-    font-size: 12px;
-    margin-left: auto;
-}
-
 /* Filter Box  */
 .product-list-page .filter-box {
     background: #fff;
@@ -154,6 +148,11 @@ iframe {
     display: block;
 }
 
+.product-list-page .filter-btn.active {
+    background: #1a73e8;
+    color: #fff;
+}
+
 .product-list-page .filter-btn:hover {
     background: #1a73e8;
     color: #fff;
@@ -199,7 +198,7 @@ iframe {
     font-weight: 550;
 }
 
-.product-list-page .remove-btn  {
+.product-list-page .remove-btn {
     display: inline-block;
     text-decoration: none;
     text-align: center;

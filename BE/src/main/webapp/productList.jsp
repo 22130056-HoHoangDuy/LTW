@@ -74,7 +74,8 @@
         </div>
     </div>
 
-    <div class="filter-box">
+    <c:if test="${empty param.keyword}">
+     <div class="filter-box">
         <div class="filter-demand-group">
             <h4>Chọn theo nhu cầu</h4>
 
@@ -92,7 +93,7 @@
                 </c:forEach>
             </div>
         </div>
-    </div>
+     </div>
 
     <div class="filter-box">
         <h3>Bộ lọc tìm kiếm</h3>
@@ -104,35 +105,40 @@
             <div class="filter-content">
                 <div class="checkbox-list">
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="bobby"> Bobby <span class="count">(15)</span>
+                        <input type="checkbox" value="bobby"> Bobby
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="huggies"> Huggies <span class="count">(12)</span>
+                        <input type="checkbox" value="huggies"> Huggies
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="moony"> Moony <span class="count">(8)</span>
+                        <input type="checkbox" value="moony"> Moony
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="pampers"> Pampers <span class="count">(10)</span>
+                        <input type="checkbox" value="pampers"> Pampers
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="mamamy"> Mamamy <span class="count">(5)</span>
+                        <input type="checkbox" value="mamamy"> Mamamy
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="chicco"> Chicco <span class="count">(3)</span>
+                        <input type="checkbox" value="chicco"> Chicco
                     </label>
                     <label class="custom-checkbox">
-                        <input type="checkbox" value="combi"> Combi <span class="count">(4)</span>
+                        <input type="checkbox" value="combi"> Combi
                     </label>
                 </div>
             </div>
 
         </div>
     </div>
+    </c:if>
+
+
+
     <div class="filter-box">
         <div class="filter-group active">
             <h4>Sắp xếp theo</h4>
             <div class="filter-content">
+                <!--Kiểm tra đường dẫn có phải là trang search hay không-->
                 <c:set var="actionUrl" value="${not empty param.keyword?'/search':'/product-list'}"/>
                 <a href="<c:url value='${actionUrl}'>
                 <c:if test='${not empty param.keyword}'>
@@ -145,39 +151,47 @@
                     Giá tăng dần
                 </a>
 
-                <a href="<c:url value='${actionUrl}'>
-                <c:if test='${not empty param.keyword}'>
-                <c:param name='keyword' value='${param.keyword}'/>
-                </c:if>
-                <c:param name='category_id' value='${currentCategoryId}'/>
-                <c:param name='sort' value='price_desc'/>
-             </c:url>"
+                <a href="
+                <c:url value='${actionUrl}'>
+                 <c:if test='${not empty param.keyword}'>
+                    <c:param name='keyword' value='${param.keyword}'/>
+                 </c:if>
+                  <c:param name='category_id' value='${currentCategoryId}'/>
+                  <c:param name='sort' value='price_desc'/>
+                </c:url>"
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
                     Giá giảm dần
                 </a>
-                <a href="<c:url value='${actionUrl}'>
-                     <c:if test='${not empty param.keyword}'>
+
+                <a href="
+                 <c:url value='${actionUrl}'>
+                    <c:if test='${not empty param.keyword}'>
                      <c:param name='keyword' value='${param.keyword}'/>
-                     </c:if>
+                    </c:if>
                     <c:param name='category_id' value='${currentCategoryId}'/>
                     <c:param name='sort' value='latest'/>
-                </c:url>" class="filter-btn">Mới nhất</a>
+                 </c:url>" class="filter-btn ${currentSort == 'latest' ? 'active' : ''}">Mới nhất
+                </a>
 
-                <a href="<c:url value='${actionUrl}'>
-                     <c:if test='${not empty param.keyword}'>
+                <a href="
+                 <c:url value='${actionUrl}'>
+                    <c:if test='${not empty param.keyword}'>
                      <c:param name='keyword' value='${param.keyword}'/>
-                     </c:if>
+                    </c:if>
                     <c:param name='category_id' value='${currentCategoryId}'/>
                     <c:param name='sort' value='oldest'/>
-                </c:url>" class="filter-btn">Cũ nhất</a>
+                 </c:url>"
+                   class="filter-btn ${currentSort == 'oldest' ? 'active' : ''}">Cũ nhất
+                </a>
 
                 <a href="<c:url value='${actionUrl}'>
-                     <c:if test='${not empty param.keyword}'>
-                     <c:param name='keyword' value='${param.keyword}'/>
-                     </c:if>
-                    <c:param name='category_id' value='${currentCategoryId}'/>
-                    <c:param name='sort' value='hotest'/>
-                </c:url>" class="filter-btn">Bán chạy nhất</a>
+                  <c:if test='${not empty param.keyword}'>
+                    <c:param name='keyword' value='${param.keyword}'/>
+                  </c:if>
+                  <c:param name='category_id' value='${currentCategoryId}'/>
+                  <c:param name='sort' value='hotest'/>
+                </c:url>" class="filter-btn ${currentSort == 'hotest' ? 'active' : ''}">Bán chạy nhất
+                </a>
             </div>
         </div>
 
