@@ -90,7 +90,7 @@ public class ProductDao {
     }
 
     public List<Product> getListProduct() {
-        return products;
+        return new ArrayList<>(products);
     }
 
     public Product getProductById(int id) {

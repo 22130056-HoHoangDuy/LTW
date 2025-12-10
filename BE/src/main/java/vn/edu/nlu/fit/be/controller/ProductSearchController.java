@@ -17,17 +17,20 @@ public class ProductSearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
+        String sort = request.getParameter("sort");
         ProductService productService = new ProductService();
         CategoryService categoryService = new CategoryService();
 
-        List<Category>categories = categoryService.getCategoryList();
-        List<Product> products = productService.searchProducts(keyword);
-        Map<Integer,Integer>soldMap = productService.getBestSellingProducts();
+        List<Category> categories = categoryService.getCategoryList();
+        List<Product> products = productService.searchProducts(keyword, sort);
+        Map<Integer, Integer> soldMap = productService.getBestSellingProducts();
 
-        request.setAttribute("categories",categories);
+        request.setAttribute("categories", categories);
         request.setAttribute("products", products);
-        request.setAttribute("soldMap",soldMap);
+        request.setAttribute("currentSort", sort);
+        request.setAttribute("soldMap", soldMap);
         request.setAttribute("keyword", keyword);
+
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 

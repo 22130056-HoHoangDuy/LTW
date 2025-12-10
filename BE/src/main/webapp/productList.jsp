@@ -133,7 +133,11 @@
         <div class="filter-group active">
             <h4>Sắp xếp theo</h4>
             <div class="filter-content">
-                <a href="<c:url value='/product-list'>
+                <c:set var="actionUrl" value="${not empty param.keyword?'/search':'/product-list'}"/>
+                <a href="<c:url value='${actionUrl}'>
+                <c:if test='${not empty param.keyword}'>
+                <c:param name='keyword' value='${param.keyword}'/>
+                </c:if>
                 <c:param name='category_id' value='${currentCategoryId}'/>
                 <c:param name='sort' value='price_asc'/>
                         </c:url>"
@@ -141,26 +145,38 @@
                     Giá tăng dần
                 </a>
 
-                <a href="<c:url value='/product-list'>
+                <a href="<c:url value='${actionUrl}'>
+                <c:if test='${not empty param.keyword}'>
+                <c:param name='keyword' value='${param.keyword}'/>
+                </c:if>
                 <c:param name='category_id' value='${currentCategoryId}'/>
                 <c:param name='sort' value='price_desc'/>
              </c:url>"
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
                     Giá giảm dần
                 </a>
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='latest'></c:param>
+                <a href="<c:url value='${actionUrl}'>
+                     <c:if test='${not empty param.keyword}'>
+                     <c:param name='keyword' value='${param.keyword}'/>
+                     </c:if>
+                    <c:param name='category_id' value='${currentCategoryId}'/>
+                    <c:param name='sort' value='latest'/>
                 </c:url>" class="filter-btn">Mới nhất</a>
 
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='oldest'></c:param>
+                <a href="<c:url value='${actionUrl}'>
+                     <c:if test='${not empty param.keyword}'>
+                     <c:param name='keyword' value='${param.keyword}'/>
+                     </c:if>
+                    <c:param name='category_id' value='${currentCategoryId}'/>
+                    <c:param name='sort' value='oldest'/>
                 </c:url>" class="filter-btn">Cũ nhất</a>
 
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='hotest'></c:param>
+                <a href="<c:url value='${actionUrl}'>
+                     <c:if test='${not empty param.keyword}'>
+                     <c:param name='keyword' value='${param.keyword}'/>
+                     </c:if>
+                    <c:param name='category_id' value='${currentCategoryId}'/>
+                    <c:param name='sort' value='hotest'/>
                 </c:url>" class="filter-btn">Bán chạy nhất</a>
             </div>
         </div>
@@ -168,7 +184,15 @@
         <a class="filter-btn remove-btn" href="<c:url value='/product-list'/>">Xóa lọc</a>
     </div>
     <div class="product-container">
-        <h1>Danh sách sản phẩm</h1>
+        <!-- Thay đổi tiêu đề trang-->
+        <c:choose>
+            <c:when test="${not empty param.keyword}">
+                <h1>Kết quả tìm kiếm cho: ${param.keyword}</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>Danh sách sản phẩm</h1>
+            </c:otherwise>
+        </c:choose>
         <div class="product-list">
             <!-- Lặp danh sách sản phẩm -->
             <c:forEach var="product" items="${products}">

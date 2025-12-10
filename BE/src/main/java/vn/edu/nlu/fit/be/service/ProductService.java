@@ -87,8 +87,28 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> searchProducts(String keyword) {
-        return pdao.searchProducts(keyword);
+    public List<Product> searchProducts(String keyword, String sortType) {
+        List<Product> products = pdao.searchProducts(keyword);
+        if (sortType == null) return products;
+        else {
+            switch (sortType) {
+                case "price_asc":
+                    products.sort(Comparator.comparingInt(Product::getPrice));
+                    break;
+                case "price_desc":
+                    products.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                    break;
+                case "latest":
+                    products.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+                    break;
+                case "oldest":
+                    products.sort(Comparator.comparing(Product::getProductId));
+                    break;
+                default:
+                    // không sort hoặc sort mặc định
+                    break;
+            }
+            return products;
+        }
     }
-
 }
