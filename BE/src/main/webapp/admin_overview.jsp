@@ -1,16 +1,118 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 20/11/2025
-  Time: 12:38 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<!-- Include header -->
+<%@ include file="/WEB-INF/admin_header.jsp" %>
+
+<main class="main">
+    <h2>Tổng quan</h2>
+
+    <section class="dashboard-cards">
+        <div class="card-large">
+            <div class="card-info">
+                <h4>Doanh thu</h4>
+                <p class="value">42.500.000đ</p>
+                <span class="trend up" style="color:#6eb502;">
+                    <i class="fa-solid fa-arrow-up"></i> +12%
+                </span>
+            </div>
+            <i class="fa-solid fa-coins icon"></i>
+        </div>
+
+        <div class="card-large">
+            <div class="card-info">
+                <h4>Đơn hàng</h4>
+                <p class="value">310</p>
+                <span class="trend up" style="color:#6eb502;">
+                    <i class="fa-solid fa-arrow-up"></i> +18%
+                </span>
+            </div>
+            <i class="fa-solid fa-cart-shopping icon"></i>
+        </div>
+
+        <div class="card-small">
+            <div class="card-info">
+                <h4>Khách hàng</h4>
+                <p class="value">1.280</p>
+            </div>
+            <i class="fa-solid fa-user-group icon"></i>
+        </div>
+
+        <div class="card-small">
+            <div class="card-info">
+                <h4>Sản phẩm</h4>
+                <p class="value">142</p>
+            </div>
+            <i class="fa-solid fa-boxes-stacked icon"></i>
+        </div>
+    </section>
+
+    <section class="charts-upgraded">
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3>Doanh thu theo tháng</h3>
+                <select>
+                    <option>30 ngày</option>
+                    <option>7 ngày</option>
+                    <option>90 ngày</option>
+                </select>
+            </div>
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3>Đơn hàng theo danh mục</h3>
+                <select>
+                    <option>Tháng này</option>
+                    <option>Tuần này</option>
+                </select>
+            </div>
+            <canvas id="categoryChart"></canvas>
+        </div>
+    </section>
+
+    <section class="recent-orders">
+        <h3>Đơn hàng gần nhất</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Khách hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1023</td>
+                    <td>Nguyễn An</td>
+                    <td>1.250.000đ</td>
+                    <td>15/11/2024</td>
+                    <td><span class="status on">Hoàn thành</span></td>
+                </tr>
+                <tr>
+                    <td>#1024</td>
+                    <td>Trần Bình</td>
+                    <td>980.000đ</td>
+                    <td>15/11/2024</td>
+                    <td><span class="status off">Đang xử lý</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<!-- Right panel -->
+<aside class="right-panel">
+    <h3>Công việc hôm nay</h3>
+    <ul class="tasks">
+        <li><div class="task-time">09:00</div><div class="task-info">Xác nhận đơn hàng #1023</div></li>
+        <li><div class="task-time">11:00</div><div class="task-info">Kiểm tra kho Đà Nẵng</div></li>
+        <li><div class="task-time">14:00</div><div class="task-info">Cập nhật sản phẩm mới</div></li>
+    </ul>
+    <button class="add-btn">+</button>
+</aside>
+
+<!-- Include footer -->
+<%@ include file="/WEB-INF/admin_footer.jsp" %>
