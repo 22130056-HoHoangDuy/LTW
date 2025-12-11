@@ -1,26 +1,25 @@
 package vn.edu.nlu.fit.be.model;
 
-import java.io.Serializable;
+public class Category {
 
-public class Category implements Serializable {
     private int categoryId;
     private String categoryName;
     private String categoryImg;
-    private String description;
+    private String categoryDescription;
 
     //Constructor
 
     public Category() {
     }
 
-    public Category(int categoryId, String categoryName, String categoryImg, String description) {
+    public Category(int categoryId, String categoryDescription, String categoryImg, String categoryName) {
         this.categoryId = categoryId;
-        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
         this.categoryImg = categoryImg;
-        this.description = description;
+        this.categoryName = categoryName;
     }
 
-    //Getting and Setting
+    // Getters & Setters
 
     public int getCategoryId() {
         return categoryId;
@@ -30,20 +29,12 @@ public class Category implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 
     public String getCategoryImg() {
@@ -52,5 +43,13 @@ public class Category implements Serializable {
 
     public void setCategoryImg(String categoryImg) {
         this.categoryImg = categoryImg;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
