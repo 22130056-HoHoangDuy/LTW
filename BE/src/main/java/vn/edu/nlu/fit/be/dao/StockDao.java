@@ -1,6 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
 
-import vn.edu.nlu.fit.be.Model.Stock;
+import vn.edu.nlu.fit.be.model.Stock;
 
 import java.util.ArrayList;
 import java.util.List;

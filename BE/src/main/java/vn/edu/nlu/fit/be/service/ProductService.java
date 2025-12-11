@@ -1,6 +1,6 @@
 package vn.edu.nlu.fit.be.service;
 
-import vn.edu.nlu.fit.be.Model.Product;
+import vn.edu.nlu.fit.be.model.Product;
 import vn.edu.nlu.fit.be.dao.ProductDao;
 
 import java.util.List;
