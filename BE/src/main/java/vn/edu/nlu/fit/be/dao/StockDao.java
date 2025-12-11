@@ -9,8 +9,8 @@ public class StockDao {
     public List<Stock> getStocks() {
         List<Stock> stocks = new ArrayList<>();
 
-        Stock stock1 = new Stock(1, "Kho Bình Thạnh", "Kho A", 1);
-        Stock stock2 = new Stock(2, "Kho Quận 7", "Kho B", 2);
+        Stock stock1 = new Stock(1, "Kho Bình Thạnh", "Kho A");
+        Stock stock2 = new Stock(2, "Kho Quận 7", "Kho B");
 
         stocks.add(stock1);
         stocks.add(stock2);

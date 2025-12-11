@@ -5,10 +5,10 @@ import vn.edu.nlu.fit.be.model.Product;
 import java.util.*;
 
 public class ProductDao {
-    public static List<Product> products = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
     vn.edu.nlu.fit.be.dao.StockProductDao stockProductDao = new vn.edu.nlu.fit.be.dao.StockProductDao();
 
-    static {
+    public List<Product> getListProduct() {
         products.add(new Product(
                 1, 1, true, "Gỗ tự nhiên", 0, "Bàn fullsize 1m2",
                 "Mô tả sản phẩm...", "LUXURY TopKids",
@@ -87,10 +87,7 @@ public class ProductDao {
                 "https://topkids.com.vn//img/upload/images/Temp_thumb/600x600/fancy-h120-hong-web_SLh53OuegheTK8kUm1x5vzz3Vd9WxoIYEqtZvZbaqukzOZclNX2511481748035.webp",
                 5310000, "Bàn Thông Minh Chống Gù Chống Cận FANCY H120"
         ));
-    }
-
-    public List<Product> getListProduct() {
-        return new ArrayList<>(products);
+        return products;
     }
 
     public Product getProductById(int id) {
@@ -98,20 +95,6 @@ public class ProductDao {
         for (Product product : getListProduct()) {
             if (product.getProductId() == id)
                 res = product;
-        }
-        return res;
-    }
-
-    public List<Product> searchProducts(String keyword) {
-        List<Product> res = new ArrayList<>();
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return res; // Trả về list rỗng nếu không nhập gì
-        }
-        String keyLower = keyword.toLowerCase();
-        for (Product product : getListProduct()) {
-            if (product.getProductName().toLowerCase().contains(keyLower)) {
-                res.add(product);
-            }
         }
         return res;
     }
@@ -126,14 +109,71 @@ public class ProductDao {
         return result;
     }
 
-    public Set<String> getBrands() {
-        Set<String> res = new HashSet<>();
-        for (Product product : getListProduct()) {
-            String brandName = product.getBrandName();
-            if (brandName != null)
-                res.add(product.getBrandName());
+    public List<Product> getProductBySort(String sort) {
+        List<Product> res = getListProduct();
+        switch (sort) {
+            case "price_asc":
+                res.sort(Comparator.comparingInt(Product::getPrice));
+                break;
+            case "price_desc":
+                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                break;
+            case "latest":
+                res.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+                break;
+            case "oldest":
+                res.sort(Comparator.comparingInt(Product::getProductId));
+                break;
+            default:
+                break;
         }
         return res;
     }
+
+    public Map<Integer, Integer> getBestSellingProducts() {
+        Map<Integer, Integer> soldMap = new HashMap<>();
+        for (Product product : getListProduct()) {
+            int productId = product.getProductId();
+            int soldQuantity = stockProductDao.getTotalSoldQuantity(productId);
+            soldMap.put(productId, soldQuantity);
+        }
+        return soldMap;
+    }
+
+    public List<Product> sortProductsByHotest(List<Product> products, Map<Integer, Integer> soldMap) {
+
+        Collections.sort(products, (p1, p2) -> {
+            int sold1 = soldMap.getOrDefault(p1.getProductId(), 0);
+            int sold2 = soldMap.getOrDefault(p2.getProductId(), 0);
+            return Integer.compare(sold2, sold1);
+        });
+
+        return products;
+    }
+
+
+    public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
+        List<Product> res = getProductsByCategory(categoryId);
+        switch (sort) {
+            case "price_asc":
+                res.sort(Comparator.comparingInt(Product::getPrice));
+                break;
+            case "price_desc":
+                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                break;
+            case "oldest":
+                res.sort(Comparator.comparing(Product::getProductId));
+                break;
+            case "latest":
+                res.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+                break;
+            default:
+                // không sort hoặc sort mặc định
+                break;
+        }
+        return res;
+    }
+
+
 }
 
