@@ -1,30 +1,26 @@
 package vn.edu.nlu.fit.be.model;
 
 public class OrderDetail {
-    private int orderDetailId;
-    private int quantity;
-    private int unitPrice;
-    private int productId;
-    private int orderId;
 
-    private Product product;
-    private Orders order;
+    private int orderDetailId;
+    private int orderId;
+    private int productId;
+    private int unitPrice;
+    private int quantity;
 
     //Constructor
 
     public OrderDetail() {}
 
-    public OrderDetail(int orderDetailId, Orders order, Product product, int orderId, int productId, int unitPrice, int quantity) {
+    public OrderDetail(int orderDetailId, int quantity, int unitPrice, int productId, int orderId) {
         this.orderDetailId = orderDetailId;
-        this.order = order;
-        this.product = product;
-        this.orderId = orderId;
-        this.productId = productId;
-        this.unitPrice = unitPrice;
         this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.productId = productId;
+        this.orderId = orderId;
     }
 
-    //Getting and Setting
+    //Getters and Setters
 
     public int getOrderDetailId() {
         return orderDetailId;
@@ -34,36 +30,12 @@ public class OrderDetail {
         this.orderDetailId = orderDetailId;
     }
 
-    public Orders getOrder() {
-        return order;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getUnitPrice() {
@@ -74,11 +46,19 @@ public class OrderDetail {
         this.unitPrice = unitPrice;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }
