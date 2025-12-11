@@ -12,7 +12,7 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(String stockAddress, String stockName, int stockId) {
+    public Stock(int stockId,  String stockName, String stockAddress) {
         this.stockAddress = stockAddress;
         this.stockName = stockName;
         this.stockId = stockId;

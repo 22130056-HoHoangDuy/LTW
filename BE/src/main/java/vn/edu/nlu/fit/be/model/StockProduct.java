@@ -14,7 +14,7 @@ public class StockProduct {
 
     public StockProduct() {}
 
-    public StockProduct(int stockProductId, Timestamp totalUpdated, int soldQuantity, int totalQuantity, int productId, int stockId) {
+    public StockProduct(int stockProductId, int productId, int stockId, Timestamp totalUpdated, int soldQuantity, int totalQuantity) {
         this.stockProductId = stockProductId;
         this.totalUpdated = totalUpdated;
         this.soldQuantity = soldQuantity;
