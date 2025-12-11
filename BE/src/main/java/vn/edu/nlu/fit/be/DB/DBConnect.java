@@ -1,52 +1,45 @@
 package vn.edu.nlu.fit.be.DB;
 
+import org.jdbi.v3.core.Jdbi;
+
 import java.sql.*;
 
 public class DBConnect {
-    static String url = "jdbc:mysql://localhost:3306/db_babyshop";
-    static Connection conn = null;
+    private static Jdbi jdbi;
 
-    public Connection getConnection() {
-        try{
-            if(conn == null || conn.isClosed()){
-                makeConnect();
-            }
-            return conn;
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    private static void makeConnect() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection(url, DBProperties.username(), DBProperties.password());
-
-    }
-
-    public static Statement get() {
+    static {
         try {
-            if (conn == null || conn.isClosed()) {
-                makeConnect(); // Tạo kết nối nếu chưa có hoặc kết nối đã đóng
-            }
-            return conn.createStatement(); // Trả về Connection hợp lệ
-        } catch (SQLException | ClassNotFoundException e) {
+            // Tạo URL MySQL
+            String url = "jdbc:mysql://" +
+                    DBProperties.host + ":" +
+                    DBProperties.port + "/" +
+                    DBProperties.dbname + "?" +
+                    DBProperties.option;
+
+            System.out.println("🔌 MySQL URL: " + url);
+
+            jdbi = Jdbi.create(url, DBProperties.user, DBProperties.password);
+
+        } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("❌ Không thể kết nối JDBI: " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) throws SQLException {
-        Statement s = DBConnect.get();
-        if (s == null) return ;
-        ResultSet rs = s.executeQuery("select * from products");
-        while (rs.next()) {
-            System.out.println(rs.getInt(1)+";"+rs.getString(2)+";"+rs.getInt(3)+";"+rs.getInt(4)+";"+
-                    rs.getString(5)+";"+rs.getString(6)+";"+rs.getString(7)+";"+rs.getInt(8)+";"+
-                    rs.getString(9)+";"+rs.getTimestamp(10)+";"+rs.getInt(11));
+    // Trả về 1 instance duy nhất dùng cho toàn project
+    public static Jdbi get() {
+        return jdbi;
+    }
 
+    // Test nhanh
+    public static void main(String[] args) {
+        try {
+            String now = DBConnect.get().withHandle(handle ->
+                    handle.createQuery("SELECT NOW()").mapTo(String.class).one()
+            );
+            System.out.println("⏳ DB Time = " + now);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

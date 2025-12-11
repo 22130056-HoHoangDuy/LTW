@@ -1,51 +1,45 @@
 package vn.edu.nlu.fit.be.DB;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class DBProperties {
-    private static Properties prod = new Properties();
+    private static Properties prop = new Properties();
 
     static {
         try {
-            prod.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
+            File f = new File("/db.properties");
+            if (f.exists()) {
+                prop.load(new FileInputStream(f));
+            } else {
+                prop.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static String host() {
-        return prod.get("db.host").toString();
-    }
+    public static String host = prop.getProperty("db.host");
 
-    public static int port() {
-        try {
-            return Integer.parseInt(prod.get("db.port").toString());
-        } catch (NumberFormatException e) {
-            return 3306;
-        }
+    public static String port = prop.getProperty("db.port");
 
-    }
+    public static String user = prop.getProperty("db.user");
 
-    public static String username() {
-        return prod.get("db.user").toString();
-    }
+    public static String password = prop.getProperty("db.password");
 
-    public static String password() {
-        return prod.get("db.password").toString();
-    }
+    public static String dbname = prop.getProperty("db.dbname");
 
-    public static String dbname() {
-        return prod.get("db.dbname").toString();
-    }
-
-    public static String option() {
-        return prod.get("db.option").toString();
-    }
+    public static String option = prop.getProperty("db.option");
 
     public static void main(String[] args) {
-        System.out.println(DBProperties.dbname());
+        System.out.println(host);
+        System.out.println(port);
+        System.out.println(user);
+        System.out.println(password);
+        System.out.println(dbname);
+        System.out.println(option);
+
     }
-
-
 }
