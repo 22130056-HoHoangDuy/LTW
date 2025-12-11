@@ -4,7 +4,6 @@ public class Stock {
     private int stockId;
     private String stockName;
     private String stockAddress;
-    private int productId;
 
     private Product product;
 
@@ -13,30 +12,13 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(int productId, String stockAddress, String stockName, int stockId) {
-        this.productId = productId;
+    public Stock(String stockAddress, String stockName, int stockId) {
         this.stockAddress = stockAddress;
         this.stockName = stockName;
         this.stockId = stockId;
     }
 
-    //Getting and Setting
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+    //Getters and Setters
 
     public String getStockAddress() {
         return stockAddress;

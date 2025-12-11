@@ -4,45 +4,38 @@ import java.sql.Date;
 
 public class Voucher {
 
+    private int voucherId;
     private String voucherCode;
-    private String imgVoucher;
-    private String description;
+    private String voucherName;
+    private String voucherImg;
+    private String voucherDescription;
     private int discountAmount;
-    private Date createdVoucher;
+    private Date startVoucher;
     private Date endVoucher;
-    private VoucherStatus status;
 
     //Constructor
 
     public Voucher() {}
 
-    public Voucher(String voucherCode, VoucherStatus status, Date endVoucher, Date createdVoucher, int discountAmount, String description, String imgVoucher) {
-        this.voucherCode = voucherCode;
-        this.status = status;
+    public Voucher(int voucherId, Date endVoucher, Date startVoucher, int discountAmount, String voucherDescription, String voucherImg, String voucherName, String voucherCode) {
+        this.voucherId = voucherId;
         this.endVoucher = endVoucher;
-        this.createdVoucher = createdVoucher;
+        this.startVoucher = startVoucher;
         this.discountAmount = discountAmount;
-        this.description = description;
-        this.imgVoucher = imgVoucher;
-    }
-
-    //Getting and Setting
-
-
-    public String getVoucherCode() {
-        return voucherCode;
-    }
-
-    public void setVoucherCode(String voucherCode) {
+        this.voucherDescription = voucherDescription;
+        this.voucherImg = voucherImg;
+        this.voucherName = voucherName;
         this.voucherCode = voucherCode;
     }
 
-    public VoucherStatus getStatus() {
-        return status;
+    // Getters & Setters
+
+    public int getVoucherId() {
+        return voucherId;
     }
 
-    public void setStatus(VoucherStatus status) {
-        this.status = status;
+    public void setVoucherId(int voucherId) {
+        this.voucherId = voucherId;
     }
 
     public Date getEndVoucher() {
@@ -53,12 +46,12 @@ public class Voucher {
         this.endVoucher = endVoucher;
     }
 
-    public Date getCreatedVoucher() {
-        return createdVoucher;
+    public Date getStartVoucher() {
+        return startVoucher;
     }
 
-    public void setCreatedVoucher(Date createdVoucher) {
-        this.createdVoucher = createdVoucher;
+    public void setStartVoucher(Date startVoucher) {
+        this.startVoucher = startVoucher;
     }
 
     public int getDiscountAmount() {
@@ -69,29 +62,35 @@ public class Voucher {
         this.discountAmount = discountAmount;
     }
 
-    public String getDescription() {
-        return description;
+    public String getVoucherDescription() {
+        return voucherDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVoucherDescription(String voucherDescription) {
+        this.voucherDescription = voucherDescription;
     }
 
-    public String getImgVoucher() {
-        return imgVoucher;
+    public String getVoucherImg() {
+        return voucherImg;
     }
 
-    public void setImgVoucher(String imgVoucher) {
-        this.imgVoucher = imgVoucher;
+    public void setVoucherImg(String voucherImg) {
+        this.voucherImg = voucherImg;
     }
 
-    /*
-     * status ENUM('Available', 'Expired')
-     * - Available: voucher đang có thể sử dụng
-     * - Expired: voucher đã hết hạn, không thể dùng
-     */
+    public String getVoucherName() {
+        return voucherName;
+    }
 
-    public enum VoucherStatus {
-        Available,Expired;
+    public void setVoucherName(String voucherName) {
+        this.voucherName = voucherName;
+    }
+
+    public String getVoucherCode() {
+        return voucherCode;
+    }
+
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
     }
 }

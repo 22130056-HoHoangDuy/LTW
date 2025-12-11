@@ -1,43 +1,36 @@
 package vn.edu.nlu.fit.be.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Orders {
 
     private int orderId;
-    private OrderStatus orderStatus;
+    private int userId;
+    private int voucherId;
+
+    private OrderStatus statusOrder;
     private int totalAmount;
     private String deliveryAddress;
-    private String phone;
     private PaymentMethod paymentMethod;
-    private Date paymentDate;
-    private Date createdAt;
-    private int userId;
-    private String voucherCode;
-
-    private Account user;
-    private Voucher voucher;
+    private Timestamp orderDate;
 
     //Constructor
 
     public Orders() {}
 
-    public Orders(Voucher voucher, Account user, String voucherCode, int userId, Date createdAt, Date paymentDate, PaymentMethod paymentMethod, String phone, String deliveryAddress, int totalAmount, OrderStatus orderStatus, int orderId) {
-        this.voucher = voucher;
-        this.user = user;
-        this.voucherCode = voucherCode;
-        this.userId = userId;
-        this.createdAt = createdAt;
-        this.paymentDate = paymentDate;
+    public Orders(int orderId, Timestamp orderDate, PaymentMethod paymentMethod, String deliveryAddress, int totalAmount, OrderStatus statusOrder, int voucherId, int userId) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;
-        this.phone = phone;
         this.deliveryAddress = deliveryAddress;
         this.totalAmount = totalAmount;
-        this.orderStatus = orderStatus;
-        this.orderId = orderId;
+        this.statusOrder = statusOrder;
+        this.voucherId = voucherId;
+        this.userId = userId;
     }
 
-    //Getting and Setting
+    // Getters & Setters
 
     public int getOrderId() {
         return orderId;
@@ -45,30 +38,6 @@ public class Orders {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
-    }
-
-    public Voucher getVoucher() {
-        return voucher;
-    }
-
-    public void setVoucher(Voucher voucher) {
-        this.voucher = voucher;
-    }
-
-    public Account getUser() {
-        return user;
-    }
-
-    public void setUser(Account user) {
-        this.user = user;
-    }
-
-    public String getVoucherCode() {
-        return voucherCode;
-    }
-
-    public void setVoucherCode(String voucherCode) {
-        this.voucherCode = voucherCode;
     }
 
     public int getUserId() {
@@ -79,44 +48,20 @@ public class Orders {
         this.userId = userId;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public int getVoucherId() {
+        return voucherId;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setVoucherId(int voucherId) {
+        this.voucherId = voucherId;
     }
 
-    public Date getPaymentDate() {
-        return paymentDate;
+    public OrderStatus getStatusOrder() {
+        return statusOrder;
     }
 
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setStatusOrder(OrderStatus statusOrder) {
+        this.statusOrder = statusOrder;
     }
 
     public int getTotalAmount() {
@@ -127,33 +72,27 @@ public class Orders {
         this.totalAmount = totalAmount;
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
-    /*
-     * payment_method ENUM('COD', 'Card')
-     * - COD: thanh toán khi nhận hàng
-     * - Card: thanh toán bằng thẻ (credit/debit)
-     */
-
-    public enum PaymentMethod {
-        COD, Card;
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
-    /*
-     * order_status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled')
-     * - Pending: đơn hàng mới tạo, chưa xử lý
-     * - Processing: đang được chuẩn bị
-     * - Shipped: đã giao cho đơn vị vận chuyển
-     * - Delivered: đã giao tới khách hàng
-     * - Cancelled: đã bị hủy
-     */
-    public enum OrderStatus {
-        Pending, Processing, Shipped, Delivered, Cancelled;
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Timestamp getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
     }
 }

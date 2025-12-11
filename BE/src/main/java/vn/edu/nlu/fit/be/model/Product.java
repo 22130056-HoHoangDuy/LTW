@@ -1,43 +1,37 @@
 package vn.edu.nlu.fit.be.model;
 
-import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class Product implements Serializable {
+public class Product {
+
     private int productId;
-    private String productName;
-    private int price;
-    private String imgUrl;
-    private String brandName;
-    private String description;
-    private String size;
-    private int weight;
-    private String material;
-    private boolean isAvailable;
     private int categoryId;
-
-    private Category category;
-
+    private int brandId;
+    private String productImg;
+    private String productName;
+    private int productPrice;
+    private String productSize;
+    private String productMaterial;
+    private Timestamp createdProduct;
 
     //Constructor
+
     public Product() {
     }
 
-    public Product(int productId, int categoryId, boolean isAvailable, String material, int weight, String size, String description, String brandName, String imgUrl, int price, String productName) {
+    public Product(int productId, Timestamp createdProduct, String productMaterial, String productSize, int productPrice, String productName, String productImg, int brandId, int categoryId) {
         this.productId = productId;
-//        this.category = category;
-        this.categoryId = categoryId;
-        this.isAvailable = isAvailable;
-        this.material = material;
-        this.weight = weight;
-        this.size = size;
-        this.description = description;
-        this.brandName = brandName;
-        this.imgUrl = imgUrl;
-        this.price = price;
+        this.createdProduct = createdProduct;
+        this.productMaterial = productMaterial;
+        this.productSize = productSize;
+        this.productPrice = productPrice;
         this.productName = productName;
+        this.productImg = productImg;
+        this.brandId = brandId;
+        this.categoryId = categoryId;
     }
 
-    //Getting and Setting
+    //Getters and Setters
 
     public int getProductId() {
         return productId;
@@ -45,6 +39,38 @@ public class Product implements Serializable {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public Timestamp getCreatedProduct() {
+        return createdProduct;
+    }
+
+    public void setCreatedProduct(Timestamp createdProduct) {
+        this.createdProduct = createdProduct;
+    }
+
+    public String getProductMaterial() {
+        return productMaterial;
+    }
+
+    public void setProductMaterial(String productMaterial) {
+        this.productMaterial = productMaterial;
+    }
+
+    public String getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getProductName() {
@@ -55,68 +81,20 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public int getPrice() {
-        return price;
+    public String getProductImg() {
+        return productImg;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
     public int getCategoryId() {
@@ -125,13 +103,5 @@ public class Product implements Serializable {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public vn.edu.nlu.fit.be.model.Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(vn.edu.nlu.fit.be.model.Category category) {
-        this.category = category;
     }
 }
