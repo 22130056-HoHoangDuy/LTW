@@ -111,4 +111,7 @@ public class ProductService {
             return products;
         }
     }
+    public Set<String> getBrands() {
+        return pdao.getBrands();
+    }
 }

@@ -104,27 +104,11 @@
             </div>
             <div class="filter-content">
                 <div class="checkbox-list">
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="bobby"> Bobby
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="huggies"> Huggies
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="moony"> Moony
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="pampers"> Pampers
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="mamamy"> Mamamy
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="chicco"> Chicco
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="combi"> Combi
-                    </label>
+                    <c:forEach var="brand" items="${brands}">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" value="bobby"> ${brand}
+                        </label>
+                    </c:forEach>
                 </div>
             </div>
 
@@ -141,10 +125,14 @@
                 <!--Kiểm tra đường dẫn có phải là trang search hay không-->
                 <c:set var="actionUrl" value="${not empty param.keyword?'/search':'/product-list'}"/>
                 <a href="<c:url value='${actionUrl}'>
-                <c:if test='${not empty param.keyword}'>
-                <c:param name='keyword' value='${param.keyword}'/>
-                </c:if>
-                <c:param name='category_id' value='${currentCategoryId}'/>
+                 <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                 <c:param name='sort' value='price_asc'/>
                         </c:url>"
                    class="filter-btn ${currentSort == 'price_asc' ? 'active' : ''}">
@@ -153,10 +141,14 @@
 
                 <a href="
                 <c:url value='${actionUrl}'>
-                 <c:if test='${not empty param.keyword}'>
-                    <c:param name='keyword' value='${param.keyword}'/>
-                 </c:if>
-                  <c:param name='category_id' value='${currentCategoryId}'/>
+                  <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                   <c:param name='sort' value='price_desc'/>
                 </c:url>"
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
@@ -165,30 +157,42 @@
 
                 <a href="
                  <c:url value='${actionUrl}'>
-                    <c:if test='${not empty param.keyword}'>
-                     <c:param name='keyword' value='${param.keyword}'/>
-                    </c:if>
-                    <c:param name='category_id' value='${currentCategoryId}'/>
+                    <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                     <c:param name='sort' value='latest'/>
                  </c:url>" class="filter-btn ${currentSort == 'latest' ? 'active' : ''}">Mới nhất
                 </a>
 
                 <a href="
                  <c:url value='${actionUrl}'>
-                    <c:if test='${not empty param.keyword}'>
-                     <c:param name='keyword' value='${param.keyword}'/>
-                    </c:if>
-                    <c:param name='category_id' value='${currentCategoryId}'/>
+                     <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                     <c:param name='sort' value='oldest'/>
                  </c:url>"
                    class="filter-btn ${currentSort == 'oldest' ? 'active' : ''}">Cũ nhất
                 </a>
 
                 <a href="<c:url value='${actionUrl}'>
-                  <c:if test='${not empty param.keyword}'>
-                    <c:param name='keyword' value='${param.keyword}'/>
-                  </c:if>
-                  <c:param name='category_id' value='${currentCategoryId}'/>
+                  <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                   <c:param name='sort' value='hotest'/>
                 </c:url>" class="filter-btn ${currentSort == 'hotest' ? 'active' : ''}">Bán chạy nhất
                 </a>

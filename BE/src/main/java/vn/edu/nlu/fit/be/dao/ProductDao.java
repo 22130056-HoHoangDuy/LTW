@@ -126,5 +126,14 @@ public class ProductDao {
         return result;
     }
 
+    public Set<String> getBrands() {
+        Set<String> res = new HashSet<>();
+        for (Product product : getListProduct()) {
+            String brandName = product.getBrandName();
+            if (brandName != null)
+                res.add(product.getBrandName());
+        }
+        return res;
+    }
 }
 
