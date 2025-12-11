@@ -4,30 +4,26 @@ import java.sql.Timestamp;
 
 public class StockProduct {
     private int stockProductId;
-    private int totalQuantity;
-    private int soldQuantity;
-    private Timestamp totalUpdatedDate;
     private int stockId;
     private int productId;
-
-    private Stock stock;
-    private Product product;
+    private int totalQuantity;
+    private int soldQuantity;
+    private Timestamp totalUpdated;
 
     //Constructor
 
-    public StockProduct() {
-    }
+    public StockProduct() {}
 
-    public StockProduct(int stockProductId, int productId, int stockId, Timestamp totalUpdatedDate, int soldQuantity, int totalQuantity) {
+    public StockProduct(int stockProductId, Timestamp totalUpdated, int soldQuantity, int totalQuantity, int productId, int stockId) {
         this.stockProductId = stockProductId;
-        this.productId = productId;
-        this.stockId = stockId;
-        this.totalUpdatedDate = totalUpdatedDate;
+        this.totalUpdated = totalUpdated;
         this.soldQuantity = soldQuantity;
         this.totalQuantity = totalQuantity;
+        this.productId = productId;
+        this.stockId = stockId;
     }
 
-    //Getting and Setting
+    //Getters and Setters
 
     public int getStockProductId() {
         return stockProductId;
@@ -37,44 +33,12 @@ public class StockProduct {
         this.stockProductId = stockProductId;
     }
 
-    public Product getProduct() {
-        return product;
+    public Timestamp getTotalUpdated() {
+        return totalUpdated;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getStockId() {
-        return stockId;
-    }
-
-    public void setStockId(int stockId) {
-        this.stockId = stockId;
-    }
-
-    public Timestamp getTotalUpdatedDate() {
-        return totalUpdatedDate;
-    }
-
-    public void setTotalUpdatedDate(Timestamp totalUpdatedDate) {
-        this.totalUpdatedDate = totalUpdatedDate;
+    public void setTotalUpdated(Timestamp totalUpdated) {
+        this.totalUpdated = totalUpdated;
     }
 
     public int getSoldQuantity() {
@@ -91,5 +55,21 @@ public class StockProduct {
 
     public void setTotalQuantity(int totalQuantity) {
         this.totalQuantity = totalQuantity;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(int stockId) {
+        this.stockId = stockId;
     }
 }

@@ -3,32 +3,25 @@ package vn.edu.nlu.fit.be.model;
 import java.sql.Timestamp;
 
 public class Reviews {
+
     private int reviewId;
-    private int rate;
-    private String comment;
-    private Timestamp createAtTimestamp;
     private int userId;
     private int productId;
-
-    private Account user;
-    private Product product;
+    private String commentProduct;
+    private Timestamp commentCreated;
 
     //Constructor
-
     public Reviews() {}
 
-    public Reviews(int reviewId, Product product, Account user, int productId, int userId, Timestamp createAtTimestamp, String comment, int rate) {
+    public Reviews(int reviewId, Timestamp commentCreated, String commentProduct, int productId, int userId) {
         this.reviewId = reviewId;
-        this.product = product;
-        this.user = user;
+        this.commentCreated = commentCreated;
+        this.commentProduct = commentProduct;
         this.productId = productId;
         this.userId = userId;
-        this.createAtTimestamp = createAtTimestamp;
-        this.comment = comment;
-        this.rate = rate;
     }
 
-    //Getting and Setting
+    //Getters & Setters
 
     public int getReviewId() {
         return reviewId;
@@ -38,20 +31,20 @@ public class Reviews {
         this.reviewId = reviewId;
     }
 
-    public Product getProduct() {
-        return product;
+    public Timestamp getCommentCreated() {
+        return commentCreated;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCommentCreated(Timestamp commentCreated) {
+        this.commentCreated = commentCreated;
     }
 
-    public Account getUser() {
-        return user;
+    public String getCommentProduct() {
+        return commentProduct;
     }
 
-    public void setUser(Account user) {
-        this.user = user;
+    public void setCommentProduct(String commentProduct) {
+        this.commentProduct = commentProduct;
     }
 
     public int getProductId() {
@@ -68,29 +61,5 @@ public class Reviews {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public Timestamp getCreateAtTimestamp() {
-        return createAtTimestamp;
-    }
-
-    public void setCreateAtTimestamp(Timestamp createAtTimestamp) {
-        this.createAtTimestamp = createAtTimestamp;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
     }
 }

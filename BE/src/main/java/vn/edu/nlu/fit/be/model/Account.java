@@ -5,48 +5,45 @@ import java.sql.Timestamp;
 public class Account {
 
     private int userId;
+    private int profileId;
+    private String userEmail;
     private String userName;
     private String password;
-    private String email;
-    private Timestamp createdAt;
-    private AccountStatus status; //accountStatus
+    private AccountStatus status; // Active / UnActive
     private int role;
-    private int profileId;
-
-    private Profile profile;
+    private Timestamp createdAt;
 
     //Constructor
 
     public Account() {}
 
-    public Account(Profile profile, int profileId, int role, AccountStatus status, Timestamp createdAt, String email, String password, String userName, int userId) {
-        this.profile = profile;
+    public Account(int userId, int profileId, String userEmail, String userName, Timestamp createdAt, int role, AccountStatus status, String password) {
+        this.userId = userId;
         this.profileId = profileId;
+        this.userEmail = userEmail;
+        this.userName = userName;
+        this.createdAt = createdAt;
         this.role = role;
         this.status = status;
-        this.createdAt = createdAt;
-        this.email = email;
         this.password = password;
-        this.userName = userName;
+    }
+
+    // Getters & Setters
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    //Getting and Setting
-
-    public Profile getProfile() {
-        return profile;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public int getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(int profileId) {
-        this.profileId = profileId;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getRole() {
@@ -65,22 +62,6 @@ public class Account {
         this.status = status;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -97,21 +78,19 @@ public class Account {
         this.userName = userName;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    /*
-     * status ENUM('Active', 'Inactive')
-     * - Active: tài khoản đang hoạt động
-     * - Inactive: tài khoản bị khóa hoặc chưa kích hoạt
-     */
+    public int getProfileId() {
+        return profileId;
+    }
 
-    public enum AccountStatus {
-        ACTIVE, INACTIVE;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
     }
 }

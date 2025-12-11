@@ -4,11 +4,13 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Profile {
+
     private int profileId;
     private String fullName;
+    private String email;
     private String phone;
     private String address;
-    private String gender;
+    private Gender gender;
     private String avatarUrl;
     private Date birthDate;
     private Timestamp updatedAt;
@@ -17,7 +19,7 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(int profileId, Timestamp updatedAt, Date birthDate, String avatarUrl, String gender, String address, String phone, String fullName) {
+    public Profile(int profileId, Timestamp updatedAt, Date birthDate, String avatarUrl, Gender gender, String address, String phone, String email, String fullName) {
         this.profileId = profileId;
         this.updatedAt = updatedAt;
         this.birthDate = birthDate;
@@ -25,10 +27,11 @@ public class Profile {
         this.gender = gender;
         this.address = address;
         this.phone = phone;
+        this.email = email;
         this.fullName = fullName;
     }
 
-    //Getting and Setting
+    // Getters & Setters
 
     public int getProfileId() {
         return profileId;
@@ -62,11 +65,11 @@ public class Profile {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -84,6 +87,14 @@ public class Profile {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFullName() {
