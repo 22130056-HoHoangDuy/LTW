@@ -18,10 +18,10 @@ public class ProductService {
         List<Product> res = getListProduct();
         switch (sort) {
             case "price_asc":
-                res.sort(Comparator.comparingInt(Product::getPrice));
+                res.sort(Comparator.comparingInt(Product::getProductPrice));
                 break;
             case "price_desc":
-                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                res.sort((p1, p2) -> Integer.compare(p2.getProductPrice(), p1.getProductPrice()));
                 break;
             case "latest":
                 res.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
@@ -49,10 +49,10 @@ public class ProductService {
         List<Product> res = getProductsByCategory(categoryId);
         switch (sort) {
             case "price_asc":
-                res.sort(Comparator.comparingInt(Product::getPrice));
+                res.sort(Comparator.comparingInt(Product::getProductPrice));
                 break;
             case "price_desc":
-                res.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
+                res.sort((p1, p2) -> Integer.compare(p2.getProductPrice(), p1.getProductPrice()));
                 break;
             case "oldest":
                 res.sort(Comparator.comparing(Product::getProductId));
@@ -87,31 +87,31 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> searchProducts(String keyword, String sortType) {
-        List<Product> products = pdao.searchProducts(keyword);
-        if (sortType == null) return products;
-        else {
-            switch (sortType) {
-                case "price_asc":
-                    products.sort(Comparator.comparingInt(Product::getPrice));
-                    break;
-                case "price_desc":
-                    products.sort((p1, p2) -> Integer.compare(p2.getPrice(), p1.getPrice()));
-                    break;
-                case "latest":
-                    products.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
-                    break;
-                case "oldest":
-                    products.sort(Comparator.comparing(Product::getProductId));
-                    break;
-                default:
-                    // không sort hoặc sort mặc định
-                    break;
-            }
-            return products;
-        }
-    }
-    public Set<String> getBrands() {
-        return pdao.getBrands();
-    }
+//    public List<Product> searchProducts(String keyword, String sortType) {
+//        List<Product> products = pdao.searchProducts(keyword);
+//        if (sortType == null) return products;
+//        else {
+//            switch (sortType) {
+//                case "price_asc":
+//                    products.sort(Comparator.comparingInt(Product::getProductPrice));
+//                    break;
+//                case "price_desc":
+//                    products.sort((p1, p2) -> Integer.compare(p2.getProductPrice(), p1.getProductPrice()));
+//                    break;
+//                case "latest":
+//                    products.sort((p1, p2) -> Integer.compare(p2.getProductId(), p1.getProductId()));
+//                    break;
+//                case "oldest":
+//                    products.sort(Comparator.comparing(Product::getProductId));
+//                    break;
+//                default:
+//                    // không sort hoặc sort mặc định
+//                    break;
+//            }
+//            return products;
+//        }
+//    }
+//    public Set<String> getBrands() {
+//        return pdao.getBrands();
+//    }
 }

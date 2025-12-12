@@ -52,11 +52,11 @@ public class ProductListController extends HttpServlet {
         }
 
         List<Category> categories = cs.getCategoryList();
-        Set<String> brands = ps.getBrands();
+//        Set<String> brands = ps.getBrands();
         // Save into request
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
-        request.setAttribute("brands", brands);
+//        request.setAttribute("brands", brands);
         request.setAttribute("currentCategoryId", categoryIdToStr);
         // Bạn nên thêm dòng này để JSP biết đang sort theo cái gì mà tô đậm nút
         request.setAttribute("currentSort", sort);
