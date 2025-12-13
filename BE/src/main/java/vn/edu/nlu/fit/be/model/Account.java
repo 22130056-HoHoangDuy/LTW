@@ -70,19 +70,19 @@ public class Account {
         this.password = password;
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public void setUsername(String userName) {
         this.userName = userName;
     }
 
-    public String getUserEmail() {
+    public String getEmail() {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
+    public void setEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 

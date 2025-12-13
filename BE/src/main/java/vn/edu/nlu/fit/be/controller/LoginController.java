@@ -3,18 +3,42 @@ package vn.edu.nlu.fit.be.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.nlu.fit.be.model.Account;
+import vn.edu.nlu.fit.be.service.AccountService;
 
 import java.io.IOException;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
+
+    private final AccountService service = new AccountService();
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
+        String key = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        Account acc = service.login(key, password);
+
+        if (acc == null) {
+            req.setAttribute("error",
+                    "Sai tài khoản, mật khẩu hoặc tài khoản bị khoá!");
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            return;
+        }
+
+        HttpSession session = req.getSession(true);
+        session.setAttribute("USER", acc);
+        session.setMaxInactiveInterval(30 * 60); // 30 phút
+
+        resp.sendRedirect(req.getContextPath() + "/home");
     }
 }
