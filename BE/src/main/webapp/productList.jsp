@@ -106,7 +106,7 @@
                 <div class="checkbox-list">
                     <c:forEach var="brand" items="${brands}">
                         <label class="custom-checkbox">
-                            <input type="checkbox" value="bobby"> ${brand}
+                            <input type="checkbox" value="${brand.brandName}"> ${brand.brandName}
                         </label>
                     </c:forEach>
                 </div>
@@ -194,7 +194,7 @@
                      </c:otherwise>
                     </c:choose>
                   <c:param name='sort' value='hotest'/>
-                </c:url>" class="filter-btn ${currentSort == 'hotest' ? 'active' : ''}">Bán chạy nhất
+                </c:url>" class="filter-btn ${currentSort == 'best_selling' ? 'active' : ''}">Bán chạy nhất
                 </a>
             </div>
         </div>
@@ -216,13 +216,13 @@
             <c:forEach var="product" items="${products}">
                 <div class="product">
                     <a href="<c:url value='/product-detail?product_id=${product.productId}'/>">
-                        <img alt="Ảnh bị lỗi" src="${product.imgUrl}"/>
+                        <img alt="Ảnh bị lỗi" src="${product.productImg}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
 
                     <p class="price">
-                            ${product.price}đ
+                            ${product.productPrice}đ
                     </p>
 
                     <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">

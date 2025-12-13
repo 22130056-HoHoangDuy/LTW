@@ -22,13 +22,11 @@ public class ProductSearchController extends HttpServlet {
         CategoryService categoryService = new CategoryService();
 
         List<Category> categories = categoryService.getCategoryList();
-//        List<Product> products = productService.searchProducts(keyword, sort);
-        Map<Integer, Integer> soldMap = productService.getBestSellingProducts();
+        List<Product> products = productService.searchProducts(keyword, sort);
 
         request.setAttribute("categories", categories);
-//        request.setAttribute("products", products);
+        request.setAttribute("products", products);
         request.setAttribute("currentSort", sort);
-        request.setAttribute("soldMap", soldMap);
         request.setAttribute("keyword", keyword);
 
         request.getRequestDispatcher("productList.jsp").forward(request, response);
