@@ -9,6 +9,8 @@ public class DBConnect {
 
     static {
         try {
+            // 🚨 BẮT BUỘC với Java 21 + Tomcat 10
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Tạo URL MySQL
             String url = "jdbc:mysql://" +
                     DBProperties.host + ":" +
