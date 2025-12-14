@@ -10,26 +10,13 @@ public class ProductService {
     private ProductDao pdao = new ProductDao();
     private StockProductDao stockProductDao = new StockProductDao();
 
-    public List<Product> getProductList() {
-        return pdao.getProductList();
-    }
-
-    //Redirect to product detail
+    // Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
     }
-
-    //Filter products
-    public List<Product> getProductsByCategory(int categoryId) {
-        return pdao.getProductsBy(categoryId, null, null);
-    }
-
-    public List<Product> getBestSellingProducts() {
-        return pdao.getProductsBy(null, "best_selling", null);
-    }
-
-    public List<Product> searchProducts(String keyword, String sort) {
-        return pdao.getProductsBy(null, sort, keyword);
+    public List<Product> getProducts(Integer categoryId, String sortType, String keyword) {
+        // Hàm này đã handle logic null cho cả 3 tham số
+        return pdao.getProductsBy(categoryId, sortType, keyword);
     }
 
 }

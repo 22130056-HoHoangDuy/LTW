@@ -29,19 +29,16 @@ public class ProductListController extends HttpServlet {
 
         //Chia làm hai: không lọc theo category và lọc theo category
         if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
-            products = ps.getProductList();
+            products = ps.getProducts(null,null,null);
+            if (sort != null)
+                products = ps.getProducts(null,sort,null);
 
         } else {
             int categoryId = Integer.parseInt(categoryIdToStr);
-            products = ps.getProductsByCategory(categoryId);
-
+            products = ps.getProducts(categoryId,null,null);
+            if (sort != null)
+                products = ps.getProducts(categoryId, sort,null);
         }
-
-        //Lọc bán chạy nhất
-//        Map<Integer, Integer> soldMap = ps.getBestSellingProducts();
-//        if ("hotest".equals(sort)) {
-//            ps.sortProductsByHotest(products, soldMap);
-//        }
 
         List<Category> categories = cs.getCategoryList();
         List<Brand> brands = bs.getBrands();

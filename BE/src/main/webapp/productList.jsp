@@ -75,7 +75,7 @@
     </div>
 
     <c:if test="${empty param.keyword}">
-     <div class="filter-box">
+    <div class="filter-box">
         <div class="filter-demand-group">
             <h4>Chọn theo nhu cầu</h4>
 
@@ -93,7 +93,7 @@
                 </c:forEach>
             </div>
         </div>
-     </div>
+    </div>
 
     <div class="filter-box">
         <h3>Bộ lọc tìm kiếm</h3>
@@ -115,7 +115,6 @@
         </div>
     </div>
     </c:if>
-
 
 
     <div class="filter-box">
@@ -199,7 +198,18 @@
             </div>
         </div>
 
-        <a class="filter-btn remove-btn" href="<c:url value='/product-list'/>">Xóa lọc</a>
+        <a class="filter-btn remove-btn" href="
+             <c:choose>
+             <c:when test='${not empty param.keyword}'>
+                <c:url value='/search'>
+                    <c:param name='keyword' value='${param.keyword}' />
+                </c:url>
+             </c:when>
+             <c:otherwise>
+                <c:url value='/product-list'/>
+             </c:otherwise>
+            </c:choose>"
+        >Xóa lọc</a>
     </div>
     <div class="product-container">
         <!-- Thay đổi tiêu đề trang-->

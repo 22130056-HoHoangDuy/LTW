@@ -20,9 +20,14 @@ public class ProductSearchController extends HttpServlet {
         String sort = request.getParameter("sort");
         ProductService productService = new ProductService();
         CategoryService categoryService = new CategoryService();
+        List<Product> products;
 
         List<Category> categories = categoryService.getCategoryList();
-        List<Product> products = productService.searchProducts(keyword, sort);
+        if (sort != null) {
+            products = productService.getProducts(null, keyword, sort);
+        } else {
+            products = productService.getProducts(null, keyword, null);
+        }
 
         request.setAttribute("categories", categories);
         request.setAttribute("products", products);
