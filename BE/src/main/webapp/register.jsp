@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Đăng nhập - Nội thất trẻ em</title>
+    <title>Đăng ký - Nội thất trẻ em</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -19,17 +19,20 @@
     <div class="auth-box">
 
         <form class="form active"
-              action="${pageContext.request.contextPath}/login"
+              action="${pageContext.request.contextPath}/register"
               method="post">
 
-            <h2>Đăng nhập</h2>
+            <h2>Đăng ký</h2>
 
             <c:if test="${not empty error}">
                 <p class="error">${error}</p>
             </c:if>
 
             <input type="text" name="username"
-                   placeholder="Tên đăng nhập hoặc Email" required/>
+                   placeholder="Tên người dùng" required/>
+
+            <input type="email" name="email"
+                   placeholder="Email" required/>
 
             <div class="password-container">
                 <input type="password" name="password"
@@ -39,11 +42,19 @@
                 </span>
             </div>
 
-            <button type="submit">Đăng nhập</button>
+            <div class="password-container">
+                <input type="password" name="confirmPassword"
+                       placeholder="Xác nhận mật khẩu" required/>
+                <span class="toggle-password">
+                    <i class="fa-solid fa-eye"></i>
+                </span>
+            </div>
+
+            <button type="submit">Tạo tài khoản</button>
 
             <p class="switch">
-                Chưa có tài khoản?
-                <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
+                Đã có tài khoản?
+                <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
             </p>
 
         </form>
