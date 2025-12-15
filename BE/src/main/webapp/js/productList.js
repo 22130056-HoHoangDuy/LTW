@@ -34,16 +34,6 @@ favorBtns.forEach((favorBtn) => {
         });
     })
 })
-//Phân trang
-const pages = document.querySelectorAll(".page-number");
-
-pages.forEach((page) => {
-    page.addEventListener("click", (e) => {
-        e.preventDefault();
-        pages.forEach(p => p.classList.remove("active"));
-        page.classList.add("active");
-    });
-});
 
 // Carousel custom (thay thế Bootstrap)
 const carousel = document.getElementById("productListCarousel");

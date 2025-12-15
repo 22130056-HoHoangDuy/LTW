@@ -21,7 +21,8 @@
                 <span>Hotline: <a href="tel:0964163168" style="font-size: 1rem;">0964 163 168</a></span>
             </div>
             <div class="sh-auth-links">
-                <a href="${pageContext.request.contextPath}/login" target="_top" style="font-size: 1rem;">Đăng nhập</a> /
+                <a href="${pageContext.request.contextPath}/login" target="_top" style="font-size: 1rem;">Đăng nhập</a>
+                /
                 <a href="${pageContext.request.contextPath}/login?form=register"
                    target="_top" style="font-size: 1rem;">Đăng ký</a>
             </div>
@@ -40,7 +41,8 @@
 
         <!-- Search -->
         <div class="sh-search-wrap">
-            <form class="sh-search-form" role="search" aria-label="Tìm sản phẩm">
+            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-search-form"
+                  role="search" aria-label="Tìm sản phẩm">
                 <button type="submit" class="sh-search-btn" aria-label="Tìm">
                     🔍
                 </button>
@@ -49,6 +51,8 @@
                         class="sh-search-input"
                         placeholder="Tìm bàn ghế, tủ, đồ chơi..."
                         aria-label="Tìm sản phẩm"
+                        name="keyword"
+                        value="${param.keyword}"
                 />
             </form>
         </div>
@@ -64,7 +68,8 @@
             </ul>
 
             <div class="sh-actions">
-                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account" aria-label="Tài khoản">👤</a>
+                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account"
+                   aria-label="Tài khoản">👤</a>
                 <a href="${pageContext.request.contextPath}/cart" target="_top" class="cart" aria-label="Giỏ hàng">
                     🛒<span class="sh-cart-badge" aria-hidden="true">2</span>
                 </a>

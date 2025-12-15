@@ -74,6 +74,7 @@
         </div>
     </div>
 
+    <c:if test="${empty param.keyword}">
     <div class="filter-box">
         <div class="filter-demand-group">
             <h4>Chọn theo nhu cầu</h4>
@@ -103,84 +104,153 @@
             </div>
             <div class="filter-content">
                 <div class="checkbox-list">
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="bobby"> Bobby <span class="count">(15)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="huggies"> Huggies <span class="count">(12)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="moony"> Moony <span class="count">(8)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="pampers"> Pampers <span class="count">(10)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="mamamy"> Mamamy <span class="count">(5)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="chicco"> Chicco <span class="count">(3)</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" value="combi"> Combi <span class="count">(4)</span>
-                    </label>
+                    <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
+                    <c:forEach var="brand" items="${brands}">
+                        <c:url value="${actionUrl}" var="brandFilterUrl">
+                            <c:if test="${not empty currentCategoryId}">
+                                <c:param name="category_id" value="${currentCategoryId}"/>
+                            </c:if>
+                            <c:if test="${not empty param.keyword}">
+                                <c:param name="keyword" value="${param.keyword}"/>
+                            </c:if>
+                            <c:if test="${not empty param.sort}">
+                                <c:param name="sort" value="${param.sort}"/>
+                            </c:if>
+                            <c:param name="brand" value="${brand.brandName}"/>
+                        </c:url>
+                        <c:set var="isSelected" value="${param.brand == brand.brandName}"/>
+                        <a href="${brandFilterUrl}" class="brand-list">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" value="${brand.brandName}"
+                                    ${isSelected? 'checked' : ''}>
+                                    ${brand.brandName}
+                            </label>
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
 
         </div>
     </div>
+    </c:if>
+
+
     <div class="filter-box">
         <div class="filter-group active">
             <h4>Sắp xếp theo</h4>
             <div class="filter-content">
-                <a href="<c:url value='/product-list'>
-                <c:param name='category_id' value='${currentCategoryId}'/>
+                <!--Kiểm tra đường dẫn có phải là trang search hay không-->
+                <c:set var="actionUrl" value="${not empty param.keyword?'/search':'/product-list'}"/>
+                <a href="<c:url value='${actionUrl}'>
+                 <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
                 <c:param name='sort' value='price_asc'/>
                         </c:url>"
                    class="filter-btn ${currentSort == 'price_asc' ? 'active' : ''}">
                     Giá tăng dần
                 </a>
 
-                <a href="<c:url value='/product-list'>
-                <c:param name='category_id' value='${currentCategoryId}'/>
-                <c:param name='sort' value='price_desc'/>
-             </c:url>"
+                <a href="
+                <c:url value='${actionUrl}'>
+                  <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
+                  <c:param name='sort' value='price_desc'/>
+                </c:url>"
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
                     Giá giảm dần
                 </a>
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='latest'></c:param>
-                </c:url>" class="filter-btn">Mới nhất</a>
 
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='oldest'></c:param>
-                </c:url>" class="filter-btn">Cũ nhất</a>
+                <a href="
+                 <c:url value='${actionUrl}'>
+                    <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
+                    <c:param name='sort' value='latest'/>
+                 </c:url>" class="filter-btn ${currentSort == 'latest' ? 'active' : ''}">Mới nhất
+                </a>
 
-                <a href="<c:url value='/product-list'>
-                    <c:param name='category_id' value='${currentCategoryId}'></c:param>
-                    <c:param name='sort' value='hotest'></c:param>
-                </c:url>" class="filter-btn">Bán chạy nhất</a>
+                <a href="
+                 <c:url value='${actionUrl}'>
+                     <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
+                    <c:param name='sort' value='oldest'/>
+                 </c:url>"
+                   class="filter-btn ${currentSort == 'oldest' ? 'active' : ''}">Cũ nhất
+                </a>
+
+                <a href="<c:url value='${actionUrl}'>
+                  <c:choose>
+                     <c:when test='${not empty param.keyword}'>
+                        <c:param name='keyword' value='${param.keyword}'/>
+                     </c:when>
+                     <c:otherwise>
+                        <c:param name='category_id' value='${currentCategoryId}'/>
+                     </c:otherwise>
+                    </c:choose>
+                  <c:param name='sort' value='hotest'/>
+                </c:url>" class="filter-btn ${currentSort == 'best_selling' ? 'active' : ''}">Bán chạy nhất
+                </a>
             </div>
         </div>
 
-        <a class="filter-btn remove-btn" href="<c:url value='/product-list'/>">Xóa lọc</a>
+        <a class="filter-btn remove-btn" href="
+             <c:choose>
+             <c:when test='${not empty param.keyword}'>
+                <c:url value='/search'>
+                    <c:param name='keyword' value='${param.keyword}' />
+                </c:url>
+             </c:when>
+             <c:otherwise>
+                <c:url value='/product-list'/>
+             </c:otherwise>
+            </c:choose>"
+        >Xóa lọc</a>
     </div>
     <div class="product-container">
-        <h1>Danh sách sản phẩm</h1>
+        <!-- Thay đổi tiêu đề trang-->
+        <c:choose>
+            <c:when test="${not empty param.keyword}">
+                <h1>Kết quả tìm kiếm cho: ${param.keyword}</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>Danh sách sản phẩm</h1>
+            </c:otherwise>
+        </c:choose>
         <div class="product-list">
             <!-- Lặp danh sách sản phẩm -->
             <c:forEach var="product" items="${products}">
                 <div class="product">
                     <a href="<c:url value='/product-detail?product_id=${product.productId}'/>">
-                        <img alt="Ảnh bị lỗi" src="${product.imgUrl}"/>
+                        <img alt="Ảnh bị lỗi" src="${product.productImg}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
 
                     <p class="price">
-                            ${product.price}đ
+                            ${product.productPrice}đ
                     </p>
 
                     <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
@@ -202,7 +272,7 @@
                             Đã bán
                             <span>
                                     ${soldMap[product.productId]}
-                                 </span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -216,11 +286,42 @@
             <i class="fa-solid fa-arrow-up"></i>
         </button>
         <div class="pagination">
-            <a href="#" class="prev-page">&laquo;</a>
-            <a href="#" class="page-number active">1</a>
-            <a href="#" class="page-number">2</a>
-            <a href="#" class="page-number">3</a>
-            <a href="#" class="next-page">&raquo;</a>
+            <c:set var="baseUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
+
+            <c:if test="${currentPage > 1}">
+                <c:url value="${baseUrl}" var="prevLink">
+                    <c:param name="page" value="${currentPage - 1}"/>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id"
+                                                                         value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+                <a href="${prevLink}" class="prev-page">&laquo;</a>
+            </c:if>
+
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:url value="${baseUrl}" var="pageLink">
+                    <c:param name="page" value="${i}"/>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id"
+                                                                         value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+
+                <a href="${pageLink}" class="page-index ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
+
+            <c:if test="${currentPage < totalPages}">
+                <c:url value="${baseUrl}" var="nextLink">
+                    <c:param name="page" value="${currentPage + 1}"/>
+                    <c:if test="${not empty currentCategoryId}">
+                        <c:param name="category_id" value="${currentCategoryId}"/>
+                    </c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+                <a href="${nextLink}" class="next-page">&raquo;</a>
+            </c:if>
         </div>
     </div>
 
