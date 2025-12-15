@@ -268,11 +268,38 @@
             <i class="fa-solid fa-arrow-up"></i>
         </button>
         <div class="pagination">
-            <a href="#" class="prev-page">&laquo;</a>
-            <a href="#" class="page-number active">1</a>
-            <a href="#" class="page-number">2</a>
-            <a href="#" class="page-number">3</a>
-            <a href="#" class="next-page">&raquo;</a>
+            <c:set var="baseUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
+
+            <c:if test="${currentPage > 1}">
+                <c:url value="${baseUrl}" var="prevLink">
+                    <c:param name="page" value="${currentPage - 1}"/>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+                <a href="${prevLink}" class="prev-page">&laquo;</a>
+            </c:if>
+
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:url value="${baseUrl}" var="pageLink">
+                    <c:param name="page" value="${i}"/>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+
+                <a href="${pageLink}" class="page-index ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
+
+            <c:if test="${currentPage < totalPages}">
+                <c:url value="${baseUrl}" var="nextLink">
+                    <c:param name="page" value="${currentPage + 1}"/>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
+                    <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
+                </c:url>
+                <a href="${nextLink}" class="next-page">&raquo;</a>
+            </c:if>
         </div>
     </div>
 

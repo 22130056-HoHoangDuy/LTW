@@ -14,9 +14,15 @@ public class ProductService {
     public Product getProductById(int id) {
         return pdao.getProductById(id);
     }
-    public List<Product> getProducts(Integer categoryId, String sortType, String keyword) {
+
+    public List<Product> getProducts(Integer categoryId, String sortType, String keyword, int pageIndex, int pageSize) {
         // Hàm này đã handle logic null cho cả 3 tham số
-        return pdao.getProductsBy(categoryId, sortType, keyword);
+        int offset = (pageIndex - 1) * pageSize;
+        return pdao.getProductsBy(categoryId, sortType, keyword, 15, offset);
+    }
+
+    public int countTotalProductsBy(Integer categoryId, String keyword) {
+        return pdao.countTotalProductsBy(categoryId, keyword);
     }
 
 }

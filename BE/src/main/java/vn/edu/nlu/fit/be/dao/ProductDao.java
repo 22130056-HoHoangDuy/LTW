@@ -22,7 +22,7 @@ public class ProductDao extends BaseDao {
                 ;
     }
 
-    public List<Product> getProductsBy(Integer categoryId, String sortType, String keyword) {
+    public List<Product> getProductsBy(Integer categoryId, String sortType, String keyword, int limit, int offset) {
         StringBuilder sqlQuery = new StringBuilder("SELECT p.*,SUM(sp.sold_quantity) as total_sold");
         sqlQuery.append(" FROM products p");
 
@@ -34,7 +34,7 @@ public class ProductDao extends BaseDao {
             sqlQuery.append(" AND p.category_id = :catId");
         }
         if (keyword != null && !keyword.isEmpty()) {
-            sqlQuery.append(" AND p.product_name LIKE :keyword");
+            sqlQuery.append(" AND LOWER(p.product_name) LIKE LOWER(:keyword)");
         }
 
         // Nhóm theo product id
@@ -62,6 +62,7 @@ public class ProductDao extends BaseDao {
             }
 
         }
+        sqlQuery.append(" LIMIT :limit OFFSET :offset");
         return jdbi.withHandle(handle -> {
                     Query query = handle.createQuery(sqlQuery.toString());
                     if (categoryId != null) {
@@ -70,7 +71,38 @@ public class ProductDao extends BaseDao {
                     if (keyword != null && !keyword.isEmpty()) {
                         query.bind("keyword", "%" + keyword + "%");
                     }
+
+                    //Bind tham số limit và offset cho phân trang
+                    query.bind("limit", limit);
+                    query.bind("offset", offset);
+
                     return query.mapToBean(Product.class).list();
+                }
+        );
+    }
+
+    public int countTotalProductsBy(Integer categoryId, String keyword) {
+        StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(*) FROM products");
+
+        sqlQuery.append(" WHERE 1=1");
+
+        if (categoryId != null) {
+            sqlQuery.append(" AND category_id = :catId");
+        }
+        if (keyword != null && !keyword.isEmpty()) {
+            sqlQuery.append(" AND LOWER(product_name) LIKE LOWER(:keyword)");
+        }
+
+
+        return jdbi.withHandle(handle -> {
+                    Query query = handle.createQuery(sqlQuery.toString());
+                    if (categoryId != null) {
+                        query.bind("catId", categoryId);
+                    }
+                    if (keyword != null && !keyword.isEmpty()) {
+                        query.bind("keyword", "%" + keyword + "%");
+                    }
+                    return query.mapTo(Integer.class).one();
                 }
         );
     }

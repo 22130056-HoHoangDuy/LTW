@@ -9,6 +9,7 @@ public class DBConnect {
 
     static {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Tạo URL MySQL
             String url = "jdbc:mysql://" +
                     DBProperties.host + ":" +

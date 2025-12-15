@@ -16,21 +16,40 @@ import java.util.Map;
 public class ProductSearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String keyword = request.getParameter("keyword");
         String sort = request.getParameter("sort");
         ProductService productService = new ProductService();
-        CategoryService categoryService = new CategoryService();
         List<Product> products;
 
-        List<Category> categories = categoryService.getCategoryList();
-        if (sort != null) {
-            products = productService.getProducts(null, keyword, sort);
-        } else {
-            products = productService.getProducts(null, keyword, null);
-        }
+        //Phân trang trước tiên
+        int pageIndex = 1;
+        int pageSize = 20;
+        int totalProducts = 0;
 
-        request.setAttribute("categories", categories);
+        String pageStr = request.getParameter("page");
+        if (pageStr != null) {
+            try {
+                pageIndex = Integer.parseInt(pageStr);
+
+            } catch (NumberFormatException nfe) {
+                pageIndex = 1;
+            }
+        }
+        totalProducts = productService.countTotalProductsBy(null, keyword);
+        if (sort != null) {
+            products = productService.getProducts(null, sort, keyword, pageIndex, pageSize);
+        } else {
+            products = productService.getProducts(null, null, keyword, pageIndex, pageSize);
+        }
+        int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+
         request.setAttribute("products", products);
+        request.setAttribute("currentPage", pageIndex);
+        request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentSort", sort);
         request.setAttribute("keyword", keyword);
 
