@@ -13,9 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyShop Việt Nam</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.1.0/css/all.min.css"
-          integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5/1XK5oX1qv5k5VrZ1+FqZ6p0r/+zJ0G7Xp6rZ5f7R1v/+2B7/g9/2Qa5+sEFA=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -30,7 +29,8 @@
 <section class="hero">
     <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img">
 </section>
-
+<p>USER = ${sessionScope.USER}</p>
+<p>username = ${sessionScope.USER.username}</p>
 <!-- Danh mục sản phẩm -->
 <section class="category">
     <h2>DANH MỤC SẢN PHẨM</h2>
