@@ -40,9 +40,9 @@ public class ProductSearchController extends HttpServlet {
         }
         totalProducts = productService.countTotalProductsBy(null, keyword);
         if (sort != null) {
-            products = productService.getProducts(null, sort, keyword, pageIndex, pageSize);
+            products = productService.getProducts(null, null, sort, keyword, pageIndex, pageSize);
         } else {
-            products = productService.getProducts(null, null, keyword, pageIndex, pageSize);
+            products = productService.getProducts(null, null, null, keyword, pageIndex, pageSize);
         }
         int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 

@@ -22,12 +22,13 @@ public class ProductDao extends BaseDao {
                 ;
     }
 
-    public List<Product> getProductsBy(Integer categoryId, String sortType, String keyword, int limit, int offset) {
+    public List<Product> getProductsBy(Integer categoryId, String brandName, String sortType, String keyword, int limit, int offset) {
         StringBuilder sqlQuery = new StringBuilder("SELECT p.*,SUM(sp.sold_quantity) as total_sold");
         sqlQuery.append(" FROM products p");
 
         //Join table
         sqlQuery.append(" LEFT JOIN stock_products sp ON p.product_id = sp.product_id ");
+        sqlQuery.append(" JOIN brands b ON p.brand_id = b.brand_id");
         sqlQuery.append(" WHERE 1=1 "); // để dùng AND cho dễ dàng
 
         if (categoryId != null) {
@@ -35,6 +36,9 @@ public class ProductDao extends BaseDao {
         }
         if (keyword != null && !keyword.isEmpty()) {
             sqlQuery.append(" AND LOWER(p.product_name) LIKE LOWER(:keyword)");
+        }
+        if (brandName != null && !brandName.isEmpty()) {
+            sqlQuery.append("AND b.brand_name = :brandName");
         }
 
         // Nhóm theo product id
@@ -71,7 +75,9 @@ public class ProductDao extends BaseDao {
                     if (keyword != null && !keyword.isEmpty()) {
                         query.bind("keyword", "%" + keyword + "%");
                     }
-
+                    if (brandName != null && !brandName.isEmpty()) {
+                        query.bind("brandName", brandName);
+                    }
                     //Bind tham số limit và offset cho phân trang
                     query.bind("limit", limit);
                     query.bind("offset", offset);
@@ -106,6 +112,16 @@ public class ProductDao extends BaseDao {
                 }
         );
     }
+
+    public int getTotalSoldQuantity(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT SUM(sold_quantity) FROM stock_products" +
+                                " WHERE product_id = :id")
+                        .bind("id", productId)
+                        .mapTo(Integer.class).one()
+        );
+    }
+
 
 }
 

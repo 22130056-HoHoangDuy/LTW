@@ -104,10 +104,28 @@
             </div>
             <div class="filter-content">
                 <div class="checkbox-list">
+                    <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
                     <c:forEach var="brand" items="${brands}">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" value="${brand.brandName}"> ${brand.brandName}
-                        </label>
+                        <c:url value="${actionUrl}" var="brandFilterUrl">
+                            <c:if test="${not empty currentCategoryId}">
+                                <c:param name="category_id" value="${currentCategoryId}"/>
+                            </c:if>
+                            <c:if test="${not empty param.keyword}">
+                                <c:param name="keyword" value="${param.keyword}"/>
+                            </c:if>
+                            <c:if test="${not empty param.sort}">
+                                <c:param name="sort" value="${param.sort}"/>
+                            </c:if>
+                            <c:param name="brand" value="${brand.brandName}"/>
+                        </c:url>
+                        <c:set var="isSelected" value="${param.brand == brand.brandName}"/>
+                        <a href="${brandFilterUrl}" class="brand-list">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" value="${brand.brandName}"
+                                    ${isSelected? 'checked' : ''}>
+                                    ${brand.brandName}
+                            </label>
+                        </a>
                     </c:forEach>
                 </div>
             </div>
@@ -273,7 +291,8 @@
             <c:if test="${currentPage > 1}">
                 <c:url value="${baseUrl}" var="prevLink">
                     <c:param name="page" value="${currentPage - 1}"/>
-                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id"
+                                                                         value="${currentCategoryId}"/></c:if>
                     <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
                     <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
                 </c:url>
@@ -283,7 +302,8 @@
             <c:forEach begin="1" end="${totalPages}" var="i">
                 <c:url value="${baseUrl}" var="pageLink">
                     <c:param name="page" value="${i}"/>
-                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id"
+                                                                         value="${currentCategoryId}"/></c:if>
                     <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
                     <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
                 </c:url>
@@ -294,7 +314,9 @@
             <c:if test="${currentPage < totalPages}">
                 <c:url value="${baseUrl}" var="nextLink">
                     <c:param name="page" value="${currentPage + 1}"/>
-                    <c:if test="${not empty currentCategoryId}"><c:param name="category_id" value="${currentCategoryId}"/></c:if>
+                    <c:if test="${not empty currentCategoryId}">
+                        <c:param name="category_id" value="${currentCategoryId}"/>
+                    </c:if>
                     <c:if test="${not empty param.keyword}"><c:param name="keyword" value="${param.keyword}"/></c:if>
                     <c:if test="${not empty param.sort}"><c:param name="sort" value="${param.sort}"/></c:if>
                 </c:url>

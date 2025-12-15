@@ -85,6 +85,7 @@ iframe {
     font-size: 14px;
     color: #555;
     transition: color 0.2s;
+    pointer-events: none;
 }
 
 .product-list-page .custom-checkbox:hover {
@@ -145,6 +146,13 @@ iframe {
 }
 
 .filter-group.active .filter-content {
+    display: block;
+}
+
+a.brand-list {
+    text-decoration: none;
+
+    color: inherit;
     display: block;
 }
 

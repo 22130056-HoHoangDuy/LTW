@@ -44,24 +44,25 @@ public class ProductListController extends HttpServlet {
 
         // Lấy tham số từ url
         String categoryIdToStr = request.getParameter("category_id");
+        String brand = request.getParameter("brand");
         String sort = request.getParameter("sort");
 
         //* Chia làm hai: không lọc theo category và lọc theo category
         //  -không lọc theo category
         if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
             totalProducts = ps.countTotalProductsBy(null, null);
-            products = ps.getProducts(null, null, null, pageIndex, pageSize);
+            products = ps.getProducts(null, brand, null, null, pageIndex, pageSize);
             if (sort != null) {
-                products = ps.getProducts(null, sort, null, pageIndex, pageSize);
+                products = ps.getProducts(null, brand, sort, null, pageIndex, pageSize);
             }
 
         } else {
             //  -lọc theo category
             int categoryId = Integer.parseInt(categoryIdToStr);
             totalProducts = ps.countTotalProductsBy(categoryId, null);
-            products = ps.getProducts(categoryId, null, null, pageIndex, pageSize);
+            products = ps.getProducts(categoryId, brand, null, null, pageIndex, pageSize);
             if (sort != null)
-                products = ps.getProducts(categoryId, sort, null, pageIndex, pageSize);
+                products = ps.getProducts(categoryId, brand, sort, null, pageIndex, pageSize);
         }
 
         List<Category> categories = cs.getCategoryList();
@@ -69,18 +70,22 @@ public class ProductListController extends HttpServlet {
 
         int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 
+        //
+        Map<Integer, Integer> soldMap = ps.getSoldMap(products);
+
         // Lưu vào trong request
         request.setAttribute("products", products);
+        request.setAttribute("soldMap", soldMap);
         request.setAttribute("categories", categories);
         request.setAttribute("brands", brands);
         //- phân trang
-        request.setAttribute("currentPage",pageIndex);
-        request.setAttribute("totalPages",totalPages);
+        request.setAttribute("currentPage", pageIndex);
+        request.setAttribute("totalPages", totalPages);
 
         request.setAttribute("currentCategoryId", categoryIdToStr);
         request.setAttribute("currentSort", sort);
+        request.setAttribute("currentBrand", brand);
 
-//        request.setAttribute("soldMap", soldMap);
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 
