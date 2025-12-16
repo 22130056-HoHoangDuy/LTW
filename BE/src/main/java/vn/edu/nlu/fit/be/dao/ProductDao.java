@@ -1,7 +1,7 @@
 package vn.edu.nlu.fit.be.dao;
 
 import org.jdbi.v3.core.statement.Query;
-import vn.edu.nlu.fit.be.model.Product;
+import vn.edu.nlu.fit.be.model.*;
 
 import java.util.*;
 
@@ -16,6 +16,7 @@ public class ProductDao extends BaseDao {
     public Product getProductById(int id) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT * FROM products WHERE product_id = :id")
+                        .bind("id", id)
                         .mapToBean(Product.class)
                         .findOne()
                         .orElse(null))
@@ -122,7 +123,25 @@ public class ProductDao extends BaseDao {
         );
     }
 
-
+    public List<String> getImagesListInProduct(int productId) {
+        return jdbi.withHandle(
+                handle ->
+                        handle.createQuery("SELECT img.product_img FROM product_list_images img" +
+                                        " JOIN products p ON img.product_id = p.product_id" +
+                                        " WHERE img.product_id =:id")
+                                .bind("id", productId)
+                                .mapTo(String.class)
+                                .list()
+        );
+    }
+    public List<Map<String, Object>> getProductDetails(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT detail_img, product_description FROM product_details WHERE product_id = :id ORDER BY product_detail_id ASC")
+                        .bind("id", productId)
+                        .mapToMap()
+                        .list()
+        );
+    }
 }
 
 

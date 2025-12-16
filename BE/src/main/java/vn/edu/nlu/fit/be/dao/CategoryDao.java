@@ -16,6 +16,7 @@ public class CategoryDao extends BaseDao {
     public Category getCategoryById(int id) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT * FROM categories WHERE category_id = :id")
+                        .bind("id",id)
                         .mapToBean(Category.class)
                         .findFirst()
                         .orElse(null));
