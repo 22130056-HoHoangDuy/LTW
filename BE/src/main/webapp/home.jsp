@@ -29,8 +29,6 @@
 <section class="hero">
     <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img">
 </section>
-<p>USER = ${sessionScope.USER}</p>
-<p>username = ${sessionScope.USER.username}</p>
 <!-- Danh mục sản phẩm -->
 <section class="category">
     <h2>DANH MỤC SẢN PHẨM</h2>

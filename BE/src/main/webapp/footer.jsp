@@ -5,12 +5,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!-- Font Awesome 7.1.0 -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0l8R1uMb9ll7nMLPZ9a0qU1xXrVbJDPxSx1o6jVx1Q=="
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
       crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-
 <!-- Footer CSS -->
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/css/footer.css"/>
