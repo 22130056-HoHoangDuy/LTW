@@ -71,14 +71,14 @@ if (commentInput && sendBtn) {
             sendBtn.classList.remove("focused");
         }
     };
-    comment.addEventListener("focus", () => toggleSendBtnColor(true));
-    comment.addEventListener("blur", () => toggleSendBtnColor(false));
+    commentInput.addEventListener("focus", () => toggleSendBtnColor(true));
+    commentInput.addEventListener("blur", () => toggleSendBtnColor(false));
     const submitComment = () => {
-        const text = comment.value.trim();
+        const text = commentInput.value.trim();
         if (!text) return;
         // Tạo div comment
         const commentDiv = document.createElement("div");
-        commentDiv.classList.add("comment");
+        commentDiv.classList.add("comment-item");
         // Header: tên + icon
         commentDiv.innerHTML = `
                         <div class="comment-header">
@@ -91,11 +91,11 @@ if (commentInput && sendBtn) {
         )}</div>
                     `;
         commentContainer.appendChild(commentDiv);
-        comment.value = "";
+        commentInput.value = "";
         toggleSendBtnColor(true);
     };
     sendBtn.addEventListener("click", submitComment);
-    comment.addEventListener("keydown", (e) => {
+    commentInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             submitComment();
@@ -103,10 +103,6 @@ if (commentInput && sendBtn) {
     });
 }
 ;
-//Khi load trang
-window.addEventListener("DOMContentLoaded", () => {
-    productDetail.innerHTML = detail;
-});
 
 function increaseQty() {
     var input = document.getElementById('quantity');

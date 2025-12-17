@@ -84,7 +84,13 @@
                 <div class="product-main-info">
                     <h2>${product.productName}</h2>
                     <p class="price">${product.productPrice}đ</p>
-                    <p class="product-id">Mã sản phẩm: ${product.productId}</p>
+                    <p class="product-id">Mã sản phẩm:
+                        <c:choose>
+                            <c:when test="${product.productId < 10}">00${product.productId}</c:when>
+                            <c:when test="${product.productId < 100}">0${product.productId}</c:when>
+                            <c:otherwise>${product.productId}</c:otherwise>
+                        </c:choose>
+                    </p>
 
                     <div class="product-status">
                         <span>Đã bán ${soldQuantity}</span>
@@ -157,8 +163,22 @@
         </ul>
         <div class="tab-content-container">
             <div id="tab-detail" class="tab-content active">
-                <c:if test="${not empty productDetailData}">
-                    <c:out value="${productDetailData.content}" escapeXml="false"/>
+                <c:if test="${not empty details}">
+                    <c:forEach var="detail" items="${details}">
+                        <div class="content-block" style="margin-bottom: 20px;">
+                            <c:if test="${not empty detail.product_description}">
+                                <div class="content-text">
+                                    <c:out value="${detail.product_description}" escapeXml="false"/>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty detail.detail_img}">
+                                <div class="content-image" style="margin-top: 10px;">
+                                    <img src="${detail.detail_img}" class="d-block w-100" alt="Chi tiết sản phẩm"/>
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:forEach>
                 </c:if>
             </div>
             <div id="tab-feedback" class="tab-content" style="display: none;">
@@ -175,6 +195,6 @@
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 <jsp:include page="footer.jsp"/>
-<script src="js/productDetail.js"></script>
+<script src="${pageContext.request.contextPath}/js/productDetail.js"></script>
 </body>
 </html>
