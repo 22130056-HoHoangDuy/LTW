@@ -15,14 +15,18 @@ public class ProductService {
         return pdao.getProductById(id);
     }
 
-    public List<Product> getProducts(Integer categoryId, String brandName, String sortType, String keyword, int pageIndex, int pageSize) {
+    public List<Product> getProducts(Integer categoryId, String[] brandName, String sortType, String keyword, int pageIndex, int pageSize) {
         // Hàm này đã handle logic null cho cả 3 tham số
         int offset = (pageIndex - 1) * pageSize;
         return pdao.getProductsBy(categoryId, brandName, sortType, keyword, 15, offset);
     }
 
+    public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
+        return pdao.countTotalProductsBy(categoryId, brands, keyword);
+    }
+
     public int countTotalProductsBy(Integer categoryId, String keyword) {
-        return pdao.countTotalProductsBy(categoryId, keyword);
+        return pdao.countTotalProductsBy(categoryId,null, keyword);
     }
 
     public int getTotalSoldQuantity(int productId) {

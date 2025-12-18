@@ -103,31 +103,42 @@
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="filter-content">
-                <div class="checkbox-list">
-                    <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
-                    <c:forEach var="brand" items="${brands}">
-                        <c:url value="${actionUrl}" var="brandFilterUrl">
-                            <c:if test="${not empty currentCategoryId}">
-                                <c:param name="category_id" value="${currentCategoryId}"/>
+                <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
+
+                <form action="<c:url value='${actionUrl}'/>" method="get" id="brandFilterForm">
+                    <c:if test="${not empty currentCategoryId}">
+                        <input type="hidden" name="category_id" value="${currentCategoryId}">
+                    </c:if>
+                    <c:if test="${not empty param.keyword}">
+                        <input type="hidden" name="keyword" value="${param.keyword}">
+                    </c:if>
+                    <c:if test="${not empty param.sort}">
+                        <input type="hidden" name="sort" value="${param.sort}">
+                    </c:if>
+                    <div class="checkbox-list">
+                        <c:forEach var="brand" items="${brands}">
+
+                            <c:set var="isChecked" value="false"/>
+                            <c:if test="${not empty paramValues.brand}">
+                                <c:forEach var="selectedBrand" items="${paramValues.brand}">
+                                    <c:if test="${selectedBrand == brand.brandName}">
+                                        <c:set var="isChecked" value="true"/>
+                                    </c:if>
+                                </c:forEach>
                             </c:if>
-                            <c:if test="${not empty param.keyword}">
-                                <c:param name="keyword" value="${param.keyword}"/>
-                            </c:if>
-                            <c:if test="${not empty param.sort}">
-                                <c:param name="sort" value="${param.sort}"/>
-                            </c:if>
-                            <c:param name="brand" value="${brand.brandName}"/>
-                        </c:url>
-                        <c:set var="isSelected" value="${param.brand == brand.brandName}"/>
-                        <a href="${brandFilterUrl}" class="brand-list">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="${brand.brandName}"
-                                    ${isSelected? 'checked' : ''}>
-                                    ${brand.brandName}
-                            </label>
-                        </a>
-                    </c:forEach>
-                </div>
+
+                            <div class="brand-list">
+                                <label>
+                                    <input type="checkbox"
+                                           name="brand"
+                                           value="${brand.brandName}"
+                                        ${isChecked ? 'checked' : ''}>
+                                        ${brand.brandName}
+                                </label>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </form>
             </div>
 
         </div>

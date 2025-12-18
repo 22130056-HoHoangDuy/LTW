@@ -85,7 +85,6 @@ iframe {
     font-size: 14px;
     color: #555;
     transition: color 0.2s;
-    pointer-events: none;
 }
 
 .product-list-page .custom-checkbox:hover {
