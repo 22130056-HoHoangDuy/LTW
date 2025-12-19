@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
 
+import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.model.Category;
 
 import java.util.ArrayList;
@@ -28,5 +29,21 @@ public class CategoryDao {
             }
         }
         return null;
+    }
+
+    public List<Category> findAllCategory() {
+        String sql = """
+                    SELECT category_id        AS categoryId,
+                           category_name      AS categoryName,
+                           category_image       AS categoryImg,
+                           description AS categoryDescription
+                    FROM categories
+                """;
+
+        return DBConnect.get().withHandle(h ->
+                h.createQuery(sql)
+                        .mapToBean(Category.class)
+                        .list()
+        );
     }
 }

@@ -33,10 +33,10 @@
         <aside class="pf-sidebar">
             <h2>Xin chào, ${sessionScope.USER.username}</h2>
             <ul>
-                <li class="active" id="pf-btn-info">Thông tin cá nhân</li>
-                <li id="pf-btn-orders">Đơn hàng đã mua</li>
-                <li id="pf-btn-favorite">Yêu thích</li>
-                <li id="pf-btn-change-pass">Đổi mật khẩu</li>
+                <li class="active">Thông tin cá nhân</li>
+                <li>Đơn hàng đã mua</li>
+                <li onclick="location.href='${pageContext.request.contextPath}/my-favorite'">Yêu thích</li>
+                <li>Đổi mật khẩu</li>
             </ul>
         </aside>
 

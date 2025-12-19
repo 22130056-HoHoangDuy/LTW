@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
           integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+<%--          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"--%>
+<%--            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"--%>
+<%--            crossorigin="anonymous"></script>--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>--%>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -30,24 +31,23 @@
     <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img">
 </section>
 <!-- Danh mục sản phẩm -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <section class="category">
     <h2>DANH MỤC SẢN PHẨM</h2>
-    <div class="category-grid">
-        <div class="cat-item">
-            <a href="../html/productList.html"> <img src="${pageContext.request.contextPath}/img/categories/donoithat.png" alt="" > </a>
 
-            <p>ĐỒ NỘI THẤT</p>
-        </div>
-        <div class="cat-item">
-            <a href="../html/productList.html"> <img src="${pageContext.request.contextPath}/img/categories/dotrangtri.jpg" alt=""> </a>
-            <p>ĐỒ TRANG TRÍ</p>
-        </div>
-        <div class="cat-item">
-            <a href="../html/productList.html"> <img src="${pageContext.request.contextPath}/img/categories/dochoi.jpg" alt=""> </a>
-            <p>ĐỒ CHƠI </p>
-        </div>
+    <div class="category-grid">
+        <c:forEach items="${categories}" var="c">
+            <div class="cat-item">
+<%--                <a href="productList?categoryId=${c.categoryId}">--%>
+                    <img src="${c.categoryImg}" alt="${c.categoryName}">
+                </a>
+                <p>${c.categoryName}</p>
+            </div>
+        </c:forEach>
     </div>
 </section>
+
 
 <!-- Giới thiệu -->
 <section class="intro">
