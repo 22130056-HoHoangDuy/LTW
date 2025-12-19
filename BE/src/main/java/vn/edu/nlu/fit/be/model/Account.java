@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class Account {
 
-    private int userId;
+    private int accountId;
     private int profileId;
-    private String userEmail;
-    private String userName;
+    private String email;
+    private String username;
     private String password;
     private AccountStatus status; // Active / UnActive
     private int role;
@@ -17,11 +17,11 @@ public class Account {
 
     public Account() {}
 
-    public Account(int userId, int profileId, String userEmail, String userName, Timestamp createdAt, int role, AccountStatus status, String password) {
-        this.userId = userId;
+    public Account(int accountId, int profileId, String email, String username, Timestamp createdAt, int role, AccountStatus status, String password) {
+        this.accountId = accountId;
         this.profileId = profileId;
-        this.userEmail = userEmail;
-        this.userName = userName;
+        this.email = email;
+        this.username = username;
         this.createdAt = createdAt;
         this.role = role;
         this.status = status;
@@ -30,12 +30,12 @@ public class Account {
 
     // Getters & Setters
 
-    public int getUserId() {
-        return userId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public Timestamp getCreatedAt() {
@@ -71,19 +71,19 @@ public class Account {
     }
 
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     public void setUsername(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getEmail() {
-        return userEmail;
+        return email;
     }
 
     public void setEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.email = email;
     }
 
     public int getProfileId() {

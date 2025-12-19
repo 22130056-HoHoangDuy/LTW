@@ -1,18 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="vi">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8"/>--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>--%>
-<%--    <title>Header - Nội thất trẻ em</title>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
-<%--</head>--%>
-<%--<body>--%>
-<!-- HEADER -->
 <header class="site-header">
     <!-- 🔹 Thanh trên cùng -->
     <div class="sh-top-bar">
@@ -21,10 +9,18 @@
                 <span>Hotline: <a href="tel:0964163168" style="font-size: 1rem;">0964 163 168</a></span>
             </div>
             <div class="sh-auth-links">
-                <a href="${pageContext.request.contextPath}/login" target="_top" style="font-size: 1rem;">Đăng nhập</a>
-                /
-                <a href="${pageContext.request.contextPath}/login?form=register"
-                   target="_top" style="font-size: 1rem;">Đăng ký</a>
+                <c:choose>
+                    <c:when test="${empty sessionScope.USER}">
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a> /
+                        <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
+                    </c:when>
+
+                    <c:otherwise>
+                        Xin chào, <strong>${sessionScope.USER.username}</strong>
+                        /
+                        <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
