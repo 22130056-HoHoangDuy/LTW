@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Account {
 
-    private int userId;
+    private int accountId;
     private int profileId;
     private String email;
     private String username;
@@ -17,8 +17,8 @@ public class Account {
 
     public Account() {}
 
-    public Account(int userId, int profileId, String email, String username, Timestamp createdAt, int role, AccountStatus status, String password) {
-        this.userId = userId;
+    public Account(int accountId, int profileId, String email, String username, Timestamp createdAt, int role, AccountStatus status, String password) {
+        this.accountId = accountId;
         this.profileId = profileId;
         this.email = email;
         this.username = username;
@@ -30,12 +30,12 @@ public class Account {
 
     // Getters & Setters
 
-    public int getUserId() {
-        return userId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public Timestamp getCreatedAt() {

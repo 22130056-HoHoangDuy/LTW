@@ -23,7 +23,7 @@ public class FavoriteController extends HttpServlet {
         }
 
         List<FavoriteProduct> favorites =
-                service.getFavorites(acc.getUserId());
+                service.getFavorites(acc.getAccountId());
 
         request.setAttribute("FAVORITES", favorites);
 
@@ -42,7 +42,7 @@ public class FavoriteController extends HttpServlet {
         }
 
         int productId = Integer.parseInt(req.getParameter("productId"));
-        boolean liked = service.toggle(acc.getUserId(), productId);
+        boolean liked = service.toggle(acc.getAccountId(), productId);
 
         resp.setContentType("application/json");
         resp.getWriter().write("{\"liked\": " + liked + "}");

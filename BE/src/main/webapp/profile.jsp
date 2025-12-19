@@ -36,7 +36,7 @@
                 <li class="active">Thông tin cá nhân</li>
                 <li>Đơn hàng đã mua</li>
                 <li onclick="location.href='${pageContext.request.contextPath}/my-favorite'">Yêu thích</li>
-                <li>Đổi mật khẩu</li>
+                <li onclick="location.href='${pageContext.request.contextPath}/change-password'">Đổi mật khẩu</li>
             </ul>
         </aside>
 

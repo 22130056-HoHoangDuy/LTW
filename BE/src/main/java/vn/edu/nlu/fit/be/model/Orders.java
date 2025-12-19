@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Orders {
 
     private int orderId;
-    private int userId;
+    private int accountId;
     private int voucherId;
 
     private OrderStatus statusOrder;
@@ -19,7 +19,7 @@ public class Orders {
 
     public Orders() {}
 
-    public Orders(int orderId, Timestamp orderDate, PaymentMethod paymentMethod, String deliveryAddress, int totalAmount, OrderStatus statusOrder, int voucherId, int userId) {
+    public Orders(int orderId, Timestamp orderDate, PaymentMethod paymentMethod, String deliveryAddress, int totalAmount, OrderStatus statusOrder, int voucherId, int accountId) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;
@@ -27,7 +27,7 @@ public class Orders {
         this.totalAmount = totalAmount;
         this.statusOrder = statusOrder;
         this.voucherId = voucherId;
-        this.userId = userId;
+        this.accountId = accountId;
     }
 
     // Getters & Setters
@@ -40,12 +40,12 @@ public class Orders {
         this.orderId = orderId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public int getVoucherId() {
