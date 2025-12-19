@@ -1,39 +1,43 @@
 package vn.edu.nlu.fit.be.service;
 
+import vn.edu.nlu.fit.be.dao.StockProductDao;
 import vn.edu.nlu.fit.be.model.Product;
 import vn.edu.nlu.fit.be.dao.ProductDao;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductService {
-    ProductDao pdao = new ProductDao();
+    private ProductDao pdao = new ProductDao();
+    private StockProductDao stockProductDao = new StockProductDao();
 
-    public List<Product> getListProduct() {
-        return pdao.getListProduct();
-    }
-
-    public List<Product> getProductBySort(String sort) {
-        return pdao.getProductBySort(sort);
-    }
-
-    //Redirect to product detail
+    // Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
     }
 
-    //Filter products
-    public List<Product> getProductsByCategory(int categoryId) {
-        return pdao.getProductsByCategory(categoryId);
+    public List<Product> getProducts(Integer categoryId,String brandName, String sortType, String keyword, int pageIndex, int pageSize) {
+        // Hàm này đã handle logic null cho cả 3 tham số
+        int offset = (pageIndex - 1) * pageSize;
+        return pdao.getProductsBy(categoryId,brandName, sortType, keyword, 15, offset);
     }
 
-    public List<Product> getProductsByCategoryAndSort(int categoryId, String sort) {
-        return pdao.getProductsByCategoryAndSort(categoryId, sort);
+    public int countTotalProductsBy(Integer categoryId, String keyword) {
+        return pdao.countTotalProductsBy(categoryId, keyword);
     }
-    public Map<Integer, Integer> getBestSellingProducts() {
-        return pdao.getBestSellingProducts();
+
+    public int getTotalSoldQuantity(int productId) {
+        return pdao.getTotalSoldQuantity(productId);
     }
-    public List<Product> sortProductsByHotest(List<Product> products, Map<Integer, Integer> soldMap) {
-        return pdao.sortProductsByHotest(products, soldMap);
+
+    public Map<Integer, Integer> getSoldMap(List<Product> products) {
+        Map<Integer, Integer> soldQuantities = new HashMap<>();
+        for (Product product : products) {
+            int productId = product.getProductId();
+            int soldQuantity = getTotalSoldQuantity(productId);
+            soldQuantities.put(productId, soldQuantity);
+        }
+        return soldQuantities;
     }
+
+
 }

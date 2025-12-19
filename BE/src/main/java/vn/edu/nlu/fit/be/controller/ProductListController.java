@@ -3,9 +3,8 @@ package vn.edu.nlu.fit.be.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.be.model.Category;
-import vn.edu.nlu.fit.be.service.CategoryService;
-import vn.edu.nlu.fit.be.service.ProductService;
+import vn.edu.nlu.fit.be.model.*;
+import vn.edu.nlu.fit.be.service.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,49 +17,75 @@ import vn.edu.nlu.fit.be.service.StockProductService;
 public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         ProductService ps = new ProductService();
         CategoryService cs = new CategoryService();
+        BrandService bs = new BrandService();
         StockProductService ss = new StockProductService();
         List<Product> products;
 
-        // Filter product by category
+        //Phân trang trước tiên
+        int pageIndex = 1;
+        int pageSize = 20;
+        int totalProducts = 0;
+
+        String pageStr = request.getParameter("page");
+        if (pageStr != null) {
+            try {
+                pageIndex = Integer.parseInt(pageStr);
+
+            } catch (NumberFormatException nfe) {
+                pageIndex = 1;
+            }
+        }
+
+        // Lấy tham số từ url
         String categoryIdToStr = request.getParameter("category_id");
+        String brand = request.getParameter("brand");
         String sort = request.getParameter("sort");
 
-        //Chia làm hai: không lọc theo category và lọc theo category
+        //* Chia làm hai: không lọc theo category và lọc theo category
+        //  -không lọc theo category
         if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
-            if (sort != null && !sort.equals("hotest")) {
-                products = ps.getProductBySort(sort);
-            } else {
-                products = ps.getListProduct();
+            totalProducts = ps.countTotalProductsBy(null, null);
+            products = ps.getProducts(null, brand, null, null, pageIndex, pageSize);
+            if (sort != null) {
+                products = ps.getProducts(null, brand, sort, null, pageIndex, pageSize);
             }
 
         } else {
+            //  -lọc theo category
             int categoryId = Integer.parseInt(categoryIdToStr);
-            if (sort != null && !sort.equals("hotest")) {
-                products = ps.getProductsByCategoryAndSort(categoryId, sort);
-            } else {
-                products = ps.getProductsByCategory(categoryId);
-            }
-        }
-
-        //Lọc bán chạy nhất
-        Map<Integer, Integer> soldMap = ps.getBestSellingProducts();
-        if ("hotest".equals(sort)) {
-            ps.sortProductsByHotest(products, soldMap);
+            totalProducts = ps.countTotalProductsBy(categoryId, null);
+            products = ps.getProducts(categoryId, brand, null, null, pageIndex, pageSize);
+            if (sort != null)
+                products = ps.getProducts(categoryId, brand, sort, null, pageIndex, pageSize);
         }
 
         List<Category> categories = cs.getCategoryList();
+        List<Brand> brands = bs.getBrands();
 
-        // Save into request
+        int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+        //
+        Map<Integer, Integer> soldMap = ps.getSoldMap(products);
+
+        // Lưu vào trong request
         request.setAttribute("products", products);
+        request.setAttribute("soldMap", soldMap);
         request.setAttribute("categories", categories);
+        request.setAttribute("brands", brands);
+        //- phân trang
+        request.setAttribute("currentPage", pageIndex);
+        request.setAttribute("totalPages", totalPages);
 
         request.setAttribute("currentCategoryId", categoryIdToStr);
-        // Bạn nên thêm dòng này để JSP biết đang sort theo cái gì mà tô đậm nút
         request.setAttribute("currentSort", sort);
+        request.setAttribute("currentBrand", brand);
 
-        request.setAttribute("soldMap", soldMap);
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 

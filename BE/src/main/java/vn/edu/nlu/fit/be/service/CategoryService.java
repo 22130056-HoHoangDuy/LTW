@@ -6,7 +6,11 @@ import vn.edu.nlu.fit.be.model.Category;
 import java.util.List;
 
 public class CategoryService {
-    CategoryDao categoryDao = new CategoryDao();
+    private final CategoryDao categoryDao = new CategoryDao();
+
+    public List<Category> getAllCategories() {
+        return categoryDao.findAllCategory();
+    }
 
     public List<Category> getCategoryList() {
         return categoryDao.getCategoryList();
