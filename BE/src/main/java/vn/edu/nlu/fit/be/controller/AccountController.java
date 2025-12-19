@@ -52,9 +52,6 @@ public class AccountController extends HttpServlet {
         }
 
         req.setAttribute("accounts", accounts);
-
-        // ❌ Sai: /webapp/admin_accounts.jsp
-        // ✅ Đúng:
         RequestDispatcher rd = req.getRequestDispatcher("/admin_accounts.jsp");
         rd.forward(req, resp);
     }

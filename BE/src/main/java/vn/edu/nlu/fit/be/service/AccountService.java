@@ -8,6 +8,8 @@ import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
 import vn.edu.nlu.fit.be.model.Profile;
 
+import java.util.List;
+
 public class AccountService {
 
     private final AccountDao accountDao = new AccountDao();
@@ -55,4 +57,18 @@ public class AccountService {
                 .filter(a -> BCrypt.checkpw(rawPassword, a.getPassword()))
                 .orElse(null);
     }
+    /* ================= ADMIN ================= */
+
+    public List<Account> getAll() {
+        return accountDao.getAllAccounts();
+    }
+
+    public List<Account> search(String keyword) {
+        return accountDao.searchAccounts(keyword);
+    }
+
+    public boolean updateStatus(int id, AccountStatus status) {
+        return accountDao.updateStatus(id, status);
+    }
+
 }

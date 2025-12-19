@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/admin_header.jsp" %>
+<%@ include file="admin_header.jsp" %>
+
 <main class="main">
     <h2>Quản lý tài khoản</h2>
 
@@ -19,23 +21,16 @@
             </tr>
         </thead>
        <tbody>
-       <c:forEach var="o" items="${orders}">
+       <c:forEach var="a" items="${accounts}">
            <tr>
-               <td>#${o.orderId}</td>
-               <td>${o.userId}</td>
-               <td>${o.orderDate}</td>
-               <td>${o.totalAmount}đ</td>
-               <td>${o.voucherId}</td>
-               <td>${o.paymentMethod}</td>
+               <td>${a.userId}</td>
+               <td>${a.username}</td>
+               <td>${a.email}</td>
+               <td>${a.createdAt}</td>
                <td>
-                   <select class="status-select"
-                           onchange="updateStatus(this, ${o.orderId})">
-                       <c:forEach var="st" items="${T(vn.edu.nlu.fit.be.model.OrderStatus).values()}">
-                           <option value="${st}"
-                               ${st == o.statusOrder ? "selected" : ""}>
-                               ${st}
-                           </option>
-                       </c:forEach>
+                   <select onchange="updateStatus(this, ${a.userId})">
+                       <option value="ACTIVE" ${a.status == 'ACTIVE' ? 'selected' : ''}>ACTIVE</option>
+                       <option value="INACTIVE" ${a.status == 'INACTIVE' ? 'selected' : ''}>INACTIVE</option>
                    </select>
                </td>
            </tr>
@@ -47,5 +42,5 @@
 <!-- Right Panel để trống -->
 <aside class="right-panel"></aside>
 
-<%@ include file="/WEB-INF/admin_footer.jsp" %>
+<%@ include file="admin_footer.jsp" %>
 

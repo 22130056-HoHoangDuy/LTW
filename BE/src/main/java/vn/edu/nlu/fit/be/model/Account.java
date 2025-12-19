@@ -83,7 +83,7 @@ public class Account {
     }
 
     public void setEmail(String userEmail) {
-        this.email = email;
+        this.email = userEmail;
     }
 
     public int getProfileId() {
