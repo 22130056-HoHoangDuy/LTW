@@ -27,7 +27,9 @@ public class AccountDao {
                             acc.setUsername(rs.getString("username"));
                             acc.setPassword(rs.getString("password"));
                             acc.setRole(rs.getInt("role"));
-                            acc.setStatus(AccountStatus.valueOf(rs.getString("status")));
+                            acc.setStatus(
+                                    AccountStatus.valueOf(rs.getString("status").trim().toUpperCase())
+                            );
                             acc.setCreatedAt(rs.getTimestamp("created_at"));
                             return acc;
                         })
@@ -55,7 +57,9 @@ public class AccountDao {
                             acc.setUsername(rs.getString("username"));
                             acc.setPassword(rs.getString("password"));
                             acc.setRole(rs.getInt("role"));
-                            acc.setStatus(AccountStatus.valueOf(rs.getString("status")));
+                            acc.setStatus(
+                                    AccountStatus.valueOf(rs.getString("status").toUpperCase())
+                            );
                             acc.setCreatedAt(rs.getTimestamp("created_at"));
                             return acc;
                         })
