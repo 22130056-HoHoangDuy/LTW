@@ -51,4 +51,16 @@ public class AccountDao {
                         .execute()
         );
     }
+    public boolean updatePassword(int accountId, String hashedPassword) {
+        return DBConnect.get().withHandle(h ->
+                h.createUpdate("""
+                UPDATE accounts
+                SET password = :pw
+                WHERE account_id = :id
+            """)
+                        .bind("pw", hashedPassword)
+                        .bind("id", accountId)
+                        .execute()
+        ) > 0;
+    }
 }
