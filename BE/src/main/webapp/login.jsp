@@ -51,6 +51,6 @@
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/toggle-password.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>
