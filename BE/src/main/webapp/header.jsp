@@ -37,7 +37,8 @@
 
         <!-- Search -->
         <div class="sh-search-wrap">
-            <form class="sh-search-form" role="search" aria-label="Tìm sản phẩm">
+            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-search-form"
+                  role="search" aria-label="Tìm sản phẩm">
                 <button type="submit" class="sh-search-btn" aria-label="Tìm">
                     🔍
                 </button>
@@ -46,6 +47,8 @@
                         class="sh-search-input"
                         placeholder="Tìm bàn ghế, tủ, đồ chơi..."
                         aria-label="Tìm sản phẩm"
+                        name="keyword"
+                        value="${param.keyword}"
                 />
             </form>
         </div>
@@ -61,7 +64,8 @@
             </ul>
 
             <div class="sh-actions">
-                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account" aria-label="Tài khoản">👤</a>
+                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account"
+                   aria-label="Tài khoản">👤</a>
                 <a href="${pageContext.request.contextPath}/cart" target="_top" class="cart" aria-label="Giỏ hàng">
                     🛒<span class="sh-cart-badge" aria-hidden="true">2</span>
                 </a>
