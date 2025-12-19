@@ -39,7 +39,7 @@ public class ProductDao extends BaseDao {
             sqlQuery.append(" AND LOWER(p.product_name) LIKE LOWER(:keyword)");
         }
         if (brandNames != null && brandNames.length > 0) {
-            sqlQuery.append("AND b.brand_name IN (<brandNames>)");
+            sqlQuery.append(" AND b.brand_name IN (<brandNames>)");
         }
 
         // Nhóm theo product id

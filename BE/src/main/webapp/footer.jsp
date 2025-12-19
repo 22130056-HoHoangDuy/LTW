@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/css/footer.css"/>
 
-<footer class="shop-footer">
+<footer id="footer-frame" class="shop-footer">
     <div class="container">
         <div class="footer-grid">
 

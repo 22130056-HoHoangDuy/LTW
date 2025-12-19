@@ -8,9 +8,7 @@ import java.util.*;
 
 public class ProductService {
     private ProductDao pdao = new ProductDao();
-    private StockProductDao stockProductDao = new StockProductDao();
 
-    // Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
     }
@@ -20,11 +18,11 @@ public class ProductService {
         int offset = (pageIndex - 1) * pageSize;
         return pdao.getProductsBy(categoryId, brandName, sortType, keyword, 15, offset);
     }
-
+    //Hàm đếm sản phẩm xử lý khi hiện danh sách sản phẩm
     public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
         return pdao.countTotalProductsBy(categoryId, brands, keyword);
     }
-
+    //Hàm đếm sản phẩm xử lý khi search
     public int countTotalProductsBy(Integer categoryId, String keyword) {
         return pdao.countTotalProductsBy(categoryId,null, keyword);
     }
