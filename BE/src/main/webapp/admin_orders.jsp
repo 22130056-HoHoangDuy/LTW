@@ -81,7 +81,17 @@
         </tbody>
     </table>
 </main>
-
+<script>
+function updateStatus(select, orderId) {
+    fetch(`/admin/orders/status?id=${orderId}&status=${select.value}`)
+        .then(res => res.text())
+        .then(txt => {
+            if (txt !== "OK") {
+                alert("Cập nhật thất bại");
+            }
+        });
+}
+</script
 <aside class="right-panel"></aside>
 
 <%@ include file="/WEB-INF/admin_footer.jsp" %>

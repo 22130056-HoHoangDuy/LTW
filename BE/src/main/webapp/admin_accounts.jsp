@@ -8,7 +8,6 @@
         <input type="text" placeholder="Tìm kiếm tài khoản...">
         <i class="fa-solid fa-magnifying-glass"></i>
     </div>
-
     <table class="data-table">
         <thead>
             <tr>
@@ -19,39 +18,29 @@
                 <th>Trạng thái</th>
             </tr>
         </thead>
-
-        <tbody>
-            <!-- Demo data (sau này sẽ thay bằng dữ liệu từ controller) -->
-            <tr>
-                <td>KH001</td>
-                <td>Nguyễn An</td>
-                <td>an@gmail.com</td>
-                <td>10/01/2025</td>
-                <td>
-                    <button class="btn-small btn-on" onclick="toggleStatus(this)">Đang hoạt động</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>KH002</td>
-                <td>Lan Anh</td>
-                <td>lan@gmail.com</td>
-                <td>03/02/2025</td>
-                <td>
-                    <button class="btn-small btn-off" onclick="toggleStatus(this)">Ngưng hoạt động</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>KH003</td>
-                <td>Minh Phúc</td>
-                <td>phuc@gmail.com</td>
-                <td>17/03/2025</td>
-                <td>
-                    <button class="btn-small btn-on" onclick="toggleStatus(this)">Đang hoạt động</button>
-                </td>
-            </tr>
-        </tbody>
+       <tbody>
+       <c:forEach var="o" items="${orders}">
+           <tr>
+               <td>#${o.orderId}</td>
+               <td>${o.userId}</td>
+               <td>${o.orderDate}</td>
+               <td>${o.totalAmount}đ</td>
+               <td>${o.voucherId}</td>
+               <td>${o.paymentMethod}</td>
+               <td>
+                   <select class="status-select"
+                           onchange="updateStatus(this, ${o.orderId})">
+                       <c:forEach var="st" items="${T(vn.edu.nlu.fit.be.model.OrderStatus).values()}">
+                           <option value="${st}"
+                               ${st == o.statusOrder ? "selected" : ""}>
+                               ${st}
+                           </option>
+                       </c:forEach>
+                   </select>
+               </td>
+           </tr>
+       </c:forEach>
+       </tbody>
     </table>
 </main>
 

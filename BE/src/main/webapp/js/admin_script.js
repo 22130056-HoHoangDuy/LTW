@@ -55,3 +55,27 @@ new Chart(ctx2, {
         }
     }
 });
+function toggleStatus(btn) {
+    const id = btn.dataset.id;
+    const current = btn.dataset.status;
+    const newStatus = current === "Active" ? "UnActive" : "Active";
+
+    fetch(`/admin/accounts/status?id=${id}&status=${newStatus}`)
+        .then(res => res.text())
+        .then(result => {
+            if (result === "OK") {
+                btn.dataset.status = newStatus;
+
+                if (newStatus === "Active") {
+                    btn.classList.remove("btn-off");
+                    btn.classList.add("btn-on");
+                    btn.innerText = "Đang hoạt động";
+                } else {
+                    btn.classList.remove("btn-on");
+                    btn.classList.add("btn-off");
+                    btn.innerText = "Ngưng hoạt động";
+                }
+            }
+        });
+}
+
