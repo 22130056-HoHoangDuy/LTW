@@ -8,13 +8,13 @@ import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
 import vn.edu.nlu.fit.be.model.Profile;
 
-import java.util.List;
+import java.util.Optional;
 
 public class AccountService {
 
     private final AccountDao accountDao = new AccountDao();
 
-    /* ================= REGISTER ================= */
+    /* ================= Register ================= */
     public boolean register(String userName, String email, String password) {
 
         if (accountDao.existsByEmail(email)) {
@@ -49,7 +49,7 @@ public class AccountService {
         });
     }
 
-    /* ================= LOGIN ================= */
+    /* ================= Login ================= */
     public Account login(String key, String rawPassword) {
         return accountDao.findByUsernameOrEmail(key)
                 .filter(a -> a.getStatus() == AccountStatus.ACTIVE)
@@ -57,18 +57,31 @@ public class AccountService {
                 .filter(a -> BCrypt.checkpw(rawPassword, a.getPassword()))
                 .orElse(null);
     }
-    /* ================= ADMIN ================= */
 
-    public List<Account> getAll() {
-        return accountDao.getAllAccounts();
+    /* ================= ChangePassword ================= */
+    public boolean changePassword(int accountId, String oldPassword, String newPassword) {
+
+        Optional<Account> opt = DBConnect.get().withHandle(h ->
+                h.createQuery("""
+                SELECT *
+                FROM accounts
+                WHERE account_id = :id
+            """)
+                        .bind("id", accountId)
+                        .mapToBean(Account.class)
+                        .findOne()
+        );
+
+        if (opt.isEmpty()) return false;
+
+        Account acc = opt.get();
+
+        if (!BCrypt.checkpw(oldPassword, acc.getPassword())) {
+            return false;
+        }
+
+        String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+
+        return accountDao.updatePassword(accountId, hashed);
     }
-
-    public List<Account> search(String keyword) {
-        return accountDao.searchAccounts(keyword);
-    }
-
-    public boolean updateStatus(int id, AccountStatus status) {
-        return accountDao.updateStatus(id, status);
-    }
-
 }

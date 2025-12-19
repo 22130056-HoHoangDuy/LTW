@@ -40,12 +40,10 @@
         <aside class="pf-sidebar">
             <h2>Xin chào, ${sessionScope.USER.username}</h2>
             <ul>
-                <li onclick="location.href='${pageContext.request.contextPath}/profile'">
-                    Thông tin cá nhân
-                </li>
+                <li onclick="location.href='${pageContext.request.contextPath}/profile'">Thông tin cá nhân</li>
                 <li>Đơn hàng đã mua</li>
                 <li class="active">Yêu thích</li>
-                <li>Đổi mật khẩu</li>
+                <li onclick="location.href='${pageContext.request.contextPath}/change-password'">Đổi mật khẩu</li>
             </ul>
         </aside>
 

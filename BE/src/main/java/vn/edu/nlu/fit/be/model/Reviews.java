@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Reviews {
 
     private int reviewId;
-    private int userId;
+    private int accountId;
     private int productId;
     private String commentProduct;
     private Timestamp commentCreated;
@@ -13,12 +13,12 @@ public class Reviews {
     //Constructor
     public Reviews() {}
 
-    public Reviews(int reviewId, Timestamp commentCreated, String commentProduct, int productId, int userId) {
+    public Reviews(int reviewId, Timestamp commentCreated, String commentProduct, int productId, int accountId) {
         this.reviewId = reviewId;
         this.commentCreated = commentCreated;
         this.commentProduct = commentProduct;
         this.productId = productId;
-        this.userId = userId;
+        this.accountId = accountId;
     }
 
     //Getters & Setters
@@ -55,11 +55,11 @@ public class Reviews {
         this.productId = productId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 }

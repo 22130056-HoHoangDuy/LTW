@@ -3,7 +3,7 @@ package vn.edu.nlu.fit.be.model;
 public class Contact {
 
     private int contactId;
-    private int userId;
+    private int accountId;
     private String fullName;
     private String phone;
     private String email;
@@ -14,9 +14,9 @@ public class Contact {
 
     public Contact() {}
 
-    public Contact(int contactId, int userId, String fullName, String phone, String email, String address, String opinion) {
+    public Contact(int contactId, int accountId, String fullName, String phone, String email, String address, String opinion) {
         this.contactId = contactId;
-        this.userId = userId;
+        this.accountId = accountId;
         this.fullName = fullName;
         this.phone = phone;
         this.email = email;
@@ -66,12 +66,12 @@ public class Contact {
         this.fullName = fullName;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public int getContactId() {
