@@ -37,6 +37,7 @@
 .contact-info p {
     margin: 5px 0;
     color: var(--muted);
+    font-size :0.9rem;
 }
 
 .contact-info a {
@@ -68,6 +69,12 @@
     text-decoration: underline;
 }
 
+.footer-links h4 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    font-weight: bold;
+}
+
 /* Social & Payment */
 .social-icons {
     display: flex;
@@ -93,7 +100,11 @@
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
 }
-
+.footer-socials h4{
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
 .payment-icons {
     display: flex;
     flex-wrap: wrap;
@@ -131,6 +142,11 @@
 
 .footer-newsletter button:hover {
     opacity: 0.9;
+}
+.footer-newsletter h4{
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 /* Bottom */

@@ -1,4 +1,4 @@
-const form = document.querySelector(".contact-container form");
+// const form = document.querySelector(".contact-container form");
 const submitContact = form.querySelector("button");
 submitContact.addEventListener("click", (e) => {
     e.preventDefault();

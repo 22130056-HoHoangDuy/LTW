@@ -113,3 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Lấy tất cả checkbox brand
+    const brandCheckboxes = document.querySelectorAll('#brandFilterForm input[type="checkbox"]');
+
+    brandCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", function() {
+            // Tìm form cha và submit
+            const form = document.getElementById('brandFilterForm');
+            if (form) {
+                form.submit();
+            }
+        });
+    });
+});

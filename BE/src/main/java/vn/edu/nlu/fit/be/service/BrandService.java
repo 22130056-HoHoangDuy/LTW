@@ -11,4 +11,8 @@ public class BrandService {
     public List<Brand> getBrands() {
         return bd.getBrands();
     }
+
+    public Brand getBrandById(int id) {
+        return bd.getBrandById(id);
+    }
 }

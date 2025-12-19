@@ -12,8 +12,10 @@ public class StockProductService {
         return sd.getStockProducts();
     }
 
-    public int getTotalSoldQuantity(int stockProductId) {
-        return sd.getTotalSoldQuantity(stockProductId);
+    public boolean checkProductAvailable(int productId) {
+        int totalImportedQuantityProduct = sd.getTotalImportedByProductId(productId);
+        int totalSoldQuantityProduct = sd.getTotalSoldQuantity(productId);
+        return totalImportedQuantityProduct > totalSoldQuantityProduct;
     }
 
 }

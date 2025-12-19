@@ -1,7 +1,7 @@
 package vn.edu.nlu.fit.be.dao;
 
 import org.jdbi.v3.core.statement.Query;
-import vn.edu.nlu.fit.be.model.Product;
+import vn.edu.nlu.fit.be.model.*;
 
 import java.util.*;
 
@@ -16,19 +16,20 @@ public class ProductDao extends BaseDao {
     public Product getProductById(int id) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT * FROM products WHERE product_id = :id")
+                        .bind("id", id)
                         .mapToBean(Product.class)
                         .findOne()
                         .orElse(null))
                 ;
     }
 
-    public List<Product> getProductsBy(Integer categoryId, String brandName, String sortType, String keyword, int limit, int offset) {
+    public List<Product> getProductsBy(Integer categoryId, String[] brandNames, String sortType, String keyword, int limit, int offset) {
         StringBuilder sqlQuery = new StringBuilder("SELECT p.*,SUM(sp.sold_quantity) as total_sold");
         sqlQuery.append(" FROM products p");
 
         //Join table
         sqlQuery.append(" LEFT JOIN stock_products sp ON p.product_id = sp.product_id ");
-        sqlQuery.append(" JOIN brands b ON p.brand_id = b.brand_id");
+        sqlQuery.append(" LEFT JOIN brands b ON p.brand_id = b.brand_id");
         sqlQuery.append(" WHERE 1=1 "); // để dùng AND cho dễ dàng
 
         if (categoryId != null) {
@@ -37,8 +38,8 @@ public class ProductDao extends BaseDao {
         if (keyword != null && !keyword.isEmpty()) {
             sqlQuery.append(" AND LOWER(p.product_name) LIKE LOWER(:keyword)");
         }
-        if (brandName != null && !brandName.isEmpty()) {
-            sqlQuery.append("AND b.brand_name = :brandName");
+        if (brandNames != null && brandNames.length > 0) {
+            sqlQuery.append(" AND b.brand_name IN (<brandNames>)");
         }
 
         // Nhóm theo product id
@@ -75,8 +76,8 @@ public class ProductDao extends BaseDao {
                     if (keyword != null && !keyword.isEmpty()) {
                         query.bind("keyword", "%" + keyword + "%");
                     }
-                    if (brandName != null && !brandName.isEmpty()) {
-                        query.bind("brandName", brandName);
+                    if (brandNames != null && brandNames.length > 0) {
+                        query.bindList("brandNames", Arrays.asList(brandNames));
                     }
                     //Bind tham số limit và offset cho phân trang
                     query.bind("limit", limit);
@@ -87,16 +88,19 @@ public class ProductDao extends BaseDao {
         );
     }
 
-    public int countTotalProductsBy(Integer categoryId, String keyword) {
-        StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(*) FROM products");
-
+    public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
+        StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(p.product_id) FROM products p");
+        sqlQuery.append(" LEFT JOIN brands b ON p.brand_id = b.brand_id");
         sqlQuery.append(" WHERE 1=1");
 
         if (categoryId != null) {
-            sqlQuery.append(" AND category_id = :catId");
+            sqlQuery.append(" AND p.category_id = :catId");
         }
         if (keyword != null && !keyword.isEmpty()) {
-            sqlQuery.append(" AND LOWER(product_name) LIKE LOWER(:keyword)");
+            sqlQuery.append(" AND LOWER(p.product_name) LIKE LOWER(:keyword)");
+        }
+        if (brands != null && brands.length > 0) {
+            sqlQuery.append(" AND b.brand_name IN(<brand_name>)");
         }
 
 
@@ -107,6 +111,9 @@ public class ProductDao extends BaseDao {
                     }
                     if (keyword != null && !keyword.isEmpty()) {
                         query.bind("keyword", "%" + keyword + "%");
+                    }
+                    if (brands != null && brands.length > 0) {
+                        query.bindList("brand_name", brands);
                     }
                     return query.mapTo(Integer.class).one();
                 }
@@ -122,7 +129,26 @@ public class ProductDao extends BaseDao {
         );
     }
 
+    public List<String> getImagesListInProduct(int productId) {
+        return jdbi.withHandle(
+                handle ->
+                        handle.createQuery("SELECT img.product_img FROM product_list_images img" +
+                                        " JOIN products p ON img.product_id = p.product_id" +
+                                        " WHERE img.product_id =:id")
+                                .bind("id", productId)
+                                .mapTo(String.class)
+                                .list()
+        );
+    }
 
+    public List<Map<String, Object>> getProductDetails(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT detail_img, product_description FROM product_details WHERE product_id = :id ORDER BY product_detail_id ASC")
+                        .bind("id", productId)
+                        .mapToMap()
+                        .list()
+        );
+    }
 }
 
 

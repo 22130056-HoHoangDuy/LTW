@@ -44,29 +44,21 @@ public class ProductListController extends HttpServlet {
 
         // Lấy tham số từ url
         String categoryIdToStr = request.getParameter("category_id");
-        String brand = request.getParameter("brand");
+        String[] brands = request.getParameterValues("brand");
         String sort = request.getParameter("sort");
 
         //* Chia làm hai: không lọc theo category và lọc theo category
-        //  -không lọc theo category
-        if (categoryIdToStr == null || categoryIdToStr.isEmpty()) {
-            totalProducts = ps.countTotalProductsBy(null, null);
-            products = ps.getProducts(null, brand, null, null, pageIndex, pageSize);
-            if (sort != null) {
-                products = ps.getProducts(null, brand, sort, null, pageIndex, pageSize);
-            }
 
-        } else {
-            //  -lọc theo category
-            int categoryId = Integer.parseInt(categoryIdToStr);
-            totalProducts = ps.countTotalProductsBy(categoryId, null);
-            products = ps.getProducts(categoryId, brand, null, null, pageIndex, pageSize);
-            if (sort != null)
-                products = ps.getProducts(categoryId, brand, sort, null, pageIndex, pageSize);
+        Integer categoryId = null;
+        if (categoryIdToStr != null && !categoryIdToStr.isEmpty()) {
+            categoryId = Integer.parseInt(categoryIdToStr);
         }
+        totalProducts = ps.countTotalProductsBy(categoryId, brands, null);
+        products = ps.getProducts(categoryId, brands, sort, null, pageIndex, pageSize);
+
 
         List<Category> categories = cs.getCategoryList();
-        List<Brand> brands = bs.getBrands();
+        List<Brand> totalBrands = bs.getBrands();
 
         int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 
@@ -77,14 +69,14 @@ public class ProductListController extends HttpServlet {
         request.setAttribute("products", products);
         request.setAttribute("soldMap", soldMap);
         request.setAttribute("categories", categories);
-        request.setAttribute("brands", brands);
+        request.setAttribute("brands", totalBrands);
         //- phân trang
         request.setAttribute("currentPage", pageIndex);
         request.setAttribute("totalPages", totalPages);
 
         request.setAttribute("currentCategoryId", categoryIdToStr);
         request.setAttribute("currentSort", sort);
-        request.setAttribute("currentBrand", brand);
+        request.setAttribute("currentBrand", brands);
 
         request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
