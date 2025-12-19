@@ -5,16 +5,15 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
+body { background: red !important; }
 
-    color: #333;
-}
 .dashboard {
     display: grid;
 }
 
 .sidebar .menu a i {
     font-size: 18px;
+}
 .card-large, .card-small {
     background: #fff;
     border-radius: 20px;
@@ -220,4 +219,4 @@ body {
 
 .task-time {
     font-weight: 600;
-
+}

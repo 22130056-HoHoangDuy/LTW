@@ -1,15 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="admin_header.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
-<div class="dashboard">
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Admin - Quản lý tài khoản</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+    <!-- JS LIB -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <nav class="menu">
-
             <a href="${pageContext.request.contextPath}/admin/overview">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
@@ -24,7 +40,6 @@
                 <i class="fa-solid fa-user"></i>
                 <span>Tài khoản</span>
             </a>
-
         </nav>
     </aside>
 
@@ -55,9 +70,13 @@
                         <td>
                             <select onchange="updateStatus(this, ${a.accountId})">
                                 <option value="ACTIVE"
-                                        ${a.status == 'ACTIVE' ? 'selected' : ''}>ACTIVE</option>
+                                        <c:if test="${a.status == 'ACTIVE'}">selected</c:if>>
+                                    ACTIVE
+                                </option>
                                 <option value="INACTIVE"
-                                        ${a.status == 'INACTIVE' ? 'selected' : ''}>INACTIVE</option>
+                                        <c:if test="${a.status == 'INACTIVE'}">selected</c:if>>
+                                    INACTIVE
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -70,13 +89,20 @@
     </div>
 </div>
 
+<!-- JS -->
+<script src="${pageContext.request.contextPath}/js/admin_script.js"></script>
+
 <script>
     function updateStatus(select, id) {
         fetch(`${pageContext.request.contextPath}/admin/accounts/status?id=${id}&status=${select.value}`)
             .then(res => res.text())
             .then(txt => {
-                if (txt !== "OK") alert("Cập nhật thất bại");
+                if (txt !== "OK") {
+                    alert("Cập nhật thất bại");
+                }
             });
     }
 </script>
-<jsp:include page="admin_footer.jsp"/>
+
+</body>
+</html>
