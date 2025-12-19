@@ -15,7 +15,7 @@ public class OrdersDao {
                         .map((rs, ctx) -> {
                             Orders o = new Orders();
                             o.setOrderId(rs.getInt("order_id"));
-                            o.setUserId(rs.getInt("account_id"));
+                            o.setAccountId(rs.getInt("account_id"));
                             o.setVoucherId(rs.getInt("voucher_id"));
                             o.setTotalAmount(rs.getInt("total_amount"));
                             o.setDeliveryAddress(rs.getString("delivery_address"));

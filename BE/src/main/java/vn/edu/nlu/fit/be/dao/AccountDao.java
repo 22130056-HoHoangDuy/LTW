@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
-
+import vn.edu.nlu.fit.be.model.AccountStatus;
+import java.util.List;
 import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.model.Account;
 
@@ -63,4 +64,47 @@ public class AccountDao {
                         .execute()
         ) > 0;
     }
+    /* ================= Admin ================= */
+
+    public boolean updateStatus(int accountId, AccountStatus status) {
+        return DBConnect.get().withHandle(h ->
+                h.createUpdate("""
+                UPDATE accounts
+                SET status = :status
+                WHERE account_id = :id
+            """)
+                        .bind("status", status.name())
+                        .bind("id", accountId)
+                        .execute()
+        ) > 0;
+    }
+
+    public List<Account> findAll() {
+        return DBConnect.get().withHandle(h ->
+                h.createQuery("""
+                SELECT *
+                FROM accounts
+                ORDER BY account_id DESC
+            """)
+                        .mapToBean(Account.class)
+                        .list()
+        );
+    }
+
+    public List<Account> search(String keyword) {
+        String kw = "%" + keyword + "%";
+        return DBConnect.get().withHandle(h ->
+                h.createQuery("""
+                SELECT *
+                FROM accounts
+                WHERE username LIKE :kw
+                   OR email LIKE :kw
+                ORDER BY account_id DESC
+            """)
+                        .bind("kw", kw)
+                        .mapToBean(Account.class)
+                        .list()
+        );
+    }
+
 }

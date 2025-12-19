@@ -7,7 +7,9 @@ import vn.edu.nlu.fit.be.dao.ProfileDao;
 import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
 import vn.edu.nlu.fit.be.model.Profile;
+import java.util.List;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AccountService {
@@ -83,5 +85,19 @@ public class AccountService {
         String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
 
         return accountDao.updatePassword(accountId, hashed);
+    }
+
+    /* ================= Admin ================= */
+
+    public boolean updateStatus(int id, AccountStatus status) {
+        return accountDao.updateStatus(id, status);
+    }
+
+    public List<Account> getAll() {
+        return accountDao.findAll();
+    }
+
+    public List<Account> search(String keyword) {
+        return accountDao.search(keyword);
     }
 }

@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="admin_header.jsp" %>
-
+<jsp:include page="admin_header.jsp"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
 <div class="dashboard">
+
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
@@ -46,12 +48,12 @@
                 <tbody>
                 <c:forEach var="a" items="${accounts}">
                     <tr>
-                        <td>${a.userId}</td>
+                        <td>${a.accountId}</td>
                         <td>${a.username}</td>
                         <td>${a.email}</td>
                         <td>${a.createdAt}</td>
                         <td>
-                            <select onchange="updateStatus(this, ${a.userId})">
+                            <select onchange="updateStatus(this, ${a.accountId})">
                                 <option value="ACTIVE"
                                         ${a.status == 'ACTIVE' ? 'selected' : ''}>ACTIVE</option>
                                 <option value="INACTIVE"
@@ -77,5 +79,4 @@
             });
     }
 </script>
-
-<%@ include file="admin_footer.jsp" %>
+<jsp:include page="admin_footer.jsp"/>
