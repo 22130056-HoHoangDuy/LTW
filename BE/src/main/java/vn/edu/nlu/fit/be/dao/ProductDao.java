@@ -133,6 +133,7 @@ public class ProductDao extends BaseDao {
         return jdbi.withHandle(
                 handle ->
                         handle.createQuery("SELECT img.image FROM product_images img" +
+
                                         " JOIN products p ON img.product_id = p.product_id" +
                                         " WHERE img.product_id =:id")
                                 .bind("id", productId)
@@ -144,6 +145,7 @@ public class ProductDao extends BaseDao {
     public List<Map<String, Object>> getProductDetails(int productId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT detail_image, description FROM product_details WHERE product_id = :id ORDER BY product_detail_id ASC")
+
                         .bind("id", productId)
                         .mapToMap()
                         .list()

@@ -85,6 +85,7 @@
                             <a href="<c:url value='/product-list?category_id=${category.categoryId}'/>">
                                 <img
                                         src="${category.categoryImage}"
+
                                         alt="Hình ảnh bị lỗi"
                                 />
                                 <span>${category.categoryName}</span>
