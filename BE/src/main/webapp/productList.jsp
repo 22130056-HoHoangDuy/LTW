@@ -291,7 +291,9 @@
                         <i class="fa-solid fa-eye"></i>
                     </a>
 
-                    <a class="filter-btn favor-btn" href="" title="Thêm vào danh sách yêu thích">
+                    <a class="filter-btn favor-btn"
+                       href="${pageContext.request.contextPath}/my-favorite?action=add&product_id=${product.productId}"
+                       title="Thêm vào danh sách yêu thích">
                         <i class="fa-solid fa-heart"></i>
                     </a>
 
