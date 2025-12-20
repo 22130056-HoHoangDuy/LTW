@@ -54,10 +54,10 @@ public class ProductDao extends BaseDao {
                     sqlQuery.append(" ORDER BY p.product_price DESC ");
                     break;
                 case "oldest":
-                    sqlQuery.append(" ORDER BY p.created_product ASC ");
+                    sqlQuery.append(" ORDER BY p.created_at ASC ");
                     break;
                 case "latest":
-                    sqlQuery.append(" ORDER BY p.created_product DESC ");
+                    sqlQuery.append(" ORDER BY p.created_at DESC ");
                     break;
                 case "best_selling":
                     sqlQuery.append(" ORDER BY total_sold DESC ");
@@ -132,7 +132,8 @@ public class ProductDao extends BaseDao {
     public List<String> getImagesListInProduct(int productId) {
         return jdbi.withHandle(
                 handle ->
-                        handle.createQuery("SELECT img.product_img FROM product_list_images img" +
+                        handle.createQuery("SELECT img.image FROM product_images img" +
+
                                         " JOIN products p ON img.product_id = p.product_id" +
                                         " WHERE img.product_id =:id")
                                 .bind("id", productId)
@@ -143,7 +144,8 @@ public class ProductDao extends BaseDao {
 
     public List<Map<String, Object>> getProductDetails(int productId) {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT detail_img, product_description FROM product_details WHERE product_id = :id ORDER BY product_detail_id ASC")
+                handle.createQuery("SELECT detail_image, description FROM product_details WHERE product_id = :id ORDER BY product_detail_id ASC")
+
                         .bind("id", productId)
                         .mapToMap()
                         .list()
