@@ -4,18 +4,18 @@ public class Category {
 
     private int categoryId;
     private String categoryName;
-    private String categoryImg;
-    private String categoryDescription;
+    private String categoryImage;
+    private String description;
 
     //Constructor
 
     public Category() {
     }
 
-    public Category(int categoryId, String categoryDescription, String categoryImg, String categoryName) {
+    public Category(int categoryId, String description, String categoryImage, String categoryName) {
         this.categoryId = categoryId;
-        this.categoryDescription = categoryDescription;
-        this.categoryImg = categoryImg;
+        this.description = description;
+        this.categoryImage = categoryImage;
         this.categoryName = categoryName;
     }
 
@@ -29,20 +29,20 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setDescription(String categoryDescription) {
+        this.description = categoryDescription;
     }
 
-    public String getCategoryImg() {
-        return categoryImg;
+    public String getCategoryImage() {
+        return categoryImage;
     }
 
-    public void setCategoryImg(String categoryImg) {
-        this.categoryImg = categoryImg;
+    public void setCategoryImage(String categoryImg) {
+        this.categoryImage = categoryImg;
     }
 
     public String getCategoryName() {

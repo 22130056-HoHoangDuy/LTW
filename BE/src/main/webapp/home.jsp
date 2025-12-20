@@ -9,20 +9,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyShop Việt Nam</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
           integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-<%--          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">--%>
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"--%>
-<%--            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"--%>
-<%--            crossorigin="anonymous"></script>--%>
-<%--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>--%>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -39,8 +32,8 @@
     <div class="category-grid">
         <c:forEach items="${categories}" var="c">
             <div class="cat-item">
-<%--                <a href="productList?categoryId=${c.categoryId}">--%>
-                    <img src="${c.categoryImg}" alt="${c.categoryName}">
+                    <%--<a href="productList?categoryId=${c.categoryId}">--%>
+                <img src="${c.categoryImage}" alt="${c.categoryName}">
                 </a>
                 <p>${c.categoryName}</p>
             </div>
@@ -56,10 +49,10 @@
 
 <!-- Chính sách -->
 <section class="policies">
-    <div class="policy">BẢO HÀNH CHÍNH HÃNG </div>
-    <div class="policy">BẢO TRÌ TRỌN ĐỜI </div>
-    <div class="policy">LẮP ĐẶT MIỄN PHÍ </div>
-    <div class="policy">MIỄN PHÍ VẬN CHUYỂN </div>
+    <div class="policy">BẢO HÀNH CHÍNH HÃNG</div>
+    <div class="policy">BẢO TRÌ TRỌN ĐỜI</div>
+    <div class="policy">LẮP ĐẶT MIỄN PHÍ</div>
+    <div class="policy">MIỄN PHÍ VẬN CHUYỂN</div>
 </section>
 
 <!-- Combo nổi bật -->
@@ -376,7 +369,7 @@
                         <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
+                        <a class="filter-btn favor-btn" href="#" title=" Sản phẩm Yêu thích">
                             <i class="fa-solid fa-heart"></i>
                         </a>
                     </div>
@@ -773,7 +766,6 @@
         <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 </section>
-
 
 
 <section class="section">
@@ -2258,19 +2250,20 @@
         slides.forEach(slide => track.appendChild(slide));
 
         let currentIndex = 0;
+
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
         next.addEventListener('click', () => {
-            if(currentIndex < slides.length - 1){
+            if (currentIndex < slides.length - 1) {
                 currentIndex++;
                 updateCarousel();
             }
         });
 
         prev.addEventListener('click', () => {
-            if(currentIndex > 0){
+            if (currentIndex > 0) {
                 currentIndex--;
                 updateCarousel();
             }
