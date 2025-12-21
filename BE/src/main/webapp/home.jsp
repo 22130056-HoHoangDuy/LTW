@@ -12,16 +12,21 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyShop Việt Nam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 <!-- Banner chính -->
 <section class="hero">
-    <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img">
+    <div class="hero-content">
+        <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img" alt="Banner">
+        <div class="hero-text">
+            <h1>Chào mừng bé yêu đến với thế giới diệu kỳ</h1>
+            <p>Sản phẩm an toàn - Chất lượng quốc tế - Giá cả yêu thương</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </div>
 </section>
 <!-- Danh mục sản phẩm -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -49,10 +54,34 @@
 
 <!-- Chính sách -->
 <section class="policies">
-    <div class="policy">BẢO HÀNH CHÍNH HÃNG</div>
-    <div class="policy">BẢO TRÌ TRỌN ĐỜI</div>
-    <div class="policy">LẮP ĐẶT MIỄN PHÍ</div>
-    <div class="policy">MIỄN PHÍ VẬN CHUYỂN</div>
+    <div class="policy-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div class="policy-text">
+            <h4>Bảo hành chính hãng</h4>
+            <p>Cam kết 100%</p>
+        </div>
+    </div>
+    <div class="policy-item">
+        <i class="fa-solid fa-wrench"></i>
+        <div class="policy-text">
+            <h4>Bảo trì trọn đời</h4>
+            <p>Hỗ trợ 24/7</p>
+        </div>
+    </div>
+    <div class="policy-item">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div class="policy-text">
+            <h4>Miễn phí vận chuyển</h4>
+            <p>Đơn từ 500k</p>
+        </div>
+    </div>
+    <div class="policy-item">
+        <i class="fa-solid fa-gift"></i>
+        <div class="policy-text">
+            <h4>Quà tặng hấp dẫn</h4>
+            <p>Cho thành viên mới</p>
+        </div>
+    </div>
 </section>
 
 <!-- Combo nổi bật -->
@@ -60,7 +89,6 @@
     <h2>ĐỒ NỘI THẤT MỚI NHẤT</h2>
     <div class="carousel-wrapper">
         <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-
         <div class="carousel-track">
             <div class="product-grid">
                 <!-- Thêm tất cả product-card ở đây -->
@@ -93,673 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title=" Sản phẩm Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -776,705 +138,39 @@
         <div class="carousel-track">
             <div class="product-grid">
                 <!-- Thêm tất cả product-card ở đây -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
+
+                <c:forEach items="${decorates}" var="decorate">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <a href="<c:url value='/product-detail?product_id=${decorate.productId}'/>">
+                                <img src="${decorate.productImage}" alt="Hình ảnh bị lỗi"/>
+                            </a>
                         </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
+                        <h4 class="product-title">${decorate.productName}</h4>
+                        <p class="price">${decorate.productPrice}đ</p>
+                        <div class="product-actions">
+                            <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </a>
+                            <a class="filter-btn detail-btn"
+                               href="<c:url value='/product-detail?product_id=${decorate.productId}'/>"
+                               title="Xem chi tiết">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <a class="filter-btn favor-btn" href="#" title="Yêu thích">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
+                        <div class="product-stats">
+                            <div class="sold">
+                                Đã bán <span>${soldDecorated[decorate.productId]}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
-                        </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
+
             </div>
         </div>
-
         <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 </section>
@@ -1755,7 +451,7 @@
                         </a>
                     </div>
                     <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
+                    <p class="price">7.500.000đ</p>
                     <div class="product-actions">
                         <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
                             <i class="fa-solid fa-cart-plus"></i>
@@ -2194,38 +890,7 @@
 
 </body>
 <script>
-    let index = 0;
-    const slides = document.querySelectorAll(".slide");
-    const total = slides.length;
 
-    // Đặt vị trí ban đầu
-    slides.forEach((s, i) => {
-        s.style.transform = `translateX(${i * 100}%)`;
-    });
-
-    // Chuyển slide
-    function showSlide() {
-        index = (index + 1) % total;
-
-        slides.forEach((s, i) => {
-            s.style.transform = `translateX(${(i - index) * 100}%)`;
-        });
-    }
-
-    // Chờ load ảnh xong rồi mới hiện slider
-    let loadedCount = 0;
-
-    slides.forEach(img => {
-        img.onload = () => {
-            loadedCount++;
-            if (loadedCount === total) {
-                document.querySelector(".slider").classList.add("loaded");
-            }
-        };
-    });
-
-    // Auto chạy
-    setInterval(showSlide, 5000);
     document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
         const track = wrapper.querySelector('.carousel-track');
         const grid = wrapper.querySelector('.product-grid');
@@ -2233,7 +898,7 @@
         const next = wrapper.querySelector('.carousel-btn.next');
 
         const cards = Array.from(grid.children);
-        const cardsPerSlide = 12;
+        const cardsPerSlide = 6;
         const slideCount = Math.ceil(cards.length / cardsPerSlide);
 
         // Tạo slides
@@ -2250,20 +915,19 @@
         slides.forEach(slide => track.appendChild(slide));
 
         let currentIndex = 0;
-
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
         next.addEventListener('click', () => {
-            if (currentIndex < slides.length - 1) {
+            if(currentIndex < slides.length - 1){
                 currentIndex++;
                 updateCarousel();
             }
         });
 
         prev.addEventListener('click', () => {
-            if (currentIndex > 0) {
+            if(currentIndex > 0){
                 currentIndex--;
                 updateCarousel();
             }
@@ -2271,4 +935,5 @@
     });
 
 </script>
+
 </html>

@@ -18,13 +18,19 @@ public class ProductService {
         int offset = (pageIndex - 1) * pageSize;
         return pdao.getProductsBy(categoryId, brandName, sortType, keyword, 15, offset);
     }
+
+    public List<Product> getNewestProductsByCategory(int categoryId, String sortType) {
+        return pdao.getProductsBy(categoryId, null, sortType, null, null, null);
+    }
+
     //Hàm đếm sản phẩm xử lý khi hiện danh sách sản phẩm
     public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
         return pdao.countTotalProductsBy(categoryId, brands, keyword);
     }
+
     //Hàm đếm sản phẩm xử lý khi search
     public int countTotalProductsBy(Integer categoryId, String keyword) {
-        return pdao.countTotalProductsBy(categoryId,null, keyword);
+        return pdao.countTotalProductsBy(categoryId, null, keyword);
     }
 
     public int getTotalSoldQuantity(int productId) {

@@ -23,7 +23,7 @@ public class ProductDao extends BaseDao {
                 ;
     }
 
-    public List<Product> getProductsBy(Integer categoryId, String[] brandNames, String sortType, String keyword, int limit, int offset) {
+    public List<Product> getProductsBy(Integer categoryId, String[] brandNames, String sortType, String keyword, Integer limit, Integer offset) {
         StringBuilder sqlQuery = new StringBuilder("SELECT p.*,SUM(sp.sold_quantity) as total_sold");
         sqlQuery.append(" FROM products p");
 
@@ -67,7 +67,12 @@ public class ProductDao extends BaseDao {
             }
 
         }
-        sqlQuery.append(" LIMIT :limit OFFSET :offset");
+        if (limit != null) {
+            sqlQuery.append(" LIMIT :limit");
+        }
+        if (offset != null) {
+            sqlQuery.append(" OFFSET :offset");
+        }
         return jdbi.withHandle(handle -> {
                     Query query = handle.createQuery(sqlQuery.toString());
                     if (categoryId != null) {
@@ -80,13 +85,19 @@ public class ProductDao extends BaseDao {
                         query.bindList("brandNames", Arrays.asList(brandNames));
                     }
                     //Bind tham số limit và offset cho phân trang
-                    query.bind("limit", limit);
-                    query.bind("offset", offset);
+                    if (limit != null) {
+                        query.bind("limit", limit);
 
+                    }
+                    if (offset != null) {
+                        query.bind("offset", offset);
+
+                    }
                     return query.mapToBean(Product.class).list();
                 }
         );
     }
+
 
     public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
         StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(p.product_id) FROM products p");
