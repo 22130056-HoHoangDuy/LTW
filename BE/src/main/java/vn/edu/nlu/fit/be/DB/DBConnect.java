@@ -5,7 +5,7 @@ import org.jdbi.v3.core.Jdbi;
 import java.sql.*;
 
 public class DBConnect {
-    private static Jdbi jdbi;
+    public static Jdbi jdbi;
 
     static {
         try {
