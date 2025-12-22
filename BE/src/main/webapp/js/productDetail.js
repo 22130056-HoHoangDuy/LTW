@@ -59,50 +59,50 @@ tabList.forEach((link) => {
     });
 })
 
-const commentInput = document.getElementById("feedback-input");
-const sendBtn = document.getElementById("btn-send-feedback");
-const commentContainer = document.getElementById("comment-list");
-
-if (commentInput && sendBtn) {
-    const toggleSendBtnColor = (isFocused) => {
-        if (isFocused) {
-            sendBtn.classList.add("focused");
-        } else {
-            sendBtn.classList.remove("focused");
-        }
-    };
-    commentInput.addEventListener("focus", () => toggleSendBtnColor(true));
-    commentInput.addEventListener("blur", () => toggleSendBtnColor(false));
-    const submitComment = () => {
-        const text = commentInput.value.trim();
-        if (!text) return;
-        // Tạo div comment
-        const commentDiv = document.createElement("div");
-        commentDiv.classList.add("comment-item");
-        // Header: tên + icon
-        commentDiv.innerHTML = `
-                        <div class="comment-header">
-                            <span>Lâm Doanh</span>
-                            <span style="color:green;">✔ Đã mua tại BabyStore.com.vn</span>
-                        </div>
-                        <div class="comment-content">${text}</div>
-                        <div class="comment-date">${new Date().toLocaleDateString(
-            "vi-VN"
-        )}</div>
-                    `;
-        commentContainer.appendChild(commentDiv);
-        commentInput.value = "";
-        toggleSendBtnColor(true);
-    };
-    sendBtn.addEventListener("click", submitComment);
-    commentInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            submitComment();
-        }
-    });
-}
-;
+// const commentInput = document.getElementById("feedback-input");
+// const sendBtn = document.getElementById("btn-send-feedback");
+// const commentContainer = document.getElementById("comment-list");
+//
+// if (commentInput && sendBtn) {
+//     const toggleSendBtnColor = (isFocused) => {
+//         if (isFocused) {
+//             sendBtn.classList.add("focused");
+//         } else {
+//             sendBtn.classList.remove("focused");
+//         }
+//     };
+//     commentInput.addEventListener("focus", () => toggleSendBtnColor(true));
+//     commentInput.addEventListener("blur", () => toggleSendBtnColor(false));
+//     const submitComment = () => {
+//         const text = commentInput.value.trim();
+//         if (!text) return;
+//         // Tạo div comment
+//         const commentDiv = document.createElement("div");
+//         commentDiv.classList.add("comment-item");
+//         // Header: tên + icon
+//         commentDiv.innerHTML = `
+//                         <div class="comment-header">
+//                             <span>Lâm Doanh</span>
+//                             <span style="color:green;">✔ Đã mua tại BabyStore.com.vn</span>
+//                         </div>
+//                         <div class="comment-content">${text}</div>
+//                         <div class="comment-date">${new Date().toLocaleDateString(
+//             "vi-VN"
+//         )}</div>
+//                     `;
+//         commentContainer.appendChild(commentDiv);
+//         commentInput.value = "";
+//         toggleSendBtnColor(true);
+//     };
+//     sendBtn.addEventListener("click", submitComment);
+//     commentInput.addEventListener("keydown", (e) => {
+//         if (e.key === "Enter") {
+//             e.preventDefault();
+//             submitComment();
+//         }
+//     });
+// }
+// ;
 
 function increaseQty() {
     var input = document.getElementById('quantity');

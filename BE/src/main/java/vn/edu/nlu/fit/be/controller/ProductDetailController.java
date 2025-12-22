@@ -6,10 +6,8 @@ import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.be.model.Brand;
 import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
-import vn.edu.nlu.fit.be.service.BrandService;
-import vn.edu.nlu.fit.be.service.CategoryService;
-import vn.edu.nlu.fit.be.service.ProductService;
-import vn.edu.nlu.fit.be.service.StockProductService;
+import vn.edu.nlu.fit.be.model.Reviews;
+import vn.edu.nlu.fit.be.service.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,6 +21,7 @@ public class ProductDetailController extends HttpServlet {
         StockProductService sps = new StockProductService();
         CategoryService cs = new CategoryService();
         BrandService bs = new BrandService();
+        ReviewService rs = new ReviewService();
         //Lấy productId sản phẩm từ trang product list
         int productId = Integer.parseInt(request.getParameter("product_id"));
         Product product = ps.getProductById(productId);
@@ -52,6 +51,9 @@ public class ProductDetailController extends HttpServlet {
         List<Map<String, Object>> getProductDetails = ps.getProductDetails(productId);
         request.setAttribute("details", getProductDetails);
 
+        //Lấy ra bình luận về sản phẩm
+        List<Map<String, Object>> reviewsByProductId = rs.getReviewsByProductId(productId);
+        request.setAttribute("reviewList", reviewsByProductId);
         //Chuyển đến trang product detail
         request.getRequestDispatcher("productDetail.jsp").forward(request, response);
     }

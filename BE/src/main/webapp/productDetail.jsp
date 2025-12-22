@@ -183,9 +183,47 @@
             </div>
             <div id="tab-feedback" class="tab-content" style="display: none;">
                 <div class="feedback-area">
-                    <textarea id="feedback-input" placeholder="Nhập đánh giá của bạn..." rows="5"></textarea>
-                    <button type="button" id="btn-send-feedback">Gửi đánh giá</button>
-                    <div id="comment-list"></div>
+
+                    <form action="add-review" method="post">
+
+                        <input type="hidden" name="product_id" value="${product.productId}">
+
+                        <textarea name="comment" id="feedback-input" placeholder="Nhập đánh giá của bạn..." rows="5"
+                                  required></textarea>
+
+                        <button type="submit" id="btn-send-feedback">Gửi đánh giá</button>
+                    </form>
+                    <div id="comment-list">
+                        <c:if test="${not empty reviewList}">
+                            <c:forEach var="rv" items="${reviewList}">
+                                <div class="comment-item">
+                                    <div class="comment-body">
+                                        <div class="comment-header">
+                                            <span class="user-name">${rv.username}</span>
+                                            <span class="verified-badge">
+                                            <i class="fa-solid fa-circle-check"></i> Đã mua tại BabyStore
+                                            </span>
+                                        </div>
+
+                                        <div class="comment-content">
+                                                ${rv.comment}
+                                        </div>
+
+                                        <div class="comment-date">
+                                            Thời gian: ${rv.created_at}
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:if>
+
+                        <c:if test="${empty reviewList}">
+                            <div class="no-reviews">
+                                <i class="fa-regular fa-comment-dots"></i>
+                                <p>Chưa có đánh giá nào.</p>
+                            </div>
+                        </c:if>
+                    </div>
                 </div>
             </div>
         </div>
