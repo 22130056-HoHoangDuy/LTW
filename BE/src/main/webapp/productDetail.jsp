@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -24,6 +25,7 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
           integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -83,7 +85,11 @@
             <div class="product-details">
                 <div class="product-main-info">
                     <h2>${product.productName}</h2>
-                    <p class="price">${product.productPrice}đ</p>
+                    <p class="price">
+                        <fmt:setLocale value="vi_VN"/>
+                        <fmt:formatNumber value="${product.productPrice}" type="number"
+                                          groupingUsed="true"/>đ
+                    </p>
                     <p class="product-id">Mã sản phẩm:
                         <c:choose>
                             <c:when test="${product.productId < 10}">00${product.productId}</c:when>
@@ -184,7 +190,7 @@
             <div id="tab-feedback" class="tab-content" style="display: none;">
                 <div class="feedback-area">
 
-                    <form action="add-review" method="post">
+                    <form action="add-review" method="post" id="reviewForm">
 
                         <input type="hidden" name="product_id" value="${product.productId}">
 

@@ -19,6 +19,9 @@ public class FavoriteController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         Account acc = (Account) request.getSession().getAttribute("USER");
+        String returnDetailed = "product-list";
+        session.setAttribute("redirectAfterLogin", returnDetailed);
+
         if (acc == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;

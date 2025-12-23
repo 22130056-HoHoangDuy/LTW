@@ -162,6 +162,36 @@ public class ProductDao extends BaseDao {
                         .list()
         );
     }
+    //Lay ra 20 san pham moi nhat trang home
+    public List<Product> getLatestProductsByCategory(int categoryId, int limit) {
+        String sql = """
+        SELECT
+            p.product_id        AS productId,
+            p.category_id       AS categoryId,
+            p.brand_id          AS brandId,
+
+            p.product_image     AS productImg,
+            p.product_name      AS productName,
+            p.product_price     AS productPrice,
+            p.product_size      AS productSize,
+            p.product_material  AS productMaterial,
+            p.created_at        AS createdProduct
+
+        FROM products p
+        WHERE p.category_id = :catId
+        ORDER BY p.created_at DESC
+        LIMIT :limit
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("catId", categoryId)
+                        .bind("limit", limit)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
 }
 
 

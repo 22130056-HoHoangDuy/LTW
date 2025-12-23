@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -37,8 +39,10 @@
     <div class="category-grid">
         <c:forEach items="${categories}" var="c">
             <div class="cat-item">
-                    <%--<a href="productList?categoryId=${c.categoryId}">--%>
-                <img src="${c.categoryImage}" alt="${c.categoryName}">
+
+                <a href="product-list?category_id=${c.categoryId}">
+                    <img src="${c.categoryImg}" alt="${c.categoryName}">
+
                 </a>
                 <p>${c.categoryName}</p>
             </div>
@@ -91,37 +95,33 @@
         <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
         <div class="carousel-track">
             <div class="product-grid">
-                <!-- Thêm tất cả product-card ở đây -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
+                <c:forEach items="${NoiThatMoi}" var="p">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                                <img src="${p.productImg}" alt="${p.productName}">
+                            </a>
                         </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
-                        </div>
-                    </div>
-                </div>
 
+                        <h4 class="product-title">${p.productName}</h4>
+                        <p class="price">
+                            <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                        </p>
+
+                        <div class="product-actions">
+                            <a class="filter-btn cart-btn" href="#">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </a>
+                            <a class="filter-btn detail-btn"
+                               href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <a class="filter-btn favor-btn" href="#">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
 
@@ -137,38 +137,33 @@
 
         <div class="carousel-track">
             <div class="product-grid">
-                <!-- Thêm tất cả product-card ở đây -->
-
-                <c:forEach items="${decorates}" var="decorate">
+                <c:forEach items="${TrangTriMoi}" var="p">
                     <div class="product-card">
                         <div class="product-img">
-                            <a href="<c:url value='/product-detail?product_id=${decorate.productId}'/>">
-                                <img src="${decorate.productImage}" alt="Hình ảnh bị lỗi"/>
+                            <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                                <img src="${p.productImg}" alt="${p.productName}">
                             </a>
                         </div>
-                        <h4 class="product-title">${decorate.productName}</h4>
-                        <p class="price">${decorate.productPrice}đ</p>
+
+                        <h4 class="product-title">${p.productName}</h4>
+                        <p class="price">
+                            <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                        </p>
+
                         <div class="product-actions">
-                            <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
+                            <a class="filter-btn cart-btn" href="#">
                                 <i class="fa-solid fa-cart-plus"></i>
                             </a>
                             <a class="filter-btn detail-btn"
-                               href="<c:url value='/product-detail?product_id=${decorate.productId}'/>"
-                               title="Xem chi tiết">
+                               href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a class="filter-btn favor-btn" href="#" title="Yêu thích">
+                            <a class="filter-btn favor-btn" href="#">
                                 <i class="fa-solid fa-heart"></i>
                             </a>
                         </div>
-                        <div class="product-stats">
-                            <div class="sold">
-                                Đã bán <span>${soldDecorated[decorate.productId]}</span>
-                            </div>
-                        </div>
                     </div>
                 </c:forEach>
-
             </div>
         </div>
         <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
@@ -182,35 +177,33 @@
 
         <div class="carousel-track">
             <div class="product-grid">
-                <!-- Thêm tất cả product-card ở đây -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <a href="../html/productDetail.html">
-                            <img src="../img/do_choi/do_choi.jpg" alt="Hình ảnh bị lỗi"/>
-                        </a>
-                    </div>
-                    <h4 class="product-title">Bộ bàn ghế học sinh chống gù 001</h4>
-                    <p class="price">6.500.000đ</p>
-                    <div class="product-actions">
-                        <a class="filter-btn cart-btn" href="#" title="Thêm vào giỏ hàng">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </a>
-                        <a class="filter-btn detail-btn" href="../html/productDetail.html" title="Xem chi tiết">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <a class="filter-btn favor-btn" href="#" title="Yêu thích">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="product-stats">
-                        <div class="product-rating">
-                            <span class="stars">★★★★★</span>
-                            <a class="reviews" href="#">(0 đánh giá)</a>
+                <c:forEach items="${DoChoiMoi}" var="p">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                                <img src="${p.productImg}" alt="${p.productName}">
+                            </a>
                         </div>
-                        <div class="sold">
-                            Đã bán <span>513</span>
+
+                        <h4 class="product-title">${p.productName}</h4>
+                        <p class="price">
+                            <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                        </p>
+
+                        <div class="product-actions">
+                            <a class="filter-btn cart-btn" href="#">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </a>
+                            <a class="filter-btn detail-btn"
+                               href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <a class="filter-btn favor-btn" href="#">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
                         </div>
                     </div>
+<<<<<<< HEAD
                 </div>
                 <div class="product-card">
                     <div class="product-img">
@@ -879,6 +872,9 @@
                         </div>
                     </div>
                 </div>
+=======
+                </c:forEach>
+>>>>>>> 8206abee2ef10aa385597da95830ab388c31e449
             </div>
         </div>
 

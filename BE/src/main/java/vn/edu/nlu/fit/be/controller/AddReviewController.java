@@ -28,8 +28,8 @@ public class AddReviewController extends HttpServlet {
         int productId = Integer.parseInt(productIdStr);
 
         //Lưu vị trí vô trang sản phẩm cụ thể
-        String returnUrl = "product-detail?product_id=" + productIdStr + "&tab=feedback";
-        session.setAttribute("redirectAfterLogin", returnUrl);
+        String returnDetailed = "product-detail?product_id=" + productIdStr;
+        session.setAttribute("redirectAfterLogin", returnDetailed);
 
         if (account == null) {
             response.sendRedirect("login.jsp");
