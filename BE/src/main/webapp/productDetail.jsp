@@ -44,29 +44,64 @@
 <div class="container">
     <div class="product-wrapper">
         <div class="product-image">
-            <img
-                    src="${product.imgUrl}"
-                    class="d-block w-100"
-                    alt="Hình ảnh bị lỗi"
-            />
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <c:forEach items="${productImages}" var="img" varStatus="status">
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="${status.index}"
+                                class="${status.index ==0?'active':''}"
+                                aria-current="${status.index == 0 ? 'true' : 'false'}"
+                                aria-label="Slide ${status.count}"></button>
+                    </c:forEach>
+                </div>
+                <div class="carousel-inner">
+                    <c:forEach var="image" items="${productImages}" varStatus="status">
+                        <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                            <img
+                                    src="${image}"
+                                    class="d-block w-100"
+                                    alt="Hình ảnh bị lỗi"
+                            />
+                        </div>
+                    </c:forEach>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
         </div>
         <div class="product-right">
             <div class="product-details">
                 <div class="product-main-info">
                     <h2>${product.productName}</h2>
-                    <p class="price">${product.price}đ</p>
-                    <p class="product-id">Mã sản phẩm: ${product.productId}</p>
+                    <p class="price">${product.productPrice}đ</p>
+                    <p class="product-id">Mã sản phẩm:
+                        <c:choose>
+                            <c:when test="${product.productId < 10}">00${product.productId}</c:when>
+                            <c:when test="${product.productId < 100}">0${product.productId}</c:when>
+                            <c:otherwise>${product.productId}</c:otherwise>
+                        </c:choose>
+                    </p>
 
                     <div class="product-status">
-                        <span>Đã bán 513</span>
+                        <span>Đã bán ${soldQuantity}</span>
                         <span class="dot">•</span>
                         <span>Tình trạng:
-                                <c:if test="${product.available}">
+                                <c:if test="${isAvailable}">
                                    <span class="status in-stock">
                                         <i class="fa-solid fa-check-circle"></i> Còn hàng
                                    </span>
                                 </c:if>
-                                <c:if test="${!product.available}">
+                                <c:if test="${!isAvailable}">
                                    <span class="status out-of-stock">
                                        <i class="fa-solid fa-circle-xmark"></i> Hết hàng
                                    </span>
@@ -83,15 +118,15 @@
                         </tr>
                         <tr>
                             <td>Thương hiệu</td>
-                            <td>${product.brandName}</td>
+                            <td>${brand.brandName}</td>
                         </tr>
                         <tr>
                             <td>Vật liệu</td>
-                            <td>${product.material}</td>
+                            <td>${product.productMaterial}</td>
                         </tr>
                         <tr>
                             <td>Kích thước</td>
-                            <td>${product.size}</td>
+                            <td>${product.productSize}</td>
                         </tr>
                     </table>
                 </div>
@@ -119,20 +154,47 @@
 
     <div class="product-info">
         <ul class="nav nav-tabs">
-            <li class="nav-item detail">
-                <a class="nav-link active" aria-current="page">Chi tiết</a>
+            <li class="nav-item">
+                <a class="nav-link active" data-target="#tab-detail">Chi tiết</a>
             </li>
-            <li class="nav-item feedback">
-                <a class="nav-link">Feedback</a>
+            <li class="nav-item">
+                <a class="nav-link" data-target="#tab-feedback">Feedback</a>
             </li>
         </ul>
-        <div class="product-detail"></div>
+        <div class="tab-content-container">
+            <div id="tab-detail" class="tab-content active">
+                <c:if test="${not empty details}">
+                    <c:forEach var="detail" items="${details}">
+                        <div class="content-block" style="margin-bottom: 20px;">
+                            <c:if test="${not empty detail.description}">
+                                <div class="content-text">
+                                    <c:out value="${detail.description}" escapeXml="false"/>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty detail.detail_image}">
+                                <div class="content-image" style="margin-top: 10px;">
+                                    <img src="${detail.detail_image}" class="d-block w-100" alt="Chi tiết sản phẩm"/>
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            </div>
+            <div id="tab-feedback" class="tab-content" style="display: none;">
+                <div class="feedback-area">
+                    <textarea id="feedback-input" placeholder="Nhập đánh giá của bạn..." rows="5"></textarea>
+                    <button type="button" id="btn-send-feedback">Gửi đánh giá</button>
+                    <div id="comment-list"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <button type="button" id="backToTop" title="Back To Top">
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 <jsp:include page="footer.jsp"/>
-<script src="js/productDetail.js"></script>
+<script src="${pageContext.request.contextPath}/js/productDetail.js"></script>
 </body>
 </html>

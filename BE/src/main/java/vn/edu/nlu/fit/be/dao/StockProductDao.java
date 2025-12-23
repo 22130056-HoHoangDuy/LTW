@@ -23,10 +23,20 @@ public class StockProductDao extends BaseDao {
 
     public int getTotalSoldQuantity(int stockProductId) {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT SUM(total_quantity) FROM stock_products WHERE stock_product_id = :id")
+                handle.createQuery("SELECT SUM(sold_quantity) FROM stock_products WHERE stock_product_id = :id")
                         .bind("id", stockProductId)
                         .mapTo(Integer.class)
                         .one()
+        );
+    }
+
+    public int getTotalImportedByProductId(int productId) {
+        return jdbi.withHandle(
+                handle -> handle.createQuery("SELECT SUM(total_quantity) FROM stock_products WHERE product_id = :id")
+                        .bind("id", productId)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(null)
         );
     }
 

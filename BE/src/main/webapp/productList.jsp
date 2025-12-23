@@ -75,63 +75,77 @@
     </div>
 
     <c:if test="${empty param.keyword}">
-    <div class="filter-box">
-        <div class="filter-demand-group">
-            <h4>Chọn theo nhu cầu</h4>
+        <div class="filter-box">
+            <div class="filter-demand-group">
+                <h4>Chọn theo nhu cầu</h4>
 
-            <div class="demand-group">
-                <c:forEach var="category" items="${categories}">
-                    <div class="img-button">
-                        <a href="<c:url value='/product-list?category_id=${category.categoryId}'/>">
-                            <img
-                                    src="${category.categoryImg}"
-                                    alt="Hình ảnh bị lỗi"
-                            />
-                            <span>${category.categoryName}</span>
-                        </a>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
+                <div class="demand-group">
+                    <c:forEach var="category" items="${categories}">
+                        <div class="img-button">
+                            <a href="<c:url value='/product-list?category_id=${category.categoryId}'/>">
+                                <img
+                                        src="${category.categoryImage}"
 
-    <div class="filter-box">
-        <h3>Bộ lọc tìm kiếm</h3>
-        <div class="filter-group active">
-            <div class="filter-header">
-                <span>Theo thương hiệu</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="filter-content">
-                <div class="checkbox-list">
-                    <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
-                    <c:forEach var="brand" items="${brands}">
-                        <c:url value="${actionUrl}" var="brandFilterUrl">
-                            <c:if test="${not empty currentCategoryId}">
-                                <c:param name="category_id" value="${currentCategoryId}"/>
-                            </c:if>
-                            <c:if test="${not empty param.keyword}">
-                                <c:param name="keyword" value="${param.keyword}"/>
-                            </c:if>
-                            <c:if test="${not empty param.sort}">
-                                <c:param name="sort" value="${param.sort}"/>
-                            </c:if>
-                            <c:param name="brand" value="${brand.brandName}"/>
-                        </c:url>
-                        <c:set var="isSelected" value="${param.brand == brand.brandName}"/>
-                        <a href="${brandFilterUrl}" class="brand-list">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="${brand.brandName}"
-                                    ${isSelected? 'checked' : ''}>
-                                    ${brand.brandName}
-                            </label>
-                        </a>
+                                        alt="Hình ảnh bị lỗi"
+                                />
+                                <span>${category.categoryName}</span>
+                            </a>
+                        </div>
                     </c:forEach>
                 </div>
             </div>
-
         </div>
-    </div>
+
+        <div class="filter-box">
+            <h3>Bộ lọc tìm kiếm</h3>
+            <div class="filter-group active">
+                <div class="filter-header">
+                    <span>Theo thương hiệu</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="filter-content">
+                    <c:set var="actionUrl" value="${not empty param.keyword ? '/search' : '/product-list'}"/>
+
+                    <form action="<c:url value='${actionUrl}'/>" method="get" id="brandFilterForm">
+                            <%-- Kết hợp lọc theo thương hiệu với các bộ lọc khác --%>
+                        <c:if test="${not empty currentCategoryId}">
+                            <input type="hidden" name="category_id" value="${currentCategoryId}">
+                        </c:if>
+                        <c:if test="${not empty param.keyword}">
+                            <input type="hidden" name="keyword" value="${param.keyword}">
+                        </c:if>
+                        <c:if test="${not empty param.sort}">
+                            <input type="hidden" name="sort" value="${param.sort}">
+                        </c:if>
+                        <div class="checkbox-list">
+                            <c:forEach var="brand" items="${brands}">
+
+                                <c:set var="isChecked" value="false"/>
+                                <c:if test="${not empty paramValues.brand}">
+                                    <c:forEach var="selectedBrand" items="${paramValues.brand}">
+                                        <c:if test="${selectedBrand == brand.brandName}">
+                                            <c:set var="isChecked" value="true"/>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
+
+                                <div class="brand-list">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox"
+                                               name="brand"
+                                               value="${brand.brandName}"
+                                            ${isChecked ? 'checked' : ''}>
+                                        <span class="checkmark"></span>
+                                        <span class="label-text">${brand.brandName}</span>
+                                    </label>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </c:if>
 
 
@@ -142,14 +156,17 @@
                 <!--Kiểm tra đường dẫn có phải là trang search hay không-->
                 <c:set var="actionUrl" value="${not empty param.keyword?'/search':'/product-list'}"/>
                 <a href="<c:url value='${actionUrl}'>
-                 <c:choose>
-                     <c:when test='${not empty param.keyword}'>
+                     <c:if test='${not empty param.keyword}'>
                         <c:param name='keyword' value='${param.keyword}'/>
-                     </c:when>
-                     <c:otherwise>
+                     </c:if>
+                     <c:if test="${not empty param.category_id}">
                         <c:param name='category_id' value='${currentCategoryId}'/>
-                     </c:otherwise>
-                    </c:choose>
+                     </c:if>
+                     <c:if test="${not empty param.brand}">
+                     <c:forEach var="brandName" items="${param.brand}">
+                            <c:param name='brand' value='${brandName}'/>
+                    </c:forEach>
+                     </c:if>
                 <c:param name='sort' value='price_asc'/>
                         </c:url>"
                    class="filter-btn ${currentSort == 'price_asc' ? 'active' : ''}">
@@ -158,14 +175,17 @@
 
                 <a href="
                 <c:url value='${actionUrl}'>
-                  <c:choose>
-                     <c:when test='${not empty param.keyword}'>
+                  <c:if test='${not empty param.keyword}'>
                         <c:param name='keyword' value='${param.keyword}'/>
-                     </c:when>
-                     <c:otherwise>
+                     </c:if>
+                     <c:if test="${not empty param.category_id}">
                         <c:param name='category_id' value='${currentCategoryId}'/>
-                     </c:otherwise>
-                    </c:choose>
+                     </c:if>
+                     <c:if test="${not empty param.brand}">
+                     <c:forEach var="brandName" items="${param.brand}">
+                            <c:param name='brand' value='${brandName}'/>
+                    </c:forEach>
+                     </c:if>
                   <c:param name='sort' value='price_desc'/>
                 </c:url>"
                    class="filter-btn ${currentSort == 'price_desc' ? 'active' : ''}">
@@ -174,43 +194,52 @@
 
                 <a href="
                  <c:url value='${actionUrl}'>
-                    <c:choose>
-                     <c:when test='${not empty param.keyword}'>
+                    <c:if test='${not empty param.keyword}'>
                         <c:param name='keyword' value='${param.keyword}'/>
-                     </c:when>
-                     <c:otherwise>
+                     </c:if>
+                     <c:if test="${not empty param.category_id}">
                         <c:param name='category_id' value='${currentCategoryId}'/>
-                     </c:otherwise>
-                    </c:choose>
+                     </c:if>
+                     <c:if test="${not empty param.brand}">
+                     <c:forEach var="brandName" items="${param.brand}">
+                            <c:param name='brand' value='${brandName}'/>
+                    </c:forEach>
+                     </c:if>
                     <c:param name='sort' value='latest'/>
                  </c:url>" class="filter-btn ${currentSort == 'latest' ? 'active' : ''}">Mới nhất
                 </a>
 
                 <a href="
                  <c:url value='${actionUrl}'>
-                     <c:choose>
-                     <c:when test='${not empty param.keyword}'>
+                     <c:if test='${not empty param.keyword}'>
                         <c:param name='keyword' value='${param.keyword}'/>
-                     </c:when>
-                     <c:otherwise>
+                     </c:if>
+                     <c:if test="${not empty param.category_id}">
                         <c:param name='category_id' value='${currentCategoryId}'/>
-                     </c:otherwise>
-                    </c:choose>
+                     </c:if>
+                     <c:if test="${not empty param.brand}">
+                     <c:forEach var="brandName" items="${param.brand}">
+                            <c:param name='brand' value='${brandName}'/>
+                    </c:forEach>
+                     </c:if>
                     <c:param name='sort' value='oldest'/>
                  </c:url>"
                    class="filter-btn ${currentSort == 'oldest' ? 'active' : ''}">Cũ nhất
                 </a>
 
                 <a href="<c:url value='${actionUrl}'>
-                  <c:choose>
-                     <c:when test='${not empty param.keyword}'>
+                  <c:if test='${not empty param.keyword}'>
                         <c:param name='keyword' value='${param.keyword}'/>
-                     </c:when>
-                     <c:otherwise>
+                     </c:if>
+                     <c:if test="${not empty param.category_id}">
                         <c:param name='category_id' value='${currentCategoryId}'/>
-                     </c:otherwise>
-                    </c:choose>
-                  <c:param name='sort' value='hotest'/>
+                     </c:if>
+                     <c:if test="${not empty param.brand}">
+                     <c:forEach var="brandName" items="${param.brand}">
+                            <c:param name='brand' value='${brandName}'/>
+                    </c:forEach>
+                     </c:if>
+                  <c:param name='sort' value='best_selling'/>
                 </c:url>" class="filter-btn ${currentSort == 'best_selling' ? 'active' : ''}">Bán chạy nhất
                 </a>
             </div>
@@ -244,7 +273,7 @@
             <c:forEach var="product" items="${products}">
                 <div class="product">
                     <a href="<c:url value='/product-detail?product_id=${product.productId}'/>">
-                        <img alt="Ảnh bị lỗi" src="${product.productImg}"/>
+                        <img alt="Ảnh bị lỗi" src="${product.productImage}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
@@ -325,9 +354,9 @@
         </div>
     </div>
 
-
-    <jsp:include page="footer.jsp"/>
-    <script src="${pageContext.request.contextPath}/js/header.js"></script>
-    <script src="${pageContext.request.contextPath}/js/productList.js"></script>
+</div>
+<jsp:include page="footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
+<script src="${pageContext.request.contextPath}/js/productList.js"></script>
 </body>
 </html>

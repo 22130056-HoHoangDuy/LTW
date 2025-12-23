@@ -1,6 +1,8 @@
 package vn.edu.nlu.fit.be.model;
 
-public class ProductListImg {
+import java.io.Serializable;
+
+public class ProductListImg implements Serializable {
 
     private int productImgId;
     private int productId;

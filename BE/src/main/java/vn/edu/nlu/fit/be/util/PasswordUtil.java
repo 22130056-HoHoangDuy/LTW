@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.until;
+package vn.edu.nlu.fit.be.util;
 
 
 import org.mindrot.jbcrypt.BCrypt;

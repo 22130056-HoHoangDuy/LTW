@@ -8,21 +8,23 @@ import java.util.*;
 
 public class ProductService {
     private ProductDao pdao = new ProductDao();
-    private StockProductDao stockProductDao = new StockProductDao();
 
-    // Redirect to product detail
     public Product getProductById(int id) {
         return pdao.getProductById(id);
     }
 
-    public List<Product> getProducts(Integer categoryId,String brandName, String sortType, String keyword, int pageIndex, int pageSize) {
+    public List<Product> getProducts(Integer categoryId, String[] brandName, String sortType, String keyword, int pageIndex, int pageSize) {
         // Hàm này đã handle logic null cho cả 3 tham số
         int offset = (pageIndex - 1) * pageSize;
-        return pdao.getProductsBy(categoryId,brandName, sortType, keyword, 15, offset);
+        return pdao.getProductsBy(categoryId, brandName, sortType, keyword, 15, offset);
     }
-
+    //Hàm đếm sản phẩm xử lý khi hiện danh sách sản phẩm
+    public int countTotalProductsBy(Integer categoryId, String[] brands, String keyword) {
+        return pdao.countTotalProductsBy(categoryId, brands, keyword);
+    }
+    //Hàm đếm sản phẩm xử lý khi search
     public int countTotalProductsBy(Integer categoryId, String keyword) {
-        return pdao.countTotalProductsBy(categoryId, keyword);
+        return pdao.countTotalProductsBy(categoryId,null, keyword);
     }
 
     public int getTotalSoldQuantity(int productId) {
@@ -39,5 +41,15 @@ public class ProductService {
         return soldQuantities;
     }
 
+    public List<String> getImagesListInProduct(int productId) {
+        return pdao.getImagesListInProduct(productId);
+    }
 
+    public List<Map<String, Object>> getProductDetails(int productId) {
+        return pdao.getProductDetails(productId);
+    }
+
+    public List<Product> getLatestProductsByCategory(int categoryId) {
+        return pdao.getLatestProductsByCategory(categoryId, 20);
+    }
 }

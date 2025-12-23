@@ -3,17 +3,17 @@ package vn.edu.nlu.fit.be.model;
 public class ProductDetail {
     private int productDetailId;
     private int productId;
-    private String detailImg;
-    private String productDescription;
+    private String detailImage;
+    private String description;
 
     //Constructor
 
     public ProductDetail() {}
 
-    public ProductDetail(int productDetailId, String productDescription, String detailImg, int productId) {
+    public ProductDetail(int productDetailId, String description, String detailImage, int productId) {
         this.productDetailId = productDetailId;
-        this.productDescription = productDescription;
-        this.detailImg = detailImg;
+        this.description = description;
+        this.detailImage = detailImage;
         this.productId = productId;
     }
 
@@ -27,20 +27,20 @@ public class ProductDetail {
         this.productDetailId = productDetailId;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getDescription() {
+        return description;
     }
 
     public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+        this.description = description;
     }
 
-    public String getDetailImg() {
-        return detailImg;
+    public String getDetailImage() {
+        return detailImage;
     }
 
-    public void setDetailImg(String detailImg) {
-        this.detailImg = detailImg;
+    public void setDetailImage(String detailImg) {
+        this.detailImage = detailImg;
     }
 
     public int getProductId() {

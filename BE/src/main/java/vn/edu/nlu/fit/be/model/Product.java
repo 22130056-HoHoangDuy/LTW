@@ -7,26 +7,26 @@ public class Product {
     private int productId;
     private int categoryId;
     private int brandId;
-    private String productImg;
+    private String productImage;
     private String productName;
     private int productPrice;
     private String productSize;
     private String productMaterial;
-    private Timestamp createdProduct;
+    private Timestamp createdAt;
 
     //Constructor
 
     public Product() {
     }
 
-    public Product(int productId, Timestamp createdProduct, String productMaterial, String productSize, int productPrice, String productName, String productImg, int brandId, int categoryId) {
+    public Product(int productId, Timestamp createdAt, String productMaterial, String productSize, int productPrice, String productName, String productImage, int brandId, int categoryId) {
         this.productId = productId;
-        this.createdProduct = createdProduct;
+        this.createdAt = createdAt;
         this.productMaterial = productMaterial;
-        this.productSize = productSize;
+        this.productSize = productMaterial;
         this.productPrice = productPrice;
         this.productName = productName;
-        this.productImg = productImg;
+        this.productImage = productImage;
         this.brandId = brandId;
         this.categoryId = categoryId;
     }
@@ -41,12 +41,12 @@ public class Product {
         this.productId = productId;
     }
 
-    public Timestamp getCreatedProduct() {
-        return createdProduct;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedProduct(Timestamp createdProduct) {
-        this.createdProduct = createdProduct;
+    public void setCreatedAt(Timestamp createdProduct) {
+        this.createdAt = createdProduct;
     }
 
     public String getProductMaterial() {
@@ -81,12 +81,12 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductImg() {
-        return productImg;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setProductImg(String productImg) {
-        this.productImg = productImg;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public int getBrandId() {
