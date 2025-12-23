@@ -129,6 +129,71 @@ public class ProductDao extends BaseDao {
         );
     }
 
+
+// ================= ADMIN =================
+
+    public List<Product> getAllForAdmin() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM products ORDER BY product_id DESC")
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public void insertProduct(Product p) {
+        String sql = """
+        INSERT INTO products
+        (product_name, product_price, product_img, product_size,
+         product_material, brand_id, category_id, created_product)
+        VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    """;
+
+        jdbi.useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind(0, p.getProductName())
+                        .bind(1, p.getProductPrice())
+                        .bind(2, p.getProductImg())
+                        .bind(3, p.getProductSize())
+                        .bind(4, p.getProductMaterial())
+                        .bind(5, p.getBrandId())
+                        .bind(6, p.getCategoryId())
+                        .execute()
+        );
+    }
+
+    public void updateProduct(Product p) {
+        String sql = """
+        UPDATE products SET
+            product_name = ?,
+            product_price = ?,
+            product_img = ?,
+            product_size = ?,
+            product_material = ?,
+            brand_id = ?,
+            category_id = ?
+        WHERE product_id = ?
+    """;
+
+        jdbi.useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind(0, p.getProductName())
+                        .bind(1, p.getProductPrice())
+                        .bind(2, p.getProductImg())
+                        .bind(3, p.getProductSize())
+                        .bind(4, p.getProductMaterial())
+                        .bind(5, p.getBrandId())
+                        .bind(6, p.getCategoryId())
+                        .bind(7, p.getProductId())
+                        .execute()
+        );
+    }
+
+    public void deleteProduct(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM products WHERE product_id = :id")
+                        .bind("id", productId)
+                        .execute()
+
     public List<String> getImagesListInProduct(int productId) {
         return jdbi.withHandle(
                 handle ->
