@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,8 +36,7 @@
             <div class="cat-item">
 
                 <a href="product-list?category_id=${c.categoryId}">
-                    <img src="${c.categoryImg}" alt="${c.categoryName}">
-
+                    <img src="${c.categoryImage}" alt="${c.categoryName}">
                 </a>
                 <p>${c.categoryName}</p>
             </div>
@@ -71,7 +70,7 @@
                     <div class="product-card">
                         <div class="product-img">
                             <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
-                                <img src="${p.productImg}" alt="${p.productName}">
+                                <img src="${p.productImage}" alt="${p.productName}">
                             </a>
                         </div>
 
@@ -112,8 +111,8 @@
                 <c:forEach items="${TrangTriMoi}" var="p">
                     <div class="product-card">
                         <div class="product-img">
-                            <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}"">
-                                <img src="${p.productImg}" alt="${p.productName}">
+                            <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                            <img src="${p.productImage}" alt="${p.productName}">
                             </a>
                         </div>
 
@@ -127,8 +126,8 @@
                                 <i class="fa-solid fa-cart-plus"></i>
                             </a>
                             <a class="filter-btn detail-btn"
-                               href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}"">
-                                <i class="fa-solid fa-eye"></i>
+                               href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
+                            <i class="fa-solid fa-eye"></i>
                             </a>
                             <a class="filter-btn favor-btn" href="#">
                                 <i class="fa-solid fa-heart"></i>
@@ -154,7 +153,7 @@
                     <div class="product-card">
                         <div class="product-img">
                             <a href="${pageContext.request.contextPath}/product-detail?product_id=${p.productId}">
-                                <img src="${p.productImg}" alt="${p.productName}">
+                                <img src="${p.productImage}" alt="${p.productName}">
                             </a>
                         </div>
 

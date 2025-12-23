@@ -67,15 +67,13 @@
                             <div class="pf-fav-info">
                                 <h4>${f.productName}</h4>
                                 <div class="pf-fav-price">
-                                        ${f.price}₫
+                                        ${f.productPrice}₫
                                 </div>
                             </div>
 
-                            <form method="post"
-                                  action="${pageContext.request.contextPath}/favorite/remove">
-                                <input type="hidden"
-                                       name="productId"
-                                       value="${f.productId}">
+                            <form method="post" action="${pageContext.request.contextPath}/my-favorite">
+                                <input type="hidden" name="action" value="remove"> <input type="hidden" name="product_id"
+                                                                                          value="${f.productId}">
                                 <button class="pf-remove-fav">
                                     <i class="fa fa-trash"></i>
                                 </button>

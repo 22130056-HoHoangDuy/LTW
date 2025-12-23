@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -279,7 +280,9 @@
                     <h3>${product.productName}</h3>
 
                     <p class="price">
-                            ${product.productPrice}đ
+                        <fmt:setLocale value="vi_VN"/>
+                        <fmt:formatNumber value="${product.productPrice}" type="number"
+                                          groupingUsed="true"/>đ
                     </p>
 
                     <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
@@ -292,7 +295,9 @@
                         <i class="fa-solid fa-eye"></i>
                     </a>
 
-                    <a class="filter-btn favor-btn" href="" title="Thêm vào danh sách yêu thích">
+                    <a class="filter-btn favor-btn"
+                       href="${pageContext.request.contextPath}/my-favorite?action=add&product_id=${product.productId}"
+                       title="Thêm vào danh sách yêu thích">
                         <i class="fa-solid fa-heart"></i>
                     </a>
 

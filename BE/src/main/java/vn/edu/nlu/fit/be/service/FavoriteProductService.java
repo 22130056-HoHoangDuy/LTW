@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.be.service;
 
 import vn.edu.nlu.fit.be.dao.FavoriteProductDao;
 import vn.edu.nlu.fit.be.model.FavoriteProduct;
+import vn.edu.nlu.fit.be.model.Product;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class FavoriteProductService {
     }
 
     // Danh sách yêu thích của user
-    public List<FavoriteProduct> getFavorites(int accountId) {
+    public List<Product> getFavorites(int accountId) {
         return dao.findByAccountId(accountId);
     }
 

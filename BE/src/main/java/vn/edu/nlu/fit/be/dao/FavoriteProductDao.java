@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.be.dao;
 
 import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.model.FavoriteProduct;
+import vn.edu.nlu.fit.be.model.Product;
 
 import java.util.List;
 
@@ -57,22 +58,21 @@ public class FavoriteProductDao {
     }
 
     // 4. Lấy danh sách yêu thích của account
-    public List<FavoriteProduct> findByAccountId(int accountId) {
+    public List<Product> findByAccountId(int accountId) {
         String sql = """
-            SELECT favorite_id  AS favoriteId,
-                   account_id   AS accountId,
-                   product_id   AS productId,
-                   created_at   AS createdAt
-            FROM favorite_products
-            WHERE account_id = :aid
-            ORDER BY created_at DESC
-        """;
+        SELECT p.*
+        FROM favorite_products fp
+        JOIN products p ON fp.product_id = p.product_id
+        WHERE fp.account_id = :aid
+        ORDER BY fp.created_at DESC
+    """;
 
         return DBConnect.get().withHandle(h ->
                 h.createQuery(sql)
                         .bind("aid", accountId)
-                        .mapToBean(FavoriteProduct.class)
+                        .mapToBean(Product.class)
                         .list()
         );
     }
+
 }

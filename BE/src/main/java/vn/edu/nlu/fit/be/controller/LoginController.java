@@ -36,9 +36,14 @@ public class LoginController extends HttpServlet {
         }
 
         HttpSession session = req.getSession(true);
+        String returnUrl = (String) session.getAttribute("redirectAfterLogin");
         session.setAttribute("USER", acc);
         session.setMaxInactiveInterval(30 * 60); // 30 phút
 
-        resp.sendRedirect(req.getContextPath() + "/home");
+        //Chuyển đến vị trí trang đang đứng
+        if (returnUrl != null) {
+            resp.sendRedirect(returnUrl);
+        } else
+            resp.sendRedirect(req.getContextPath() + "/home");
     }
 }

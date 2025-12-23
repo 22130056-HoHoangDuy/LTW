@@ -24,14 +24,66 @@ backBtn.addEventListener("click", () => {
 //Add favorite product
 const favorBtns = document.querySelectorAll(".filter-btn.favor-btn");
 favorBtns.forEach((favorBtn) => {
-    favorBtn.addEventListener("click", () => {
-        Swal.fire({
-            icon: "success",
-            title: "Đã thêm",
-            text: "Sản phẩm đã được thêm vào danh sách yêu thích.",
-            timer: 1500,
-            showConfirmButton: false,
-        });
+    favorBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // 1. Lấy đường dẫn từ thẻ a
+        const url = favorBtn.getAttribute("href");
+
+        // 2. Gửi yêu cầu xuống Server bằng fetch (AJAX)
+        fetch(url)
+            .then(response => {
+
+                // 1️⃣ CHƯA ĐĂNG NHẬP
+                // nếu server redirect về login → response.redirected = true
+                if (response.redirected && response.url.includes("login")) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Chưa đăng nhập",
+                        text: "Bạn cần đăng nhập để sử dụng tính năng này!",
+                        showCancelButton: true,
+                        confirmButtonText: "Đăng nhập ngay",
+                        cancelButtonText: "Hủy"
+                    }).then(result => {
+                        if (result.isConfirmed) {
+                            window.location.href = response.url;
+                        }
+                    });
+                    return;
+                }
+
+                // 2️⃣ XỬ LÝ THÀNH CÔNG
+                if (response.ok) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Đã thêm",
+                        text: "Sản phẩm đã được thêm vào danh sách yêu thích.",
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+
+                    const icon = favorBtn.querySelector("i");
+                    if (icon) {
+                        icon.classList.remove("fa-regular");
+                        icon.classList.add("fa-solid");
+                        icon.style.color = "red";
+                    }
+                    return;
+                }
+
+                // 3️⃣ LỖI KHÁC
+                throw new Error("Server error");
+
+            })
+            .catch(error => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Lỗi",
+                    text: "Có lỗi xảy ra, vui lòng thử lại sau.",
+                });
+            });
+
     })
 })
 
