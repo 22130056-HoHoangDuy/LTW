@@ -170,7 +170,7 @@ public class ProductDao extends BaseDao {
             p.category_id       AS categoryId,
             p.brand_id          AS brandId,
 
-            p.product_image     AS productImg,
+            p.product_image     AS productImage,
             p.product_name      AS productName,
             p.product_price     AS productPrice,
             p.product_size      AS productSize,

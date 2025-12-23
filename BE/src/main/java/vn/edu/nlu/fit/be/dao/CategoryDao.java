@@ -27,7 +27,7 @@ public class CategoryDao extends BaseDao {
         String sql = """
                     SELECT category_id        AS categoryId,
                            category_name      AS categoryName,
-                           category_image       AS categoryImg,
+                           category_image       AS categoryImage,
                            description AS categoryDescription
                     FROM categories
                 """;
