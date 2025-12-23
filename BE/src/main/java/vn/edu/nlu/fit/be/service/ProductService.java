@@ -49,4 +49,7 @@ public class ProductService {
         return pdao.getProductDetails(productId);
     }
 
+    public List<Product> getLatestProductsByCategory(int categoryId) {
+        return pdao.getLatestProductsByCategory(categoryId, 20);
+    }
 }
