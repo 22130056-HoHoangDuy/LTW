@@ -166,15 +166,15 @@
                 <c:if test="${not empty details}">
                     <c:forEach var="detail" items="${details}">
                         <div class="content-block" style="margin-bottom: 20px;">
-                            <c:if test="${not empty detail.product_description}">
+                            <c:if test="${not empty detail.description}">
                                 <div class="content-text">
-                                    <c:out value="${detail.product_description}" escapeXml="false"/>
+                                    <c:out value="${detail.description}" escapeXml="false"/>
                                 </div>
                             </c:if>
 
-                            <c:if test="${not empty detail.detail_img}">
+                            <c:if test="${not empty detail.detail_image}">
                                 <div class="content-image" style="margin-top: 10px;">
-                                    <img src="${detail.detail_img}" class="d-block w-100" alt="Chi tiết sản phẩm"/>
+                                    <img src="${detail.detail_image}" class="d-block w-100" alt="Chi tiết sản phẩm"/>
                                 </div>
                             </c:if>
                         </div>

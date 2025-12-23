@@ -27,6 +27,7 @@ public class HomeController extends HttpServlet {
 
         req.setAttribute("DoChoiMoi",
                 productService.getLatestProductsByCategory(3));
+        req.setAttribute("categories", categoryService.getCategoryList());
         req.getRequestDispatcher("/home.jsp").forward(req, resp);
     }
 

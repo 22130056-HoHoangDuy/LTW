@@ -84,7 +84,8 @@
                         <div class="img-button">
                             <a href="<c:url value='/product-list?category_id=${category.categoryId}'/>">
                                 <img
-                                        src="${category.categoryImg}"
+                                        src="${category.categoryImage}"
+
                                         alt="Hình ảnh bị lỗi"
                                 />
                                 <span>${category.categoryName}</span>
@@ -272,7 +273,7 @@
             <c:forEach var="product" items="${products}">
                 <div class="product">
                     <a href="<c:url value='/product-detail?product_id=${product.productId}'/>">
-                        <img alt="Ảnh bị lỗi" src="${product.productImg}"/>
+                        <img alt="Ảnh bị lỗi" src="${product.productImage}"/>
                     </a>
 
                     <h3>${product.productName}</h3>
