@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.nlu.fit.be.dao.admin.AdminCategoryDao;
+import vn.edu.nlu.fit.be.dao.AdminCategoryDao;
 import vn.edu.nlu.fit.be.model.Category;
 
 import java.io.IOException;
@@ -53,8 +53,8 @@ public class AdminCategoryController extends HttpServlet {
     private void createCategory(HttpServletRequest req) {
         Category c = new Category();
         c.setCategoryName(req.getParameter("name"));
-        c.setCategoryImg(req.getParameter("img"));
-        c.setCategoryDescription(req.getParameter("description"));
+        c.setCategoryImage(req.getParameter("img"));
+        c.setDescription(req.getParameter("description"));
 
         categoryDao.insert(c);
     }
@@ -64,8 +64,8 @@ public class AdminCategoryController extends HttpServlet {
         Category c = new Category();
         c.setCategoryId(Integer.parseInt(req.getParameter("id")));
         c.setCategoryName(req.getParameter("name"));
-        c.setCategoryImg(req.getParameter("img"));
-        c.setCategoryDescription(req.getParameter("description"));
+        c.setCategoryImage(req.getParameter("img"));
+        c.setDescription(req.getParameter("description"));
 
         categoryDao.update(c);
     }

@@ -41,8 +41,8 @@ public class Category {
         return categoryImage;
     }
 
-    public void setCategoryImage(String categoryImg) {
-        this.categoryImage = categoryImg;
+    public void setCategoryImage(String categoryImage) {
+        this.categoryImage = categoryImage;
     }
 
     public String getCategoryName() {
