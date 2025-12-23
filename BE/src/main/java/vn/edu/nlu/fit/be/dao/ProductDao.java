@@ -163,7 +163,7 @@ public class ProductDao extends BaseDao {
                 handle.createUpdate(sql)
                         .bind(0, p.getProductName())
                         .bind(1, p.getProductPrice())
-                        .bind(2, p.getProductImg())
+                        .bind(2, p.getProductImage())
                         .bind(3, p.getProductSize())
                         .bind(4, p.getProductMaterial())
                         .bind(5, p.getBrandId())
@@ -189,7 +189,7 @@ public class ProductDao extends BaseDao {
                 handle.createUpdate(sql)
                         .bind(0, p.getProductName())
                         .bind(1, p.getProductPrice())
-                        .bind(2, p.getProductImg())
+                        .bind(2, p.getProductImage())
                         .bind(3, p.getProductSize())
                         .bind(4, p.getProductMaterial())
                         .bind(5, p.getBrandId())
@@ -203,7 +203,8 @@ public class ProductDao extends BaseDao {
         jdbi.useHandle(handle ->
                 handle.createUpdate("DELETE FROM products WHERE product_id = :id")
                         .bind("id", productId)
-                        .execute()
+                        .execute());
+    }
 
     public List<String> getImagesListInProduct(int productId) {
         return jdbi.withHandle(

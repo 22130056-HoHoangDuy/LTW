@@ -31,7 +31,7 @@ public class AdminProductController extends HttpServlet {
         Product p = new Product();
         p.setProductName(req.getParameter("productName"));
         p.setProductPrice(Integer.parseInt(req.getParameter("productPrice")));
-        p.setProductImg(req.getParameter("productImg"));
+        p.setProductImage(req.getParameter("productImg"));
         p.setProductSize(req.getParameter("productSize"));
         p.setProductMaterial(req.getParameter("productMaterial"));
         p.setBrandId(Integer.parseInt(req.getParameter("brandId")));

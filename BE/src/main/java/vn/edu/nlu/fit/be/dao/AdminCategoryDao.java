@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.be.dao.admin;
+package vn.edu.nlu.fit.be.dao;
 
 import vn.edu.nlu.fit.be.dao.BaseDao;
 import vn.edu.nlu.fit.be.model.Category;
@@ -60,8 +60,8 @@ public class AdminCategoryDao extends BaseDao {
         return jdbi.withHandle(h ->
                 h.createUpdate(sql)
                         .bind("name", c.getCategoryName())
-                        .bind("img", c.getCategoryImg())
-                        .bind("desc", c.getCategoryDescription())
+                        .bind("img", c.getCategoryImage())
+                        .bind("desc", c.getDescription())
                         .execute()
         ) > 0;
     }
@@ -81,8 +81,8 @@ public class AdminCategoryDao extends BaseDao {
                 h.createUpdate(sql)
                         .bind("id", c.getCategoryId())
                         .bind("name", c.getCategoryName())
-                        .bind("img", c.getCategoryImg())
-                        .bind("desc", c.getCategoryDescription())
+                        .bind("img", c.getCategoryImage())
+                        .bind("desc", c.getDescription())
                         .execute()
         ) > 0;
     }
