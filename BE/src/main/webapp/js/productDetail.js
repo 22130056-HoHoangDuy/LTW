@@ -90,7 +90,6 @@ if (reviewForm) {
 
         // Lấy dữ liệu từ form
         const formData = new FormData(this);
-
         const params = new URLSearchParams(formData);
 
         fetch(this.getAttribute("action"), {
