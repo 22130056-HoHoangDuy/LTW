@@ -16,6 +16,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String clientId = getServletContext().getInitParameter("GOOGLE_CLIENT_ID");
+        req.setAttribute("GOOGLE_CLIENT_ID", clientId);
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
