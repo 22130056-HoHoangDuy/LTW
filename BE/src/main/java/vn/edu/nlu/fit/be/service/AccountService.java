@@ -86,7 +86,47 @@ public class AccountService {
 
         return accountDao.updatePassword(accountId, hashed);
     }
+    /* ================= loginWithGoogle ================= */
 
+    public Account loginWithGoogle(String email, String name) {
+
+        Optional<Account> opt = accountDao.findByEmail(email);
+
+        // 1. Đã tồn tại
+        if (opt.isPresent()) {
+            Account acc = opt.get();
+
+            if (acc.getStatus() != AccountStatus.ACTIVE) return null;
+            return acc;
+        }
+
+        // 2. Chưa tồn tại → tạo account Google
+        return DBConnect.get().inTransaction(handle -> {
+
+            int profileId = handle.createUpdate("""
+                INSERT INTO profiles (email)
+                VALUES (:email)
+            """)
+                    .bind("email", email)
+                    .executeAndReturnGeneratedKeys("profile_id")
+                    .mapTo(Integer.class)
+                    .one();
+
+            handle.createUpdate("""
+                INSERT INTO accounts
+                (profile_id, email, username, password, status, role)
+                VALUES (:pid, :email, :username, NULL, :status, :role)
+            """)
+                    .bind("pid", profileId)
+                    .bind("email", email)
+                    .bind("username", name)
+                    .bind("status", AccountStatus.ACTIVE.name())
+                    .bind("role", 0)
+                    .execute();
+
+            return accountDao.findByEmail(email).orElse(null);
+        });
+    }
     /* ================= Admin ================= */
 
     public boolean updateStatus(int id, AccountStatus status) {

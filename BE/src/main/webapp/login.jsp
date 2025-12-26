@@ -40,6 +40,11 @@
             </div>
 
             <button type="submit">Đăng nhập</button>
+            <a class="google-btn"
+               href="https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&access_type=online&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FBE_war%2Flogin-google&client_id=${GOOGLE_CLIENT_ID}">
+                <i class="fa-brands fa-google"></i>
+                Đăng nhập bằng Google
+            </a>
 
             <p class="switch">
                 Chưa có tài khoản?

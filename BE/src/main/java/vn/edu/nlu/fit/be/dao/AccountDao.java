@@ -106,5 +106,17 @@ public class AccountDao {
                         .list()
         );
     }
+    public Optional<Account> findByEmail(String email) {
+        return DBConnect.get().withHandle(h ->
+                h.createQuery("""
+                SELECT *
+                FROM accounts
+                WHERE email = :email
+            """)
+                        .bind("email", email)
+                        .mapToBean(Account.class)
+                        .findOne()
+        );
+    }
 
 }
