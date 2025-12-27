@@ -1,23 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
-<header class="site-header">
-    <!-- 🔹 Thanh trên cùng -->
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css"/>
+
+<header class="site-header" id="siteHeader">
+    <!-- Top bar -->
     <div class="sh-top-bar">
-        <div class="sh-header-container sh-top-bar-inner">
+        <div class="sh-container sh-top-bar-inner">
             <div class="sh-hotline">
-                <span>Hotline: <a href="tel:0964163168" style="font-size: 1rem;">0964 163 168</a></span>
+                Hotline: <a href="tel:0964163168">0964 163 168</a>
             </div>
+
             <div class="sh-auth-links">
                 <c:choose>
                     <c:when test="${empty sessionScope.USER}">
-                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a> /
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
+                        <span class="sep">/</span>
                         <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
                     </c:when>
-
                     <c:otherwise>
                         Xin chào, <strong>${sessionScope.USER.username}</strong>
-                        /
+                        <span class="sep">/</span>
                         <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                     </c:otherwise>
                 </c:choose>
@@ -25,77 +28,112 @@
         </div>
     </div>
 
-    <!-- 🔹 Header chính -->
-    <div class="sh-header-container main-header">
+    <!-- Main header -->
+    <div class="sh-container sh-main">
+        <!-- Brand -->
         <div class="sh-brand">
-            <a href="${pageContext.request.contextPath}/home" target="_top" class="sh-logo" aria-label="BabyShop">
-        <span class="sh-brand-text sh-multi-logo">
-            <span>B</span><span>a</span><span>b</span><span>y</span><span>S</span><span>h</span><span>o</span><span>p</span>
-        </span>
+            <a href="${pageContext.request.contextPath}/home" class="sh-logo" aria-label="BabyShop">
+                <span class="sh-brand-text sh-multi-logo" aria-hidden="true">
+                    <span>B</span><span>a</span><span>b</span><span>y</span><span>S</span><span>h</span><span>o</span><span>p</span>
+                </span>
             </a>
         </div>
 
-        <!-- Search -->
+        <!-- Search (desktop) -->
         <div class="sh-search-wrap">
-            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-search-form"
-                  role="search" aria-label="Tìm sản phẩm">
-                <button type="submit" class="sh-search-btn" aria-label="Tìm">
-                    🔍
-                </button>
+            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-search-form" role="search">
+                <button type="submit" class="sh-search-btn" aria-label="Tìm">🔍</button>
                 <input
                         type="search"
                         class="sh-search-input"
                         placeholder="Tìm bàn ghế, tủ, đồ chơi..."
-                        aria-label="Tìm sản phẩm"
                         name="keyword"
                         value="${param.keyword}"
                 />
             </form>
         </div>
 
-        <!-- Nav + actions -->
-        <nav class="sh-nav-actions">
-            <ul class="sh-nav-links">
-                <li><a href="${pageContext.request.contextPath}/home" target="_top">Trang chủ</a></li>
-                <li><a href="${pageContext.request.contextPath}/product-list" target="_top">Danh sách sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/news" target="_top">Tin tức</a></li>
-                <li><a href="${pageContext.request.contextPath}/voucher-list" target="_top">Ưu đãi</a></li>
-                <li><a href="${pageContext.request.contextPath}/contact" target="_top">Liên hệ</a></li>
-            </ul>
+        <!-- Right side -->
+        <div class="sh-right">
+            <nav class="sh-nav" aria-label="Điều hướng chính">
+                <ul class="sh-nav-links">
+                    <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/product-list">Sản phẩm</a></li>
+                    <li><a href="${pageContext.request.contextPath}/news">Tin tức</a></li>
+                    <li><a href="${pageContext.request.contextPath}/voucher-list">Ưu đãi</a></li>
+                    <li><a href="${pageContext.request.contextPath}/contact">Liên hệ</a></li>
+                </ul>
+            </nav>
 
             <div class="sh-actions">
-                <a href="${pageContext.request.contextPath}/profile" target="_top" class="account"
-                   aria-label="Tài khoản">👤</a>
-                <a href="${pageContext.request.contextPath}/cart" target="_top" class="cart" aria-label="Giỏ hàng">
-                    🛒<span class="sh-cart-badge" aria-hidden="true">2</span>
+                <a href="${pageContext.request.contextPath}/profile" class="icon-btn" aria-label="Tài khoản">👤</a>
+
+                <a href="${pageContext.request.contextPath}/cart" class="icon-btn sh-cart" aria-label="Giỏ hàng">
+                    🛒
+                    <span class="sh-cart-badge" aria-hidden="true">
+                        <c:choose>
+                            <c:when test="${sessionScope.cart != null}">
+                                ${sessionScope.cart.totalQuantity}
+                            </c:when>
+                            <c:otherwise>0</c:otherwise>
+                        </c:choose>
+                    </span>
                 </a>
 
-                <!-- Hamburger -->
-                <button class="sh-hamburger" aria-label="Mở menu" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <button class="sh-hamburger icon-btn" type="button"
+                        aria-label="Mở menu" aria-controls="mobileMenu" aria-expanded="false">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </button>
             </div>
-        </nav>
+        </div>
     </div>
 
-    <!-- 🔹 Mobile menu -->
-    <div class="sh-mobile-menu" aria-hidden="true">
-        <form class="sh-mobile-search" role="search">
-            <input type="search" placeholder="Tìm sản phẩm..."/>
-        </form>
-        <ul class="sh-mobile-links">
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Danh sách sản phẩm</a></li>
-            <li><a href="#">Tin tức</a></li>
-            <li><a href="#">Ưu đãi</a></li>
-            <li><a href="#">Liên hệ</a></li>
-            <li><a href="../html/profile.html" target="_top">Tài khoản</a></li>
-            <li><a href="#">Giỏ hàng</a></li>
-        </ul>
+    <!-- Mobile drawer -->
+    <div class="sh-mobile" id="mobileMenu" aria-hidden="true">
+        <div class="sh-mobile-inner">
+            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-mobile-search" role="search">
+                <input type="search" name="keyword" value="${param.keyword}" placeholder="Tìm sản phẩm..."/>
+            </form>
+
+            <ul class="sh-mobile-links">
+                <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/product-list">Danh sách sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/news">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/voucher-list">Ưu đãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/contact">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/profile">Tài khoản</a></li>
+                <li><a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a></li>
+            </ul>
+        </div>
     </div>
 </header>
-<%--</body>--%>
-<%--</html>--%>
 
+<script>
+    (function () {
+        const header = document.getElementById('siteHeader');
+        const btn = header.querySelector('.sh-hamburger');
+        const menu = document.getElementById('mobileMenu');
+
+        function setOpen(open) {
+            btn.setAttribute('aria-expanded', String(open));
+            menu.setAttribute('aria-hidden', String(!open));
+            header.classList.toggle('is-open', open);
+            document.body.classList.toggle('no-scroll', open);
+        }
+
+        btn.addEventListener('click', () => {
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+            setOpen(!isOpen);
+        });
+
+        // click outside to close
+        menu.addEventListener('click', (e) => {
+            if (e.target === menu) setOpen(false);
+        });
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setOpen(false);
+        });
+    })();
+</script>
