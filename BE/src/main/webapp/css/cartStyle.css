@@ -1,13 +1,19 @@
-*{
+* {
     margin: 0;
 }
+
 /* Scoped reset for cart page only - không ảnh hưởng header */
 .breadcrumb-nav,
 .page-title,
+.clear-cart-btn,
 .cart-container,
-.cart-container * {
+.cart-container *,
+.empty-cart,
+.empty-cart * {
+    margin: 0;
     box-sizing: border-box;
 }
+
 
 /* Set base font for cart page */
 body {
@@ -16,12 +22,6 @@ body {
     color: #333;
     font-size: 14px;
     /* Base size cho cart content */
-}
-
-/* Isolate header to use browser default sizing (16px base) */
-.site-header {
-    font-size: 16px !important;
-    /* Override body font-size for header */
 }
 
 iframe {
@@ -459,7 +459,7 @@ iframe {
 }
 
 .empty-cart p,
-a {
+.empty-cart a {
     font-size: 18px;
 }
 
@@ -492,6 +492,7 @@ a {
 }
 
 /* ===== Clear all cart button ===== */
+
 .clear-cart-btn {
     margin-top: 1.2rem;
     padding: 0.75rem 1.2rem;
@@ -618,9 +619,4 @@ a {
 /* 8) Title + breadcrumbs căn “pro” hơn một chút */
 .page-title {
     margin: 18px auto 3px;
-}
-
-.sh-hotline a,
-.sh-auth-links a {
-    font-size: 0.9rem;
 }

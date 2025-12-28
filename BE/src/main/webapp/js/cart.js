@@ -87,7 +87,9 @@ if (promoInput) {
     });
 }
 
-async function submitPayment() {
+async function submitPayment(e) {
+    e.preventDefault();
+    const contextPath = "${pageContext.request.contextPath}";
     await Swal.fire({
         icon: "success",
         title: "Thanh toán thành công",
@@ -95,5 +97,4 @@ async function submitPayment() {
         timer: 2000,
         showConfirmButton: false,
     });
-    window.location.href = "../html/productList.html";
 }

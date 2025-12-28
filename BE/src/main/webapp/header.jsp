@@ -21,7 +21,7 @@
                     <c:otherwise>
                         Xin chào, <strong>${sessionScope.USER.username}</strong>
                         <span class="sep">/</span>
-                        <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
+                        <a class="logout-btn" href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -91,7 +91,8 @@
     <!-- Mobile drawer -->
     <div class="sh-mobile" id="mobileMenu" aria-hidden="true">
         <div class="sh-mobile-inner">
-            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-mobile-search" role="search">
+            <form action="${pageContext.request.contextPath}/search" method="get" class="sh-mobile-search"
+                  role="search">
                 <input type="search" name="keyword" value="${param.keyword}" placeholder="Tìm sản phẩm..."/>
             </form>
 
@@ -126,14 +127,44 @@
             setOpen(!isOpen);
         });
 
-        // click outside to close
         menu.addEventListener('click', (e) => {
             if (e.target === menu) setOpen(false);
         });
 
-        // ESC to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') setOpen(false);
         });
     })();
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutBtn = document.querySelector(".logout-btn");
+        if (!logoutBtn) return;
+
+        logoutBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Xác nhận đăng xuất",
+                text: "Bạn có chắc chắn muốn đăng xuất không?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Đăng xuất",
+                cancelButtonText: "Hủy",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Thành công",
+                        text: "Đang đăng xuất...",
+                        timer: 900,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = logoutBtn.href;
+                    });
+                }
+            });
+        });
+    });
 </script>
+

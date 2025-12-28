@@ -17,7 +17,7 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("USER");
         if (account==null){
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         Cart cart = (Cart) session.getAttribute("cart");
@@ -43,11 +43,22 @@ public class CartController extends HttpServlet {
                 case "add":
                     cart.addItem(product, quantity);
                     session.setAttribute("cart", cart);
-                    response.sendRedirect(request.getContextPath() + "/product-list");
+                    String returnUrl = request.getParameter("returnUrl");
+
+                    if (returnUrl != null && !returnUrl.isEmpty()) {
+                        response.sendRedirect(returnUrl);
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/product-list");
+                    }
                     return;
 
                 case "remove":
                     cart.removeItem(productId);
+                    session.setAttribute("cart", cart);
+                    response.sendRedirect(request.getContextPath() + "/cart");
+                    return;
+                case "buy_now":
+                    cart.addItem(product,quantity);
                     session.setAttribute("cart", cart);
                     response.sendRedirect(request.getContextPath() + "/cart");
                     return;

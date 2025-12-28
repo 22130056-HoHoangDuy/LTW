@@ -143,14 +143,37 @@ if (reviewForm) {
             });
     });
 }
-function increaseQty() {
-    var input = document.getElementById('quantity');
-    input.value = parseInt(input.value) + 1;
+function increaseUI(productId) {
+    const input = document.getElementById(`quantity-${productId}`);
+    if (!input) return;
+    input.value = (parseInt(input.value || "1", 10) + 1);
 }
 
-function decreaseQty() {
-    var input = document.getElementById('quantity');
-    if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-    }
+function decreaseUI(productId) {
+    const input = document.getElementById(`quantity-${productId}`);
+    if (!input) return;
+    const cur = parseInt(input.value || "1", 10);
+    if (cur > 1) input.value = cur - 1;
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const addBtn = document.querySelector(".add-btn");
+    if (!addBtn) return;
+
+    addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const productId  = addBtn.dataset.productId;
+        const input = document.getElementById(`quantity-${productId}`);
+        const qty = input ? parseInt(input.value || "1", 10) : 1;
+
+        // returnUrl để quay về đúng trang hiện tại
+        const returnUrl = window.location.pathname + window.location.search;
+
+        const url = new URL(addBtn.href, window.location.origin);
+        url.searchParams.set("quantity", String(qty));
+        url.searchParams.set("returnUrl", returnUrl);
+
+        window.location.href = url.toString();
+    });
+});
+

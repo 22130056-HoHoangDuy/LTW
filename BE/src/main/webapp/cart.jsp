@@ -126,9 +126,12 @@
                                           currencySymbol="đ"/>
                     </span>
                 </div>
-                <button type="button" class="submit-btn" onclick="submitPayment()">
-                    Xác nhận thanh toán
-                </button>
+                <a href="product-list">
+                    <button type="button" class="submit-btn" onclick="submitPayment()">
+                        Xác nhận thanh toán
+                    </button>
+                </a>
+
             </div>
         </c:otherwise>
     </c:choose>
