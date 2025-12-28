@@ -18,26 +18,26 @@ public class Cart implements Serializable {
     }
 
     public void addItem(Product product, int quantity) {
-        if(quantity <= 0) quantity = 1;
-        if(get(product.getProductId())!= null)
+        if (quantity <= 0) quantity = 1;
+        if (get(product.getProductId()) != null)
             data.get(product.getProductId()).updateQuantity(quantity);
         else
-            data.put(product.getProductId(),new CartItem(quantity,product.getProductPrice(),product));
+            data.put(product.getProductId(), new CartItem(quantity, product.getProductPrice(), product));
     }
 
     public boolean updateItem(int productId, int quantity) {
-        if(get(productId) == null) return false;
-        if(quantity <= 0) quantity = 1;
+        if (get(productId) == null) return false;
+        if (quantity <= 0) quantity = 1;
         data.get(productId).setQuantity(quantity);
         return true;
     }
 
     public CartItem removeItem(int productId) {
-        if(get(productId) == null) return null;
+        if (get(productId) == null) return null;
         return data.remove(productId);
     }
 
-    public List<CartItem> removeAllitem() {
+    public List<CartItem> removeAllItems() {
         ArrayList<CartItem> cartItems = new ArrayList<>(data.values());
         data.clear();
         return cartItems;
@@ -51,7 +51,7 @@ public class Cart implements Serializable {
         return data.get(productId);
     }
 
-    public int totalQuantity() {
+    public int getTotalQuantity() {
         int total = 0;
         for (CartItem item : data.values()) {
             total += item.getQuantity();
@@ -59,7 +59,7 @@ public class Cart implements Serializable {
         return total;
     }
 
-    public int totalPrice() {
+    public int getTotalPrice() {
         int total = 0;
         for (CartItem item : data.values()) {
             total += item.getQuantity() * item.getPrice();

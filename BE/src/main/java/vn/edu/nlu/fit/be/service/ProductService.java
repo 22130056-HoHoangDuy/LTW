@@ -16,7 +16,7 @@ public class ProductService {
     public List<Product> getProducts(Integer categoryId, String[] brandName, String sortType, String keyword, int pageIndex, int pageSize) {
         // Hàm này đã handle logic null cho cả 3 tham số
         int offset = (pageIndex - 1) * pageSize;
-        return pdao.getProductsBy(categoryId, brandName, sortType, keyword, 15, offset);
+        return pdao.getProductsBy(categoryId, brandName, sortType,keyword, pageSize, offset);
     }
 
     public List<Product> getNewestProductsByCategory(int categoryId, String sortType) {

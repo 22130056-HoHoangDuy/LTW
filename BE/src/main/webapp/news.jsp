@@ -13,6 +13,8 @@
     <title>Tin tức - Đồ nội thất trẻ em</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
     <!--    <script src="../js/news.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>

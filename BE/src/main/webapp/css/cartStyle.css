@@ -1,17 +1,28 @@
-* {
+/* Scoped reset for cart page only - không ảnh hưởng header */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box
 }
-html {
-    font-size: 14px; /* Đây là dòng quan trọng nhất: Định nghĩa 1rem = 14px */
+
+.breadcrumb-nav,
+.page-title,
+.clear-cart-btn,
+.cart-container,
+.cart-container *,
+.empty-cart,
+.empty-cart * {
+    margin: 0;
+    box-sizing: border-box;
 }
+
+
+/* Set base font for cart page */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     background-color: #f5f5f7;
     color: #333;
-    /*padding-top: 0;*/
-    font-size: 1rem;
+    font-size: 14px;
+    /* Base size cho cart content */
 }
 
 iframe {
@@ -53,13 +64,20 @@ iframe {
     color: #999;
 }
 
-.page-title {
-    font-size: 18px;
+/* Cart header wrapper for title and clear button */
+.cart-header-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
-    position: relative;
-    /*left: 150px;*/
-    margin: 20px;
-    padding: 0 11rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.page-title {
+    font-size: 1.4rem;
+    margin: 0;
 }
 
 .cart-container {
@@ -86,11 +104,14 @@ iframe {
     padding: 1.5rem 0;
     border-bottom: 1px solid #f0f0f0;
     position: relative;
+    transition: background 0.25s ease;
+
 }
 
 .cart-items:hover {
-    transform: scale(1.01);
-    transition: transform 0.3s ease;
+    /*transform: scale(1.01);*/
+    /*transition: transform 0.3s ease;*/
+    background: #fafafa;
 }
 
 .cart-item div {
@@ -276,12 +297,16 @@ iframe {
 }
 
 @keyframes shake {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0);
     }
+
     25% {
         transform: translateX(-4px);
     }
+
     75% {
         transform: translateX(4px);
     }
@@ -424,7 +449,7 @@ iframe {
 }
 
 .empty-cart {
-    display: none;
+    display: block;
     padding: 2em;
     color: #333;
     background: white;
@@ -441,7 +466,7 @@ iframe {
 }
 
 .empty-cart p,
-a {
+.empty-cart a {
     font-size: 18px;
 }
 
@@ -471,4 +496,133 @@ a {
     .promo-btn {
         width: 100%;
     }
+}
+
+/* ===== Clear all cart button ===== */
+
+.clear-cart-btn {
+    padding: 0.75rem 1.2rem;
+    background: #fff5f5;
+    color: #ff3b30;
+    border: 1px solid #ffdad7;
+    border-radius: 8px;
+    margin: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    position: relative;
+    left: 887px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.clear-cart-btn:hover {
+    background: #ff3b30;
+    color: #ffffff;
+    border-color: #ff3b30;
+    box-shadow: 0 4px 10px rgba(255, 59, 48, 0.25);
+    transform: translateY(-1px);
+}
+
+.clear-cart-btn:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   CART LAYOUT - PATCH
+   Dán cuối file để override
+   ========================= */
+
+/* 1) Container: cột trái co giãn, cột phải “vừa đủ”, gap dễ nhìn */
+.cart-container {
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 1.5rem;
+}
+
+/* 2) Card tổng: đừng đổi nền khi hover cả khối (đang hơi “lạ”) */
+.cart-items:hover {
+    background: white;
+    /* giữ nền */
+}
+
+/* 3) Hover đúng vào từng item */
+.cart-item {
+    border-bottom: 1px solid #f1f1f3;
+    padding: 1.25rem 0;
+    border-radius: 10px;
+    /* để hover nhìn “card-ish” */
+}
+
+.cart-item:hover {
+    background: #fafafa;
+}
+
+/* 4) Grid item: ảnh + info + actions cân tốt hơn */
+.cart-item {
+    grid-template-columns: 120px minmax(0, 1fr) 190px;
+    align-items: center;
+}
+
+/* 5) Tiêu đề/chi tiết: không bị tràn dài */
+.item-details {
+    min-width: 0;
+}
+
+.item-title {
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* tối đa 2 dòng */
+    line-clamp: 2;
+    /* standard property */
+    -webkit-box-orient: vertical;
+}
+
+/* 6) Actions: luôn thẳng hàng, gọn */
+.item-actions {
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+/* Nút xoá (icon) dễ bấm hơn, có nền nhẹ khi hover */
+.delete-btn {
+    border-radius: 10px;
+    padding: 0.45rem 0.6rem;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 59, 48, 0.08);
+}
+
+/* Quantity: đồng đều, input không bị lệch */
+.quantity-control {
+    height: 40px;
+    border-radius: 10px;
+}
+
+.quantity-btn {
+    height: 40px;
+    padding: 0 0.9rem;
+}
+
+.quantity-input {
+    height: 40px;
+    width: 56px;
+}
+
+/* 7) Order summary: sticky mượt + spacing hợp lý */
+.order-summary {
+    top: 1.25rem;
+    padding: 1.5rem;
+}
+
+/* 8) Title + breadcrumbs căn “pro” hơn một chút */
+.page-title {
+    margin: 18px auto 20px;
+    position: relative;
+    left: 200px;
 }

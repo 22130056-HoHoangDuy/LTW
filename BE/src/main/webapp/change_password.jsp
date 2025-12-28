@@ -19,6 +19,8 @@
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>

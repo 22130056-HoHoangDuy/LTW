@@ -26,7 +26,8 @@ public class StockProductDao extends BaseDao {
                 handle.createQuery("SELECT SUM(sold_quantity) FROM stock_products WHERE stock_product_id = :id")
                         .bind("id", stockProductId)
                         .mapTo(Integer.class)
-                        .one()
+                        .findOne()
+                        .orElse(0)
         );
     }
 
