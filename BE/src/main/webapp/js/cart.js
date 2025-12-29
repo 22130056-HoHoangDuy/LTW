@@ -57,7 +57,7 @@ function applyPromo() {
             showConfirmButton: false,
         });
         discount.textContent = "1.500.000đ";
-        updateTotal();
+        updateCartTotalsUI();
     } else if (code === "") {
         Swal.fire({
             icon: "error",
@@ -79,17 +79,24 @@ function applyPromo() {
     }
 }
 
-if (promoInput) {
-    promoInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            applyPromo();
-        }
-    });
-}
+// Add event listeners
+document.addEventListener("DOMContentLoaded", () => {
+    const promoBtn = document.querySelector(".promo-btn");
+    if (promoBtn) {
+        promoBtn.addEventListener("click", applyPromo);
+    }
+
+    if (promoInput) {
+        promoInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                applyPromo();
+            }
+        });
+    }
+});
 
 async function submitPayment(e) {
-    e.preventDefault();
-    const contextPath = "${pageContext.request.contextPath}";
+    if (e) e.preventDefault();
     await Swal.fire({
         icon: "success",
         title: "Thanh toán thành công",
