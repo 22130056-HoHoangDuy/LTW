@@ -250,6 +250,22 @@ body {
 }
 
 /* ========== CAROUSEL ========== */
+.carousel-control-prev-icon {
+    background-color: black;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    right: 120px;
+}
+
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    left: 120px;
+}
+
 .carousel-wrapper {
     position: relative;
     overflow: hidden;
@@ -258,7 +274,9 @@ body {
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    transition: transform 650ms cubic-bezier(.22, .61, .36, 1);
     width: 100%;
 }
 

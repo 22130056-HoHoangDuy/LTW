@@ -1,9 +1,8 @@
 package vn.edu.nlu.fit.be.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Orders {
+public class Order {
 
     private int orderId;
     private int accountId;
@@ -17,9 +16,9 @@ public class Orders {
 
     //Constructor
 
-    public Orders() {}
+    public Order() {}
 
-    public Orders(int orderId, Timestamp orderDate, PaymentMethod paymentMethod, String deliveryAddress, int totalAmount, OrderStatus statusOrder, int voucherId, int accountId) {
+    public Order(int orderId, Timestamp orderDate, PaymentMethod paymentMethod, String deliveryAddress, int totalAmount, OrderStatus statusOrder, int voucherId, int accountId) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;

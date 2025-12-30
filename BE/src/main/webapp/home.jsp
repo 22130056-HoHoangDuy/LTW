@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,8 @@
 
     <!-- SweetAlert dùng cho header logout -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
@@ -27,7 +29,8 @@
 
 <!-- Banner chính -->
 <section class="hero">
-    <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img" alt="Banner">
+    <img src="${pageContext.request.contextPath}/img/banner/banner.png" class="banner-img"
+         alt="Banner">
 </section>
 
 <!-- Danh mục sản phẩm -->
@@ -37,7 +40,8 @@
     <div class="category-grid">
         <c:forEach items="${categories}" var="c">
             <div class="cat-item">
-                <a href="${pageContext.request.contextPath}/product-list?category_id=${c.categoryId}">
+                <a
+                        href="${pageContext.request.contextPath}/product-list?category_id=${c.categoryId}">
                     <img src="${c.categoryImage}" alt="${c.categoryName}">
                 </a>
                 <p>${c.categoryName}</p>
@@ -62,132 +66,6 @@
 <!-- ====== CAROUSEL SECTION TEMPLATE ====== -->
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<!-- ĐỒ NỘI THẤT MỚI NHẤT -->
-<section class="section">
-    <h2>ĐỒ NỘI THẤT MỚI NHẤT</h2>
-
-    <div class="carousel-wrapper">
-        <button type="button" class="carousel-btn prev" aria-label="Previous">
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
-        <div class="carousel-track">
-            <!-- JS sẽ lấy product-grid và tự chia thành carousel-slide -->
-            <div class="product-grid">
-                <c:forEach items="${NoiThatMoi}" var="p">
-                    <div class="product-card">
-                        <div class="product-img">
-                            <a href="${ctx}/product-detail?product_id=${p.productId}">
-                                <img src="${p.productImage}" alt="${p.productName}">
-                            </a>
-                        </div>
-
-                        <h4 class="product-title">${p.productName}</h4>
-                        <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
-
-                        <div class="product-actions">
-                            <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                            <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                            <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-
-        <button type="button" class="carousel-btn next" aria-label="Next">
-            <i class="fa-solid fa-chevron-right"></i>
-        </button>
-    </div>
-</section>
-
-<!-- ĐỒ TRANG TRÍ MỚI NHẤT -->
-<section class="section">
-    <h2>ĐỒ TRANG TRÍ MỚI NHẤT</h2>
-
-    <div class="carousel-wrapper">
-        <button type="button" class="carousel-btn prev" aria-label="Previous">
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
-        <div class="carousel-track">
-            <div class="product-grid">
-                <c:forEach items="${TrangTriMoi}" var="p">
-                    <div class="product-card">
-                        <div class="product-img">
-                            <a href="${ctx}/product-detail?product_id=${p.productId}">
-                                <img src="${p.productImage}" alt="${p.productName}">
-                            </a>
-                        </div>
-
-                        <h4 class="product-title">${p.productName}</h4>
-                        <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
-
-                        <div class="product-actions">
-                            <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                            <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                            <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-
-        <button type="button" class="carousel-btn next" aria-label="Next">
-            <i class="fa-solid fa-chevron-right"></i>
-        </button>
-    </div>
-</section>
-
-<!-- ĐỒ CHƠI MỚI NHẤT -->
-<section class="section">
-    <h2>ĐỒ CHƠI MỚI NHẤT</h2>
-
-    <div class="carousel-wrapper">
-        <button type="button" class="carousel-btn prev" aria-label="Previous">
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
-        <div class="carousel-track">
-            <!-- QUAN TRỌNG: chỉ render product-card, KHÔNG bọc carousel-slide -->
-            <div class="product-grid">
-                <c:forEach items="${DoChoiMoi}" var="p">
-                    <div class="product-card">
-                        <div class="product-img">
-                            <a href="${ctx}/product-detail?product_id=${p.productId}">
-                                <img src="${p.productImage}" alt="${p.productName}">
-                            </a>
-                        </div>
-
-                        <h4 class="product-title">${p.productName}</h4>
-                        <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
-
-                        <div class="product-actions">
-                            <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                            <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                            <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-
-        <button type="button" class="carousel-btn next" aria-label="Next">
-            <i class="fa-solid fa-chevron-right"></i>
-        </button>
-    </div>
-</section>
-
-
-<!-- ================== SẢN PHẨM MỚI NHẤT THEO 3 LOẠI (BOOTSTRAP CAROUSEL) ================== -->
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
 <!-- 1) ĐỒ NỘI THẤT MỚI NHẤT -->
 <section class="section">
     <h2>ĐỒ NỘI THẤT MỚI NHẤT</h2>
@@ -197,11 +75,12 @@
     </c:if>
 
     <c:if test="${not empty NoiThatMoi}">
-        <div id="noiThatCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false" data-bs-touch="true">
+        <div id="noiThatCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false"
+             data-bs-touch="true">
             <div class="carousel-inner">
 
                 <c:forEach items="${NoiThatMoi}" var="p" varStatus="st">
-                    <c:if test="${st.index % 20 == 0}">
+                    <c:if test="${st.index % 6 == 0}">
                         <div class="carousel-item ${st.index == 0 ? 'active' : ''}">
                         <div class="row g-3">
                     </c:if>
@@ -215,19 +94,24 @@
                             </div>
 
                             <h4 class="product-title">${p.productName}</h4>
-                            <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
+                            <p class="price">
+                                <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                            </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                                <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
+                                <a class="filter-btn cart-btn" href="#"><i
+                                        class="fa-solid fa-cart-plus"></i></a>
+                                <a class="filter-btn detail-btn"
+                                   href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a class="filter-btn favor-btn" href="#"><i
+                                        class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <c:if test="${st.index % 20 == 19 || st.last}">
+                    <c:if test="${st.index % 6 == 5 || st.last}">
                         </div>
                         </div>
                     </c:if>
@@ -235,12 +119,14 @@
 
             </div>
 
-            <c:if test="${fn:length(NoiThatMoi) > 20}">
-                <button class="carousel-control-prev" type="button" data-bs-target="#noiThatCarousel" data-bs-slide="prev">
+            <c:if test="${fn:length(NoiThatMoi) > 6}">
+                <button class="carousel-control-prev" type="button" data-bs-target="#noiThatCarousel"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#noiThatCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#noiThatCarousel"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -258,11 +144,12 @@
     </c:if>
 
     <c:if test="${not empty TrangTriMoi}">
-        <div id="trangTriCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false" data-bs-touch="true">
+        <div id="trangTriCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false"
+             data-bs-touch="true">
             <div class="carousel-inner">
 
                 <c:forEach items="${TrangTriMoi}" var="p" varStatus="st">
-                    <c:if test="${st.index % 20 == 0}">
+                    <c:if test="${st.index % 6 == 0}">
                         <div class="carousel-item ${st.index == 0 ? 'active' : ''}">
                         <div class="row g-3">
                     </c:if>
@@ -276,19 +163,24 @@
                             </div>
 
                             <h4 class="product-title">${p.productName}</h4>
-                            <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
+                            <p class="price">
+                                <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                            </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                                <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
+                                <a class="filter-btn cart-btn" href="#"><i
+                                        class="fa-solid fa-cart-plus"></i></a>
+                                <a class="filter-btn detail-btn"
+                                   href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a class="filter-btn favor-btn" href="#"><i
+                                        class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <c:if test="${st.index % 20 == 19 || st.last}">
+                    <c:if test="${st.index % 6 == 5 || st.last}">
                         </div>
                         </div>
                     </c:if>
@@ -296,12 +188,14 @@
 
             </div>
 
-            <c:if test="${fn:length(TrangTriMoi) > 20}">
-                <button class="carousel-control-prev" type="button" data-bs-target="#trangTriCarousel" data-bs-slide="prev">
+            <c:if test="${fn:length(TrangTriMoi) > 6}">
+                <button class="carousel-control-prev" type="button" data-bs-target="#trangTriCarousel"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#trangTriCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#trangTriCarousel"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -319,11 +213,12 @@
     </c:if>
 
     <c:if test="${not empty DoChoiMoi}">
-        <div id="doChoiCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false" data-bs-touch="true">
+        <div id="doChoiCarousel" class="carousel slide home-bs-carousel" data-bs-ride="false"
+             data-bs-touch="true">
             <div class="carousel-inner">
 
                 <c:forEach items="${DoChoiMoi}" var="p" varStatus="st">
-                    <c:if test="${st.index % 20 == 0}">
+                    <c:if test="${st.index % 6 == 0}">
                         <div class="carousel-item ${st.index == 0 ? 'active' : ''}">
                         <div class="row g-3">
                     </c:if>
@@ -337,19 +232,24 @@
                             </div>
 
                             <h4 class="product-title">${p.productName}</h4>
-                            <p class="price"><fmt:formatNumber value="${p.productPrice}" type="number"/>đ</p>
+                            <p class="price">
+                                <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                            </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i class="fa-solid fa-cart-plus"></i></a>
-                                <a class="filter-btn detail-btn" href="${ctx}/product-detail?product_id=${p.productId}">
+                                <a class="filter-btn cart-btn" href="#"><i
+                                        class="fa-solid fa-cart-plus"></i></a>
+                                <a class="filter-btn detail-btn"
+                                   href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a class="filter-btn favor-btn" href="#"><i
+                                        class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <c:if test="${st.index % 20 == 19 || st.last}">
+                    <c:if test="${st.index % 6 == 5 || st.last}">
                         </div>
                         </div>
                     </c:if>
@@ -357,12 +257,14 @@
 
             </div>
 
-            <c:if test="${fn:length(DoChoiMoi) > 20}">
-                <button class="carousel-control-prev" type="button" data-bs-target="#doChoiCarousel" data-bs-slide="prev">
+            <c:if test="${fn:length(DoChoiMoi) > 6}">
+                <button class="carousel-control-prev" type="button" data-bs-target="#doChoiCarousel"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#doChoiCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#doChoiCarousel"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -434,4 +336,5 @@
 </script>
 
 </body>
+
 </html>

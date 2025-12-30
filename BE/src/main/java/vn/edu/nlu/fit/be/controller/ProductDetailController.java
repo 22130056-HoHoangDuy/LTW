@@ -6,7 +6,6 @@ import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.be.model.Brand;
 import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
-import vn.edu.nlu.fit.be.model.Reviews;
 import vn.edu.nlu.fit.be.service.*;
 
 import java.io.IOException;
