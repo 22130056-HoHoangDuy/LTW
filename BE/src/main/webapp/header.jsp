@@ -110,10 +110,13 @@
 </header>
 
 <script>
-    (function () {
+    document.addEventListener("DOMContentLoaded", () => {
         const header = document.getElementById('siteHeader');
+        if (!header) return;
+
         const btn = header.querySelector('.sh-hamburger');
         const menu = document.getElementById('mobileMenu');
+        if (!btn || !menu) return;
 
         function setOpen(open) {
             btn.setAttribute('aria-expanded', String(open));
@@ -134,37 +137,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') setOpen(false);
         });
-    })();
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const logoutBtn = document.querySelector(".logout-btn");
-        if (!logoutBtn) return;
-
-        logoutBtn.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            Swal.fire({
-                title: "Xác nhận đăng xuất",
-                text: "Bạn có chắc chắn muốn đăng xuất không?",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonText: "Đăng xuất",
-                cancelButtonText: "Hủy",
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Thành công",
-                        text: "Đang đăng xuất...",
-                        timer: 900,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = logoutBtn.href;
-                    });
-                }
-            });
-        });
     });
+
 </script>
 

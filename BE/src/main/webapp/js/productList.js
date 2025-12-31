@@ -86,7 +86,7 @@ favorBtns.forEach((favorBtn) => {
 
     })
 })
-//Add favorite product
+//Add cart
 const cartBtns = document.querySelectorAll(".filter-btn.cart-btn");
 cartBtns.forEach((cartBtn) => {
     cartBtn.addEventListener("click", (event) => {

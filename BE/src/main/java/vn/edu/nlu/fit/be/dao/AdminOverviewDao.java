@@ -23,7 +23,7 @@ public class AdminOverviewDao extends BaseDao{
 
 
     public int getTotalOrders() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM orders")
                         .mapTo(Integer.class)
                         .one()
@@ -31,7 +31,7 @@ public class AdminOverviewDao extends BaseDao{
     }
 
     public int getTotalCustomers() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM accounts")
                         .mapTo(Integer.class)
                         .one()
@@ -39,7 +39,7 @@ public class AdminOverviewDao extends BaseDao{
     }
 
     public int getTotalProducts() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM products")
                         .mapTo(Integer.class)
                         .one()
@@ -49,7 +49,7 @@ public class AdminOverviewDao extends BaseDao{
     // ===== Chart =====
 
     public List<RevenueByMonth> getRevenueByMonth() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                     SELECT MONTH(order_date) AS month,
                            SUM(total_amount) AS revenue
@@ -64,7 +64,7 @@ public class AdminOverviewDao extends BaseDao{
     }
 
     public List<CategoryOrderStat> getOrdersByCategory() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                     SELECT c.category_name AS categoryName,
                            COUNT(o.order_id) AS totalOrders
@@ -80,7 +80,7 @@ public class AdminOverviewDao extends BaseDao{
     }
 
     public List<RecentOrderDto> getRecentOrders(int limit) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                     SELECT o.order_id AS orderId,
                            a.username,

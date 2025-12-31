@@ -143,6 +143,7 @@ if (reviewForm) {
             });
     });
 }
+
 function increaseUI(productId) {
     const input = document.getElementById(`quantity-${productId}`);
     if (!input) return;
@@ -155,25 +156,28 @@ function decreaseUI(productId) {
     const cur = parseInt(input.value || "1", 10);
     if (cur > 1) input.value = cur - 1;
 }
+
 document.addEventListener("DOMContentLoaded", () => {
-    const addBtn = document.querySelector(".add-btn");
-    if (!addBtn) return;
+    const buttons = document.querySelectorAll(".add-btn,.buy-btn");
+    if (!buttons.length) return;
+    buttons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
 
-    addBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+            const productId = button.dataset.productId;
+            const input = document.getElementById(`quantity-${productId}`);
+            const qty = input ? parseInt(input.value || "1", 10) : 1;
 
-        const productId  = addBtn.dataset.productId;
-        const input = document.getElementById(`quantity-${productId}`);
-        const qty = input ? parseInt(input.value || "1", 10) : 1;
+            // returnUrl để quay về đúng trang hiện tại
+            const returnUrl = window.location.pathname + window.location.search;
 
-        // returnUrl để quay về đúng trang hiện tại
-        const returnUrl = window.location.pathname + window.location.search;
+            const url = new URL(button.href, window.location.origin);
+            url.searchParams.set("quantity", String(qty));
+            url.searchParams.set("returnUrl", returnUrl);
 
-        const url = new URL(addBtn.href, window.location.origin);
-        url.searchParams.set("quantity", String(qty));
-        url.searchParams.set("returnUrl", returnUrl);
+            window.location.href = url.toString();
+        });
+    })
 
-        window.location.href = url.toString();
-    });
 });
 

@@ -17,11 +17,11 @@ public class VoucherDao extends BaseDao {
 
     public void insert(Voucher v) {
         String sql = """
-            INSERT INTO vouchers
-            (voucher_code, voucher_name, voucher_description,
-             discount_amount, start_voucher, end_voucher)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """;
+                    INSERT INTO vouchers
+                    (voucher_code, voucher_name, voucher_description,
+                     discount_amount, start_voucher, end_voucher)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """;
 
         jdbi.useHandle(handle ->
                 handle.createUpdate(sql)
@@ -42,4 +42,33 @@ public class VoucherDao extends BaseDao {
                         .execute()
         );
     }
+    public int getDiscountAmount(String code){
+        String sql = """
+                    SELECT discount_amount
+                    FROM vouchers
+                    WHERE voucher_code = :code
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("code", code)
+                        .mapToBean(Integer.class)
+                        .one()
+        );
+    }
+    public Voucher findByCode(String code) {
+        String sql = """
+                    SELECT *
+                    FROM vouchers
+                    WHERE voucher_code = :code
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("code", code)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
 }

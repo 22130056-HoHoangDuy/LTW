@@ -6,10 +6,10 @@ import vn.edu.nlu.fit.be.model.Profile;
 
 import java.util.Optional;
 
-public class ProfileDao {
+public class ProfileDao extends BaseDao {
     /* ===================== INSERT ===================== */
     public int insert(Profile p) {
-        return DBConnect.get().withHandle(handle ->
+        return jdbi.withHandle(handle ->
                 handle.createUpdate("""
                     INSERT INTO profiles
                         (full_name, email, phone, address, gender, avatar_url, birth_date)
@@ -31,7 +31,7 @@ public class ProfileDao {
 
     /* ===================== FIND BY ID ===================== */
     public Optional<Profile> findById(int id) {
-        return DBConnect.get().withHandle(handle ->
+        return jdbi.withHandle(handle ->
                 handle.createQuery("""
             SELECT profile_id, full_name, email, phone, address,
                    gender, avatar_url, birth_date, updated_at
@@ -66,7 +66,7 @@ public class ProfileDao {
 
     /* ===================== UPDATE ===================== */
     public boolean update(Profile p) {
-        int rows = DBConnect.get().withHandle(handle ->
+        int rows = jdbi.withHandle(handle ->
                 handle.createUpdate("""
                     UPDATE profiles
                     SET
@@ -93,7 +93,7 @@ public class ProfileDao {
 
     /* ===================== DELETE ===================== */
     public boolean delete(int profileId) {
-        int rows = DBConnect.get().withHandle(handle ->
+        int rows = jdbi.withHandle(handle ->
                 handle.createUpdate("""
                     DELETE FROM profiles
                     WHERE profile_id = :id

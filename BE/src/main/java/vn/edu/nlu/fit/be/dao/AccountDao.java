@@ -6,11 +6,11 @@ import vn.edu.nlu.fit.be.model.Account;
 
 import java.util.Optional;
 
-public class AccountDao {
+public class AccountDao extends BaseDao {
     //tránh lỗi NullPointerException
 
     public boolean existsByEmail(String email) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                     SELECT 1
                     FROM accounts
@@ -24,7 +24,7 @@ public class AccountDao {
     }
 
     public Optional<Account> findByUsernameOrEmail(String key) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                     SELECT *
                     FROM accounts
@@ -37,7 +37,7 @@ public class AccountDao {
     }
 
     public int insert(Account a) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createUpdate("""
                     INSERT INTO accounts
                     (profile_id, email, username, password, status, role)
@@ -53,7 +53,7 @@ public class AccountDao {
         );
     }
     public boolean updatePassword(int accountId, String hashedPassword) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createUpdate("""
                 UPDATE accounts
                 SET password = :pw
@@ -67,7 +67,7 @@ public class AccountDao {
     /* ================= Admin ================= */
 
     public boolean updateStatus(int accountId, AccountStatus status) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createUpdate("""
                 UPDATE accounts
                 SET status = :status
@@ -80,7 +80,7 @@ public class AccountDao {
     }
 
     public List<Account> findAll() {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                 SELECT *
                 FROM accounts
@@ -93,7 +93,7 @@ public class AccountDao {
 
     public List<Account> search(String keyword) {
         String kw = "%" + keyword + "%";
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                 SELECT *
                 FROM accounts
@@ -107,7 +107,7 @@ public class AccountDao {
         );
     }
     public Optional<Account> findByEmail(String email) {
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery("""
                 SELECT *
                 FROM accounts

@@ -35,7 +35,7 @@ public class DBConnect {
     // Test nhanh
     public static void main(String[] args) {
         try {
-            String now = DBConnect.get().withHandle(handle ->
+            String now = jdbi.withHandle(handle ->
                     handle.createQuery("SELECT NOW()").mapTo(String.class).one()
             );
             System.out.println("⏳ DB Time = " + now);

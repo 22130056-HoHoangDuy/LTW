@@ -2,7 +2,7 @@ package vn.edu.nlu.fit.be.model;
 
 import java.sql.Timestamp;
 
-public class Reviews {
+public class Review {
 
     private int reviewId;
     private int accountId;
@@ -11,9 +11,10 @@ public class Reviews {
     private Timestamp commentCreated;
 
     //Constructor
-    public Reviews() {}
+    public Review() {
+    }
 
-    public Reviews(int reviewId, Timestamp commentCreated, String commentProduct, int productId, int accountId) {
+    public Review(int reviewId, Timestamp commentCreated, String commentProduct, int productId, int accountId) {
         this.reviewId = reviewId;
         this.commentCreated = commentCreated;
         this.commentProduct = commentProduct;

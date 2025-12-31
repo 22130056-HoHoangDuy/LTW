@@ -37,7 +37,7 @@ public class AdminOrderController extends HttpServlet {
         }
 
         // ===== LOAD ORDER LIST =====
-        List<Orders> orders = service.getAll();
+        List<Order> orders = service.getAll();
         req.setAttribute("orders", orders);
 
         req.getRequestDispatcher("/admin_orders.jsp").forward(req, resp);
