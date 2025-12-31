@@ -1,7 +1,6 @@
 package vn.edu.nlu.fit.be.service;
 
 import vn.edu.nlu.fit.be.dao.ReviewDao;
-import vn.edu.nlu.fit.be.model.Reviews;
 
 import java.util.*;
 

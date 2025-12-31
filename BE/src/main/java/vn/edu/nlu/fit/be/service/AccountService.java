@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.be.service;
 import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.dao.AccountDao;
+import vn.edu.nlu.fit.be.dao.BaseDao;
 import vn.edu.nlu.fit.be.dao.ProfileDao;
 import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.List;
 import java.util.Optional;
 
-public class AccountService {
+public class AccountService extends BaseDao {
 
     private final AccountDao accountDao = new AccountDao();
 
@@ -63,7 +64,7 @@ public class AccountService {
     /* ================= ChangePassword ================= */
     public boolean changePassword(int accountId, String oldPassword, String newPassword) {
 
-        Optional<Account> opt = DBConnect.get().withHandle(h ->
+        Optional<Account> opt = jdbi.withHandle(h ->
                 h.createQuery("""
                 SELECT *
                 FROM accounts

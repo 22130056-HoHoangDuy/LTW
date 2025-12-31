@@ -1,5 +1,11 @@
 .product-list-page {
-    background-color: #f8f8f8;
+    background: linear-gradient(#f8f9fb, #ffffff);
+}
+
+/* Reset box-sizing to prevent conflicts */
+.product-list-page,
+.product-list-page * {
+    box-sizing: border-box;
 }
 
 .product-list-page .product-container,
@@ -115,7 +121,7 @@ iframe {
     border-color: #0031da;
 }
 
-.product-list-page .custom-checkbox input:checked + .checkmark {
+.product-list-page .custom-checkbox input:checked+.checkmark {
     background: #0031da;
     border-color: #0031da;
 }
@@ -133,7 +139,7 @@ iframe {
     transition: transform 0.15s ease;
 }
 
-.product-list-page .custom-checkbox input:checked + .checkmark::after {
+.product-list-page .custom-checkbox input:checked+.checkmark::after {
     transform: rotate(45deg) scale(1);
 }
 
@@ -207,6 +213,7 @@ a.brand-list {
 .product-list-page .filter-btn:hover {
     background: #1a73e8;
     color: #fff;
+    transform: translateY(-2px);
 }
 
 .product-list-page .filter-btn.cart-btn {
@@ -263,7 +270,7 @@ a.brand-list {
 
 /* Product List */
 .product-list-page .product-container {
-    width: 80%;
+    width: 85%;
     margin: 20px auto;
     overflow: hidden;
     text-align: center;
@@ -276,12 +283,17 @@ a.brand-list {
 }
 
 .product-list-page .product {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    box-sizing: border-box;
-    overflow: hidden;
+    background-color: #fff;
+    border-radius: 14px;
+    border: none;
+    padding: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-list-page .product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-list-page .product-list {
@@ -310,7 +322,7 @@ a.brand-list {
     font-size: 18px;
     color: #333;
     font-weight: 550;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -320,12 +332,12 @@ a.brand-list {
 }
 
 .product-list-page .price {
-    color: #e60000;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: auto;
-    padding-top: 20px;
+    color: #e53935;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 12px;
 }
+
 
 .product-list-page .detail-btn {
     background-color: #007bff;

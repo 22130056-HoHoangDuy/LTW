@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết tin tức - Nội thất trẻ em</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/newsDetail.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>

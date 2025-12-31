@@ -285,7 +285,9 @@
                                           groupingUsed="true"/>đ
                     </p>
 
-                    <a class="filter-btn cart-btn" href="" title="Thêm vào giỏ hàng">
+                    <a class="filter-btn cart-btn"
+                       href="<c:url value='/cart?action=add&product_id=${product.productId}&quantity=1'/>"
+                       title="Thêm vào giỏ hàng">
                         <i class="fa-solid fa-cart-plus"></i>
                     </a>
 

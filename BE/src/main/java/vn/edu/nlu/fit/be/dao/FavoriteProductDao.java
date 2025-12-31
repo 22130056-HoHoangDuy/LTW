@@ -6,7 +6,7 @@ import vn.edu.nlu.fit.be.model.Product;
 
 import java.util.List;
 
-public class FavoriteProductDao {
+public class FavoriteProductDao extends BaseDao {
     // 1. Kiểm tra đã yêu thích chưa
     public boolean exists(int accountId, int productId) {
         String sql = """
@@ -16,7 +16,7 @@ public class FavoriteProductDao {
               AND product_id = :pid
         """;
 
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery(sql)
                         .bind("aid", accountId)
                         .bind("pid", productId)
@@ -33,7 +33,7 @@ public class FavoriteProductDao {
             VALUES (:aid, :pid)
         """;
 
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createUpdate(sql)
                         .bind("aid", accountId)
                         .bind("pid", productId)
@@ -49,7 +49,7 @@ public class FavoriteProductDao {
               AND product_id = :pid
         """;
 
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createUpdate(sql)
                         .bind("aid", accountId)
                         .bind("pid", productId)
@@ -67,7 +67,7 @@ public class FavoriteProductDao {
         ORDER BY fp.created_at DESC
     """;
 
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery(sql)
                         .bind("aid", accountId)
                         .mapToBean(Product.class)

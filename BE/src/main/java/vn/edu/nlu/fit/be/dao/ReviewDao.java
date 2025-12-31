@@ -1,7 +1,5 @@
 package vn.edu.nlu.fit.be.dao;
 
-import vn.edu.nlu.fit.be.model.Reviews;
-
 import java.util.*;
 
 public class ReviewDao extends BaseDao {

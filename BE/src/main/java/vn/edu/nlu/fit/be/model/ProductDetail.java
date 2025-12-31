@@ -32,7 +32,7 @@ public class ProductDetail {
     }
 
     public void setProductDescription(String productDescription) {
-        this.description = description;
+        this.description = productDescription;
     }
 
     public String getDetailImage() {

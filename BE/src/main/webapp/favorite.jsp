@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,6 +21,8 @@
     <!-- DÙNG CHUNG CSS PROFILE -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -67,7 +70,9 @@
                             <div class="pf-fav-info">
                                 <h4>${f.productName}</h4>
                                 <div class="pf-fav-price">
-                                        ${f.productPrice}₫
+                                    <fmt:setLocale value="vi_VN"/>
+                                    <fmt:formatNumber value="${f.productPrice}" type="number"
+                                                      groupingUsed="true"/>đ
                                 </div>
                             </div>
 

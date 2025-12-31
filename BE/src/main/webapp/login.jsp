@@ -57,6 +57,6 @@
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/auth.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

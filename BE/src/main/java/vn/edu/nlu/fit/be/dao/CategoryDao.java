@@ -32,7 +32,7 @@ public class CategoryDao extends BaseDao {
                     FROM categories
                 """;
 
-        return DBConnect.get().withHandle(h ->
+        return jdbi.withHandle(h ->
                 h.createQuery(sql)
                         .mapToBean(Category.class)
                         .list()

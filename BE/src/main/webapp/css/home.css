@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -47,7 +51,7 @@ body {
 .hero .banner-img {
     width: 100%;
     height: 500px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 /* Lớp phủ tối để chữ dễ đọc hơn */
@@ -69,6 +73,18 @@ body {
     color: #fff;
     z-index: 2;
     max-width: 500px;
+    animation: fadeUp 1s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
 }
 
 .hero-text h1 {
@@ -127,10 +143,15 @@ body {
     border-radius: 10px;
     padding: 10px;
     transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
 }
 
 .cat-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
 }
 
 .cat-item img {
@@ -141,6 +162,7 @@ body {
 .cat-item p {
     margin-top: 5px;
     font-weight: 600;
+    color: #004aad;
 }
 
 /* Giới thiệu */
@@ -178,21 +200,24 @@ body {
     margin-top: -50px;
     position: relative;
     z-index: 10;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    max-width: 1200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 88%;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 16px;
+    font-weight: bolder;
 }
 
-.policy-item {
+.policy {
     display: flex;
     align-items: center;
     gap: 15px;
     padding: 10px;
     transition: 0.3s;
+    transform: translateY(-4px);
 }
 
-.policy-item i {
+.policy i {
     font-size: 35px;
     color: #004aad; /* Màu xanh thương hiệu */
 }
@@ -209,6 +234,7 @@ body {
     color: #666;
     margin: 0;
 }
+
 /* Sản phẩm */
 .section {
     margin: 40px 10px;
@@ -224,6 +250,22 @@ body {
 }
 
 /* ========== CAROUSEL ========== */
+.carousel-control-prev-icon {
+    background-color: black;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    right: 120px;
+}
+
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    left: 120px;
+}
+
 .carousel-wrapper {
     position: relative;
     overflow: hidden;
@@ -232,7 +274,9 @@ body {
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    transition: transform 650ms cubic-bezier(.22, .61, .36, 1);
     width: 100%;
 }
 
@@ -354,7 +398,11 @@ body {
     font-size: 14px;
     color: #fff;
     text-align: center;
-    transition: background 0.3s;
+    transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
 }
 
 .cart-btn {
