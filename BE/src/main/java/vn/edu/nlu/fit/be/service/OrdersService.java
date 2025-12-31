@@ -19,7 +19,7 @@ public class OrdersService {
         return dao.updateStatus(orderId, status);
     }
 
-    public int createOrderFromCart(Account account, Cart cart, String deliveryAddress, PaymentMethod paymentMethod, Integer voucherIdOrNull) {
+    public int createOrderFromCart(Account account, Cart cart, String deliveryAddress, PaymentMethod paymentMethod, Integer voucherId,int totalPrice) {
 
         if (account == null) throw new IllegalArgumentException("Account is null");
         if (cart == null || cart.getTotalQuantity() == 0) throw new IllegalArgumentException("Cart is empty");
@@ -28,9 +28,9 @@ public class OrdersService {
 
         Order o = new Order();
         o.setAccountId(account.getAccountId());
-        o.setVoucherId(voucherIdOrNull == null ? 0 : voucherIdOrNull);
+        o.setVoucherId(voucherId == null ? 0 : voucherId);
         o.setStatusOrder(OrderStatus.Pending);
-        o.setTotalAmount(cart.getTotalPrice());
+        o.setTotalAmount(totalPrice);
         o.setDeliveryAddress(deliveryAddress.trim());
         o.setPaymentMethod(paymentMethod);
 

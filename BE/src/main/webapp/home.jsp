@@ -95,17 +95,21 @@
 
                             <h4 class="product-title">${p.productName}</h4>
                             <p class="price">
-                                <fmt:formatNumber value="${p.productPrice}" type="number"/>đ
+                                <fmt:setLocale value="vi_VN"/>
+                                <fmt:formatNumber value="${p.productPrice}" type="number"
+                                                  groupingUsed="true"/>đ
                             </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i
+                                <a class="filter-btn cart-btn"
+                                   href="<c:url value='/cart?action=add&product_id=${p.productId}&quantity=1&returnUrl=${pageContext.request.contextPath}/home'/>"><i
                                         class="fa-solid fa-cart-plus"></i></a>
                                 <a class="filter-btn detail-btn"
                                    href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i
+                                <a class="filter-btn favor-btn"
+                                   href="${pageContext.request.contextPath}/my-favorite?action=add&product_id=${p.productId}"><i
                                         class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
@@ -168,13 +172,15 @@
                             </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i
+                                <a class="filter-btn cart-btn"
+                                   href="<c:url value='/cart?action=add&product_id=${p.productId}&quantity=1&returnUrl=${pageContext.request.contextPath}/home'/>"><i
                                         class="fa-solid fa-cart-plus"></i></a>
                                 <a class="filter-btn detail-btn"
                                    href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i
+                                <a class="filter-btn favor-btn"
+                                   href="${pageContext.request.contextPath}/my-favorite?action=add&product_id=${p.productId}"><i
                                         class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
@@ -237,13 +243,15 @@
                             </p>
 
                             <div class="product-actions">
-                                <a class="filter-btn cart-btn" href="#"><i
+                                <a class="filter-btn cart-btn"
+                                   href="<c:url value='/cart?action=add&product_id=${p.productId}&quantity=1&returnUrl=${pageContext.request.contextPath}/home'/>"><i
                                         class="fa-solid fa-cart-plus"></i></a>
                                 <a class="filter-btn detail-btn"
                                    href="${ctx}/product-detail?product_id=${p.productId}">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a class="filter-btn favor-btn" href="#"><i
+                                <a class="filter-btn favor-btn"
+                                   href="${pageContext.request.contextPath}/my-favorite?action=add&product_id=${p.productId}"><i
                                         class="fa-solid fa-heart"></i></a>
                             </div>
                         </div>
@@ -276,64 +284,7 @@
 
 <jsp:include page="footer.jsp"/>
 
-<!-- ====== CAROUSEL JS (ONE TIME ONLY) ====== -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".carousel-wrapper").forEach(wrapper => {
-            const track = wrapper.querySelector(".carousel-track");
-            const grid = wrapper.querySelector(".product-grid");
-            const prev = wrapper.querySelector(".carousel-btn.prev");
-            const next = wrapper.querySelector(".carousel-btn.next");
-            if (!track || !grid || !prev || !next) return;
-
-            // Lấy toàn bộ product-card
-            const cards = Array.from(grid.children);
-            const cardsPerSlide = 12; // 2 hàng x 6 cột (đúng với CSS .carousel-slide)
-            const slideCount = Math.ceil(cards.length / cardsPerSlide);
-
-            // Nếu không đủ 2 trang thì ẩn nút cho khỏi “tưởng không chạy”
-            if (slideCount <= 1) {
-                prev.style.display = "none";
-                next.style.display = "none";
-                return;
-            }
-
-            // Tạo slide pages
-            const slides = [];
-            for (let i = 0; i < slideCount; i++) {
-                const slide = document.createElement("div");
-                slide.className = "carousel-slide";
-
-                cards.slice(i * cardsPerSlide, (i + 1) * cardsPerSlide)
-                    .forEach(card => slide.appendChild(card));
-
-                slides.push(slide);
-            }
-
-            // Replace grid bằng slides
-            grid.remove();
-            slides.forEach(s => track.appendChild(s));
-
-            let currentIndex = 0;
-            const update = () => {
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            };
-            update();
-
-            next.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (currentIndex < slides.length - 1) currentIndex++;
-                update();
-            });
-
-            prev.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (currentIndex > 0) currentIndex--;
-                update();
-            });
-        });
-    });
-</script>
+<script src="${pageContext.request.contextPath}/js/home.js"> </script>
 
 </body>
 

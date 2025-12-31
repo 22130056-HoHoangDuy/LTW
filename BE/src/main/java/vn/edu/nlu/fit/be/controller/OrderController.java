@@ -18,7 +18,7 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
+        VoucherService voucherService = new VoucherService();
         Account account = (Account) session.getAttribute("USER");
         if (account == null) {
             response.sendRedirect(request.getContextPath() + "/login");
@@ -35,7 +35,12 @@ public class OrderController extends HttpServlet {
 
         String deliveryAddress = request.getParameter("deliveryAddress");
         String paymentMethodStr = request.getParameter("paymentMethod");
-        String voucherIdStr = request.getParameter("voucherId");
+        String voucherCode = request.getParameter("voucherCode");
+        if (voucherCode == null || voucherCode.trim().isEmpty()) {
+            voucherCode = (String) session.getAttribute("voucherCode");
+        }
+        String action = request.getParameter("action");
+
 
         PaymentMethod paymentMethod;
         try {
@@ -44,18 +49,51 @@ public class OrderController extends HttpServlet {
             paymentMethod = PaymentMethod.COD;
         }
 
-        Integer voucherId = null;
-        if (voucherIdStr != null && !voucherIdStr.trim().isEmpty()) {
-            try {
-                voucherId = Integer.parseInt(voucherIdStr.trim());
-            } catch (NumberFormatException ignored) {
-                voucherId = null;
-            }
+        //===== Áp dụng phần voucher =====
+        int totalPrice = cart.getTotalPrice();
+        int discount = 0;
+        Integer discountAmount = (Integer) session.getAttribute("discountAmount");
+        if (discountAmount != null) {
+            discount = discountAmount;
         }
+        int discountSafe = Math.min(discount, totalPrice);
+        totalPrice = totalPrice - discountSafe;
+        if ("applyVoucher".equals(action)) {
+            Voucher v = voucherService.findByCode(voucherCode);
+            if (v == null) {
+                request.setAttribute("voucherError", "Mã voucher không hợp lệ");
+                request.getRequestDispatcher("/cart.jsp").forward(request, response);
+                return;
+            }
+            // Lưu vào session
+            session.setAttribute("discountAmount", v.getDiscountAmount());
+            session.setAttribute("voucherCode", voucherCode);
+            session.setAttribute("finalPrice", totalPrice);
+            session.setAttribute("deliveryAddress", deliveryAddress);
+            session.setAttribute("paymentMethod", paymentMethod);
+            request.getRequestDispatcher("/cart.jsp").forward(request, response);
+            return;
+        }
+        if ("removeVoucher".equals(action)) {
+            // Lưu vào session
+            session.removeAttribute("discountAmount");
+            session.removeAttribute("voucherCode");
+            session.setAttribute("deliveryAddress", deliveryAddress);
+            session.setAttribute("paymentMethod", paymentMethod);
+            request.getRequestDispatcher("/cart.jsp").forward(request, response);
+            return;
+        }
+        Voucher voucher = new Voucher();
+        if (voucherCode != null && !voucherCode.trim().isEmpty()) {
+            voucher = voucherService.findByCode(voucherCode);
+        }
+
+        // =====================
+        Integer voucherId = voucher.getVoucherId();
         OrdersService ordersService = new OrdersService();
         try {
-            int orderId = ordersService.createOrderFromCart(account, cart, deliveryAddress, paymentMethod, voucherId);
-
+            // đảm bảo không âm
+            int orderId = ordersService.createOrderFromCart(account, cart, deliveryAddress, paymentMethod, voucherId, totalPrice);
             // clear cart
             cart.removeAllItems();
             session.setAttribute("cart", cart);

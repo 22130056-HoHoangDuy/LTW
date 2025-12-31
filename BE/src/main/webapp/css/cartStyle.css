@@ -304,17 +304,53 @@ iframe {
     height: 20px;
 }
 
+/* Voucher input group - unified styling */
 .promo-input-group {
     display: flex;
-    gap: 0.5rem;
+    gap: 0;
+    width: 100%;
 }
 
-.promo-input {
+.promo-form {
+    display: flex;
+    gap: 0;
+    width: 100%;
+}
+
+.promo-input-group .promo-form input[type="text"],
+.promo-form input.promo-input {
     flex: 1;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    height: 44px;
+    padding: 0 1rem;
+    border: 2px solid #e8ecef;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
     font-size: 0.95rem;
+    color: #333;
+    background: #fff;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.promo-input-group .promo-form input[type="text"]:focus,
+.promo-form input.promo-input:focus {
+    border-color: #7545f2;
+    box-shadow: 0 0 0 4px rgba(117, 69, 242, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.promo-input-group .promo-form button.promo-btn,
+.promo-form button.promo-btn {
+    height: 44px;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 10px 10px 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 @keyframes shake {
@@ -794,15 +830,7 @@ iframe {
     transform: translateY(-50%) rotate(180deg);
 }
 
-/* Promo input group updated */
-.form-section .promo-input-group {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.form-section .promo-input {
-    flex: 1;
-}
+/* Promo input group updated - removed to avoid conflicts */
 
 /* Summary rows within form */
 .checkout-form .summary-row {
@@ -896,5 +924,187 @@ iframe {
     .form-select {
         padding: 0.75rem 0.875rem;
         font-size: 0.9rem;
+    }
+}
+
+/* ==============================================
+   VOUCHER STYLES - Modern Design
+   ============================================== */
+
+/* Voucher section container */
+.voucher-section {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border: 1px solid #e9d5ff;
+}
+
+/* Voucher input wrapper - input + button inline */
+.voucher-input-wrapper {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.voucher-input {
+    flex: 1;
+    min-width: 0;
+    height: 46px;
+    padding: 0 1rem;
+    border: 2px solid #e8ecef;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+    font-size: 0.95rem;
+    color: #333;
+    background: #fff;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.voucher-input:focus {
+    border-color: #7545f2;
+    box-shadow: inset 0 0 0 1px #7545f2;
+}
+
+.voucher-input::placeholder {
+    color: #adb5bd;
+}
+
+.voucher-apply-btn {
+    height: 46px;
+    min-width: 90px;
+    padding: 0 1.25rem;
+    background: linear-gradient(135deg, #7545f2 0%, #5f3dc4 100%);
+    color: white;
+    border: 2px solid #7545f2;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.voucher-apply-btn:hover {
+    background: linear-gradient(135deg, #5f3dc4 0%, #4c2fa0 100%);
+    border-color: #5f3dc4;
+    box-shadow: 0 4px 12px rgba(117, 69, 242, 0.35);
+}
+
+/* Applied voucher state */
+.voucher-applied {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #86efac;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+}
+
+.voucher-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.voucher-tag i {
+    color: #22c55e;
+    font-size: 1.1rem;
+}
+
+.voucher-code {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Remove voucher button - compact */
+.remove-voucher-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.875rem;
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.remove-voucher-btn:hover {
+    background: #dc2626;
+    color: white;
+    border-color: #dc2626;
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+}
+
+.remove-voucher-btn i {
+    font-size: 0.8rem;
+}
+
+/* Success text below applied voucher */
+.voucher-success-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #16a34a;
+}
+
+.voucher-success-text i {
+    color: #22c55e;
+}
+
+/* Error message */
+.voucher-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #dc2626;
+}
+
+.voucher-error i {
+    color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .voucher-applied {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    .voucher-tag {
+        justify-content: center;
+    }
+
+    .remove-voucher-btn {
+        justify-content: center;
     }
 }

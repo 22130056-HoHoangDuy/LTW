@@ -19,7 +19,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <nav class="breadcrumb-nav">
-    <a href="">Home</a>
+    <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
     <span class="dot">•</span>
     <a href="">Giỏ hàng</a>
 </nav>
@@ -105,17 +105,58 @@
                       class="checkout-form">
 
                     <!-- Voucher -->
-                    <div class="form-section">
+                    <div class="form-section voucher-section">
                         <div class="form-section-header">
                             <i class="fa-solid fa-ticket"></i>
                             <span>Mã giảm giá</span>
                         </div>
-                        <div class="promo-input-group">
-                            <input type="text" class="form-input promo-input"
-                                   placeholder="Nhập mã voucher" name="voucherId"/>
-                            <button type="button" class="promo-btn">Áp dụng</button>
-                        </div>
+
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.voucherCode}">
+                                <!-- Đã áp dụng voucher -->
+                                <div class="voucher-applied">
+                                    <div class="voucher-tag">
+                                        <i class="fa-solid fa-check-circle"></i>
+                                        <span class="voucher-code">${sessionScope.voucherCode}</span>
+                                        <input type="hidden" name="voucherCode" value="${sessionScope.voucherCode}"/>
+                                    </div>
+                                    <button type="submit" name="action" value="removeVoucher"
+                                            class="remove-voucher-btn"
+                                            formaction="${pageContext.request.contextPath}/order">
+                                        <i class="fa-solid fa-times"></i>
+                                        Hủy
+                                    </button>
+                                </div>
+                                <c:if test="${empty requestScope.voucherError}">
+                                    <div class="voucher-success-text">
+                                        <i class="fa-solid fa-gift"></i>
+                                        Bạn đã được giảm giá!
+                                    </div>
+                                </c:if>
+                            </c:when>
+                            <c:otherwise>
+                                <!-- Chưa áp dụng voucher -->
+                                <div class="voucher-input-wrapper">
+                                    <input type="text" name="voucherCode" class="voucher-input"
+                                           placeholder="Nhập mã voucher"/>
+                                    <button type="submit" name="action" value="applyVoucher"
+                                            class="voucher-apply-btn"
+                                            formaction="${pageContext.request.contextPath}/order">
+                                        Áp dụng
+                                    </button>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <!-- Error Message -->
+                        <c:if test="${not empty requestScope.voucherError}">
+                            <div class="voucher-error">
+                                <i class="fa-solid fa-exclamation-circle"></i>
+                                    ${voucherError}
+                            </div>
+                        </c:if>
                     </div>
+
 
                     <!-- Thông tin giao hàng -->
                     <div class="form-section">
@@ -131,6 +172,7 @@
                             </label>
                             <input type="text" id="deliveryAddress" name="deliveryAddress"
                                    class="form-input" placeholder="Nhập địa chỉ nhận hàng của bạn"
+                                   value="${sessionScope.deliveryAddress}"
                                    required/>
                         </div>
 
@@ -140,10 +182,12 @@
                                 Phương thức thanh toán
                             </label>
                             <div class="select-wrapper">
+                                <c:set var="pm" value="${sessionScope.paymentMethod}"/>
+
                                 <select id="paymentMethod" name="paymentMethod" class="form-select">
-                                    <option value="COD" selected>💵 Thanh toán khi nhận hàng (COD)
+                                    <option value="COD" ${pm=='COD'?selected:''}>💵 Thanh toán khi nhận hàng (COD)
                                     </option>
-                                    <option value="Card">💳 Thanh toán bằng thẻ</option>
+                                    <option value="Card" ${pm=='Card'?selected:''}>💳 Thanh toán bằng thẻ</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down select-arrow"></i>
                             </div>
@@ -167,15 +211,18 @@
 
                         <div class="summary-row discount-row">
                             <span class="label">Tiết kiệm với mã giảm</span>
-                            <span class="value discount-value" id="discount">-0đ</span>
+                            <span class="value discount-value" id="discount">
+                                                <fmt:formatNumber value="${sessionScope.discountAmount}" type="currency"
+                                                                  currencySymbol="đ"/>
+                                            </span>
                         </div>
 
                         <div class="summary-row total">
                             <span class="label">Tổng thanh toán</span>
                             <span class="value" id="total">
-                                                <fmt:formatNumber value="${sessionScope.cart.getTotalPrice()}"
-                                                                  type="currency" currencySymbol="đ"/>
-                                            </span>
+                                                <fmt:formatNumber value="${sessionScope.finalPrice}" type="currency"
+                                                                  currencySymbol="đ"/>
+                            </span>
                         </div>
                     </div>
 
