@@ -6,12 +6,11 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Đăng nhập - Nội thất trẻ em</title>
+    <title>Đăng nhập</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
 </head>
 
 <body>
@@ -28,21 +27,25 @@
                 <p class="error">${error}</p>
             </c:if>
 
-            <input type="text" name="username"
-                   placeholder="Tên đăng nhập hoặc Email" required/>
+            <input type="text"
+                   name="username"
+                   placeholder="Tên đăng nhập hoặc Email"
+                   required/>
 
             <div class="password-container">
-                <input type="password" name="password"
-                       placeholder="Mật khẩu" required/>
+                <input type="password"
+                       name="password"
+                       placeholder="Mật khẩu"
+                       required/>
                 <span class="toggle-password">
                     <i class="fa-solid fa-eye"></i>
                 </span>
             </div>
 
             <button type="submit">Đăng nhập</button>
-            <a class="google-btn"
+            <a className="google-btn"
                href="https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&access_type=online&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FBE_war%2Flogin-google&client_id=${GOOGLE_CLIENT_ID}">
-                <i class="fa-brands fa-google"></i>
+                <i className="fa-brands fa-google"></i>
                 Đăng nhập bằng Google
             </a>
 
@@ -50,12 +53,10 @@
                 Chưa có tài khoản?
                 <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
             </p>
-
         </form>
-
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/login.js"></script>
+<script src="${pageContext.request.contextPath}/js/auth.js"></script>
 </body>
 </html>
