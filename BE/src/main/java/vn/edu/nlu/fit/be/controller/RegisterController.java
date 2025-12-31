@@ -21,6 +21,8 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        req.setCharacterEncoding("UTF-8"); // ⭐ RẤT QUAN TRỌNG
+
         String username = req.getParameter("username");
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
@@ -28,8 +30,7 @@ public class RegisterController extends HttpServlet {
 
         if (!pass.equals(confirm)) {
             req.setAttribute("error", "Mật khẩu không khớp!");
-            req.setAttribute("showRegister", true);
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/register.jsp").forward(req, resp);
             return;
         }
 
@@ -37,11 +38,11 @@ public class RegisterController extends HttpServlet {
 
         if (!ok) {
             req.setAttribute("error", "Email đã tồn tại!");
-            req.setAttribute("showRegister", true);
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/register.jsp").forward(req, resp);
             return;
         }
 
+        // ✅ Thành công → quay về login
         resp.sendRedirect(req.getContextPath() + "/login");
     }
 }
