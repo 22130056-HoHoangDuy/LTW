@@ -5,6 +5,7 @@ import vn.edu.nlu.fit.be.model.*;
 import java.util.List;
 
 public class OrdersDao extends BaseDao {
+
     public int createOrderWithDetails(Order o, List<OrderDetail> details) {
         String insertOrderSql = """
                     INSERT INTO orders
@@ -19,7 +20,6 @@ public class OrdersDao extends BaseDao {
                     VALUES
                         (:orderId, :productId, :unitPrice, :quantity)
                 """;
-
         return jdbi.inTransaction(handle -> {
             int orderId = handle.createUpdate(insertOrderSql)
                     .bind("accountId", o.getAccountId())

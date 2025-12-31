@@ -160,6 +160,7 @@ function decreaseUI(productId) {
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".add-btn,.buy-btn");
     if (!buttons.length) return;
+
     buttons.forEach(button => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
@@ -168,16 +169,27 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.getElementById(`quantity-${productId}`);
             const qty = input ? parseInt(input.value || "1", 10) : 1;
 
-            // returnUrl để quay về đúng trang hiện tại
             const returnUrl = window.location.pathname + window.location.search;
 
             const url = new URL(button.href, window.location.origin);
             url.searchParams.set("quantity", String(qty));
             url.searchParams.set("returnUrl", returnUrl);
 
-            window.location.href = url.toString();
+            // 🔔 SweetAlert yêu cầu đăng nhập
+            Swal.fire({
+                icon: "warning",
+                title: "Yêu cầu đăng nhập",
+                text: "Bạn cần đăng nhập để sử dụng chức năng này!",
+                showCancelButton: true,
+                confirmButtonText: "Đăng nhập ngay",
+                cancelButtonText: "Hủy"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url.toString();
+                }
+            });
         });
-    })
-
+    });
 });
+
 
