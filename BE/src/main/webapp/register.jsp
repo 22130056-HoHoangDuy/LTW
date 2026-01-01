@@ -1,76 +1,79 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-        <!DOCTYPE html>
-        <html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Đăng ký</title>
 
-        <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Đăng ký - Nội thất trẻ em</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
 
-            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-                integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-                crossorigin="anonymous" referrerpolicy="no-referrer" />
-        </head>
+<body>
+<div class="auth-container">
+    <div class="auth-box">
 
-        <body>
-            <div class="auth-container">
-                <div class="auth-box">
+        <form class="form active"
+              action="${pageContext.request.contextPath}/register"
+              method="post"
+              id="register-form">
 
-                    <form class="form active" action="${pageContext.request.contextPath}/register" method="post">
+            <h2>Đăng ký</h2>
 
-                        <h2>Đăng ký</h2>
+            <c:if test="${not empty error}">
+                <p class="error">${error}</p>
+            </c:if>
 
-                        <c:if test="${not empty error}">
-                            <p class="error">${error}</p>
-                        </c:if>
+            <input type="text"
+                   name="username"
+                   placeholder="Tên người dùng"
+                   required/>
 
-                        <div class="input-group">
-                            <input type="text" name="username" id="username" placeholder="Tên người dùng" required />
-                            <i class="fa-solid fa-user"></i>
-                        </div>
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   required />
 
-                        <div class="input-group">
-                            <input type="email" name="email" id="email" placeholder="Email" required />
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-
-                        <div class="password-container">
-                            <div class="input-group">
-                                <input type="password" name="password" id="password" placeholder="Mật khẩu" required />
-                                <i class="fa-solid fa-lock"></i>
-                            </div>
-                            <span class="toggle-password">
-                                <i class="fa-solid fa-eye"></i>
-                            </span>
-                        </div>
-
-                        <div class="password-container">
-                            <div class="input-group">
-                                <input type="password" name="confirmPassword" id="confirmPassword"
-                                    placeholder="Xác nhận mật khẩu" required />
-                                <i class="fa-solid fa-lock"></i>
-                            </div>
-                            <span class="toggle-password">
-                                <i class="fa-solid fa-eye"></i>
-                            </span>
-                        </div>
-
-                        <button type="submit">Tạo tài khoản</button>
-
-                        <p class="switch">
-                            Đã có tài khoản?
-                            <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
-                        </p>
-
-                    </form>
-
-                </div>
+            <div class="password-container">
+                <input type="password"
+                       name="password"
+                       id="register-password"
+                       placeholder="Mật khẩu"
+                       required/>
+                <span class="toggle-password">
+                    <i class="fa-solid fa-eye"></i>
+                </span>
             </div>
 
-            <script src="${pageContext.request.contextPath}/js/toggle-password.js"></script>
-        </body>
+            <div class="password-container">
+                <input type="password"
+                       name="confirmPassword"
+                       id="confirm-password"
+                       placeholder="Xác nhận mật khẩu"
+                       required/>
+                <span class="toggle-password">
+                    <i class="fa-solid fa-eye"></i>
+                </span>
+            </div>
 
-        </html>
+            <p class="error" id="password-error"></p>
+
+            <button type="submit">Tạo tài khoản</button>
+
+            <p class="switch">
+                Đã có tài khoản?
+                <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
+            </p>
+
+        </form>
+
+    </div>
+</div>
+
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
+</body>
+</html>
