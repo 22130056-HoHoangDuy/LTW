@@ -7,6 +7,7 @@ public class OrderDetail {
     private int productId;
     private int unitPrice;
     private int quantity;
+    private Product product;
 
     //Constructor
 
@@ -54,6 +55,8 @@ public class OrderDetail {
         this.productId = productId;
     }
 
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
     public int getOrderId() {
         return orderId;
     }

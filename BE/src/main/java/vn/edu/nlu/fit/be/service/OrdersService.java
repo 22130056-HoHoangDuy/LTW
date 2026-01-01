@@ -19,7 +19,23 @@ public class OrdersService {
         return dao.updateStatus(orderId, status);
     }
 
-    public int createOrderFromCart(Account account, Cart cart, String deliveryAddress, PaymentMethod paymentMethod, Integer voucherId,int totalPrice) {
+    public Map<Integer, List<OrderDetail>> getPurchasedProductsByAccount(int accountId) {
+        return dao.getPurchasedProductsByAccount(accountId);
+    }
+
+    public Map<Integer, Integer> getDiscountAmountOrders(Set<Integer> orderIds) {
+
+        Map<Integer, Integer> result = new HashMap<>();
+
+        for (int orderId : orderIds) {
+            int discountAmount = dao.getDiscountAmountFromVoucher(orderId);
+            result.put(orderId, discountAmount);
+        }
+
+        return result;
+    }
+
+    public int createOrderFromCart(Account account, Cart cart, String deliveryAddress, PaymentMethod paymentMethod, Integer voucherId, int totalPrice) {
 
         if (account == null) throw new IllegalArgumentException("Account is null");
         if (cart == null || cart.getTotalQuantity() == 0) throw new IllegalArgumentException("Cart is empty");
