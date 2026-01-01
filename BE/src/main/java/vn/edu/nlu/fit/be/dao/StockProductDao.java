@@ -8,8 +8,58 @@ import java.util.List;
 
 public class StockProductDao extends BaseDao {
     public List<StockProduct> getStockProducts() {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM stock_products").mapToBean(StockProduct.class).list());
+    }
+
+    public boolean checkAvailable(int productId) {
+        String sql = """
+                    SELECT SUM(total_quantity)
+                    FROM stock_products
+                    WHERE product_id = :pid
+                """;
+
+        int available = jdbi.withHandle(handle -> handle.createQuery(sql).bind("pid", productId).mapTo(Integer.class).one());
+
+        return available > 0;
+    }
+
+    public Integer findStockIdWithEnoughQuantity(int productId, int qty) {
+        String sql = """
+                    SELECT stock_id
+                    FROM stock_products
+                    WHERE product_id = :pid
+                      AND (total_quantity - sold_quantity) >= :qty
+                    ORDER BY (total_quantity - sold_quantity) DESC
+                    LIMIT 1
+                """;
+
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM stock_products").mapToBean(StockProduct.class).list());
+                handle.createQuery(sql)
+                        .bind("pid", productId)
+                        .bind("qty", qty)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
+    public boolean updateStockProduct(int productId, int stockId, int quantity) {
+        String sql = """
+                    UPDATE stock_products
+                    SET total_quantity = total_quantity - :qty,
+                        sold_quantity = sold_quantity + :qty
+                    WHERE product_id = :pid
+                      AND stock_id = :sid
+                      AND total_quantity >= :qty
+                """;
+        int updated = jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("qty", quantity)
+                        .bind("pid", productId)
+                        .bind("sid", stockId)
+                        .execute()
+        );
+        return updated == 1;
     }
 
     public StockProduct getProductInStock(int productId) {
@@ -22,23 +72,11 @@ public class StockProductDao extends BaseDao {
     }
 
     public int getTotalSoldQuantity(int stockProductId) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT SUM(sold_quantity) FROM stock_products WHERE stock_product_id = :id")
-                        .bind("id", stockProductId)
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElse(0)
-        );
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT SUM(sold_quantity) FROM stock_products WHERE stock_product_id = :id").bind("id", stockProductId).mapTo(Integer.class).findOne().orElse(0));
     }
 
     public int getTotalImportedByProductId(int productId) {
-        return jdbi.withHandle(
-                handle -> handle.createQuery("SELECT SUM(total_quantity) FROM stock_products WHERE product_id = :id")
-                        .bind("id", productId)
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElse(null)
-        );
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT SUM(total_quantity) FROM stock_products WHERE product_id = :id").bind("id", productId).mapTo(Integer.class).findOne().orElse(null));
     }
 
 }

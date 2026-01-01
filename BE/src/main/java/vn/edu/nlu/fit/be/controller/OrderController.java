@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.be.model.*;
+import vn.edu.nlu.fit.be.model.CartItem.CartItem;
 import vn.edu.nlu.fit.be.service.*;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         VoucherService voucherService = new VoucherService();
+        OrdersService ordersService = new OrdersService();
+        StockProductService spService = new StockProductService();
         Account account = (Account) session.getAttribute("USER");
         if (account == null) {
             response.sendRedirect(request.getContextPath() + "/login");
@@ -90,20 +93,22 @@ public class OrderController extends HttpServlet {
 
         // =====================
         Integer voucherId = voucher.getVoucherId();
-        OrdersService ordersService = new OrdersService();
-        try {
-            // đảm bảo không âm
+
+        // đảm bảo không âm
+        if (spService.checkAvailable(cart)) {
             int orderId = ordersService.createOrderFromCart(account, cart, deliveryAddress, paymentMethod, voucherId, totalPrice);
+            for (CartItem item : cart.getItems()){
+                int productId = item.getProduct().getProductId();
+                int quantity = item.getQuantity();
+                spService.updateStockProduct(productId,quantity);
+            }
             // clear cart
             cart.removeAllItems();
             session.setAttribute("cart", cart);
 
             // redirect về cart kèm orderId
             response.sendRedirect(request.getContextPath() + "/cart?paid=1&orderId=" + orderId);
-
-        } catch (Exception ex) {
-            // có lỗi thì quay lại cart với flag
-            ex.printStackTrace();
+        } else {
             response.sendRedirect(request.getContextPath() + "/cart?paid=0");
         }
 

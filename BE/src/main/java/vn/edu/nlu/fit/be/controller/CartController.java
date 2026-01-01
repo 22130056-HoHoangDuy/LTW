@@ -11,6 +11,8 @@ import vn.edu.nlu.fit.be.service.ProductService;
 import vn.edu.nlu.fit.be.service.VoucherService;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 
 @WebServlet(name = "CartController", value = "/cart")
@@ -19,8 +21,15 @@ public class CartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("USER");
-        if (account==null){
-            response.sendRedirect(request.getContextPath() + "/login");
+        if (account == null) {
+            // Lưu URL hiện tại (bao gồm query string) để quay lại sau khi đăng nhập
+            String currentUrl = request.getRequestURL().toString();
+            String queryString = request.getQueryString();
+            if (queryString != null) {
+                currentUrl += "?" + queryString;
+            }
+            String encodedUrl = URLEncoder.encode(currentUrl, StandardCharsets.UTF_8);
+            response.sendRedirect(request.getContextPath() + "/login?returnUrl=" + encodedUrl);
             return;
         }
         Cart cart = (Cart) session.getAttribute("cart");
@@ -86,7 +95,10 @@ public class CartController extends HttpServlet {
         
         Account account = (Account) session.getAttribute("USER");
         if (account == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            // Lưu URL cart để quay lại sau khi đăng nhập
+            String returnUrl = request.getContextPath() + "/cart";
+            String encodedUrl = URLEncoder.encode(returnUrl, StandardCharsets.UTF_8);
+            response.sendRedirect(request.getContextPath() + "/login?returnUrl=" + encodedUrl);
             return;
         }
 

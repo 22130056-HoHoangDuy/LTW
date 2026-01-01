@@ -1,6 +1,8 @@
 package vn.edu.nlu.fit.be.service;
 
 import vn.edu.nlu.fit.be.dao.StockProductDao;
+import vn.edu.nlu.fit.be.model.Cart;
+import vn.edu.nlu.fit.be.model.CartItem.CartItem;
 import vn.edu.nlu.fit.be.model.StockProduct;
 
 import java.util.List;
@@ -13,9 +15,24 @@ public class StockProductService {
     }
 
     public boolean checkProductAvailable(int productId) {
-        int totalImportedQuantityProduct = sd.getTotalImportedByProductId(productId);
-        int totalSoldQuantityProduct = sd.getTotalSoldQuantity(productId);
-        return totalImportedQuantityProduct > totalSoldQuantityProduct;
+        return sd.checkAvailable(productId);
     }
 
+    public boolean checkAvailable(Cart cart) {
+        for (CartItem item : cart.getItems()) {
+            int productId = item.getProduct().getProductId();
+            if (!sd.checkAvailable(productId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean updateStockProduct(int productId, int quantity) {
+        Integer stockId = sd.findStockIdWithEnoughQuantity(productId, quantity);
+        if (stockId == null) {
+            return false; // không kho nào đủ hàng
+        }
+        return sd.updateStockProduct(productId, stockId, quantity);
+    }
 }

@@ -3,8 +3,11 @@ package vn.edu.nlu.fit.be.dao;
 import vn.edu.nlu.fit.be.model.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OrdersDao extends BaseDao {
+
     public int createOrderWithDetails(Order o, List<OrderDetail> details) {
         String insertOrderSql = """
                     INSERT INTO orders
@@ -19,7 +22,6 @@ public class OrdersDao extends BaseDao {
                     VALUES
                         (:orderId, :productId, :unitPrice, :quantity)
                 """;
-
         return jdbi.inTransaction(handle -> {
             int orderId = handle.createUpdate(insertOrderSql)
                     .bind("accountId", o.getAccountId())
@@ -82,6 +84,62 @@ public class OrdersDao extends BaseDao {
         );
 
         return rows > 0;
+    }
+    public int getDiscountAmountFromVoucher(int orderId) {
+        String sql = """
+        SELECT COALESCE(v.discount_amount, 0) AS discount_amount
+        FROM orders o
+        LEFT JOIN vouchers v ON v.voucher_id = o.voucher_id
+        WHERE o.order_id = :orderId
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("orderId", orderId)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
+    public Map<Integer, List<OrderDetail>> getPurchasedProductsByAccount(int accountId) {
+
+        String sql = """
+                    SELECT 
+                        o.order_id,
+                        p.product_id,
+                        p.product_name,
+                        p.product_price,
+                        p.product_image,
+                        od.quantity
+                    FROM orders o
+                    JOIN order_details od ON o.order_id = od.order_id
+                    JOIN products p ON p.product_id = od.product_id
+                    WHERE o.account_id = :accountId
+                    ORDER BY o.order_id DESC
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("accountId", accountId)
+                        .map((rs, ctx) -> {
+                            OrderDetail d = new OrderDetail();
+                            d.setOrderId(rs.getInt("order_id"));
+                            d.setProductId(rs.getInt("product_id"));
+                            d.setQuantity(rs.getInt("quantity"));
+
+                            Product p = new Product();
+                            p.setProductId(rs.getInt("product_id"));
+                            p.setProductName(rs.getString("product_name"));
+                            p.setProductPrice(rs.getInt("product_price"));
+                            p.setProductImage(rs.getString("product_image"));
+
+                            d.setProduct(p);  // Gán Product vào OrderDetail để JSP truy cập được
+                            return d;
+                        })
+                        .list()
+                        .stream()
+                        .collect(Collectors.groupingBy(OrderDetail::getOrderId))
+        );
     }
 
 

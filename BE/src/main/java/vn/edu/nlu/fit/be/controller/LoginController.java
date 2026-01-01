@@ -33,15 +33,22 @@ public class LoginController extends HttpServlet {
         if (acc == null) {
             req.setAttribute("error",
                     "Sai tài khoản, mật khẩu hoặc tài khoản bị khoá!");
+            req.setAttribute("returnUrl", req.getParameter("returnUrl"));
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
         }
 
         HttpSession session = req.getSession(true);
-        String returnUrl = (String) session.getAttribute("redirectAfterLogin");
+        String returnUrl = req.getParameter("returnUrl");
         session.setAttribute("USER", acc);
         session.setMaxInactiveInterval(30 * 60); // 30 phút
 
+        if (returnUrl == null || returnUrl.isBlank()) {
+            Object ru = session.getAttribute("returnUrl");
+            returnUrl = (ru != null) ? ru.toString() : null;
+            session.removeAttribute("returnUrl");
+
+        }
         //Chuyển đến vị trí trang đang đứng
         if (returnUrl != null) {
             resp.sendRedirect(returnUrl);

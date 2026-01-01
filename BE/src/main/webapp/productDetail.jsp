@@ -149,13 +149,33 @@
                             </div>
                         </div>
                         <div class="buy-section">
-                            <a href="<c:url value='/cart?action=add&product_id=${product.productId}'/>"
-                               data-product-id="${product.productId}" class="add-btn">
-                                <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
-                            </a>
-                            <a href="<c:url value='/cart?action=buy_now&product_id=${product.productId}'/>"
-                               data-product-id="${product.productId}" class="buy-btn">Mua Ngay</a>
+                            <c:choose>
+                                <c:when test="${isAvailable}">
+                                    <a href="<c:url value='/cart?action=add&product_id=${product.productId}'/>"
+                                       data-product-id="${product.productId}"
+                                       class="add-btn">
+                                        <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                                    </a>
+
+                                    <a href="<c:url value='/cart?action=buy_now&product_id=${product.productId}'/>"
+                                       data-product-id="${product.productId}"
+                                       class="buy-btn">
+                                        Mua Ngay
+                                    </a>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <button class="add-btn disabled" disabled>
+                                        <i class="fa-solid fa-cart-plus"></i> Hết hàng
+                                    </button>
+
+                                    <button class="buy-btn disabled" disabled>
+                                        Không thể mua
+                                    </button>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
+
                     </div>
                 </div>
             </div>

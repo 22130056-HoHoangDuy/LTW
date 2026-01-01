@@ -364,6 +364,15 @@ button:hover {
     width: 100%;
 }
 
+.add-btn.disabled,
+.buy-btn.disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+    border: none;
+}
+
 /* =============================
    6. OFFER SECTION
 ============================= */
@@ -645,6 +654,7 @@ button:hover {
 #btn-send-feedback:hover {
     background: #002a9c;
 }
+
 #comment-list {
     margin-top: 25px;
 }
