@@ -70,5 +70,35 @@ public class VoucherDao extends BaseDao {
                         .orElse(null)
         );
     }
+    //VoucherList phân trang
+    // Lấy voucher theo trang
+    public List<Voucher> getByPage(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+
+        String sql = """
+        SELECT * FROM vouchers
+        ORDER BY voucher_id DESC
+        LIMIT :limit OFFSET :offset
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", pageSize)
+                        .bind("offset", offset)
+                        .mapToBean(Voucher.class)
+                        .list()
+        );
+    }
+
+    // Đếm tổng voucher
+    public int countAll() {
+        String sql = "SELECT COUNT(*) FROM vouchers";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 
 }

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 2/1/2026
+  Time: 11:14 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -9,68 +16,6 @@
     <title>Danh sách Voucher</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/voucherList.css">
-    <style>
-        /* ================= PAGINATION INLINE ================= */
-
-        .vc-pagination-wrap {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 60px 0 80px;
-        }
-
-        .vc-pagination-wrap .vc-pagination {
-            display: flex;
-            gap: 14px;
-        }
-
-        /* PAGE */
-        .vc-pagination-wrap .vc-pagination a.vc-page {
-            width: 44px;
-            height: 44px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-            border: 1px solid #ddd;
-
-            background-color: #fff;
-            color: #333;
-
-            font-size: 15px;
-            font-weight: 600;
-
-            text-decoration: none;
-            cursor: pointer;
-
-            transition: all 0.25s ease;
-        }
-
-        /* HOVER */
-        .vc-pagination-wrap .vc-pagination a.vc-page:hover {
-            background-color: #eef4ff;
-            border-color: #0984e3;
-            color: #0984e3;
-            transform: translateY(-2px);
-        }
-
-        /* ACTIVE */
-        .vc-pagination-wrap .vc-pagination a.vc-page.active {
-            background: linear-gradient(135deg, #0984e3, #74b9ff);
-            color: #fff;
-            border-color: #0984e3;
-            box-shadow: 0 6px 18px rgba(9,132,227,0.35);
-        }
-
-        /* PREV / NEXT */
-        .vc-pagination-wrap .vc-pagination a.vc-page.prev,
-        .vc-pagination-wrap .vc-pagination a.vc-page.next {
-            font-size: 18px;
-            font-weight: 700;
-        }
-    </style>
 </head>
 
 <body>
@@ -109,10 +54,10 @@
                 </h3>
 
                 <p class="voucher-date">
-                        Ngày bắt đầu:${v.startDate}
+                    Ngày bắt đầu:${v.startDate}
                 </p>
                 <p class="voucher-date">
-                        Ngày kết thúc:${v.endDate}
+                    Ngày kết thúc:${v.endDate}
                 </p>
 
                 <a href="${pageContext.request.contextPath}/voucher-detail?code=${v.voucherCode}"

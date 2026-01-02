@@ -11,6 +11,7 @@ import java.util.List;
 
 @WebServlet(name = "VoucherListController", value = "/voucher-list")
 public class VoucherListController extends HttpServlet {
+
     private VoucherService voucherService;
 
     @Override
@@ -22,12 +23,36 @@ public class VoucherListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Lấy danh sách voucher
-        List<Voucher> vouchers = voucherService.getAll();
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-        // Gửi sang JSP
+        // ===== PHÂN TRANG =====
+        int pageIndex = 1;
+        int pageSize = 12;
+        int totalVouchers;
+
+        String pageStr = request.getParameter("page");
+        if (pageStr != null) {
+            try {
+                pageIndex = Integer.parseInt(pageStr);
+                if (pageIndex < 1) pageIndex = 1;
+            } catch (NumberFormatException e) {
+                pageIndex = 1;
+            }
+        }
+
+        // ===== DATA =====
+        List<Voucher> vouchers = voucherService.getByPage(pageIndex, pageSize);
+        totalVouchers = voucherService.countAll();
+
+        int totalPage = (int) Math.ceil((double) totalVouchers / pageSize);
+
+        // ===== SET ATTRIBUTE =====
         request.setAttribute("vouchers", vouchers);
+        request.setAttribute("currentPage", pageIndex);
+        request.setAttribute("totalPage", totalPage);
 
+        // ===== FORWARD =====
         request.getRequestDispatcher("/voucher_list.jsp")
                 .forward(request, response);
     }
