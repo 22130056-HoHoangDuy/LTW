@@ -25,7 +25,7 @@ window.addEventListener("scroll", () => {
 
 // Cuộn lên đầu
 backBtn.addEventListener("click", () => {
-    window.scrollTo({top: 0, behavior: "smooth"});
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 //Bấm vào tab
 tabList.forEach((link) => {
@@ -171,23 +171,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const returnUrl = window.location.pathname + window.location.search;
 
+            // Xác định loại nút: add-btn hay buy-btn
+            const isBuyNow = button.classList.contains("buy-btn");
+
             const url = new URL(button.href, window.location.origin);
             url.searchParams.set("quantity", String(qty));
             url.searchParams.set("returnUrl", returnUrl);
 
-            // 🔔 SweetAlert yêu cầu đăng nhập
-            Swal.fire({
-                icon: "warning",
-                title: "Yêu cầu đăng nhập",
-                text: "Bạn cần đăng nhập để sử dụng chức năng này!",
-                showCancelButton: true,
-                confirmButtonText: "Đăng nhập ngay",
-                cancelButtonText: "Hủy"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = url.toString();
-                }
-            });
+            // Thực hiện fetch request
+            fetch(url.toString(), {
+                method: "GET",
+                credentials: "include"
+            })
+                .then(response => {
+                    // 1️⃣ CHƯA ĐĂNG NHẬP
+                    // nếu server redirect về login → response.redirected = true
+                    if (response.redirected && response.url.includes("login")) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Chưa đăng nhập",
+                            text: "Bạn cần đăng nhập để sử dụng tính năng này!",
+                            showCancelButton: true,
+                            confirmButtonText: "Đăng nhập ngay",
+                            cancelButtonText: "Hủy"
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                window.location.href = response.url;
+                            }
+                        });
+                        return;
+                    }
+
+                    // 2️⃣ THÀNH CÔNG
+                    if (response.ok) {
+                        if (isBuyNow) {
+                            // MUA NGAY: Chuyển thẳng đến trang giỏ hàng
+                            Swal.fire({
+                                icon: "success",
+                                title: "Đã thêm",
+                                text: "Đang chuyển đến giỏ hàng...",
+                                timer: 1000,
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.href = response.url; // Server redirect đến /cart
+                            });
+                        } else {
+                            // THÊM VÀO GIỎ: Reload trang hiện tại để cập nhật số lượng giỏ hàng
+                            Swal.fire({
+                                icon: "success",
+                                title: "Đã thêm",
+                                text: "Sản phẩm đã được thêm vào giỏ hàng.",
+                                timer: 1500,
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                        return;
+                    }
+
+                    // 3️⃣ LỖI KHÁC
+                    throw new Error("Server error");
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Lỗi",
+                        text: "Có lỗi xảy ra. Vui lòng thử lại."
+                    });
+                });
         });
     });
 });
