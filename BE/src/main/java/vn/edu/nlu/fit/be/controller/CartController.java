@@ -128,14 +128,14 @@ public class CartController extends HttpServlet {
 
             // Check voucher validity (date range)
             Date today = new Date(System.currentTimeMillis());
-            if (voucher.getStartVoucher() != null && today.before(voucher.getStartVoucher())) {
+            if (voucher.getStartDate() != null && today.before(voucher.getStartDate())) {
                 session.setAttribute("voucherError", "Mã voucher chưa có hiệu lực!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
-            if (voucher.getEndVoucher() != null && today.after(voucher.getEndVoucher())) {
+            if (voucher.getEndDate() != null && today.after(voucher.getEndDate())) {
                 session.setAttribute("voucherError", "Mã voucher đã hết hạn!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");

@@ -18,8 +18,8 @@ public class VoucherDao extends BaseDao {
     public void insert(Voucher v) {
         String sql = """
                     INSERT INTO vouchers
-                    (voucher_code, voucher_name, voucher_description,
-                     discount_amount, start_voucher, end_voucher)
+                    (voucher_code, voucher_name, description,
+                     discount_amount, start_date, end_date)
                     VALUES (?, ?, ?, ?, ?, ?)
                 """;
 
@@ -27,10 +27,10 @@ public class VoucherDao extends BaseDao {
                 handle.createUpdate(sql)
                         .bind(0, v.getVoucherCode())
                         .bind(1, v.getVoucherName())
-                        .bind(2, v.getVoucherDescription())
+                        .bind(2, v.getDescription())
                         .bind(3, v.getDiscountAmount())
-                        .bind(4, v.getStartVoucher())
-                        .bind(5, v.getEndVoucher())
+                        .bind(4, v.getStartDate())
+                        .bind(5, v.getEndDate())
                         .execute()
         );
     }
