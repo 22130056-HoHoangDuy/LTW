@@ -100,5 +100,20 @@ public class VoucherDao extends BaseDao {
                         .one()
         );
     }
+    public Voucher findById(int id) {
+        String sql = """
+        SELECT *
+        FROM vouchers
+        WHERE voucher_id = :id
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
 
 }

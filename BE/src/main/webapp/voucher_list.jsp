@@ -115,7 +115,7 @@
                         Ngày kết thúc:${v.endDate}
                 </p>
 
-                <a href="${pageContext.request.contextPath}/voucher-detail?code=${v.voucherCode}"
+                <a href="${pageContext.request.contextPath}/voucher-detail?id=${v.voucherId}"
                    class="voucher-detail-btn">
                     Xem chi tiết
                 </a>

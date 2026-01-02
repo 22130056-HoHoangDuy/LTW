@@ -36,4 +36,7 @@ public class VoucherService {
     public int countAll() {
         return voucherDao.countAll();
     }
+    public Voucher findById(int id) {
+        return voucherDao.findById(id);
+    }
 }
