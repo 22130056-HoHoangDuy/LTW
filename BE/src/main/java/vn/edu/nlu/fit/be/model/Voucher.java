@@ -7,23 +7,23 @@ public class Voucher {
     private int voucherId;
     private String voucherCode;
     private String voucherName;
-    private String voucherImg;
-    private String voucherDescription;
+    private String voucherImage;
+    private String description;
     private int discountAmount;
-    private Date startVoucher;
-    private Date endVoucher;
+    private Date startDate;
+    private Date endDate;
 
     //Constructor
 
     public Voucher() {}
 
-    public Voucher(int voucherId, Date endVoucher, Date startVoucher, int discountAmount, String voucherDescription, String voucherImg, String voucherName, String voucherCode) {
+    public Voucher(int voucherId, Date endDate, Date startDate, int discountAmount, String description, String voucherImage, String voucherName, String voucherCode) {
         this.voucherId = voucherId;
-        this.endVoucher = endVoucher;
-        this.startVoucher = startVoucher;
+        this.endDate = endDate;
+        this.startDate = startDate;
         this.discountAmount = discountAmount;
-        this.voucherDescription = voucherDescription;
-        this.voucherImg = voucherImg;
+        this.description = description;
+        this.voucherImage = voucherImage;
         this.voucherName = voucherName;
         this.voucherCode = voucherCode;
     }
@@ -38,20 +38,20 @@ public class Voucher {
         this.voucherId = voucherId;
     }
 
-    public Date getEndVoucher() {
-        return endVoucher;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndVoucher(Date endVoucher) {
-        this.endVoucher = endVoucher;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public Date getStartVoucher() {
-        return startVoucher;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartVoucher(Date startVoucher) {
-        this.startVoucher = startVoucher;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public int getDiscountAmount() {
@@ -62,20 +62,20 @@ public class Voucher {
         this.discountAmount = discountAmount;
     }
 
-    public String getVoucherDescription() {
-        return voucherDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setVoucherDescription(String voucherDescription) {
-        this.voucherDescription = voucherDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getVoucherImg() {
-        return voucherImg;
+    public String getVoucherImage() {
+        return voucherImage;
     }
 
-    public void setVoucherImg(String voucherImg) {
-        this.voucherImg = voucherImg;
+    public void setVoucherImage(String voucherImage) {
+        this.voucherImage = voucherImage;
     }
 
     public String getVoucherName() {

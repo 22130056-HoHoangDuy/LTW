@@ -33,9 +33,9 @@ public class AdminVoucherController extends HttpServlet {
         v.setVoucherCode(req.getParameter("code"));
         v.setVoucherName(req.getParameter("code")); // tạm dùng code làm name
         v.setDiscountAmount(Integer.parseInt(req.getParameter("discountValue")));
-        v.setStartVoucher(Date.valueOf(req.getParameter("startDate")));
-        v.setEndVoucher(Date.valueOf(req.getParameter("endDate")));
-        v.setVoucherDescription("");
+        v.setStartDate(Date.valueOf(req.getParameter("startDate")));
+        v.setEndDate(Date.valueOf(req.getParameter("endDate")));
+        v.setDescription("");
 
         service.addVoucher(v);
 
