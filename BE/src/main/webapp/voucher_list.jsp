@@ -4,73 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <title>Danh sách Voucher</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/voucherList.css">
-    <style>
-        /* ================= PAGINATION INLINE ================= */
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/voucherList.css">
 
-        .vc-pagination-wrap {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 60px 0 80px;
-        }
-
-        .vc-pagination-wrap .vc-pagination {
-            display: flex;
-            gap: 14px;
-        }
-
-        /* PAGE */
-        .vc-pagination-wrap .vc-pagination a.vc-page {
-            width: 44px;
-            height: 44px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-            border: 1px solid #ddd;
-
-            background-color: #fff;
-            color: #333;
-
-            font-size: 15px;
-            font-weight: 600;
-
-            text-decoration: none;
-            cursor: pointer;
-
-            transition: all 0.25s ease;
-        }
-
-        /* HOVER */
-        .vc-pagination-wrap .vc-pagination a.vc-page:hover {
-            background-color: #eef4ff;
-            border-color: #0984e3;
-            color: #0984e3;
-            transform: translateY(-2px);
-        }
-
-        /* ACTIVE */
-        .vc-pagination-wrap .vc-pagination a.vc-page.active {
-            background: linear-gradient(135deg, #0984e3, #74b9ff);
-            color: #fff;
-            border-color: #0984e3;
-            box-shadow: 0 6px 18px rgba(9,132,227,0.35);
-        }
-
-        /* PREV / NEXT */
-        .vc-pagination-wrap .vc-pagination a.vc-page.prev,
-        .vc-pagination-wrap .vc-pagination a.vc-page.next {
-            font-size: 18px;
-            font-weight: 700;
-        }
-    </style>
 </head>
 
 <body>
@@ -92,14 +32,14 @@
         <div class="voucher-card">
 
             <!-- Discount -->
-            <div class="voucher-discount">
-                -${v.discountAmount}đ
+            <div class="voucher-discount">-
+                <fmt:setLocale value="vi_VN"/>
+                <fmt:formatNumber value="${v.discountAmount}" type="number"
+                                  groupingUsed="true"/>đ
             </div>
 
             <!-- Image -->
-            <img src="${v.voucherImage}"
-                 alt="${v.voucherName}"
-                 class="voucher-image"/>
+            <img src="${v.voucherImage}" alt="${v.voucherName}" class="voucher-image"/>
 
             <!-- Content -->
             <div class="voucher-body">
@@ -109,10 +49,10 @@
                 </h3>
 
                 <p class="voucher-date">
-                        Ngày bắt đầu:${v.startDate}
+                    Ngày bắt đầu:${v.startDate}
                 </p>
                 <p class="voucher-date">
-                        Ngày kết thúc:${v.endDate}
+                    Ngày kết thúc:${v.endDate}
                 </p>
 
                 <a href="${pageContext.request.contextPath}/voucher-detail?id=${v.voucherId}"
@@ -145,8 +85,7 @@
                 <c:param name="page" value="${i}"/>
             </c:url>
 
-            <a href="${pageLink}"
-               class="vc-page ${currentPage == i ? 'active' : ''}">
+            <a href="${pageLink}" class="vc-page ${currentPage == i ? 'active' : ''}">
                     ${i}
             </a>
         </c:forEach>
@@ -165,4 +104,5 @@
 <jsp:include page="footer.jsp"/>
 
 </body>
+
 </html>

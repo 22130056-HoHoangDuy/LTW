@@ -3,11 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <title>Chi Tiết Voucher</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/voucherDetail.css">
 </head>
+
 <body>
 <jsp:include page="header.jsp"/>
 <nav>
@@ -20,17 +22,18 @@
 <div class="voucher-detail-container">
 
     <c:if test="${empty voucher}">
-        <p style="text-align:center;color:red">
+        <div class="voucher-error">
             Voucher không tồn tại hoặc đã hết hạn
-        </p>
+        </div>
     </c:if>
 
     <c:if test="${not empty voucher}">
         <div class="voucher-detail-card">
 
-            <img src="${voucher.voucherImage}"
-                 alt="${voucher.voucherName}"
-                 class="voucher-detail-img">
+            <div class="voucher-detail-img-wrap">
+                <img src="${voucher.voucherImage}" alt="${voucher.voucherName}"
+                     class="voucher-detail-img">
+            </div>
 
             <div class="voucher-detail-content">
 
@@ -38,20 +41,21 @@
                         ${voucher.voucherName}
                 </h1>
 
-                <p class="voucher-detail-date">
+                <div class="voucher-detail-date">
+                    <span>📅 Hiệu lực:</span>
                     <fmt:formatDate value="${voucher.startDate}" pattern="dd/MM/yyyy"/>
-                    –
+                    <span>–</span>
                     <fmt:formatDate value="${voucher.endDate}" pattern="dd/MM/yyyy"/>
-                </p>
+                </div>
 
-                <p class="voucher-key">
-                    Mã giảm giá:
-                    <strong style="color: red">${voucher.voucherCode}</strong>
-                </p>
+                <div class="voucher-code-box">
+                    <span class="voucher-key-label">Mã giảm giá</span>
+                    <div class="voucher-code-value">${voucher.voucherCode}</div>
+                </div>
 
-                <p class="voucher-detail-desc">
+                <div class="voucher-detail-desc">
                         ${voucher.description}
-                </p>
+                </div>
 
             </div>
         </div>
@@ -62,5 +66,5 @@
 <jsp:include page="footer.jsp"/>
 
 </body>
-</html>
 
+</html>
