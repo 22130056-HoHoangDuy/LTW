@@ -37,7 +37,7 @@
     <!-- BREADCRUMB -->
     <nav class="pf-breadcrumb">
         <a href="${pageContext.request.contextPath}/home">
-            <i class="fas fa-home"></i> Trang chủ
+            Trang chủ
         </a>
         <span class="dot">•</span>
         <span>Sản phẩm yêu thích</span>
