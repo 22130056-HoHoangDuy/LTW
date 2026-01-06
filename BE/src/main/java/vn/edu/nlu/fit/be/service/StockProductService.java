@@ -28,11 +28,11 @@ public class StockProductService {
         return true;
     }
 
-    public boolean updateStockProduct(int productId, int quantity) {
+    public boolean updateStockProduct(int productId, int quantity,boolean isSold) {
         Integer stockId = sd.findStockIdWithEnoughQuantity(productId, quantity);
         if (stockId == null) {
             return false; // không kho nào đủ hàng
         }
-        return sd.updateStockProduct(productId, stockId, quantity);
+        return sd.updateStockProduct(productId, stockId, quantity,isSold);
     }
 }
