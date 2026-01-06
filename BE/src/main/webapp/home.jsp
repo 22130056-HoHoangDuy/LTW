@@ -284,7 +284,7 @@
 
 <jsp:include page="footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/js/home.js"> </script>
+<script src="${pageContext.request.contextPath}/js/home.js"></script>
 
 </body>
 

@@ -1,32 +1,48 @@
-// const form = document.querySelector(".contact-container form");
-const submitContact = form.querySelector("button");
-submitContact.addEventListener("click", (e) => {
-    e.preventDefault();
-    const inputs = form.querySelectorAll("input[required], textarea[required]");
-    let isValid = true;
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.querySelector(".contact-form-card form");
 
-    // Kiểm tra xem có ô nào trống không
-    inputs.forEach(input => {
-        if (input.value.trim() === "") {
-            isValid = false;
-        }
-    });
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Lấy dữ liệu từ form
+            const formData = new URLSearchParams(new FormData(contactForm));
 
-    if (!isValid) {
-        Swal.fire({
-            icon: "warning",
-            title: "Thiếu thông tin!",
-            text: "Vui lòng điền đầy đủ tất cả các trường bắt buộc.",
-            confirmButtonText: "OK",
+            fetch(contactForm.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: data.message,
+                            confirmButtonColor: '#3085d6'
+                        }).then(() => {
+                            contactForm.reset();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi!',
+                            text: data.message,
+                            confirmButtonColor: '#d33'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi hệ thống',
+                        text: 'Không thể kết nối đến máy chủ.',
+                    });
+                });
         });
-        return;
     }
-    // Nếu đủ thông tin thì hiện thông báo thành công
-    Swal.fire({
-        icon: "success",
-        title: "Gửi thông tin liên hệ thành công",
-        text: "Cảm ơn bạn đã tin tưởng chúng tôi!",
-        timer: 2000,
-        showConfirmButton: false,
-    });
 });

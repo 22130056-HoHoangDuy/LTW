@@ -97,10 +97,10 @@ public class OrderController extends HttpServlet {
         // đảm bảo không âm
         if (spService.checkAvailable(cart)) {
             int orderId = ordersService.createOrderFromCart(account, cart, deliveryAddress, paymentMethod, voucherId, totalPrice);
-            for (CartItem item : cart.getItems()){
+            for (CartItem item : cart.getItems()) {
                 int productId = item.getProduct().getProductId();
                 int quantity = item.getQuantity();
-                spService.updateStockProduct(productId,quantity);
+                spService.updateStockProduct(productId, quantity, false);
             }
             // clear cart
             cart.removeAllItems();

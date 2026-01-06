@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <nav>
-    <a href="${pageContext.request.contextPath}/home">Home</a>
+    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
     <span class="dot">•</span>
     <a href="${pageContext.request.contextPath}/voucher-list">Danh sách voucher</a>
     <span class="dot">•</span>

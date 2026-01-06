@@ -59,7 +59,6 @@
                 <ul class="sh-nav-links">
                     <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
                     <li><a href="${pageContext.request.contextPath}/product-list">Sản phẩm</a></li>
-                    <li><a href="${pageContext.request.contextPath}/news">Tin tức</a></li>
                     <li><a href="${pageContext.request.contextPath}/voucher-list">Ưu đãi</a></li>
                     <li><a href="${pageContext.request.contextPath}/contact">Liên hệ</a></li>
                 </ul>
