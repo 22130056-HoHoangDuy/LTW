@@ -28,4 +28,15 @@ public class VoucherService {
     public int getDiscountAmount(String code) {
         return voucherDao.getDiscountAmount(code);
     }
+
+    public List<Voucher> getByPage(int page, int pageSize) {
+        return voucherDao.getByPage(page, pageSize);
+    }
+
+    public int countAll() {
+        return voucherDao.countAll();
+    }
+    public Voucher findById(int id) {
+        return voucherDao.findById(id);
+    }
 }

@@ -85,13 +85,14 @@ public class OrdersDao extends BaseDao {
 
         return rows > 0;
     }
+
     public int getDiscountAmountFromVoucher(int orderId) {
         String sql = """
-        SELECT COALESCE(v.discount_amount, 0) AS discount_amount
-        FROM orders o
-        LEFT JOIN vouchers v ON v.voucher_id = o.voucher_id
-        WHERE o.order_id = :orderId
-    """;
+                    SELECT COALESCE(v.discount_amount, 0) AS discount_amount
+                    FROM orders o
+                    LEFT JOIN vouchers v ON v.voucher_id = o.voucher_id
+                    WHERE o.order_id = :orderId
+                """;
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -143,4 +144,14 @@ public class OrdersDao extends BaseDao {
     }
 
 
+    public boolean updateOrderStatus(int orderId, String status) {
+        String sql = "UPDATE orders SET status = :status WHERE order_id = :id";
+
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("status", status)
+                        .bind("id", orderId)
+                        .execute()
+        ) > 0;
+    }
 }

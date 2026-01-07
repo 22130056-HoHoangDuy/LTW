@@ -64,5 +64,9 @@ public class OrdersService {
         // Transaction: insert order + insert details
         return dao.createOrderWithDetails(o, details);
     }
+
+    public void confirmOrder(int orderId, String status) {
+        dao.updateOrderStatus(orderId, status);
+    }
 }
 

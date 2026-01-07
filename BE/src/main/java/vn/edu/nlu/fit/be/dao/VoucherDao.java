@@ -18,8 +18,8 @@ public class VoucherDao extends BaseDao {
     public void insert(Voucher v) {
         String sql = """
                     INSERT INTO vouchers
-                    (voucher_code, voucher_name, voucher_description,
-                     discount_amount, start_voucher, end_voucher)
+                    (voucher_code, voucher_name, description,
+                     discount_amount, start_date, end_date)
                     VALUES (?, ?, ?, ?, ?, ?)
                 """;
 
@@ -27,10 +27,10 @@ public class VoucherDao extends BaseDao {
                 handle.createUpdate(sql)
                         .bind(0, v.getVoucherCode())
                         .bind(1, v.getVoucherName())
-                        .bind(2, v.getVoucherDescription())
+                        .bind(2, v.getDescription())
                         .bind(3, v.getDiscountAmount())
-                        .bind(4, v.getStartVoucher())
-                        .bind(5, v.getEndVoucher())
+                        .bind(4, v.getStartDate())
+                        .bind(5, v.getEndDate())
                         .execute()
         );
     }
@@ -65,6 +65,51 @@ public class VoucherDao extends BaseDao {
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
                         .bind("code", code)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+    //VoucherList phân trang
+    // Lấy voucher theo trang
+    public List<Voucher> getByPage(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+
+        String sql = """
+        SELECT * FROM vouchers
+        ORDER BY voucher_id DESC
+        LIMIT :limit OFFSET :offset
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", pageSize)
+                        .bind("offset", offset)
+                        .mapToBean(Voucher.class)
+                        .list()
+        );
+    }
+
+    // Đếm tổng voucher
+    public int countAll() {
+        String sql = "SELECT COUNT(*) FROM vouchers";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+    public Voucher findById(int id) {
+        String sql = """
+        SELECT *
+        FROM vouchers
+        WHERE voucher_id = :id
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
                         .mapToBean(Voucher.class)
                         .findOne()
                         .orElse(null)
