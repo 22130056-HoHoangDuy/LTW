@@ -6,7 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.nlu.fit.be.dao.AdminOverviewDao;
+import vn.edu.nlu.fit.be.model.Account;
 
 import java.io.IOException;
 
@@ -18,6 +20,21 @@ public class AdminOverviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+
+        //chưa login
+        if (session == null || session.getAttribute("USER") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        Account acc = (Account) session.getAttribute("USER");
+
+        //không phải admin
+        if (acc.getRole() <= 0) {
+            resp.sendRedirect(req.getContextPath() + "/403.jsp");
+            return;
+        }
 
         req.setAttribute("totalRevenue", dao.getTotalRevenue());
         req.setAttribute("totalOrders", dao.getTotalOrders());
