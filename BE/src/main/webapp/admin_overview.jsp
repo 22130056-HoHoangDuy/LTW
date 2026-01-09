@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -9,7 +11,8 @@
     <title>Admin - Tổng quan</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/admin_style.css?v=2">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
@@ -60,12 +63,12 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehosue">
+            <a href="${pageContext.request.contextPath}/admin/warehouse">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin_vouchers">
+            <a href="${pageContext.request.contextPath}/admin/vouchers">
                 <i class="fa-solid fa-ticket"></i>
                 <span>Vouchers</span>
             </a>
@@ -88,38 +91,34 @@
 
                 <div class="card-large">
                     <div class="card-info">
-                        <h4>Doanh thu</h4>
-                        <p class="value">42.500.000đ</p>
-                        <span class="trend up">
-                            <i class="fa-solid fa-arrow-up"></i> +12%
-                        </span>
+                        <h4>Tổng doanh thu</h4>
+                        <p class="value">
+                            <fmt:formatNumber value="${totalRevenue}" type="number"/>đ
+                        </p>
                     </div>
                     <i class="fa-solid fa-coins icon"></i>
                 </div>
 
                 <div class="card-large">
                     <div class="card-info">
-                        <h4>Đơn hàng</h4>
-                        <p class="value">310</p>
-                        <span class="trend up">
-                            <i class="fa-solid fa-arrow-up"></i> +18%
-                        </span>
+                        <h4>Tổng đơn hàng</h4>
+                        <p class="value">${totalOrders}</p>
                     </div>
                     <i class="fa-solid fa-cart-shopping icon"></i>
                 </div>
 
                 <div class="card-small">
                     <div class="card-info">
-                        <h4>Khách hàng</h4>
-                        <p class="value">1.280</p>
+                        <h4>Số lượng khách hàng</h4>
+                        <p class="value">${totalCustomers}</p>
                     </div>
                     <i class="fa-solid fa-user-group icon"></i>
                 </div>
 
                 <div class="card-small">
                     <div class="card-info">
-                        <h4>Sản phẩm</h4>
-                        <p class="value">142</p>
+                        <h4>Số lượng sản phẩm</h4>
+                        <p class="value">${totalProducts}</p>
                     </div>
                     <i class="fa-solid fa-boxes-stacked icon"></i>
                 </div>
@@ -132,11 +131,6 @@
                 <div class="chart-card">
                     <div class="chart-header">
                         <h3>Doanh thu theo tháng</h3>
-                        <select>
-                            <option>30 ngày</option>
-                            <option>7 ngày</option>
-                            <option>90 ngày</option>
-                        </select>
                     </div>
                     <canvas id="revenueChart"></canvas>
                 </div>
@@ -144,10 +138,6 @@
                 <div class="chart-card">
                     <div class="chart-header">
                         <h3>Đơn hàng theo danh mục</h3>
-                        <select>
-                            <option>Tháng này</option>
-                            <option>Tuần này</option>
-                        </select>
                     </div>
                     <canvas id="categoryChart"></canvas>
                 </div>
@@ -170,21 +160,23 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>#1023</td>
-                        <td>Nguyễn An</td>
-                        <td>1.250.000đ</td>
-                        <td>15/11/2024</td>
-                        <td><span class="status on">Hoàn thành</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>#1024</td>
-                        <td>Trần Bình</td>
-                        <td>980.000đ</td>
-                        <td>15/11/2024</td>
-                        <td><span class="status off">Đang xử lý</span></td>
-                    </tr>
+                    <c:forEach items="${recentOrders}" var="o">
+                        <tr>
+                            <td>#${o.orderId}</td>
+                            <td>${o.username}</td>
+                            <td>
+                                <fmt:formatNumber value="${o.totalAmount}" type="number"/>đ
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${o.orderDate}" pattern="dd/MM/yyyy"/>
+                            </td>
+                            <td>
+                                <span class="status ${o.statusOrder == 'Done' ? 'on' : 'off'}">
+                                        ${o.statusOrder}
+                                </span>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </section>
@@ -196,15 +188,15 @@
             <ul class="tasks">
                 <li>
                     <div class="task-time">09:00</div>
-                    <div class="task-info">Xác nhận đơn hàng #1023</div>
+                    <div class="task-info">Xác nhận đơn hàng mới</div>
                 </li>
                 <li>
                     <div class="task-time">11:00</div>
-                    <div class="task-info">Kiểm tra kho Đà Nẵng</div>
+                    <div class="task-info">Kiểm tra kho</div>
                 </li>
                 <li>
                     <div class="task-time">14:00</div>
-                    <div class="task-info">Cập nhật sản phẩm mới</div>
+                    <div class="task-info">Cập nhật sản phẩm</div>
                 </li>
             </ul>
             <button class="add-btn">+</button>
@@ -212,6 +204,60 @@
 
     </div>
 </div>
+
+<!-- ===== CHART SCRIPT ===== -->
+<script>
+    // Doanh thu theo tháng
+    const revenueLabels = [
+        <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
+        'Tháng ${r.month}'<c:if test="${!loop.last}">,</c:if>
+        </c:forEach>
+    ];
+
+    const revenueData = [
+        <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
+        ${r.revenue}<c:if test="${!loop.last}">,</c:if>
+        </c:forEach>
+    ];
+
+    if (revenueLabels.length > 0) {
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: revenueLabels,
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data: revenueData
+                }]
+            }
+        });
+    }
+
+    // Đơn hàng theo danh mục
+    const categoryLabels = [
+        <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
+        '${c.categoryName}'<c:if test="${!loop.last}">,</c:if>
+        </c:forEach>
+    ];
+
+    const categoryData = [
+        <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
+        ${c.totalOrders}<c:if test="${!loop.last}">,</c:if>
+        </c:forEach>
+    ];
+
+    if (categoryLabels.length > 0) {
+        new Chart(document.getElementById('categoryChart'), {
+            type: 'doughnut',
+            data: {
+                labels: categoryLabels,
+                datasets: [{
+                    data: categoryData
+                }]
+            }
+        });
+    }
+</script>
 
 </body>
 </html>

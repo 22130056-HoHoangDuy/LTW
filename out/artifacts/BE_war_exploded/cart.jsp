@@ -19,7 +19,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <nav class="breadcrumb-nav">
-    <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
+    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
     <span class="dot">•</span>
     <a href="">Giỏ hàng</a>
 </nav>
@@ -122,7 +122,8 @@
                                     </div>
                                     <button type="submit" name="action" value="removeVoucher"
                                             class="remove-voucher-btn"
-                                            formaction="${pageContext.request.contextPath}/order">
+                                            formaction="${pageContext.request.contextPath}/order"
+                                            formnovalidate>
                                         <i class="fa-solid fa-times"></i>
                                         Hủy
                                     </button>
@@ -141,7 +142,8 @@
                                            placeholder="Nhập mã voucher"/>
                                     <button type="submit" name="action" value="applyVoucher"
                                             class="voucher-apply-btn"
-                                            formaction="${pageContext.request.contextPath}/order">
+                                            formaction="${pageContext.request.contextPath}/order"
+                                            formnovalidate>
                                         Áp dụng
                                     </button>
                                 </div>

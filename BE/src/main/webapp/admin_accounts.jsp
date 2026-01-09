@@ -26,12 +26,12 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <nav class="menu">
-            <a href="${pageContext.request.contextPath}/admin/overview" class="active">
+            <a href="${pageContext.request.contextPath}/admin/overview">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/accounts">
+            <a href="${pageContext.request.contextPath}/admin/accounts" class="active">
                 <i class="fa-solid fa-user"></i>
                 <span>Tài khoản</span>
             </a>
@@ -61,12 +61,12 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehosue">
+            <a href="${pageContext.request.contextPath}/admin/warehouse">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin_vouchers">
+            <a href="${pageContext.request.contextPath}/admin/vouchers">
                 <i class="fa-solid fa-ticket"></i>
                 <span>Vouchers</span>
             </a>
