@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi Tiết Voucher</title>
+    <link rel="icon" type="image/x-icon"
+          href="${pageContext.request.contextPath}/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/voucherDetail.css">
 </head>
 

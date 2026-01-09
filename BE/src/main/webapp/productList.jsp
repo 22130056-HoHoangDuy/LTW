@@ -15,6 +15,8 @@
     <meta charset="UTF-8"/>
     <title>Danh sách sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/x-icon"
+          href="${pageContext.request.contextPath}/favicon.ico">
     <link
             rel="stylesheet"
             href="../fontawesome-free-7.1.0-web/css/all.min.css"

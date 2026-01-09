@@ -13,6 +13,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Chi tiết sản phẩm</title>
+    <link rel="icon" type="image/x-icon"
+          href="${pageContext.request.contextPath}/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
