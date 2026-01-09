@@ -104,13 +104,13 @@
                         <td>${a.createdAt}</td>
                         <td>
                             <select onchange="updateStatus(this, ${a.accountId})">
-                                <option value="ACTIVE"
-                                        <c:if test="${a.status == 'ACTIVE'}">selected</c:if>>
-                                    ACTIVE
+                                <option value="Active"
+                                        <c:if test="${a.status == 'Active'}">selected</c:if>>
+                                    Active
                                 </option>
-                                <option value="INACTIVE"
-                                        <c:if test="${a.status == 'INACTIVE'}">selected</c:if>>
-                                    INACTIVE
+                                <option value="UnActive"
+                                        <c:if test="${a.status == 'UnActive'}">selected</c:if>>
+                                    UnActive
                                 </option>
                             </select>
                         </td>

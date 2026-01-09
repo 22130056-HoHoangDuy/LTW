@@ -44,7 +44,7 @@ public class AccountService extends BaseDao {
                     .bind("email", email)
                     .bind("username", userName)
                     .bind("pass", BCrypt.hashpw(password, BCrypt.gensalt()))
-                    .bind("status", AccountStatus.ACTIVE.name())
+                    .bind("status", AccountStatus.Active.name())
                     .bind("role", 0)
                     .execute();
 
@@ -55,7 +55,7 @@ public class AccountService extends BaseDao {
     /* ================= Login ================= */
     public Account login(String key, String rawPassword) {
         return accountDao.findByUsernameOrEmail(key)
-                .filter(a -> a.getStatus() == AccountStatus.ACTIVE)
+                .filter(a -> a.getStatus() == AccountStatus.Active)
                 .filter(a -> a.getRole() == 0)
                 .filter(a -> BCrypt.checkpw(rawPassword, a.getPassword()))
                 .orElse(null);
@@ -97,7 +97,7 @@ public class AccountService extends BaseDao {
         if (opt.isPresent()) {
             Account acc = opt.get();
 
-            if (acc.getStatus() != AccountStatus.ACTIVE) return null;
+            if (acc.getStatus() != AccountStatus.Active) return null;
             return acc;
         }
 
@@ -121,7 +121,7 @@ public class AccountService extends BaseDao {
                     .bind("pid", profileId)
                     .bind("email", email)
                     .bind("username", name)
-                    .bind("status", AccountStatus.ACTIVE.name())
+                    .bind("status", AccountStatus.Active.name())
                     .bind("role", 0)
                     .execute();
 
