@@ -56,7 +56,7 @@ public class AccountService extends BaseDao {
     public Account login(String key, String rawPassword) {
         return accountDao.findByUsernameOrEmail(key)
                 .filter(a -> a.getStatus() == AccountStatus.Active)
-                .filter(a -> a.getRole() == 0)
+                .filter(a -> a.getRole() >= 0)
                 .filter(a -> BCrypt.checkpw(rawPassword, a.getPassword()))
                 .orElse(null);
     }
