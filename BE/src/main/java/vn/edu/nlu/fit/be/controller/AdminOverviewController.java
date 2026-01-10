@@ -20,21 +20,21 @@ public class AdminOverviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-//        HttpSession session = req.getSession(false);
-//
-//        //chưa login
-//        if (session == null || session.getAttribute("USER") == null) {
-//            resp.sendRedirect(req.getContextPath() + "/login");
-//            return;
-//        }
-//
-//        Account acc = (Account) session.getAttribute("USER");
-//
-//        //không phải admin
-//        if (acc.getRole() <= 0) {
-//            resp.sendRedirect(req.getContextPath() + "/403.jsp");
-//            return;
-//        }
+        HttpSession session = req.getSession(false);
+
+        //chưa login
+        if (session == null || session.getAttribute("USER") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        Account acc = (Account) session.getAttribute("USER");
+
+        //không phải admin
+        if (acc.getRole() <= 0) {
+            resp.sendRedirect(req.getContextPath() + "/403.jsp");
+            return;
+        }
 
         req.setAttribute("totalRevenue", dao.getTotalRevenue());
         req.setAttribute("totalOrders", dao.getTotalOrders());
