@@ -17,7 +17,21 @@ public class AdminProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
+//        HttpSession session = req.getSession(false);
+//
+//        //chưa login
+//        if (session == null || session.getAttribute("USER") == null) {
+//            resp.sendRedirect(req.getContextPath() + "/login");
+//            return;
+//        }
+//
+//        Account acc = (Account) session.getAttribute("USER");
+//
+//        //không phải admin
+//        if (acc.getRole() <= 0) {
+//            resp.sendRedirect(req.getContextPath() + "/403.jsp");
+//            return;
+//        }
         List<Product> products = service.getAllProducts();
         req.setAttribute("products", products);
         RequestDispatcher rd = req.getRequestDispatcher("/admin_products.jsp");
