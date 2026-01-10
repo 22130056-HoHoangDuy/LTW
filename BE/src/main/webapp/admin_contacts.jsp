@@ -122,13 +122,13 @@
                     <td>${c.address}</td>
                     <td>
                         <a class="btn-small btn-on"
-                           href="${pageContext.request.contextPath}/admin/contacts/view?id=${c.contactId}">
+                           href="${pageContext.request.contextPath}/admin/contacts?action=view&id=${c.contactId}">
                             <i class="fa-solid fa-eye"></i>
                         </a>
 
                         <a class="btn-small btn-delete"
                            onclick="return confirm('Bạn chắc chắn muốn xóa liên hệ này?')"
-                           href="${pageContext.request.contextPath}/admin/contacts/delete?id=${c.contactId}">
+                           href="${pageContext.request.contextPath}/admin/contacts?action=delete&id=${c.contactId}">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>
@@ -136,7 +136,26 @@
             </c:forEach>
             </tbody>
         </table>
+
     </main>
+    <!-- CONTENT -->
+    <aside class="right-panel">
+        <c:if test="${not empty selectedContact}">
+            <div style="margin-top:25px" class="voucher-form">
+                <h3>Chi tiết liên hệ #${selectedContact.contactId}</h3>
+
+                <p><strong>Khách hàng:</strong> ${selectedContact.fullName}</p>
+                <p><strong>Điện thoại:</strong> ${selectedContact.phone}</p>
+                <p><strong>Email:</strong> ${selectedContact.email}</p>
+                <p><strong>Địa chỉ:</strong> ${selectedContact.address}</p>
+
+                <hr style="margin:15px 0">
+
+                <p><strong>Nội dung:</strong></p>
+                <p>${selectedContact.message}</p>
+            </div>
+        </c:if>
+    </aside>
 </div>
 </body>
 </html>

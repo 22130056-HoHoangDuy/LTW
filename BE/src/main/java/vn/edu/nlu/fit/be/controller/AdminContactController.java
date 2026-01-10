@@ -18,17 +18,28 @@ public class AdminContactController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Danh sách
-        List<Contact> contactList = contactService.loadMoreContacts();
-        request.setAttribute("contactList", contactList);
-
-        // Nếu có action=view → load chi tiết
         String action = request.getParameter("action");
+
+        //XOÁ CONTACT
+        if ("delete".equals(action)) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            contactService.deleteContact(id);
+
+            // redirect để tránh xoá lại khi refresh
+            response.sendRedirect(request.getContextPath() + "/admin/contacts");
+            return;
+        }
+
+        //XEM CHI TIẾT CONTACT
         if ("view".equals(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             Contact selectedContact = contactService.getContactById(id);
             request.setAttribute("selectedContact", selectedContact);
         }
+
+        //LOAD DANH SÁCH
+        List<Contact> contactList = contactService.loadMoreContacts();
+        request.setAttribute("contactList", contactList);
 
         request.getRequestDispatcher("/admin_contacts.jsp").forward(request, response);
     }

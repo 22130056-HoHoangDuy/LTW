@@ -37,25 +37,22 @@ public class ContactDao extends BaseDao {
         );
     }
     public Contact findById(int id) {
-        String sql = """
-        SELECT
-            contact_id AS contactId,
-            account_id AS accountId,
-            full_name AS fullName,
-            phone,
-            email,
-            address,
-            message
-        FROM contacts
-        WHERE contact_id = :id
-    """;
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
+        String sql = "SELECT * FROM contacts WHERE contact_id = :id";
+        return jdbi.withHandle(h ->
+                h.createQuery(sql)
                         .bind("id", id)
                         .mapToBean(Contact.class)
                         .findOne()
                         .orElse(null)
+        );
+    }
+
+    public void deleteById(int id) {
+        String sql = "DELETE FROM contacts WHERE contact_id = :id";
+        jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", id)
+                        .execute()
         );
     }
 }

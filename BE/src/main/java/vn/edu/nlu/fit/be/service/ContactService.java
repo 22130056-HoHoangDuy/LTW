@@ -26,5 +26,9 @@ public class ContactService {
         return contactDao.findById(id);
     }
 
+    public void deleteContact(int id) {
+        contactDao.deleteById(id);
+    }
+
 }
 
