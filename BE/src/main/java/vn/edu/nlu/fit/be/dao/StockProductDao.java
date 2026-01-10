@@ -43,23 +43,43 @@ public class StockProductDao extends BaseDao {
         );
     }
 
-    public boolean updateStockProduct(int productId, int stockId, int quantity) {
+    //Dành cho user
+    public boolean updateStockProduct(int productId, int stockId, int quantity, boolean isSold) {
         String sql = """
                     UPDATE stock_products
-                    SET total_quantity = total_quantity - :qty,
-                        sold_quantity = sold_quantity + :qty
+                    SET total_quantity = total_quantity - :qty
                     WHERE product_id = :pid
                       AND stock_id = :sid
                       AND total_quantity >= :qty
                 """;
+
+        int soldQtyToAdd = isSold ? quantity : 0;
+
         int updated = jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("qty", quantity)
+                        .bind("soldQty", soldQtyToAdd)
                         .bind("pid", productId)
                         .bind("sid", stockId)
                         .execute()
         );
         return updated == 1;
+    }
+
+    //Dành cho admin
+    public boolean increaseSoldQuantity(int productId, int stockId, int quantity) {
+        String sql = """
+                    UPDATE stock_products
+                    SET sold_quantity = sold_quantity + :qty
+                    WHERE product_id = :pid AND stock_id = :sid
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("qty", quantity)
+                        .bind("pid", productId)
+                        .bind("sid", stockId)
+                        .execute()
+        ) > 0;
     }
 
     public StockProduct getProductInStock(int productId) {

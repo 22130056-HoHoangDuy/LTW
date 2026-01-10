@@ -8,30 +8,31 @@ public class Contact {
     private String phone;
     private String email;
     private String address;
-    private String opinion;
+    private String message;
 
     //Constructor
 
-    public Contact() {}
+    public Contact() {
+    }
 
-    public Contact(int contactId, int accountId, String fullName, String phone, String email, String address, String opinion) {
+    public Contact(int contactId, int accountId, String fullName, String phone, String email, String address, String message) {
         this.contactId = contactId;
         this.accountId = accountId;
         this.fullName = fullName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.opinion = opinion;
+        this.message = message;
     }
 
     // Getters & Setters
 
-    public String getOpinion() {
-        return opinion;
+    public String getMessage() {
+        return message;
     }
 
-    public void setOpinion(String opinion) {
-        this.opinion = opinion;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getAddress() {

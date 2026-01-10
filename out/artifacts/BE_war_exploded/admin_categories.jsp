@@ -1,0 +1,125 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Admin - Quản lý danh mục</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav class="menu">
+            <a href="${pageContext.request.contextPath}/admin/overview">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/products">
+                <i class="fa-solid fa-box"></i>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/categories" class="active">
+                <i class="fa-solid fa-list"></i>
+                <span>Danh mục</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/accounts">
+                <i class="fa-solid fa-user"></i>
+                <span>Tài khoản</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+
+        <main class="main">
+            <h2>Quản lý danh mục</h2>
+
+            <!-- FORM THÊM DANH MỤC -->
+            <section class="voucher-form">
+                <h3>Thêm danh mục mới</h3>
+
+                <form class="form-grid">
+                    <div class="form-item">
+                        <label for="cat-name">Tên danh mục</label>
+                        <input type="text" id="cat-name" placeholder="Nhập tên danh mục">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="cat-status">Trạng thái</label>
+                        <select id="cat-status">
+                            <option value="ON">Hiển thị</option>
+                            <option value="OFF">Ẩn</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Thêm danh mục</button>
+                </form>
+            </section>
+
+            <!-- DANH SÁCH DANH MỤC -->
+            <section class="voucher-list">
+                <h3>Danh sách danh mục</h3>
+
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Tên danh mục</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Đồ nội thất</td>
+                        <td><span class="status on">Hiển thị</span></td>
+                        <td>
+                            <button class="btn-small btn-off">Ẩn</button>
+                            <button class="btn-small btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Đồ trang trí phòng</td>
+                        <td><span class="status on">Hiển thị</span></td>
+                        <td>
+                            <button class="btn-small btn-off">Ẩn</button>
+                            <button class="btn-small btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Đồ chơi &amp; Vật phẩm trang trí</td>
+                        <td><span class="status off">Ẩn</span></td>
+                        <td>
+                            <button class="btn-small btn-on">Hiển thị</button>
+                            <button class="btn-small btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <aside class="right-panel"></aside>
+    </div>
+</div>
+
+</body>
+</html>
