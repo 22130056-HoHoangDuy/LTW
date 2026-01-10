@@ -39,20 +39,28 @@ public class LoginController extends HttpServlet {
         }
 
         HttpSession session = req.getSession(true);
-        String returnUrl = req.getParameter("returnUrl");
         session.setAttribute("USER", acc);
         session.setMaxInactiveInterval(30 * 60); // 30 phút
 
+        // 🔑 kiểm tra role
+        if (acc.getRole() == 1) {
+            // admin
+            resp.sendRedirect(req.getContextPath() + "/admin/overview");
+            return;
+        }
+
+        // user (role = 0)
+        String returnUrl = req.getParameter("returnUrl");
         if (returnUrl == null || returnUrl.isBlank()) {
             Object ru = session.getAttribute("returnUrl");
             returnUrl = (ru != null) ? ru.toString() : null;
             session.removeAttribute("returnUrl");
-
         }
-        //Chuyển đến vị trí trang đang đứng
+
         if (returnUrl != null) {
             resp.sendRedirect(returnUrl);
-        } else
+        } else {
             resp.sendRedirect(req.getContextPath() + "/home");
+        }
     }
 }
