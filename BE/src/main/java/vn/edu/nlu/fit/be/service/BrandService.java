@@ -29,4 +29,10 @@ public class BrandService {
     public void deleteBrand(int id) {
         brandDao.deleteBrand(id);
     }
+    public void updateBrand(Brand brand) {
+        if (brand.getBrandName() == null || brand.getBrandName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Tên thương hiệu không được để trống");
+        }
+        brandDao.updateBrand(brand);
+    }
 }

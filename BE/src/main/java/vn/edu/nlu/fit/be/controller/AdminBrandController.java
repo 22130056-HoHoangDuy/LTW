@@ -20,13 +20,18 @@ public class AdminBrandController extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+        String idParam = request.getParameter("id");
 
-        // chỉ load danh sách + hiển thị form nếu có action
+        if ("edit".equals(action) && idParam != null) {
+            int id = Integer.parseInt(idParam);
+            Brand brandToEdit = brandService.getBrandById(id);
+            request.setAttribute("brandToEdit", brandToEdit);
+        }
+
         List<Brand> brandList = brandService.loadMoreBrands();
         request.setAttribute("brandList", brandList);
 
-        request.getRequestDispatcher("/admin_brands.jsp")
-                .forward(request, response);
+        request.getRequestDispatcher("/admin_brands.jsp").forward(request, response);
     }
 
     @Override
@@ -35,24 +40,30 @@ public class AdminBrandController extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        if ("add".equals(action)) {
-            Brand brand = new Brand();
-            brand.setBrandName(request.getParameter("brandName"));
-            brand.setBrandLogo(request.getParameter("brandLogo"));
-            brand.setBrandDescription(request.getParameter("brandDescription"));
+        switch (action) {
+            case "add":
+                Brand newBrand = new Brand();
+                newBrand.setBrandName(request.getParameter("brandName"));
+                newBrand.setBrandLogo(request.getParameter("brandLogo"));
+                newBrand.setBrandDescription(request.getParameter("brandDescription"));
+                brandService.addBrand(newBrand);
+                break;
 
-            brandService.addBrand(brand);
+            case "edit":
+                Brand editBrand = new Brand();
+                editBrand.setBrandId(Integer.parseInt(request.getParameter("brandId")));
+                editBrand.setBrandName(request.getParameter("brandName"));
+                editBrand.setBrandLogo(request.getParameter("brandLogo"));
+                editBrand.setBrandDescription(request.getParameter("brandDescription"));
+                brandService.updateBrand(editBrand);
+                break;
 
-            // redirect tránh submit lại khi refresh
-            response.sendRedirect(request.getContextPath() + "/admin/brands");
+            case "delete":
+                int brandId = Integer.parseInt(request.getParameter("brandId"));
+                brandService.deleteBrand(brandId);
+                break;
         }
 
-        if ("delete".equals(action)) {
-            int brandId = Integer.parseInt(request.getParameter("brandId"));
-
-            brandService.deleteBrand(brandId);
-
-            response.sendRedirect(request.getContextPath() + "/admin/brands");
-        }
+        response.sendRedirect(request.getContextPath() + "/admin/brands");
     }
 }

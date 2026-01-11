@@ -58,12 +58,12 @@ public class BrandDao extends BaseDao {
     public void updateBrand(Brand brand) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("""
-                UPDATE brands
-                SET brand_name = :name,
-                    brand_logo = :logo,
-                    description = :description
-                WHERE brand_id = :id
-            """)
+            UPDATE brands
+            SET brand_name = :name,
+                brand_logo = :logo,
+                description = :description
+            WHERE brand_id = :id
+        """)
                         .bind("id", brand.getBrandId())
                         .bind("name", brand.getBrandName())
                         .bind("logo", brand.getBrandLogo())
