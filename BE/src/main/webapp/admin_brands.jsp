@@ -129,11 +129,17 @@
                             <i class="fa-solid fa-pen"></i>
                         </a>
 
-                        <a class="btn-small btn-delete"
-                           onclick="return confirm('Bạn chắc chắn muốn xóa thương hiệu này?')"
-                           href="${pageContext.request.contextPath}/admin/brands?action=delete&id=${b.brandId}">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                        <form action="${pageContext.request.contextPath}/admin/brands"
+                              method="post"
+                              style="display:inline"
+                              onsubmit="return confirm('Bạn chắc chắn muốn xóa thương hiệu này?')">
+                            <input type="hidden" name="action" value="delete"/>
+                            <input type="hidden" name="brandId" value="${b.brandId}"/>
+
+                            <button type="submit" class="btn-small btn-delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>

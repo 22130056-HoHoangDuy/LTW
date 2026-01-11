@@ -46,5 +46,13 @@ public class AdminBrandController extends HttpServlet {
             // redirect tránh submit lại khi refresh
             response.sendRedirect(request.getContextPath() + "/admin/brands");
         }
+
+        if ("delete".equals(action)) {
+            int brandId = Integer.parseInt(request.getParameter("brandId"));
+
+            brandService.deleteBrand(brandId);
+
+            response.sendRedirect(request.getContextPath() + "/admin/brands");
+        }
     }
 }

@@ -26,4 +26,7 @@ public class BrandService {
         }
         brandDao.insertBrand(brand);
     }
+    public void deleteBrand(int id) {
+        brandDao.deleteBrand(id);
+    }
 }
