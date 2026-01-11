@@ -1,16 +1,192 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 10/1/2026
-  Time: 6:07 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Admin - Quản lý hãng</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+    <!-- JS LIB -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav class="menu">
+            <a href="${pageContext.request.contextPath}/admin/overview">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/accounts">
+                <i class="fa-solid fa-user"></i>
+                <span>Tài khoản</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/orders">
+                <i class="fa-solid fa-box"></i>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/products">
+                <i class="fa-solid fa-cubes"></i>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/categories">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Danh mục sản phẩm</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/brands" class="active">
+                <i class="fa-solid fa-tags"></i>
+                <span>Thương hiệu</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/contacts">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Liên hệ</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/warehouse">
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Kho hàng</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/vouchers">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Vouchers</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/admin/settings">
+                <i class="fa-solid fa-gear"></i>
+                <span>Cài đặt</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+        <h2>Quản lý thương hiệu</h2>
+
+        <button style="margin-bottom:20px">
+            <a href="${pageContext.request.contextPath}/admin/brands?action=add"
+               class="btn btn-add">
+                <i class="fa-solid fa-plus"></i> Thêm thương hiệu
+            </a>
+        </button>
+
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên hãng</th>
+                <th>Logo</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <c:if test="${empty brandList}">
+                <tr>
+                    <td colspan="4" style="text-align:center;padding:20px;">
+                        Không có thương hiệu
+                    </td>
+                </tr>
+            </c:if>
+
+            <c:forEach var="b" items="${brandList}">
+                <tr>
+                    <td>#${b.brandId}</td>
+
+                    <td>
+                        <strong>${b.brandName}</strong>
+                    </td>
+
+                    <td>
+                        <c:if test="${not empty b.brandLogo}">
+                            <img src="${b.brandLogo}" alt="${b.brandName}"
+                                 style="height:40px;object-fit:contain"/>
+                        </c:if>
+                    </td>
+
+                    <td>
+                        <a class="btn-small btn-on"
+                           href="${pageContext.request.contextPath}/admin/brands?action=edit&id=${b.brandId}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+
+                        <a class="btn-small btn-delete"
+                           onclick="return confirm('Bạn chắc chắn muốn xóa thương hiệu này?')"
+                           href="${pageContext.request.contextPath}/admin/brands?action=delete&id=${b.brandId}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </main>
+    <!-- CONTENT -->
+    <aside class="right-panel">
+
+        <c:if test="${param.action == 'add'}">
+            <div class="voucher-form">
+                <h3>Thêm thương hiệu</h3>
+
+                <form action="${pageContext.request.contextPath}/admin/brands" method="post">
+                    <input type="hidden" name="action" value="add"/>
+
+                    <div class="form-grid">
+
+                        <!-- Tên thương hiệu -->
+                        <div class="form-item">
+                            <label>Tên thương hiệu</label>
+                            <input type="text"
+                                   name="brandName"
+                                   placeholder="Nhập tên thương hiệu"
+                                   required/>
+                        </div>
+
+                        <!-- Logo -->
+                        <div class="form-item">
+                            <label>Logo (URL)</label>
+                            <input type="text"
+                                   name="brandLogo"
+                                   placeholder="https://example.com/logo.png"/>
+                        </div>
+
+                        <!-- Mô tả -->
+                        <div class="form-item textarea-full">
+                            <label>Mô tả</label>
+                            <textarea name="brandDescription"
+                                      placeholder="Mô tả thương hiệu"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-plus"></i> Thêm thương hiệu
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </c:if>
+    </aside>
+</div>
 </body>
 </html>

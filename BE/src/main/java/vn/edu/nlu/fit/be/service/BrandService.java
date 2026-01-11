@@ -7,6 +7,7 @@ import java.util.List;
 
 public class BrandService {
     private BrandDao bd = new BrandDao();
+    private final BrandDao brandDao = new BrandDao();
 
     public List<Brand> getBrands() {
         return bd.getBrands();
@@ -14,5 +15,15 @@ public class BrandService {
 
     public Brand getBrandById(int id) {
         return bd.getBrandById(id);
+    }
+
+    public List<Brand> loadMoreBrands() {
+        return brandDao.LoadBrandLatest();
+    }
+    public void addBrand(Brand brand) {
+        if (brand.getBrandName() == null || brand.getBrandName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Tên thương hiệu không được để trống");
+        }
+        brandDao.insertBrand(brand);
     }
 }
