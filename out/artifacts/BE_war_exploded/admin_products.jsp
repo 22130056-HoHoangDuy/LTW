@@ -107,14 +107,13 @@
                     <th>Hành động</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 <c:forEach var="p" items="${products}">
                     <tr>
                         <td>${p.productId}</td>
-                        <td>${p.name}</td>
-                        <td>${p.categoryName}</td>
-                        <td>${p.price}</td>
+                        <td>${p.productName}</td>
+                        <td>${categoryMap[p.categoryId]}</td>
+                        <td>${p.productPrice}</td>
                         <td>
                             <button class="btn-small btn-on">Sửa</button>
                             <button class="btn-small btn-delete">Xóa</button>
