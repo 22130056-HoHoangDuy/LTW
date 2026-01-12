@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -94,22 +96,59 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>#1023</td>
-                <td>Nguyễn An</td>
-                <td>28/10/2025</td>
-                <td>1.200.000đ</td>
-                <td>COD</td>
-                <td>
-                    <select class="status-select processing"
-                            onchange="updateStatus(this, 1023)">
-                        <option value="processing" selected>Đang xử lý</option>
-                        <option value="shipping">Đang giao</option>
-                        <option value="success">Hoàn tất</option>
-                        <option value="cancel">Đã hủy</option>
-                    </select>
-                </td>
-            </tr>
+            <c:forEach var="order" items="${orders}">
+                <tr>
+                    <td>#${order.orderId}</td>
+
+                    <td>${order.username}</td>
+
+                    <td>${order.orderDate}</td>
+                    <td>
+                        <fmt:formatNumber value="${order.totalAmount}" type="number"/>đ
+                    </td>
+
+                    <td>${order.paymentMethod}</td>
+
+                    <td>
+                        <select class="status-select ${order.statusOrder}"
+                                onchange="updateStatus(this, ${order.orderId})">
+
+                            <option value="Pending"
+                                ${order.statusOrder == 'Pending' ? 'selected' : ''}>
+                                Chưa xác nhận
+                            </option>
+
+                            <option value="Pakaging"
+                                ${order.statusOrder == 'Pakaging' ? 'selected' : ''}>
+                                Đang đóng gói
+                            </option>
+
+                            <option value="Shipping"
+                                ${order.statusOrder == 'Shipping' ? 'selected' : ''}>
+                                Đang vận chuyển
+                            </option>
+
+                            <option value="Done"
+                                ${order.statusOrder == 'Done' ? 'selected' : ''}>
+                                Đã giao hàng
+                            </option>
+
+                            <option value="Cancelled"
+                                ${order.statusOrder == 'Cancelled' ? 'selected' : ''}>
+                                Đã hủy
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </c:forEach>
+
+            <c:if test="${empty orders}">
+                <tr>
+                    <td colspan="6" style="text-align:center">
+                        Không có đơn hàng
+                    </td>
+                </tr>
+            </c:if>
             </tbody>
         </table>
     </main>
