@@ -13,6 +13,15 @@ public class Order {
     private String deliveryAddress;
     private PaymentMethod paymentMethod;
     private Timestamp orderDate;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     //Constructor
 
@@ -27,6 +36,7 @@ public class Order {
         this.statusOrder = statusOrder;
         this.voucherId = voucherId;
         this.accountId = accountId;
+
     }
 
     // Getters & Setters
@@ -94,4 +104,5 @@ public class Order {
     public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
+
 }
