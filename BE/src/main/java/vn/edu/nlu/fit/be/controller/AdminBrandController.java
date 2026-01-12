@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.be.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.Brand;
 import vn.edu.nlu.fit.be.model.Contact;
 import vn.edu.nlu.fit.be.service.BrandService;
@@ -18,6 +19,21 @@ public class AdminBrandController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+
+        //chưa login
+        if (session == null || session.getAttribute("USER") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        Account acc = (Account) session.getAttribute("USER");
+
+        //không phải admin
+        if (acc.getRole() <= 0) {
+            response.sendRedirect(request.getContextPath() + "/403.jsp");
+            return;
+        }
 
         String action = request.getParameter("action");
         String idParam = request.getParameter("id");
