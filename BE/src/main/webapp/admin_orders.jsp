@@ -62,7 +62,7 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehouse">
+            <a href="${pageContext.request.contextPath}/admin/stocks">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>

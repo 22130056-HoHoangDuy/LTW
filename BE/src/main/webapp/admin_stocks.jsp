@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <title>Admin - Quản lý kho hàng</title>
 
     <!-- CSS -->
@@ -71,9 +71,9 @@
             </a>
         </nav>
     </aside>
+
     <!-- CONTENT -->
     <div class="content-wrapper">
-
         <main class="main">
             <h2>Quản lý kho hàng</h2>
 
@@ -81,15 +81,15 @@
             <section class="voucher-form">
                 <h3>Thêm kho mới</h3>
 
-                <form class="form-grid">
+                <form class="form-grid" action="${pageContext.request.contextPath}/admin/warehouse/add" method="post">
                     <div class="form-item">
                         <label>Tên kho</label>
-                        <input type="text" placeholder="Ví dụ: Kho Hà Nội">
+                        <input type="text" name="name" placeholder="Ví dụ: Kho Hà Nội" required>
                     </div>
 
                     <div class="form-item">
                         <label>Địa chỉ</label>
-                        <input type="text" placeholder="123 Nguyễn Trãi, Hà Nội">
+                        <input type="text" name="address" placeholder="123 Nguyễn Trãi, Hà Nội" required>
                     </div>
 
                     <button type="submit" class="btn-primary">Thêm kho hàng</button>
@@ -112,29 +112,29 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Kho Hà Nội</td>
-                        <td>123 Nguyễn Trãi, Hà Nội</td>
-                        <td>280</td>
-                        <td>
-                            <button class="btn-small btn-on">Xem</button>
-                            <button class="btn-small btn-off">Sửa</button>
-                            <button class="btn-small btn-delete">Xóa</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Kho Đà Nẵng</td>
-                        <td>45 Trần Phú, Đà Nẵng</td>
-                        <td>120</td>
-                        <td>
-                            <button class="btn-small btn-on">Xem</button>
-                            <button class="btn-small btn-off">Sửa</button>
-                            <button class="btn-small btn-delete">Xóa</button>
-                        </td>
-                    </tr>
+                    <!-- Lặp danh sách kho từ Servlet -->
+                    <c:forEach var="warehouse" items="${warehouses}">
+                        <tr>
+                            <td>${warehouse.id}</td>
+                            <td>${warehouse.name}</td>
+                            <td>${warehouse.address}</td>
+                            <td>${warehouse.productCount}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/admin/warehouse/view" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                    <button type="submit" class="btn-small btn-on">Xem</button>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin/warehouse/edit" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                    <button type="submit" class="btn-small btn-off">Sửa</button>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin/warehouse/delete" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                    <button type="submit" class="btn-small btn-delete">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </section>
