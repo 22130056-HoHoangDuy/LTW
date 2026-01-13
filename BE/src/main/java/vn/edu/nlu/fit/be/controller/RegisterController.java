@@ -3,6 +3,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.be.service.AccountService;
+import vn.edu.nlu.fit.be.util.EmailUtil;
+import vn.edu.nlu.fit.be.util.OTPUtil;
 
 import java.io.IOException;
 
@@ -21,7 +23,7 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8"); // ⭐ RẤT QUAN TRỌNG
+        req.setCharacterEncoding("UTF-8");
 
         String username = req.getParameter("username");
         String email = req.getParameter("email");
@@ -34,15 +36,21 @@ public class RegisterController extends HttpServlet {
             return;
         }
 
-        boolean ok = service.register(username, email, pass);
+        //Sinh OTP
+        String otp = OTPUtil.generateOTP();
+        long otpTime = System.currentTimeMillis();
 
-        if (!ok) {
-            req.setAttribute("error", "Email đã tồn tại!");
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
-            return;
-        }
+        // 📧 Gửi email
+        EmailUtil.sendOTP(email, otp);
 
-        // ✅ Thành công → quay về login
-        resp.sendRedirect(req.getContextPath() + "/login");
+        // 💾 Lưu session
+        HttpSession session = req.getSession();
+        session.setAttribute("OTP", otp);
+        session.setAttribute("OTP_TIME", otpTime);
+        session.setAttribute("REGISTER_USERNAME", username);
+        session.setAttribute("REGISTER_EMAIL", email);
+        session.setAttribute("REGISTER_PASS", pass);
+
+        resp.sendRedirect(req.getContextPath() + "/verify-otp");
     }
 }
