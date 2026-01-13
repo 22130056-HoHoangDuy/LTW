@@ -35,7 +35,7 @@
 
     <!-- BREADCRUMB -->
     <nav class="pf-breadcrumb">
-        <a href="${pageContext.request.contextPath}/home">Trang chủ
+        <a href="${pageContext.request.contextPath}/">Trang chủ
         </a>
         <span class="dot">•</span>
         <span>Đổi mật khẩu</span>

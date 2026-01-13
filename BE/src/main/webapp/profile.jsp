@@ -32,7 +32,7 @@
 
     <!-- BREADCRUMB -->
     <nav class="pf-breadcrumb">
-        <a href="${pageContext.request.contextPath}/home">
+        <a href="${pageContext.request.contextPath}/">
             Trang chủ
         </a>
         <span class="dot">•</span>

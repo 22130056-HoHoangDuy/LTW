@@ -38,7 +38,7 @@
 
 <div class="product-list-page">
     <nav class="breadcrumb-nav">
-        <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+        <a href="${pageContext.request.contextPath}/">Trang chủ</a>
         <span class="dot">•</span>
         <a href="">Danh sách sản phẩm</a>
     </nav>

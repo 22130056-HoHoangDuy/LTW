@@ -32,7 +32,7 @@
     <div class="sh-container sh-main">
         <!-- Brand -->
         <div class="sh-brand">
-            <a href="${pageContext.request.contextPath}/home" class="sh-logo" aria-label="BabyShop">
+            <a href="${pageContext.request.contextPath}/" class="sh-logo" aria-label="BabyShop">
                 <span class="sh-brand-text sh-multi-logo" aria-hidden="true">
                     <span>B</span><span>a</span><span>b</span><span>y</span><span>S</span><span>h</span><span>o</span><span>p</span>
                 </span>
@@ -57,7 +57,7 @@
         <div class="sh-right">
             <nav class="sh-nav" aria-label="Điều hướng chính">
                 <ul class="sh-nav-links">
-                    <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/">Trang chủ</a></li>
                     <li><a href="${pageContext.request.contextPath}/product-list">Sản phẩm</a></li>
                     <li><a href="${pageContext.request.contextPath}/voucher-list">Ưu đãi</a></li>
                     <li><a href="${pageContext.request.contextPath}/contact">Liên hệ</a></li>
@@ -96,7 +96,7 @@
             </form>
 
             <ul class="sh-mobile-links">
-                <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Trang chủ</a></li>
                 <li><a href="${pageContext.request.contextPath}/product-list">Danh sách sản phẩm</a></li>
                 <li><a href="${pageContext.request.contextPath}/news">Tin tức</a></li>
                 <li><a href="${pageContext.request.contextPath}/voucher-list">Ưu đãi</a></li>

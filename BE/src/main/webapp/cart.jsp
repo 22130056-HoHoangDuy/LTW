@@ -21,7 +21,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <nav class="breadcrumb-nav">
-    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+    <a href="${pageContext.request.contextPath}/">Trang chủ</a>
     <span class="dot">•</span>
     <a href="">Giỏ hàng</a>
 </nav>

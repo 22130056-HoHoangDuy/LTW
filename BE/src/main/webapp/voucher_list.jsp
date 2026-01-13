@@ -20,7 +20,7 @@
 <jsp:include page="header.jsp"/>
 
 <nav class="voucher-breadcrumb">
-    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+    <a href="${pageContext.request.contextPath}/">Trang chủ</a>
     <span>•</span>
     <span>Danh sách Voucher</span>
 </nav>
