@@ -23,7 +23,7 @@ public class Product {
         this.productId = productId;
         this.createdAt = createdAt;
         this.productMaterial = productMaterial;
-        this.productSize = productMaterial;
+        this.productSize = productSize;
         this.productPrice = productPrice;
         this.productName = productName;
         this.productImage = productImage;

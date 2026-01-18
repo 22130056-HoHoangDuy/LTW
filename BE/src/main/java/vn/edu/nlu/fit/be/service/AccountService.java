@@ -128,6 +128,45 @@ public class AccountService extends BaseDao {
             return accountDao.findByEmail(email).orElse(null);
         });
     }
+    public boolean delete(int id) {
+        return accountDao.deleteById(id);
+    }
+
+    public boolean add(Account a) {
+
+        if (accountDao.existsByEmail(a.getEmail())) {
+            return false;
+        }
+
+        return DBConnect.get().inTransaction(handle -> {
+
+            int profileId = handle.createUpdate("""
+            INSERT INTO profiles (email)
+            VALUES (:email)
+        """)
+                    .bind("email", a.getEmail())
+                    .executeAndReturnGeneratedKeys("profile_id")
+                    .mapTo(Integer.class)
+                    .one();
+
+            int rows = handle.createUpdate("""
+            INSERT INTO accounts
+            (profile_id, email, username, password, status, role)
+            VALUES (:pid, :email, :username, :pass, :status, :role)
+        """)
+                    .bind("pid", profileId)
+                    .bind("email", a.getEmail())
+                    .bind("username", a.getUsername())
+                    .bind("pass", BCrypt.hashpw(a.getPassword(), BCrypt.gensalt()))
+                    .bind("status", a.getStatus().name())
+                    .bind("role", a.getRole())
+                    .execute();
+
+            return rows > 0;
+        });
+    }
+
+
     /* ================= Admin ================= */
 
     public boolean updateStatus(int id, AccountStatus status) {
@@ -140,5 +179,9 @@ public class AccountService extends BaseDao {
 
     public List<Account> search(String keyword) {
         return accountDao.search(keyword);
+    }
+
+    public Account findById(int id) {
+        return accountDao.findById(id).orElse(null);
     }
 }

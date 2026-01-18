@@ -4,6 +4,7 @@ import org.jdbi.v3.core.statement.Query;
 import vn.edu.nlu.fit.be.model.*;
 
 import java.util.*;
+import org.jdbi.v3.core.statement.Update;
 
 public class ProductDao extends BaseDao {
     List<Product> products = new ArrayList<>();
@@ -228,6 +229,7 @@ public class ProductDao extends BaseDao {
                         .list()
         );
     }
+
     //Lay ra 20 san pham moi nhat trang home
     public List<Product> getLatestProductsByCategory(int categoryId, int limit) {
         String sql = """
@@ -258,6 +260,127 @@ public class ProductDao extends BaseDao {
         );
     }
 
-}
+    public List<Product> findAll() {
+        String sql = """
+            SELECT *
+            FROM products
+            ORDER BY product_id DESC
+        """;
 
+        return jdbi.withHandle(h ->
+                h.createQuery(sql)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public List<Product> search(String keyword) {
+        String sql = """
+            SELECT *
+            FROM products
+            WHERE product_name LIKE :kw
+            ORDER BY product_id DESC
+        """;
+
+        return jdbi.withHandle(h ->
+                h.createQuery(sql)
+                        .bind("kw", "%" + keyword + "%")
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public Product findById(int id) {
+        String sql = """
+            SELECT *
+            FROM products
+            WHERE product_id = :id
+        """;
+
+        return jdbi.withHandle(h ->
+                h.createQuery(sql)
+                        .bind("id", id)
+                        .mapToBean(Product.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
+    public int insert(Product p) {
+        String sql = """
+            INSERT INTO products
+            (product_name, product_price, category_id, brand_id,
+             product_image, product_size, product_material)
+            VALUES
+            (:name, :price, :category, :brand,
+             :image, :size, :material)
+        """;
+
+        return jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("name", p.getProductName())
+                        .bind("price", p.getProductPrice())
+                        .bind("category", p.getCategoryId())
+                        .bind("brand", p.getBrandId())
+                        .bind("image", p.getProductImage())
+                        .bind("size", p.getProductSize())
+                        .bind("material", p.getProductMaterial())
+                        .execute()
+        );
+    }
+    public boolean update(Product p) {
+        String baseSql = """
+        UPDATE products
+        SET product_name = :name,
+            product_price = :price,
+            category_id = :category,
+            brand_id = :brand,
+            product_size = :size,
+            product_material = :material
+            ${IMAGE}
+        WHERE product_id = :id
+    """;
+
+        boolean hasImage = p.getProductImage() != null;
+
+        String finalSql = hasImage
+                ? baseSql.replace("${IMAGE}", ", product_image = :image")
+                : baseSql.replace("${IMAGE}", "");
+
+        return jdbi.withHandle(h -> {
+            Update u = h.createUpdate(finalSql)
+                    .bind("id", p.getProductId())
+                    .bind("name", p.getProductName())
+                    .bind("price", p.getProductPrice())
+                    .bind("category", p.getCategoryId())
+                    .bind("brand", p.getBrandId())
+                    .bind("size", p.getProductSize())
+                    .bind("material", p.getProductMaterial());
+
+            if (hasImage) {
+                u.bind("image", p.getProductImage());
+            }
+
+            return u.execute();
+        }) > 0;
+    }
+
+    public boolean delete(int id) {
+        String sql = "DELETE FROM products WHERE product_id = :id";
+
+        return jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", id)
+                        .execute()
+        ) > 0;
+    }
+    // ===== ADMIN SIMPLE LIST =====
+    public List<Product> getAllProducts() {
+        return findAll();
+    }
+
+    public List<Product> searchByName(String keyword) {
+        return search(keyword);
+    }
+}
 

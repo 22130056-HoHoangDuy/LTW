@@ -20,16 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.getElementById("register-form");
     if (!registerForm) return;
 
+    const emailInput = registerForm.querySelector('input[name="email"]');
     const passwordInput = document.getElementById("register-password");
     const confirmPasswordInput = document.getElementById("confirm-password");
     const errorText = document.getElementById("password-error");
 
     registerForm.addEventListener("submit", (e) => {
+        const email = emailInput ? emailInput.value.trim() : "";
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
+        if (!emailRegex.test(email)) {
+            e.preventDefault();
+            errorText.textContent = "Email không hợp lệ.";
+            return;
+        }
 
         if (!passwordRegex.test(password)) {
             e.preventDefault();

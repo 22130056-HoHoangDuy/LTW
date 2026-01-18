@@ -42,27 +42,23 @@ public class StockProductDao extends BaseDao {
                         .orElse(null)
         );
     }
-
-    //Dành cho user
-    public boolean updateStockProduct(int productId, int stockId, int quantity, boolean isSold) {
+    public boolean reserveProduct(int productId, int stockId, int qty) {
         String sql = """
-                    UPDATE stock_products
-                    SET total_quantity = total_quantity - :qty
-                    WHERE product_id = :pid
-                      AND stock_id = :sid
-                      AND total_quantity >= :qty
-                """;
+        UPDATE stock_products
+        SET total_quantity = total_quantity - :qty
+        WHERE product_id = :pid
+          AND stock_id = :sid
+          AND total_quantity >= :qty
+    """;
 
-        int soldQtyToAdd = isSold ? quantity : 0;
-
-        int updated = jdbi.withHandle(handle ->
-                handle.createUpdate(sql)
-                        .bind("qty", quantity)
-                        .bind("soldQty", soldQtyToAdd)
+        int updated = jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("qty", qty)
                         .bind("pid", productId)
                         .bind("sid", stockId)
                         .execute()
         );
+
         return updated == 1;
     }
 
@@ -97,6 +93,42 @@ public class StockProductDao extends BaseDao {
 
     public int getTotalImportedByProductId(int productId) {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT SUM(total_quantity) FROM stock_products WHERE product_id = :id").bind("id", productId).mapTo(Integer.class).findOne().orElse(null));
+    }
+    public boolean confirmOrder(int productId, int stockId, int qty) {
+        String sql = """
+        UPDATE stock_products
+        SET sold_quantity = sold_quantity + :qty
+        WHERE product_id = :pid
+          AND stock_id = :sid
+    """;
+
+        int updated = jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("qty", qty)
+                        .bind("pid", productId)
+                        .bind("sid", stockId)
+                        .execute()
+        );
+
+        return updated == 1;
+    }
+    public boolean cancelOrder(int productId, int stockId, int qty) {
+        String sql = """
+        UPDATE stock_products
+        SET total_quantity = total_quantity + :qty
+        WHERE product_id = :pid
+          AND stock_id = :sid
+    """;
+
+        int updated = jdbi.withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("qty", qty)
+                        .bind("pid", productId)
+                        .bind("sid", stockId)
+                        .execute()
+        );
+
+        return updated == 1;
     }
 
 }
