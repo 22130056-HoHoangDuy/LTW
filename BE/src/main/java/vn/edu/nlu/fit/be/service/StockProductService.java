@@ -35,4 +35,32 @@ public class StockProductService {
         }
         return sd.reserveProduct(productId, stockId, quantity);
     }
+
+    /**
+     * Hoàn lại stock khi hủy đơn hàng (Cancelled)
+     * Tăng total_quantity lên
+     */
+    public boolean restoreStock(int productId, int quantity) {
+        Integer stockId = sd.findStockIdWithEnoughQuantity(productId, 0); // Tìm kho có sản phẩm này
+        if (stockId == null) {
+            // Nếu không tìm thấy, lấy kho đầu tiên có product này
+            StockProduct sp = sd.getProductInStock(productId);
+            if (sp == null) {
+                return false;
+            }
+            stockId = sp.getStockId();
+        }
+        return sd.cancelOrder(productId, stockId, quantity);
+    }
+
+    /**
+     * Cập nhật sold_quantity khi đơn hàng Done
+     */
+    public boolean updateSoldQuantity(int productId, int quantity) {
+        StockProduct sp = sd.getProductInStock(productId);
+        if (sp == null) {
+            return false;
+        }
+        return sd.confirmOrder(productId, sp.getStockId(), quantity);
+    }
 }

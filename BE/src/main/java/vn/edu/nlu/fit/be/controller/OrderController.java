@@ -44,6 +44,13 @@ public class OrderController extends HttpServlet {
         }
         String action = request.getParameter("action");
 
+        // Validate địa chỉ giao hàng (chỉ khi không phải action voucher)
+        if (action == null && (deliveryAddress == null || deliveryAddress.trim().isEmpty())) {
+            request.setAttribute("error", "Vui lòng nhập địa chỉ giao hàng");
+            request.getRequestDispatcher("/cart.jsp").forward(request, response);
+            return;
+        }
+
 
         PaymentMethod paymentMethod;
         try {
@@ -86,13 +93,14 @@ public class OrderController extends HttpServlet {
             request.getRequestDispatcher("/cart.jsp").forward(request, response);
             return;
         }
-        Voucher voucher = new Voucher();
+        // Xử lý voucher an toàn, tránh NullPointerException
+        Voucher voucher = null;
         if (voucherCode != null && !voucherCode.trim().isEmpty()) {
             voucher = voucherService.findByCode(voucherCode);
         }
 
         // =====================
-        Integer voucherId = voucher.getVoucherId();
+        Integer voucherId = (voucher != null) ? voucher.getVoucherId() : null;
 
         // đảm bảo không âm
         if (spService.checkAvailable(cart)) {
@@ -103,9 +111,14 @@ public class OrderController extends HttpServlet {
                 spService.updateStockProduct(productId, quantity);
             }
             ordersService.updateStatus(orderId,OrderStatus.Pending);
-            // clear cart
+            // clear cart và session attributes
             cart.removeAllItems();
             session.setAttribute("cart", cart);
+            session.removeAttribute("discountAmount");
+            session.removeAttribute("voucherCode");
+            session.removeAttribute("finalPrice");
+            session.removeAttribute("deliveryAddress");
+            session.removeAttribute("paymentMethod");
 
             // redirect về cart kèm orderId
             response.sendRedirect(request.getContextPath() + "/cart?paid=1&orderId=" + orderId);
