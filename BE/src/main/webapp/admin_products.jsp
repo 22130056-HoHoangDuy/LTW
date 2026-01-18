@@ -5,25 +5,16 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <title>Admin - Quản lý sản phẩm</title>
 
-    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-
-    <!-- JS LIB -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-
 <div class="dashboard">
 
     <!-- SIDEBAR -->
@@ -80,97 +71,164 @@
             </a>
         </nav>
     </aside>
-    <!-- CONTENT -->
-    <div class="content-wrapper">
 
-        <main class="main">
-            <h2>Quản lý sản phẩm</h2>
+    <!-- MAIN -->
+    <main class="main">
+        <h2>Quản lý sản phẩm</h2>
 
-            <div class="product-header">
-                <button class="btn-primary add-product-btn" id="openOverlay">
-                    <i class="fa-solid fa-plus"></i> Thêm sản phẩm
-                </button>
+        <!-- HEADER -->
+        <div class="product-header">
+            <button class="btn-primary" onclick="openAdd()">
+                <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+            </button>
 
-                <div class="search-box">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>
+            <form method="get" action="${pageContext.request.contextPath}/admin/products" class="search-box">
+                <input type="text" name="search" placeholder="Nhập tên sản phẩm..." value="${param.search}">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
 
-            <table class="data-table">
-                <thead>
+        <!-- TABLE -->
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Danh mục</th>
+                <th>Giá</th>
+                <th>Hình ảnh</th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="p" items="${products}">
                 <tr>
-                    <th>ID</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Danh mục</th>
-                    <th>Giá</th>
-                    <th>Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="p" items="${products}">
-                    <tr>
-                        <td>${p.productId}</td>
-                        <td>${p.productName}</td>
-                        <td>${categoryMap[p.categoryId]}</td>
-                        <td>${p.productPrice}</td>
-                        <td>
-                            <button class="btn-small btn-on">Sửa</button>
-                            <button class="btn-small btn-delete">Xóa</button>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </main>
+                    <td>${p.productId}</td>
+                    <td>${p.productName}</td>
+                    <td>${categoryMap[p.categoryId]}</td>
+                    <td>${p.productPrice}</td>
 
-        <aside class="right-panel"></aside>
-    </div>
+                    <td>
+                        <c:if test="${not empty p.productImage}">
+                            <img
+                                    src="${p.productImage}"
+                                    alt="${p.productName}"
+                                    style="width:70px;height:70px;object-fit:cover;border-radius:6px">
+                        </c:if>
+                    </td>
+
+                    <td>
+                        <button class="btn-small btn-on"
+                                onclick="openEdit(this)"
+                                data-id="${p.productId}"
+                                data-name="${p.productName}"
+                                data-price="${p.productPrice}"
+                                data-category="${p.categoryId}"
+                                data-brand="${p.brandId}">
+                            Sửa
+                        </button>
+
+                        <button class="btn-small btn-delete"
+                                onclick="deleteProduct(${p.productId})">
+                            Xóa
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </main>
 </div>
 
-<!-- PRODUCT OVERLAY -->
-<div class="product-overlay" id="productOverlay">
+<!-- OVERLAY -->
+<div class="product-overlay" id="overlay">
     <div class="product-modal">
-        <h3>Thêm sản phẩm mới</h3>
+        <h3 id="modalTitle">Thêm sản phẩm</h3>
 
-        <form method="post" action="${pageContext.request.contextPath}/admin/products/create">
-            <div class="form-grid">
+        <form method="post"
+              action="${pageContext.request.contextPath}/admin/products/save"
+              enctype="multipart/form-data">
 
-                <div class="form-item">
-                    <label>Tên sản phẩm</label>
-                    <input type="text" name="name" required/>
-                </div>
+            <input type="hidden" name="productId" id="productId"/>
 
-                <div class="form-item">
-                    <label>Giá</label>
-                    <input type="number" name="price" required/>
-                </div>
+            <label>Tên sản phẩm</label>
+            <input type="text" name="productName" id="productName" required/>
 
-                <div class="form-item">
-                    <label>Danh mục</label>
-                    <select name="categoryId">
-                        <c:forEach var="c" items="${categories}">
-                            <option value="${c.id}">${c.name}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <label>Giá</label>
+            <input type="number" name="productPrice" id="productPrice" required/>
 
-                <div class="form-item textarea-full">
-                    <label>Mô tả</label>
-                    <textarea name="description"></textarea>
-                </div>
-            </div>
+            <label>Danh mục</label>
+            <select name="categoryId" id="categoryId">
+                <c:forEach var="c" items="${categories}">
+                    <option value="${c.categoryId}">${c.categoryName}</option>
+                </c:forEach>
+            </select>
+
+            <label>Thương hiệu</label>
+            <select name="brandId" id="brandId" required>
+                <c:forEach var="b" items="${brands}">
+                    <option value="${b.brandId}">
+                            ${b.brandName}
+                    </option>
+                </c:forEach>
+            </select>
+
+            <label>Kích thước</label>
+            <input type="text" name="productSize" id="productSize"/>
+
+            <label>Chất liệu</label>
+            <input type="text" name="productMaterial" id="productMaterial"/>
+
+            <label>Hình ảnh</label>
+            <input type="file" name="image"/>
 
             <div class="modal-actions">
-                <button class="btn-primary">Thêm sản phẩm</button>
-                <button type="button" class="btn-small btn-delete" id="closeOverlay">Hủy</button>
+                <button class="btn-primary">Lưu</button>
+                <button type="button" class="btn-delete" onclick="closeOverlay()">Hủy</button>
             </div>
         </form>
     </div>
 </div>
 
 <!-- JS -->
-<script src="${pageContext.request.contextPath}/js/admin_script.js"></script>
+<script>
+    const overlay = document.getElementById("overlay");
+
+    function openAdd() {
+        document.getElementById("modalTitle").innerText = "Thêm sản phẩm";
+        document.querySelector("form").reset();
+        document.getElementById("productId").value = "";
+        overlay.style.display = "flex";
+    }
+
+    function openEdit(btn) {
+        document.getElementById("modalTitle").innerText = "Sửa sản phẩm";
+
+        document.getElementById("productId").value = btn.dataset.id;
+        document.getElementById("productName").value = btn.dataset.name;
+        document.getElementById("productPrice").value = btn.dataset.price;
+        document.getElementById("categoryId").value = btn.dataset.category;
+        document.getElementById("brandId").value = btn.dataset.brand;
+
+        overlay.style.display = "flex";
+    }
+
+    function closeOverlay() {
+        overlay.style.display = "none";
+    }
+
+    function deleteProduct(id) {
+        if (!confirm("Xóa sản phẩm này?")) return;
+
+        fetch("${pageContext.request.contextPath}/admin/products/delete?id=" + id, {
+            method: "POST"
+        }).then(res => res.text())
+            .then(txt => {
+                if (txt === "OK") location.reload();
+                else alert("Xóa thất bại");
+            });
+    }
+</script>
 
 </body>
 </html>

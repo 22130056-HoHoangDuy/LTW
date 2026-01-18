@@ -663,6 +663,13 @@ body {
     justify-content: flex-end;
     gap: 12px;
 }
+.product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
 
 
 

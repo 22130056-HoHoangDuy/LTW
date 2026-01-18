@@ -79,3 +79,56 @@ function toggleStatus(btn) {
         });
 }
 
+<!-- ===== CHART SCRIPT ===== -->
+    // Doanh thu theo tháng
+    const revenueLabels = [
+    <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
+        'Tháng ${r.month}'<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+    ];
+
+    const revenueData = [
+    <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
+        ${r.revenue}<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+    ];
+
+    if (revenueLabels.length > 0) {
+    new Chart(document.getElementById('revenueChart'), {
+        type: 'bar',
+        data: {
+            labels: revenueLabels,
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: revenueData
+            }]
+        }
+    });
+}
+
+    // Đơn hàng theo danh mục
+    const categoryLabels = [
+    <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
+        '${c.categoryName}'<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+    ];
+
+    const categoryData = [
+    <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
+        ${c.totalOrders}<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+    ];
+
+    if (categoryLabels.length > 0) {
+    new Chart(document.getElementById('categoryChart'), {
+        type: 'doughnut',
+        data: {
+            labels: categoryLabels,
+            datasets: [{
+                data: categoryData
+            }]
+        }
+    });
+}
+
+

@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
 <div class="dashboard">
     <!-- SIDEBAR -->
     <aside class="sidebar">
@@ -55,7 +54,7 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehouse" class="active">
+            <a href="${pageContext.request.contextPath}/admin/stocks" class="active">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>
@@ -80,8 +79,7 @@
             <!-- FORM THÊM KHO -->
             <section class="voucher-form">
                 <h3>Thêm kho mới</h3>
-
-                <form class="form-grid" action="${pageContext.request.contextPath}/admin/warehouse/add" method="post">
+                <form class="form-grid" action="${pageContext.request.contextPath}/admin/stocks" method="post">
                     <div class="form-item">
                         <label>Tên kho</label>
                         <input type="text" name="name" placeholder="Ví dụ: Kho Hà Nội" required>
@@ -99,7 +97,6 @@
             <!-- DANH SÁCH KHO -->
             <section class="voucher-list">
                 <h3>Danh sách kho hàng</h3>
-
                 <table class="data-table">
                     <thead>
                     <tr>
@@ -112,24 +109,23 @@
                     </thead>
 
                     <tbody>
-                    <!-- Lặp danh sách kho từ Servlet -->
-                    <c:forEach var="warehouse" items="${warehouses}">
+                    <c:forEach var="stock" items="${warehouses}">
                         <tr>
-                            <td>${warehouse.id}</td>
-                            <td>${warehouse.name}</td>
-                            <td>${warehouse.address}</td>
-                            <td>${warehouse.productCount}</td>
+                            <td>${stock.stockId}</td>
+                            <td>${stock.stockName}</td>
+                            <td>${stock.stockAddress}</td>
+                            <td>${stock.productCount}</td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/admin/warehouse/view" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                <form action="${pageContext.request.contextPath}/admin/stocks/view" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="${stock.stockId}">
                                     <button type="submit" class="btn-small btn-on">Xem</button>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/admin/warehouse/edit" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                <form action="${pageContext.request.contextPath}/admin/stocks/edit" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="${stock.stockId}">
                                     <button type="submit" class="btn-small btn-off">Sửa</button>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/admin/warehouse/delete" method="post" style="display:inline;">
-                                    <input type="hidden" name="id" value="${warehouse.id}">
+                                <form action="${pageContext.request.contextPath}/admin/stocks/delete" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="${stock.stockId}">
                                     <button type="submit" class="btn-small btn-delete">Xóa</button>
                                 </form>
                             </td>
@@ -143,6 +139,5 @@
         <aside class="right-panel"></aside>
     </div>
 </div>
-
 </body>
 </html>

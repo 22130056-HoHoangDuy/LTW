@@ -3,6 +3,7 @@ import vn.edu.nlu.fit.be.model.AccountStatus;
 import java.util.List;
 import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.model.Account;
+import vn.edu.nlu.fit.be.dao.AccountDao;
 
 import java.util.Optional;
 
@@ -118,5 +119,14 @@ public class AccountDao extends BaseDao {
                         .findOne()
         );
     }
-
+    public boolean deleteById(int accountId) {
+        return jdbi.withHandle(h ->
+                h.createUpdate("""
+            DELETE FROM accounts
+            WHERE account_id = :id
+        """)
+                        .bind("id", accountId)
+                        .execute()
+        ) > 0;
+    }
 }
