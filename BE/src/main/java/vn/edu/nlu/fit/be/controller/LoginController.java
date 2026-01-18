@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
         if (returnUrl != null) {
             resp.sendRedirect(returnUrl);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/home");
+            resp.sendRedirect(req.getContextPath() + "/");
         }
     }
 }

@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh sách Voucher</title>
+    <link rel="icon" type="image/x-icon"
+          href="${pageContext.request.contextPath}/favicon.ico">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/voucherList.css">
 
@@ -18,7 +20,7 @@
 <jsp:include page="header.jsp"/>
 
 <nav class="voucher-breadcrumb">
-    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+    <a href="${pageContext.request.contextPath}/">Trang chủ</a>
     <span>•</span>
     <span>Danh sách Voucher</span>
 </nav>

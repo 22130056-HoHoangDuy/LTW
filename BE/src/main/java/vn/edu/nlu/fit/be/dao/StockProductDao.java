@@ -115,7 +115,8 @@ public class StockProductDao extends BaseDao {
     public boolean cancelOrder(int productId, int stockId, int qty) {
         String sql = """
         UPDATE stock_products
-        SET total_quantity = total_quantity + :qty
+        SET total_quantity = total_quantity + :qty,
+            sold_quantity = sold_quantity - :qty
         WHERE product_id = :pid
           AND stock_id = :sid
     """;
