@@ -1,19 +1,36 @@
 package vn.edu.nlu.fit.be.dao;
 
 import vn.edu.nlu.fit.be.model.Stock;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class StockDao {
-    public List<Stock> getStocks() {
-        List<Stock> stocks = new ArrayList<>();
+public class StockDao extends BaseDao {
 
-        Stock stock1 = new Stock(1, "Kho Bình Thạnh", "Kho A");
-        Stock stock2 = new Stock(2, "Kho Quận 7", "Kho B");
+    // Lấy danh sách tất cả kho
+    public List<Stock> getAllStocks() {
+        String sql = "SELECT * FROM stocks";
+        return jdbi.withHandle(handle -> handle.createQuery(sql).mapToBean(Stock.class).list());
+    }
 
-        stocks.add(stock1);
-        stocks.add(stock2);
-        return stocks;
+    // Thêm kho mới
+    public boolean addStock(Stock stock) {
+        String sql = "INSERT INTO stocks (stock_name, stock_address) VALUES (:name, :address)";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("name", stock.getStockName())
+                        .bind("address", stock.getStockAddress())
+                        .execute()
+        ) > 0;
+    }
+
+    // Lấy tổng sản phẩm trong kho (dựa vào stock_products)
+    public int getTotalProductsInStock(int stockId) {
+        String sql = "SELECT SUM(total_quantity - sold_quantity) FROM stock_products WHERE stock_id = :sid";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("sid", stockId)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(0)
+        );
     }
 }
