@@ -100,8 +100,9 @@ public class OrderController extends HttpServlet {
             for (CartItem item : cart.getItems()) {
                 int productId = item.getProduct().getProductId();
                 int quantity = item.getQuantity();
-                spService.updateStockProduct(productId, quantity, false);
+                spService.updateStockProduct(productId, quantity);
             }
+            ordersService.updateStatus(orderId,OrderStatus.Pending);
             // clear cart
             cart.removeAllItems();
             session.setAttribute("cart", cart);

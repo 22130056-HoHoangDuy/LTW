@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.style.display = "block";
         popup.innerHTML = "Loading...";
 
-        fetch(`${contextPath}/admin/accounts/profile?accountId=${id}`)
+        fetch(`${window.APP_CONTEXT}/admin/accounts/profile?accountId=${id}`)
             .then(res => res.json())
             .then(p => {
                 popup.innerHTML = `
