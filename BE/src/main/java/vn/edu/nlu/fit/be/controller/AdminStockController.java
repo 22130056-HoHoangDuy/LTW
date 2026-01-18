@@ -37,7 +37,7 @@ public class AdminStockController extends HttpServlet {
         }
 
         req.setAttribute("stocks", stocks);
-        req.getRequestDispatcher("/admin_stock.jsp").forward(req, resp);
+        req.getRequestDispatcher("/admin_stocks.jsp").forward(req, resp);
     }
 
     @Override

@@ -7,8 +7,6 @@
     <meta charset="UTF-8"/>
     <title>Admin - Quản lý sản phẩm</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
@@ -76,17 +74,21 @@
     <main class="main">
         <h2>Quản lý sản phẩm</h2>
 
-        <!-- HEADER -->
-        <div class="product-header">
-            <button class="btn-primary" onclick="openAdd()">
-                <i class="fa-solid fa-plus"></i> Thêm sản phẩm
-            </button>
-
-            <form method="get" action="${pageContext.request.contextPath}/admin/products" class="search-box">
-                <input type="text" name="search" placeholder="Nhập tên sản phẩm..." value="${param.search}">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
+        <!-- ADD -->
+        <a href="${pageContext.request.contextPath}/admin/products?action=add"
+           class="btn-add" style="margin-bottom:20px;    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #6C63FF, #A696FF);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s ease, transform 0.2s;">
+            <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+        </a>
 
         <!-- TABLE -->
         <table class="data-table">
@@ -96,139 +98,152 @@
                 <th>Tên</th>
                 <th>Danh mục</th>
                 <th>Giá</th>
-                <th>Hình ảnh</th>
-                <th>Hành động</th>
+                <th>Ảnh</th>
+                <th>Thao tác</th>
             </tr>
             </thead>
+
             <tbody>
+            <c:if test="${empty products}">
+                <tr>
+                    <td colspan="6" style="text-align:center;padding:20px">
+                        Không có sản phẩm
+                    </td>
+                </tr>
+            </c:if>
+
             <c:forEach var="p" items="${products}">
                 <tr>
-                    <td>${p.productId}</td>
-                    <td>${p.productName}</td>
+                    <td>#${p.productId}</td>
+                    <td><strong>${p.productName}</strong></td>
                     <td>${categoryMap[p.categoryId]}</td>
                     <td>${p.productPrice}</td>
 
                     <td>
                         <c:if test="${not empty p.productImage}">
-                            <img
-                                    src="${p.productImage}"
-                                    alt="${p.productName}"
-                                    style="width:70px;height:70px;object-fit:cover;border-radius:6px">
+                            <img src="${p.productImage}"
+                                 style="width:60px;height:60px;object-fit:cover;border-radius:8px">
                         </c:if>
                     </td>
 
                     <td>
-                        <button class="btn-small btn-on"
-                                onclick="openEdit(this)"
-                                data-id="${p.productId}"
-                                data-name="${p.productName}"
-                                data-price="${p.productPrice}"
-                                data-category="${p.categoryId}"
-                                data-brand="${p.brandId}">
-                            Sửa
-                        </button>
+                        <a class="btn-small btn-on"
+                           href="${pageContext.request.contextPath}/admin/products?action=edit&id=${p.productId}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
 
-                        <button class="btn-small btn-delete"
-                                onclick="deleteProduct(${p.productId})">
-                            Xóa
-                        </button>
+                        <form method="post"
+                              action="${pageContext.request.contextPath}/admin/products"
+                              style="display:inline"
+                              onsubmit="return confirm('Xóa sản phẩm này?')">
+                            <input type="hidden" name="action" value="delete"/>
+                            <input type="hidden" name="id" value="${p.productId}"/>
+                            <button type="submit" class="btn-small btn-delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </main>
-</div>
 
-<!-- OVERLAY -->
-<div class="product-overlay" id="overlay">
-    <div class="product-modal">
-        <h3 id="modalTitle">Thêm sản phẩm</h3>
+    <!-- RIGHT PANEL -->
+    <aside class="right-panel">
+        <c:if test="${param.action == 'add' || param.action == 'edit'}">
+            <div class="voucher-form">
+                <h3>
+                    <c:choose>
+                        <c:when test="${param.action == 'add'}">Thêm sản phẩm</c:when>
+                        <c:otherwise>Sửa sản phẩm</c:otherwise>
+                    </c:choose>
+                </h3>
 
-        <form method="post"
-              action="${pageContext.request.contextPath}/admin/products/save"
-              enctype="multipart/form-data">
+                <form method="post"
+                      action="${pageContext.request.contextPath}/admin/products">
 
-            <input type="hidden" name="productId" id="productId"/>
+                    <!-- ACTION -->
+                    <input type="hidden" name="action"
+                           value="${param.action == 'add' ? 'create' : 'update'}"/>
 
-            <label>Tên sản phẩm</label>
-            <input type="text" name="productName" id="productName" required/>
+                    <!-- ID -->
+                    <c:if test="${param.action == 'edit'}">
+                        <input type="hidden" name="productId" value="${product.productId}"/>
+                    </c:if>
 
-            <label>Giá</label>
-            <input type="number" name="productPrice" id="productPrice" required/>
+                    <div class="form-grid">
 
-            <label>Danh mục</label>
-            <select name="categoryId" id="categoryId">
-                <c:forEach var="c" items="${categories}">
-                    <option value="${c.categoryId}">${c.categoryName}</option>
-                </c:forEach>
-            </select>
+                        <div class="form-item">
+                            <label>Tên sản phẩm</label>
+                            <input type="text" name="productName"
+                                   value="${product != null ? product.productName : ''}"
+                                   required/>
+                        </div>
 
-            <label>Thương hiệu</label>
-            <select name="brandId" id="brandId" required>
-                <c:forEach var="b" items="${brands}">
-                    <option value="${b.brandId}">
-                            ${b.brandName}
-                    </option>
-                </c:forEach>
-            </select>
+                        <div class="form-item">
+                            <label>Giá</label>
+                            <input type="number" name="productPrice"
+                                   value="${product != null ? product.productPrice : ''}"
+                                   required/>
+                        </div>
 
-            <label>Kích thước</label>
-            <input type="text" name="productSize" id="productSize"/>
+                        <div class="form-item">
+                            <label>Danh mục</label>
+                            <select name="categoryId">
+                                <c:forEach var="c" items="${categories}">
+                                    <option value="${c.categoryId}"
+                                        ${product != null && product.categoryId == c.categoryId ? 'selected' : ''}>
+                                            ${c.categoryName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-            <label>Chất liệu</label>
-            <input type="text" name="productMaterial" id="productMaterial"/>
+                        <div class="form-item">
+                            <label>Thương hiệu</label>
+                            <select name="brandId">
+                                <c:forEach var="b" items="${brands}">
+                                    <option value="${b.brandId}"
+                                        ${product != null && product.brandId == b.brandId ? 'selected' : ''}>
+                                            ${b.brandName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-            <label>Hình ảnh</label>
-            <input type="file" name="image"/>
+                        <div class="form-item">
+                            <label>Kích thước</label>
+                            <input type="text" name="productSize"
+                                   value="${product != null ? product.productSize : ''}"/>
+                        </div>
 
-            <div class="modal-actions">
-                <button class="btn-primary">Lưu</button>
-                <button type="button" class="btn-delete" onclick="closeOverlay()">Hủy</button>
+                        <div class="form-item">
+                            <label>Chất liệu</label>
+                            <input type="text" name="productMaterial"
+                                   value="${product != null ? product.productMaterial : ''}"/>
+                        </div>
+
+                        <div class="form-item textarea-full">
+                            <label>Ảnh sản phẩm (URL)</label>
+                            <input type="text" name="productImage"
+                                   value="${product != null ? product.productImage : ''}"/>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top:20px;text-align:right">
+                        <button type="submit" class="btn-primary">
+                            <c:choose>
+                                <c:when test="${param.action == 'add'}">Thêm</c:when>
+                                <c:otherwise>Cập nhật</c:otherwise>
+                            </c:choose>
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
+        </c:if>
+    </aside>
 </div>
-
-<!-- JS -->
-<script>
-    const overlay = document.getElementById("overlay");
-
-    function openAdd() {
-        document.getElementById("modalTitle").innerText = "Thêm sản phẩm";
-        document.querySelector("form").reset();
-        document.getElementById("productId").value = "";
-        overlay.style.display = "flex";
-    }
-
-    function openEdit(btn) {
-        document.getElementById("modalTitle").innerText = "Sửa sản phẩm";
-
-        document.getElementById("productId").value = btn.dataset.id;
-        document.getElementById("productName").value = btn.dataset.name;
-        document.getElementById("productPrice").value = btn.dataset.price;
-        document.getElementById("categoryId").value = btn.dataset.category;
-        document.getElementById("brandId").value = btn.dataset.brand;
-
-        overlay.style.display = "flex";
-    }
-
-    function closeOverlay() {
-        overlay.style.display = "none";
-    }
-
-    function deleteProduct(id) {
-        if (!confirm("Xóa sản phẩm này?")) return;
-
-        fetch("${pageContext.request.contextPath}/admin/products/delete?id=" + id, {
-            method: "POST"
-        }).then(res => res.text())
-            .then(txt => {
-                if (txt === "OK") location.reload();
-                else alert("Xóa thất bại");
-            });
-    }
-</script>
-
 </body>
 </html>

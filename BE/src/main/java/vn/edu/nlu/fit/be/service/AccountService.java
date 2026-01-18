@@ -181,4 +181,7 @@ public class AccountService extends BaseDao {
         return accountDao.search(keyword);
     }
 
+    public Account findById(int id) {
+        return accountDao.findById(id).orElse(null);
+    }
 }

@@ -129,4 +129,12 @@ public class AccountDao extends BaseDao {
                         .execute()
         ) > 0;
     }
+    public Optional<Account> findById(int id) {
+        return jdbi.withHandle(h ->
+                h.createQuery("SELECT * FROM accounts WHERE account_id = :id")
+                        .bind("id", id)
+                        .mapToBean(Account.class)
+                        .findOne()
+        );
+    }
 }

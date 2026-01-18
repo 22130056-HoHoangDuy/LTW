@@ -1,30 +1,29 @@
 package vn.edu.nlu.fit.be.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-import vn.edu.nlu.fit.be.dao.CategoryDao;
+import vn.edu.nlu.fit.be.dao.BrandDao;
+import vn.edu.nlu.fit.be.dao.AdminCategoryDao;
 import vn.edu.nlu.fit.be.model.Account;
+import vn.edu.nlu.fit.be.model.Category;
 import vn.edu.nlu.fit.be.model.Product;
 import vn.edu.nlu.fit.be.service.AdminProductService;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@WebServlet({
-        "/admin/products",
-        "/admin/products/save",
-        "/admin/products/delete"
-})
-@MultipartConfig
+@WebServlet("/admin/products")
 public class AdminProductController extends HttpServlet {
 
-    private final AdminProductService service = new AdminProductService();
-    private final CategoryDao categoryDao = new CategoryDao();
+    private final AdminProductService productService = new AdminProductService();
+    private final AdminCategoryDao categoryDao = new AdminCategoryDao();
+    private final BrandDao brandDao = new BrandDao();
 
-    /* ================= CHECK ADMIN (DÙNG CHUNG) ================= */
+    /* ================= CHECK ADMIN ================= */
     private boolean checkAdmin(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
@@ -49,11 +48,33 @@ public class AdminProductController extends HttpServlet {
 
         if (!checkAdmin(req, resp)) return;
 
-        String uri = req.getRequestURI();
+        String action = req.getParameter("action");
 
-        if (uri.endsWith("/admin/products")) {
-            showProducts(req, resp);
+        // ===== LIST =====
+        List<Product> products = productService.getAllProducts();
+        req.setAttribute("products", products);
+
+        // ===== COMMON DATA =====
+        req.setAttribute("categories", categoryDao.findAll());
+        req.setAttribute("brands", brandDao.getBrands());
+
+        List<Category> categories = categoryDao.findAll();
+        Map<Integer, String> categoryMap = new HashMap<>();
+        for (Category c : categories) {
+            categoryMap.put(c.getCategoryId(), c.getCategoryName());
         }
+        req.setAttribute("categoryMap", categoryMap);
+
+
+
+        // ===== EDIT =====
+        if ("edit".equals(action)) {
+            int id = Integer.parseInt(req.getParameter("id"));
+            Product product = productService.getById(id);
+            req.setAttribute("product", product);
+        }
+
+        req.getRequestDispatcher("/admin_products.jsp").forward(req, resp);
     }
 
     /* ================= POST ================= */
@@ -63,79 +84,65 @@ public class AdminProductController extends HttpServlet {
 
         if (!checkAdmin(req, resp)) return;
 
-        String uri = req.getRequestURI();
-
-        if (uri.endsWith("/save")) {
-            saveProduct(req, resp);
-        } else if (uri.endsWith("/delete")) {
-            deleteProduct(req, resp);
-        }
-    }
-
-    /* ================= HIỂN THỊ LIST ================= */
-    private void showProducts(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String keyword = req.getParameter("search");
-
-        List<Product> products = (keyword != null && !keyword.isEmpty())
-                ? service.search(keyword)
-                : service.getAllProducts();
-
-        req.setAttribute("products", products);
-        req.setAttribute("categories", categoryDao.findAllCategory());
-
-        req.getRequestDispatcher("/admin_products.jsp").forward(req, resp);
-    }
-
-    /* ================= SAVE (ADD + UPDATE) ================= */
-    private void saveProduct(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException, ServletException {
-
         req.setCharacterEncoding("UTF-8");
 
-        String idRaw = req.getParameter("productId");
-        int productId = (idRaw == null || idRaw.isEmpty()) ? 0 : Integer.parseInt(idRaw);
+        String action = req.getParameter("action");
 
-        Product p = new Product();
-        p.setProductId(productId);
-        p.setProductName(req.getParameter("productName"));
-        p.setProductPrice(Integer.parseInt(req.getParameter("productPrice")));
-        p.setCategoryId(Integer.parseInt(req.getParameter("categoryId")));
-
-        // ====== BRAND (BẮT BUỘC PHẢI > 0) ======
-        String brandRaw = req.getParameter("brandId");
-        if (brandRaw != null && !brandRaw.isEmpty()) {
-            p.setBrandId(Integer.parseInt(brandRaw));
+        switch (action) {
+            case "create" -> create(req, resp);
+            case "update" -> update(req, resp);
+            case "delete" -> delete(req, resp);
+            default -> resp.sendRedirect(req.getContextPath() + "/admin/products");
         }
+    }
 
-        p.setProductSize(req.getParameter("productSize"));
-        p.setProductMaterial(req.getParameter("productMaterial"));
+    /* ================= CREATE ================= */
+    private void create(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
 
-        // ====== IMAGE ======
-        Part img = req.getPart("image");
-        if (img != null && img.getSize() > 0) {
-            // nếu bạn lưu URL trực tiếp thì chỉ cần:
-            p.setProductImage(img.getSubmittedFileName());
-        }
-
-        if (productId == 0) {
-            service.insert(p);
-        } else {
-            service.update(p);
-        }
+        Product p = buildProductFromRequest(req);
+        productService.insert(p);
 
         resp.sendRedirect(req.getContextPath() + "/admin/products");
     }
 
+    /* ================= UPDATE ================= */
+    private void update(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+
+        Product p = buildProductFromRequest(req);
+        p.setProductId(Integer.parseInt(req.getParameter("productId")));
+
+        productService.update(p);
+        resp.sendRedirect(req.getContextPath() + "/admin/products");
+    }
+
     /* ================= DELETE ================= */
-    private void deleteProduct(HttpServletRequest req, HttpServletResponse resp)
+    private void delete(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
         int id = Integer.parseInt(req.getParameter("id"));
-        boolean ok = service.delete(id);
+        productService.delete(id);
 
-        resp.setContentType("text/plain");
-        resp.getWriter().write(ok ? "OK" : "FAIL");
+        resp.sendRedirect(req.getContextPath() + "/admin/products");
+    }
+
+    /* ================= MAP FORM → PRODUCT ================= */
+    private Product buildProductFromRequest(HttpServletRequest req) {
+
+        Product p = new Product();
+
+        p.setProductName(req.getParameter("productName"));
+        p.setProductPrice(Integer.parseInt(req.getParameter("productPrice")));
+        p.setCategoryId(Integer.parseInt(req.getParameter("categoryId")));
+        p.setBrandId(Integer.parseInt(req.getParameter("brandId")));
+
+        p.setProductSize(req.getParameter("productSize"));
+        p.setProductMaterial(req.getParameter("productMaterial"));
+
+        // IMAGE URL (KHÔNG UPLOAD FILE)
+        p.setProductImage(req.getParameter("productImage"));
+
+        return p;
     }
 }

@@ -1,134 +1,74 @@
-// ===== Biểu đồ Doanh thu theo tháng =====
-const ctx1 = document.getElementById('revenueChart');
-new Chart(ctx1, {
-    type: 'line',
-    data: {
-        labels: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11'],
-        datasets: [{
-            label: 'Doanh thu (triệu VND)',
-            data: [12, 19, 14, 22, 30, 28, 19, 23, 30, 29, 31],
-            borderColor: '#6c63ff',
-            backgroundColor: 'rgba(108,99,255,0.1)',
-            borderWidth: 3,
-            tension: 0.3,
-            fill: true,
-            pointRadius: 4,
-            pointBackgroundColor: '#6c63ff',
-            pointHoverRadius: 6
-        }]
-    },
-    options: {
-        animation: { duration: 1000, easing: 'easeOutQuart' },
-        plugins: { legend: { display: false }},
-        scales: {
-            y: { beginAtZero: true, grid: { color: '#eee' }},
-            x: { grid: { display: false }}
-        }
-    }
-});
+document.addEventListener("DOMContentLoaded", () => {
 
-// ===== Biểu đồ Đơn hàng theo danh mục =====
-const ctx2 = document.getElementById('categoryChart'); // <--- Sửa đúng ID
-new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['Sản phẩm trang trí', 'Sản phẩm nội thất'],
-        datasets: [{
-            label: 'Số đơn hàng',
-            data: [45, 30, 20, 15, 10],
-            backgroundColor: [
-                '#6c63ff',
-                '#7a74ff',
-                '#8a85ff',
-                '#a39fff',
-                '#c5c2ff'
-            ],
-            borderRadius: 8
-        }]
-    },
-    options: {
-        animation: { duration: 800, easing: 'easeOutCubic' },
-        plugins: { legend: { display: false }},
-        scales: {
-            y: { beginAtZero: true, grid: { color: '#eee' }},
-            x: { grid: { display: false }}
-        }
-    }
-});
-function toggleStatus(btn) {
-    const id = btn.dataset.id;
-    const current = btn.dataset.status;
-    const newStatus = current === "Active" ? "UnActive" : "Active";
+    const { revenueByMonth, ordersByCategory, contextPath } = window.ADMIN_DATA || {};
 
-    fetch(`/admin/accounts/status?id=${id}&status=${newStatus}`)
-        .then(res => res.text())
-        .then(result => {
-            if (result === "OK") {
-                btn.dataset.status = newStatus;
+    /* ================= REVENUE CHART ================= */
+    if (revenueByMonth && revenueByMonth.length) {
 
-                if (newStatus === "Active") {
-                    btn.classList.remove("btn-off");
-                    btn.classList.add("btn-on");
-                    btn.innerText = "Đang hoạt động";
-                } else {
-                    btn.classList.remove("btn-on");
-                    btn.classList.add("btn-off");
-                    btn.innerText = "Ngưng hoạt động";
-                }
+        const labels = revenueByMonth.map(r => `Tháng ${r.month}`);
+        const data = revenueByMonth.map(r => r.revenue);
+
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data
+                }]
             }
         });
-}
+    }
 
-<!-- ===== CHART SCRIPT ===== -->
-    // Doanh thu theo tháng
-    const revenueLabels = [
-    <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
-        'Tháng ${r.month}'<c:if test="${!loop.last}">,</c:if>
-    </c:forEach>
-    ];
+    /* ================= CATEGORY CHART ================= */
+    if (ordersByCategory && ordersByCategory.length) {
 
-    const revenueData = [
-    <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
-        ${r.revenue}<c:if test="${!loop.last}">,</c:if>
-    </c:forEach>
-    ];
+        new Chart(document.getElementById('categoryChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ordersByCategory.map(c => c.categoryName),
+                datasets: [{
+                    data: ordersByCategory.map(c => c.totalOrders)
+                }]
+            }
+        });
+    }
 
-    if (revenueLabels.length > 0) {
-    new Chart(document.getElementById('revenueChart'), {
-        type: 'bar',
-        data: {
-            labels: revenueLabels,
-            datasets: [{
-                label: 'Doanh thu (VNĐ)',
-                data: revenueData
-            }]
-        }
-    });
-}
+    /* ================= ACCOUNT STATUS ================= */
+    window.updateStatus = function (select, id) {
+        fetch(`${contextPath}/admin/accounts/status?id=${id}&status=${select.value}`)
+            .then(res => res.text())
+            .then(txt => {
+                if (txt !== "OK") alert("Cập nhật thất bại");
+            });
+    };
 
-    // Đơn hàng theo danh mục
-    const categoryLabels = [
-    <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
-        '${c.categoryName}'<c:if test="${!loop.last}">,</c:if>
-    </c:forEach>
-    ];
+    /* ================= PROFILE POPUP ================= */
+    const popup = document.getElementById("profile-popup");
 
-    const categoryData = [
-    <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
-        ${c.totalOrders}<c:if test="${!loop.last}">,</c:if>
-    </c:forEach>
-    ];
+    window.showProfile = function (row) {
+        const id = row.dataset.id;
+        const rect = row.getBoundingClientRect();
 
-    if (categoryLabels.length > 0) {
-    new Chart(document.getElementById('categoryChart'), {
-        type: 'doughnut',
-        data: {
-            labels: categoryLabels,
-            datasets: [{
-                data: categoryData
-            }]
-        }
-    });
-}
+        popup.style.top = rect.top + "px";
+        popup.style.left = rect.right + 12 + "px";
+        popup.style.display = "block";
+        popup.innerHTML = "Loading...";
 
+        fetch(`${contextPath}/admin/accounts/profile?accountId=${id}`)
+            .then(res => res.json())
+            .then(p => {
+                popup.innerHTML = `
+                    <img src="${p.avatar_url || '/img/default-avatar.png'}">
+                    <b>${p.full_name || ''}</b><br>
+                    📧 ${p.email || ''}<br>
+                    📞 ${p.phone || ''}<br>
+                    🏠 ${p.address || ''}<br>
+                    ⚥ ${p.gender || ''}<br>
+                `;
+            })
+            .catch(() => popup.innerHTML = "Không có dữ liệu");
+    };
 
+    window.hideProfile = () => popup.style.display = "none";
+});

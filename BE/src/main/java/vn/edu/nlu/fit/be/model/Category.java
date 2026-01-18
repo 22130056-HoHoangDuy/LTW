@@ -7,20 +7,7 @@ public class Category {
     private String categoryImage;
     private String description;
 
-    //Constructor
-
-    public Category() {
-    }
-
-    public Category(int categoryId, String description, String categoryImage, String categoryName) {
-        this.categoryId = categoryId;
-        this.description = description;
-        this.categoryImage = categoryImage;
-        this.categoryName = categoryName;
-    }
-
-    // Getters & Setters
-
+    // ===== GETTER / SETTER =====
     public int getCategoryId() {
         return categoryId;
     }
@@ -29,12 +16,12 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setDescription(String categoryDescription) {
-        this.description = categoryDescription;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getCategoryImage() {
@@ -45,11 +32,11 @@ public class Category {
         this.categoryImage = categoryImage;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

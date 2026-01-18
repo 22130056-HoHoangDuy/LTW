@@ -670,6 +670,28 @@ body {
     border-radius: 6px;
     border: 1px solid #ddd;
 }
+.profile-popup {
+    position: fixed;
+    display: none;
+    width: 260px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-size: 13px;
+
+}
+
+.profile-popup img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
 
 
 
