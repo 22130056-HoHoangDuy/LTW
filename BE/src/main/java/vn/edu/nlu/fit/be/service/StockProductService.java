@@ -18,14 +18,39 @@ public class StockProductService {
         return sd.checkAvailable(productId);
     }
 
+    /**
+     * Kiểm tra tất cả sản phẩm trong giỏ hàng có đủ số lượng tồn kho không
+     */
     public boolean checkAvailable(Cart cart) {
         for (CartItem item : cart.getItems()) {
             int productId = item.getProduct().getProductId();
-            if (!sd.checkAvailable(productId)) {
+            int requestedQuantity = item.getQuantity();
+            int availableQuantity = sd.getTotalAvailableQuantity(productId);
+            
+            if (availableQuantity < requestedQuantity) {
                 return false;
             }
         }
         return true;
+    }
+
+    /**
+     * Lấy danh sách sản phẩm không đủ số lượng trong kho
+     * @return List các tên sản phẩm không đủ hàng, hoặc empty nếu tất cả đều đủ
+     */
+    public List<String> getOutOfStockProducts(Cart cart) {
+        List<String> outOfStockProducts = new java.util.ArrayList<>();
+        for (CartItem item : cart.getItems()) {
+            int productId = item.getProduct().getProductId();
+            int requestedQuantity = item.getQuantity();
+            int availableQuantity = sd.getTotalAvailableQuantity(productId);
+            
+            if (availableQuantity < requestedQuantity) {
+                String productName = item.getProduct().getProductName();
+                outOfStockProducts.add(productName + " (còn " + availableQuantity + ", yêu cầu " + requestedQuantity + ")");
+            }
+        }
+        return outOfStockProducts;
     }
 
     public boolean updateStockProduct(int productId, int quantity) {
