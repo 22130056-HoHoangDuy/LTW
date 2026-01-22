@@ -123,6 +123,10 @@ public class OrderController extends HttpServlet {
             // redirect về cart kèm orderId
             response.sendRedirect(request.getContextPath() + "/cart?paid=1&orderId=" + orderId);
         } else {
+            // Lấy danh sách sản phẩm không đủ hàng để hiển thị cho user
+            java.util.List<String> outOfStockProducts = spService.getOutOfStockProducts(cart);
+            String errorMessage = "Không đủ số lượng tồn kho cho: " + String.join(", ", outOfStockProducts);
+            session.setAttribute("stockError", errorMessage);
             response.sendRedirect(request.getContextPath() + "/cart?paid=0");
         }
 
