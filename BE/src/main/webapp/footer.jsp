@@ -54,7 +54,7 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png"
                                 alt="MasterCard">
                             <img src="https://m.momoshop.com.tw/img/momologo.svg" alt="Momo">
-                            <img src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png" alt="ZaloPay">
+                            <img src="https://thienankids.edu.vn/icon/zaloicon.png" alt="ZaloPay">
                         </div>
                     </div>
 

@@ -10,20 +10,20 @@
         <error-code>404</error-code>
         <location>/error/404.jsp</location>
     </error-page>
-<!--        <context-param>-->
-<!--            <param-name>GOOGLE_CLIENT_ID</param-name>-->
-<!--            <param-value>241816518270-idhns4llm07108i4n7r1amn8jm5f6llc.apps.googleusercontent.com</param-value>-->
-<!--        </context-param>-->
+    <context-param>
+        <param-name>GOOGLE_CLIENT_ID</param-name>
+        <param-value>241816518270-idhns4llm07108i4n7r1amn8jm5f6llc.apps.googleusercontent.com</param-value>
+    </context-param>
 
-<!--        <context-param>-->
-<!--            <param-name>GOOGLE_CLIENT_SECRET</param-name>-->
-<!--            <param-value>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</param-value>-->
-<!--        </context-param>-->
+    <context-param>
+        <param-name>GOOGLE_CLIENT_SECRET</param-name>
+        <param-value>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</param-value>
+    </context-param>
 
-<!--        <context-param>-->
-<!--            <param-name>GOOGLE_REDIRECT_URI</param-name>-->
-<!--            <param-value>http://localhost:8080/BE_war/login-google</param-value>-->
-<!--        </context-param>-->
+    <context-param>
+        <param-name>GOOGLE_REDIRECT_URI</param-name>
+        <param-value>http://localhost:8080/BE_war/login-google</param-value>
+    </context-param>
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>
