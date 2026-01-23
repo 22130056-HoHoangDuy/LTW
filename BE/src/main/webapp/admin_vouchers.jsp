@@ -5,49 +5,16 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Admin - Quản lý Voucher</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-    <style>
-        .btn-add {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, #6C63FF, #A696FF);
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: 0.3s ease, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
-        }
-
-        .btn-add i {
-            font-size: 16px;
-        }
-
-        /* Hover */
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(108, 99, 255, 0.35);
-            background: linear-gradient(135deg, #514EA5, #6C63FF);
-        }
-
-        /* Active click */
-        .btn-add:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
-        }
-    </style>
 </head>
 
 <body>
 <div class="dashboard">
+
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <nav class="menu">
@@ -133,22 +100,17 @@
                 <c:forEach var="v" items="${vouchers}">
                     <tr>
                         <td>#${v.voucherId}</td>
-
-                        <!-- IMAGE -->
                         <td>
                             <c:if test="${not empty v.voucherImage}">
                                 <img src="${v.voucherImage}"
-                                     alt="voucher"
                                      style="width:60px;height:40px;object-fit:cover;border-radius:6px"/>
                             </c:if>
                         </td>
-
-                        <td><strong>${v.voucherCode}</strong></td>
+                        <td><b>${v.voucherCode}</b></td>
                         <td>${v.voucherName}</td>
                         <td>${v.discountAmount} đ</td>
                         <td>${v.startDate}</td>
                         <td>${v.endDate}</td>
-
                         <td>
                             <a class="btn-small btn-on"
                                href="${pageContext.request.contextPath}/admin/vouchers?action=edit&id=${v.voucherId}">
@@ -186,6 +148,9 @@
                     <form method="post"
                           action="${pageContext.request.contextPath}/admin/vouchers">
 
+                        <!-- PHÂN BIỆT ADD / EDIT -->
+                        <input type="hidden" name="action" value="${param.action}"/>
+
                         <c:if test="${param.action == 'edit'}">
                             <input type="hidden" name="id" value="${voucherToEdit.voucherId}"/>
                         </c:if>
@@ -199,12 +164,10 @@
 
                             <div class="form-item">
                                 <label>Link hình ảnh</label>
-                                <input type="text"
-                                       name="voucherImage"
-                                       placeholder="https://..."
-                                       value="${voucherToEdit.voucherImage}"/>
+                                <input type="text" name="voucherImage"
+                                       value="${voucherToEdit.voucherImage}"
+                                       placeholder="https://..."/>
                             </div>
-
 
                             <div class="form-item">
                                 <label>Tên voucher</label>
@@ -213,7 +176,7 @@
                             </div>
 
                             <div class="form-item">
-                                <label>Giá trị giảm (VNĐ)</label>
+                                <label>Giá trị giảm</label>
                                 <input type="number" name="discountAmount"
                                        value="${voucherToEdit.discountAmount}" required/>
                             </div>
@@ -249,7 +212,6 @@
                 </div>
             </c:if>
         </aside>
-
     </div>
 </div>
 </body>

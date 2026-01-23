@@ -1,15 +1,11 @@
 package vn.edu.nlu.fit.be.dao;
 import vn.edu.nlu.fit.be.model.AccountStatus;
 import java.util.List;
-import vn.edu.nlu.fit.be.DB.DBConnect;
 import vn.edu.nlu.fit.be.model.Account;
-import vn.edu.nlu.fit.be.dao.AccountDao;
 
 import java.util.Optional;
 
 public class AccountDao extends BaseDao {
-    //tránh lỗi NullPointerException
-
     public boolean existsByEmail(String email) {
         return jdbi.withHandle(h ->
                 h.createQuery("""
@@ -65,17 +61,16 @@ public class AccountDao extends BaseDao {
                         .execute()
         ) > 0;
     }
-    /* ================= Admin ================= */
-
-    public boolean updateStatus(int accountId, AccountStatus status) {
+    //Admin
+    public boolean updateStatus(int id, AccountStatus status) {
         return jdbi.withHandle(h ->
                 h.createUpdate("""
-                UPDATE accounts
-                SET status = :status
-                WHERE account_id = :id
-            """)
+            UPDATE accounts
+            SET status = :status
+            WHERE account_id = :id
+        """)
                         .bind("status", status.name())
-                        .bind("id", accountId)
+                        .bind("id", id)
                         .execute()
         ) > 0;
     }
@@ -157,5 +152,4 @@ public class AccountDao extends BaseDao {
                         .execute()
         ) > 0;
     }
-
 }

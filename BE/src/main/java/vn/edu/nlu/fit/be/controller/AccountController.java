@@ -2,8 +2,8 @@ package vn.edu.nlu.fit.be.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
@@ -18,61 +18,53 @@ import java.util.List;
         "/admin/accounts/add",
         "/admin/accounts/delete"
 })
-
 public class AccountController extends HttpServlet {
 
-    private AccountService service = new AccountService();
+    private final AccountService service = new AccountService();
 
+    /* ======================= GET ======================= */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
         HttpSession session = req.getSession(false);
 
-        //chưa login
+        // chưa login
         if (session == null || session.getAttribute("USER") == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
 
-        Account acc = (Account) session.getAttribute("USER");
+        Account admin = (Account) session.getAttribute("USER");
 
-        //không phải admin
-        if (acc.getRole() <= 0) {
+        // không phải admin
+        if (admin.getRole() <= 0) {
             resp.sendRedirect(req.getContextPath() + "/403.jsp");
             return;
         }
+
         String path = req.getServletPath();
 
-        // ================= AJAX UPDATE STATUS =================
-        if (path.equals("/admin/accounts/status")) {
+        // ===== LOAD ACCOUNT LIST =====
+        if (path.equals("/admin/accounts")) {
 
-            int id = Integer.parseInt(req.getParameter("id"));
-            String newStatus = req.getParameter("status");
+            String keyword = req.getParameter("search");
+            List<Account> accounts;
 
-            AccountStatus st = AccountStatus.valueOf(newStatus);
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                accounts = service.search(keyword);
+            } else {
+                accounts = service.getAll();
+            }
 
-            boolean ok = service.updateStatus(id, st);
-
-            resp.setContentType("text/plain");
-            resp.getWriter().write(ok ? "OK" : "FAIL");
-            return;
+            req.setAttribute("accounts", accounts);
+            RequestDispatcher rd =
+                    req.getRequestDispatcher("/admin_accounts.jsp");
+            rd.forward(req, resp);
         }
-
-        // ================= LOAD ACCOUNT LIST =================
-        String keyword = req.getParameter("search");
-        List<Account> accounts;
-
-        if (keyword != null && !keyword.isEmpty()) {
-            accounts = service.search(keyword);
-        } else {
-            accounts = service.getAll();
-        }
-
-        req.setAttribute("accounts", accounts);
-        RequestDispatcher rd = req.getRequestDispatcher("/admin_accounts.jsp");
-        rd.forward(req, resp);
     }
 
+    /* ======================= POST ======================= */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -93,13 +85,28 @@ public class AccountController extends HttpServlet {
 
         String path = req.getServletPath();
 
-        // ================= DELETE =================
+        // ===== UPDATE STATUS (KHÔNG AJAX) =====
+        if (path.equals("/admin/accounts/status")) {
+
+            int id = Integer.parseInt(req.getParameter("id"));
+            AccountStatus status =
+                    AccountStatus.valueOf(req.getParameter("status"));
+
+            service.updateStatus(id, status);
+
+            resp.sendRedirect(req.getContextPath() + "/admin/accounts");
+            return;
+        }
+
+        // ===== DELETE =====
         if (path.equals("/admin/accounts/delete")) {
 
             int id = Integer.parseInt(req.getParameter("id"));
 
+            // không cho tự xóa chính mình
             if (admin.getAccountId() == id) {
-                resp.sendRedirect(req.getContextPath() + "/admin/accounts?error=self-delete");
+                resp.sendRedirect(req.getContextPath()
+                        + "/admin/accounts?error=self-delete");
                 return;
             }
 
@@ -108,7 +115,7 @@ public class AccountController extends HttpServlet {
             return;
         }
 
-        // ================= ADD =================
+        // ===== ADD =====
         if (path.equals("/admin/accounts/add")) {
 
             String email = req.getParameter("email");
@@ -119,7 +126,7 @@ public class AccountController extends HttpServlet {
             Account a = new Account();
             a.setEmail(email);
             a.setUsername(username);
-            a.setPassword(password);   // Service sẽ hash
+            a.setPassword(password); // Service sẽ hash
             a.setRole(role);
             a.setStatus(AccountStatus.Active);
 

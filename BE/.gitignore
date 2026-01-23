@@ -67,6 +67,4 @@ Thumbs.db
 *.log
 
 ############################
-# Runtime / Config (nếu có)
-############################
-**/db.properties
+

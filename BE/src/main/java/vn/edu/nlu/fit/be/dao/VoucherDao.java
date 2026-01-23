@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.be.dao;
 
+import vn.edu.nlu.fit.be.model.Brand;
 import vn.edu.nlu.fit.be.model.Voucher;
 
 import java.util.List;
