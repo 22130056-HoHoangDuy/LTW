@@ -7,13 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi Tiết Voucher</title>
+    <link rel="icon" type="image/x-icon"
+          href="${pageContext.request.contextPath}/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/voucherDetail.css">
 </head>
 
 <body>
 <jsp:include page="header.jsp"/>
 <nav>
-    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+    <a href="${pageContext.request.contextPath}/">Trang chủ</a>
     <span class="dot">•</span>
     <a href="${pageContext.request.contextPath}/voucher-list">Danh sách voucher</a>
     <span class="dot">•</span>

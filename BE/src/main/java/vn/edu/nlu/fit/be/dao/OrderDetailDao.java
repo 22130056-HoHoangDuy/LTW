@@ -22,4 +22,26 @@ public class OrderDetailDao extends BaseDao {
         });
     }
 
+    public List<OrderDetail> getOrderDetailsByOrderId(int orderId) {
+        String sql = """
+                    SELECT order_id, product_id, unit_price, quantity
+                    FROM order_details
+                    WHERE order_id = :orderId
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("orderId", orderId)
+                        .map((rs, ctx) -> {
+                            OrderDetail d = new OrderDetail();
+                            d.setOrderId(rs.getInt("order_id"));
+                            d.setProductId(rs.getInt("product_id"));
+                            d.setUnitPrice(rs.getInt("unit_price"));
+                            d.setQuantity(rs.getInt("quantity"));
+                            return d;
+                        })
+                        .list()
+        );
+    }
+
 }

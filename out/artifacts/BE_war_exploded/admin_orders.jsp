@@ -62,7 +62,7 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehouse">
+            <a href="${pageContext.request.contextPath}/admin/stocks">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>
@@ -108,33 +108,22 @@
                     </td>
 
                     <td>${order.paymentMethod}</td>
-
                     <td>
                         <select class="status-select ${order.statusOrder}"
-                                onchange="updateStatus(this, ${order.orderId})">
-
-                            <option value="Pending"
-                                ${order.statusOrder == 'Pending' ? 'selected' : ''}>
+                                data-id="${order.orderId}"
+                                onchange="updateStatus(this)">
+                        <option value="Pending"
+                                    <c:if test="${order.statusOrder == 'Pending'}">selected</c:if>>
                                 Chưa xác nhận
                             </option>
 
-                            <option value="Pakaging"
-                                ${order.statusOrder == 'Pakaging' ? 'selected' : ''}>
-                                Đang đóng gói
-                            </option>
-
-                            <option value="Shipping"
-                                ${order.statusOrder == 'Shipping' ? 'selected' : ''}>
-                                Đang vận chuyển
-                            </option>
-
                             <option value="Done"
-                                ${order.statusOrder == 'Done' ? 'selected' : ''}>
+                                    <c:if test="${order.statusOrder == 'Done'}">selected</c:if>>
                                 Đã giao hàng
                             </option>
 
                             <option value="Cancelled"
-                                ${order.statusOrder == 'Cancelled' ? 'selected' : ''}>
+                                    <c:if test="${order.statusOrder == 'Cancelled'}">selected</c:if>>
                                 Đã hủy
                             </option>
                         </select>
@@ -159,9 +148,12 @@
 </div>
 
 <script>
-    function updateStatus(select, orderId) {
+    function updateStatus(select) {
+        const id = select.dataset.id;
+        const status = select.value;
+
         fetch(
-            `${pageContext.request.contextPath}/admin/orders/status?id=${orderId}&status=${select.value}`
+            `${pageContext.request.contextPath}/admin/orders/status?id=${id}&status=${status}`
         )
             .then(res => res.text())
             .then(txt => {
@@ -171,6 +163,5 @@
             });
     }
 </script>
-
 </body>
 </html>

@@ -7,7 +7,8 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Liên Hệ - BabyShop</title>
-
+            <link rel="icon" type="image/x-icon"
+                  href="${pageContext.request.contextPath}/favicon.ico">
             <!-- CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +25,7 @@
             <jsp:include page="header.jsp" />
 
             <nav class="breadcrumb-nav">
-                <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+                <a href="${pageContext.request.contextPath}/">Trang chủ</a>
                 <span class="dot">•</span>
                 <a>Liên hệ</a>
                 <span class="dot">•</span>

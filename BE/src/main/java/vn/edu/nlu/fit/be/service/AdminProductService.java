@@ -9,23 +9,39 @@ public class AdminProductService {
 
     private final ProductDao productDao = new ProductDao();
 
-    public List<Product> getAllProducts() {
-        return productDao.getAllForAdmin();
-    }
+    /* ===== LIST + SEARCH ===== */
 
-    public void addProduct(Product product) {
-        productDao.insertProduct(product);
+    public List<Product> getAll(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return productDao.findAll();
+        }
+        return productDao.search(keyword);
     }
 
     public Product getById(int id) {
-        return productDao.getProductById(id);
+        return productDao.findById(id);
     }
 
-    public void updateProduct(Product product) {
-        productDao.updateProduct(product);
+    /* ===== CRUD ===== */
+
+    public boolean insert(Product p) {
+        return productDao.insert(p) > 0;
     }
 
-    public void deleteProduct(int productId) {
-        productDao.deleteProduct(productId);
+    public boolean update(Product p) {
+        return productDao.update(p);
+    }
+
+    public boolean delete(int id) {
+        return productDao.delete(id);
+    }
+    // Lấy toàn bộ product cho trang admin
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
+    }
+
+    // Tìm kiếm theo tên (admin)
+    public List<Product> search(String keyword) {
+        return productDao.searchByName(keyword);
     }
 }

@@ -63,7 +63,7 @@
                 <span>Liên hệ</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/warehouse">
+            <a href="${pageContext.request.contextPath}/admin/stocks">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Kho hàng</span>
             </a>
@@ -181,83 +181,8 @@
                 </table>
             </section>
         </main>
-
-        <!-- RIGHT PANEL -->
-        <aside class="right-panel">
-            <h3>Công việc hôm nay</h3>
-            <ul class="tasks">
-                <li>
-                    <div class="task-time">09:00</div>
-                    <div class="task-info">Xác nhận đơn hàng mới</div>
-                </li>
-                <li>
-                    <div class="task-time">11:00</div>
-                    <div class="task-info">Kiểm tra kho</div>
-                </li>
-                <li>
-                    <div class="task-time">14:00</div>
-                    <div class="task-info">Cập nhật sản phẩm</div>
-                </li>
-            </ul>
-            <button class="add-btn">+</button>
-        </aside>
-
     </div>
 </div>
-
-<!-- ===== CHART SCRIPT ===== -->
-<script>
-    // Doanh thu theo tháng
-    const revenueLabels = [
-        <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
-        'Tháng ${r.month}'<c:if test="${!loop.last}">,</c:if>
-        </c:forEach>
-    ];
-
-    const revenueData = [
-        <c:forEach items="${revenueByMonth}" var="r" varStatus="loop">
-        ${r.revenue}<c:if test="${!loop.last}">,</c:if>
-        </c:forEach>
-    ];
-
-    if (revenueLabels.length > 0) {
-        new Chart(document.getElementById('revenueChart'), {
-            type: 'bar',
-            data: {
-                labels: revenueLabels,
-                datasets: [{
-                    label: 'Doanh thu (VNĐ)',
-                    data: revenueData
-                }]
-            }
-        });
-    }
-
-    // Đơn hàng theo danh mục
-    const categoryLabels = [
-        <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
-        '${c.categoryName}'<c:if test="${!loop.last}">,</c:if>
-        </c:forEach>
-    ];
-
-    const categoryData = [
-        <c:forEach items="${ordersByCategory}" var="c" varStatus="loop">
-        ${c.totalOrders}<c:if test="${!loop.last}">,</c:if>
-        </c:forEach>
-    ];
-
-    if (categoryLabels.length > 0) {
-        new Chart(document.getElementById('categoryChart'), {
-            type: 'doughnut',
-            data: {
-                labels: categoryLabels,
-                datasets: [{
-                    data: categoryData
-                }]
-            }
-        });
-    }
-</script>
-
+<script src="${pageContext.request.contextPath}/js/admin_script.js"></script>
 </body>
 </html>
