@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -10,18 +11,15 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_chart.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
 
-    <!-- Custom CSS cho settings -->
     <style>
         .settings-container {
             background: #fff;
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            animation: fadeIn 0.6s ease;
         }
 
         .settings-tabs {
@@ -35,23 +33,12 @@
             cursor: pointer;
             font-weight: 600;
             padding: 10px 15px;
-            position: relative;
             color: #777;
         }
 
         .settings-tab.active {
             color: #6c63ff;
-        }
-
-        .settings-tab.active::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #6c63ff;
-            border-radius: 3px;
+            border-bottom: 3px solid #6c63ff;
         }
 
         .tab-content {
@@ -60,11 +47,6 @@
 
         .tab-content.active {
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -126,9 +108,9 @@
             </a>
         </nav>
     </aside>
+
     <!-- CONTENT -->
     <div class="content-wrapper">
-
         <main class="main">
             <h2>Cài đặt hệ thống</h2>
 
@@ -136,76 +118,61 @@
 
                 <!-- TAB HEADER -->
                 <div class="settings-tabs">
-                    <div class="settings-tab active" data-tab="theme">🎨 Giao diện</div>
-                    <div class="settings-tab" data-tab="account">👤 Tài khoản</div>
-                </div>
-
-                <!-- TAB: GIAO DIỆN -->
-                <div class="tab-content active" id="theme">
-                    <form class="form-grid">
-
-                        <div class="form-item">
-                            <label>Chế độ hiển thị</label>
-                            <select id="theme-mode">
-                                <option>Sáng</option>
-                                <option>Tối</option>
-                            </select>
-                        </div>
-
-                        <div class="form-item">
-                            <label>Màu chủ đạo</label>
-                            <input type="color" value="#6c63ff">
-                        </div>
-
-                        <div class="form-item">
-                            <label>Logo website</label>
-                            <input type="file" accept="image/*">
-                        </div>
-
-                        <button class="btn-primary">💾 Lưu thay đổi</button>
-                    </form>
+                    <div class="settings-tab active" data-tab="account">👤 Tài khoản</div>
                 </div>
 
                 <!-- TAB: TÀI KHOẢN -->
-                <div class="tab-content" id="account">
-                    <form class="form-grid">
+                <div class="tab-content active" id="account">
+
+                    <form class="form-grid"
+                          method="post"
+                          action="${pageContext.request.contextPath}/admin/settings">
+
+                        <input type="hidden" name="action" value="update"/>
 
                         <div class="form-item">
                             <label>Tên hiển thị</label>
-                            <input type="text" value="Admin">
+                            <input type="text"
+                                   name="fullName"
+                                   value="${sessionScope.USER.fullName}"
+                                   required>
                         </div>
 
                         <div class="form-item">
                             <label>Email</label>
-                            <input type="email" value="admin@gmail.com">
+                            <input type="email"
+                                   name="email"
+                                   value="${sessionScope.USER.email}"
+                                   required>
                         </div>
 
                         <div class="form-item">
                             <label>Mật khẩu mới</label>
-                            <input type="password" placeholder="••••••">
+                            <input type="password"
+                                   name="password"
+                                   placeholder="Để trống nếu không đổi">
                         </div>
 
-                        <button class="btn-primary">🔄 Cập nhật</button>
+                        <button type="submit" class="btn-primary">
+                            💾 Cập nhật thông tin
+                        </button>
                     </form>
 
-                    <div style="margin-top: 15px;">
-                        <button class="btn-small btn-delete">🚪 Đăng xuất</button>
-                    </div>
-                </div>
+                    <!-- LOGOUT -->
+                    <form method="post"
+                          action="${pageContext.request.contextPath}/admin/settings"
+                          style="margin-top:15px">
 
+                        <input type="hidden" name="action" value="logout"/>
+
+                        <button type="submit" class="btn-small btn-delete">
+                            🚪 Đăng xuất
+                        </button>
+                    </form>
+
+                </div>
             </div>
         </main>
-
-        <!-- RIGHT PANEL -->
-        <aside class="right-panel">
-            <h3>💡 Gợi ý</h3>
-            <ul class="tasks">
-                <li>🌗 Chuyển sang chế độ tối để giảm mỏi mắt</li>
-                <li>🎨 Chọn màu phù hợp thương hiệu</li>
-                <li>🔐 Sử dụng mật khẩu mạnh</li>
-            </ul>
-        </aside>
-
     </div>
 </div>
 

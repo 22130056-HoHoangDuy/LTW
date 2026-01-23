@@ -691,7 +691,37 @@ body {
     object-fit: cover;
     margin-bottom: 8px;
 }
+.btn-add {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     padding: 12px 20px;
+     background: linear-gradient(135deg, #6C63FF, #A696FF);
+     color: #fff;
+     font-weight: 600;
+     font-size: 14px;
+     border-radius: 12px;
+     text-decoration: none;
+     transition: 0.3s ease, transform 0.2s;
+     box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
+ }
 
+.btn-add i {
+    font-size: 16px;
+}
+
+/* Hover */
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 99, 255, 0.35);
+    background: linear-gradient(135deg, #514EA5, #6C63FF);
+}
+
+/* Active click */
+.btn-add:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
+}
 
 
 

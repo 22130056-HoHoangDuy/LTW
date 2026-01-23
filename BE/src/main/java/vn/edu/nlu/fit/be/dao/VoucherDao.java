@@ -6,35 +6,70 @@ import java.util.List;
 
 public class VoucherDao extends BaseDao {
 
-    // ADMIN: lấy toàn bộ voucher
+    // ===== ADMIN: lấy toàn bộ voucher =====
     public List<Voucher> getAll() {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM vouchers ORDER BY voucher_id DESC")
+                handle.createQuery("""
+                        SELECT *
+                        FROM vouchers
+                        ORDER BY voucher_id DESC
+                """)
                         .mapToBean(Voucher.class)
                         .list()
         );
     }
 
+    // ===== INSERT =====
     public void insert(Voucher v) {
         String sql = """
-                    INSERT INTO vouchers
-                    (voucher_code, voucher_name, description,
-                     discount_amount, start_date, end_date)
-                    VALUES (?, ?, ?, ?, ?, ?)
-                """;
+            INSERT INTO vouchers
+            (voucher_code, voucher_name, voucher_image, description,
+             discount_amount, start_date, end_date)
+            VALUES (:code, :name, :image, :desc, :discount, :start, :end)
+        """;
 
         jdbi.useHandle(handle ->
                 handle.createUpdate(sql)
-                        .bind(0, v.getVoucherCode())
-                        .bind(1, v.getVoucherName())
-                        .bind(2, v.getDescription())
-                        .bind(3, v.getDiscountAmount())
-                        .bind(4, v.getStartDate())
-                        .bind(5, v.getEndDate())
+                        .bind("code", v.getVoucherCode())
+                        .bind("name", v.getVoucherName())
+                        .bind("image", v.getVoucherImage())
+                        .bind("desc", v.getDescription())
+                        .bind("discount", v.getDiscountAmount())
+                        .bind("start", v.getStartDate())
+                        .bind("end", v.getEndDate())
                         .execute()
         );
     }
 
+    // ===== UPDATE =====
+    public void update(Voucher v) {
+        String sql = """
+            UPDATE vouchers
+            SET voucher_code   = :code,
+                voucher_name   = :name,
+                voucher_image  = :image,
+                description    = :desc,
+                discount_amount = :discount,
+                start_date     = :start,
+                end_date       = :end
+            WHERE voucher_id = :id
+        """;
+
+        jdbi.useHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("code", v.getVoucherCode())
+                        .bind("name", v.getVoucherName())
+                        .bind("image", v.getVoucherImage())
+                        .bind("desc", v.getDescription())
+                        .bind("discount", v.getDiscountAmount())
+                        .bind("start", v.getStartDate())
+                        .bind("end", v.getEndDate())
+                        .bind("id", v.getVoucherId())
+                        .execute()
+        );
+    }
+
+    // ===== DELETE =====
     public void delete(int id) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("DELETE FROM vouchers WHERE voucher_id = :id")
@@ -42,73 +77,15 @@ public class VoucherDao extends BaseDao {
                         .execute()
         );
     }
-    public int getDiscountAmount(String code){
-        String sql = """
-                    SELECT discount_amount
-                    FROM vouchers
-                    WHERE voucher_code = :code
-                """;
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("code", code)
-                        .mapToBean(Integer.class)
-                        .one()
-        );
-    }
-    public Voucher findByCode(String code) {
-        String sql = """
-                    SELECT *
-                    FROM vouchers
-                    WHERE voucher_code = :code
-                """;
 
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("code", code)
-                        .mapToBean(Voucher.class)
-                        .findOne()
-                        .orElse(null)
-        );
-    }
-    //VoucherList phân trang
-    // Lấy voucher theo trang
-    public List<Voucher> getByPage(int page, int pageSize) {
-        int offset = (page - 1) * pageSize;
-
-        String sql = """
-        SELECT * FROM vouchers
-        ORDER BY voucher_id DESC
-        LIMIT :limit OFFSET :offset
-    """;
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("limit", pageSize)
-                        .bind("offset", offset)
-                        .mapToBean(Voucher.class)
-                        .list()
-        );
-    }
-
-    // Đếm tổng voucher
-    public int countAll() {
-        String sql = "SELECT COUNT(*) FROM vouchers";
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .one()
-        );
-    }
+    // ===== FIND =====
     public Voucher findById(int id) {
-        String sql = """
-        SELECT *
-        FROM vouchers
-        WHERE voucher_id = :id
-    """;
-
         return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
+                handle.createQuery("""
+                        SELECT *
+                        FROM vouchers
+                        WHERE voucher_id = :id
+                """)
                         .bind("id", id)
                         .mapToBean(Voucher.class)
                         .findOne()
@@ -116,4 +93,57 @@ public class VoucherDao extends BaseDao {
         );
     }
 
+    public Voucher findByCode(String code) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("""
+                        SELECT *
+                        FROM vouchers
+                        WHERE voucher_code = :code
+                """)
+                        .bind("code", code)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
+    // ===== USER APPLY =====
+    public int getDiscountAmount(String code) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("""
+                        SELECT discount_amount
+                        FROM vouchers
+                        WHERE voucher_code = :code
+                """)
+                        .bind("code", code)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    // ===== PAGINATION =====
+    public List<Voucher> getByPage(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery("""
+                        SELECT *
+                        FROM vouchers
+                        ORDER BY voucher_id DESC
+                        LIMIT :limit OFFSET :offset
+                """)
+                        .bind("limit", pageSize)
+                        .bind("offset", offset)
+                        .mapToBean(Voucher.class)
+                        .list()
+        );
+    }
+
+    public int countAll() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM vouchers")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 }

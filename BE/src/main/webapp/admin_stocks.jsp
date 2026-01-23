@@ -16,6 +16,7 @@
 
 <body>
 <div class="dashboard">
+
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <nav class="menu">
@@ -73,30 +74,62 @@
 
     <!-- CONTENT -->
     <div class="content-wrapper">
+
+        <!-- MAIN -->
         <main class="main">
             <h2>Quản lý kho hàng</h2>
 
-            <!-- FORM THÊM KHO -->
+            <!-- FORM THÊM / SỬA KHO -->
             <section class="voucher-form">
-                <h3>Thêm kho mới</h3>
-                <form class="form-grid" action="${pageContext.request.contextPath}/admin/stocks" method="post">
+                <h3>
+                    <c:choose>
+                        <c:when test="${param.action == 'edit'}">Sửa kho hàng</c:when>
+                        <c:otherwise>Thêm kho mới</c:otherwise>
+                    </c:choose>
+                </h3>
+
+                <form class="form-grid"
+                      action="${pageContext.request.contextPath}/admin/stocks"
+                      method="post">
+
+                    <input type="hidden" name="action"
+                           value="${param.action == 'edit' ? 'edit' : 'add'}"/>
+
+                    <c:if test="${param.action == 'edit'}">
+                        <input type="hidden" name="id" value="${stockToEdit.stockId}"/>
+                    </c:if>
+
                     <div class="form-item">
                         <label>Tên kho</label>
-                        <input type="text" name="name" placeholder="Ví dụ: Kho Hà Nội" required>
+                        <input type="text"
+                               name="name"
+                               value="${stockToEdit != null ? stockToEdit.stockName : ''}"
+                               placeholder="Ví dụ: Kho Hà Nội"
+                               required>
                     </div>
 
                     <div class="form-item">
                         <label>Địa chỉ</label>
-                        <input type="text" name="address" placeholder="123 Nguyễn Trãi, Hà Nội" required>
+                        <input type="text"
+                               name="address"
+                               value="${stockToEdit != null ? stockToEdit.stockAddress : ''}"
+                               placeholder="123 Nguyễn Trãi, Hà Nội"
+                               required>
                     </div>
 
-                    <button type="submit" class="btn-primary">Thêm kho hàng</button>
+                    <button type="submit" class="btn-primary">
+                        <c:choose>
+                            <c:when test="${param.action == 'edit'}">Cập nhật kho</c:when>
+                            <c:otherwise>Thêm kho hàng</c:otherwise>
+                        </c:choose>
+                    </button>
                 </form>
             </section>
 
             <!-- DANH SÁCH KHO -->
             <section class="voucher-list">
                 <h3>Danh sách kho hàng</h3>
+
                 <table class="data-table">
                     <thead>
                     <tr>
@@ -109,24 +142,39 @@
                     </thead>
 
                     <tbody>
-                    <c:forEach var="stock" items="${warehouses}">
+                    <c:if test="${empty stocks}">
+                        <tr>
+                            <td colspan="5" style="text-align:center;padding:20px;">
+                                Chưa có kho hàng
+                            </td>
+                        </tr>
+                    </c:if>
+
+                    <c:forEach var="stock" items="${stocks}">
                         <tr>
                             <td>${stock.stockId}</td>
                             <td>${stock.stockName}</td>
                             <td>${stock.stockAddress}</td>
                             <td>${stock.productCount}</td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/admin/stocks/view" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="${stock.stockId}">
-                                    <button type="submit" class="btn-small btn-on">Xem</button>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/stocks/edit" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="${stock.stockId}">
-                                    <button type="submit" class="btn-small btn-off">Sửa</button>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/stocks/delete" method="post" style="display:inline;">
-                                    <input type="hidden" name="id" value="${stock.stockId}">
-                                    <button type="submit" class="btn-small btn-delete">Xóa</button>
+                                <!-- Sửa -->
+                                <a class="btn-small btn-on"
+                                   href="${pageContext.request.contextPath}/admin/stocks?action=edit&id=${stock.stockId}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <!-- Xóa -->
+                                <form action="${pageContext.request.contextPath}/admin/stocks"
+                                      method="post"
+                                      style="display:inline"
+                                      onsubmit="return confirm('Bạn chắc chắn muốn xóa kho này?')">
+
+                                    <input type="hidden" name="action" value="delete"/>
+                                    <input type="hidden" name="id" value="${stock.stockId}"/>
+
+                                    <button type="submit" class="btn-small btn-delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
