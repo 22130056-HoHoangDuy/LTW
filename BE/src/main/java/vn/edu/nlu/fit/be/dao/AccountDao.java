@@ -141,4 +141,21 @@ public class AccountDao extends BaseDao {
                         .findOne()
         );
     }
+    public boolean update(Account a) {
+        return jdbi.withHandle(h ->
+                h.createUpdate("""
+                UPDATE accounts
+                SET email = :email,
+                    username = :username,
+                    password = :password
+                WHERE account_id = :id
+            """)
+                        .bind("email", a.getEmail())
+                        .bind("username", a.getUsername())
+                        .bind("password", a.getPassword())
+                        .bind("id", a.getAccountId())
+                        .execute()
+        ) > 0;
+    }
+
 }

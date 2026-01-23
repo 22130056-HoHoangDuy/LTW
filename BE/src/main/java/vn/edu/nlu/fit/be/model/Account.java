@@ -7,28 +7,23 @@ public class Account {
     private int accountId;
     private int profileId;
     private String email;
-    private String username;
+    private String username;   // dùng làm tên hiển thị
     private String password;
-    private AccountStatus status; // Active / UnActive
+    private AccountStatus status;
     private int role;
     private Timestamp createdAt;
 
-    //Constructor
-
     public Account() {}
-
-    public Account(int accountId, int profileId, String email, String username, Timestamp createdAt, int role, AccountStatus status, String password) {
-        this.accountId = accountId;
-        this.profileId = profileId;
-        this.email = email;
-        this.username = username;
-        this.createdAt = createdAt;
-        this.role = role;
-        this.status = status;
-        this.password = password;
+    // dùng cho admin_settings.jsp
+    public String getFullName() {
+        return username;
     }
 
-    // Getters & Setters
+    public void setFullName(String fullName) {
+        this.username = fullName;
+    }
+
+    /* ================= Getter / Setter gốc ================= */
 
     public int getAccountId() {
         return accountId;
@@ -38,28 +33,28 @@ public class Account {
         this.accountId = accountId;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public int getProfileId() {
+        return profileId;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
     }
 
-    public int getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public AccountStatus getStatus() {
-        return status;
+    public String getUsername() {
+        return username;
     }
 
-    public void setStatus(AccountStatus status) {
-        this.status = status;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -70,27 +65,27 @@ public class Account {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public AccountStatus getStatus() {
+        return status;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setStatus(AccountStatus status) {
+        this.status = status;
     }
 
-    public String getEmail() {
-        return email;
+    public int getRole() {
+        return role;
     }
 
-    public void setEmail(String userEmail) {
-        this.email = userEmail;
+    public void setRole(int role) {
+        this.role = role;
     }
 
-    public int getProfileId() {
-        return profileId;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setProfileId(int profileId) {
-        this.profileId = profileId;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }
