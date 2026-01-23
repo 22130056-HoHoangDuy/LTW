@@ -6,17 +6,47 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <title>Admin - Quản lý Voucher</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <style>
+        .btn-add {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #6C63FF, #A696FF);
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
+        }
+
+        .btn-add i {
+            font-size: 16px;
+        }
+
+        /* Hover */
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(108, 99, 255, 0.35);
+            background: linear-gradient(135deg, #514EA5, #6C63FF);
+        }
+
+        /* Active click */
+        .btn-add:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
+        }
+    </style>
 </head>
 
 <body>
-
 <div class="dashboard">
     <!-- SIDEBAR -->
     <aside class="sidebar">
@@ -72,118 +102,155 @@
             </a>
         </nav>
     </aside>
+
     <!-- CONTENT -->
     <div class="content-wrapper">
 
+        <!-- MAIN -->
         <main class="main">
             <h2>Quản lý Voucher</h2>
 
-            <!-- FORM TẠO VOUCHER -->
-            <section class="voucher-form">
-                <h3>Tạo voucher mới</h3>
+            <a href="${pageContext.request.contextPath}/admin/vouchers?action=add"
+               class="btn-add" style="margin-bottom:20px">
+                <i class="fa-solid fa-plus"></i> Thêm voucher
+            </a>
 
-                <form class="form-grid" method="post"
-                      action="${pageContext.request.contextPath}/admin/vouchers">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ảnh</th>
+                    <th>Mã</th>
+                    <th>Tên</th>
+                    <th>Giảm</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
 
-                    <div class="form-item">
-                        <label>Mã voucher</label>
-                        <input type="text" name="code" placeholder="VD: SALE2025" required>
-                    </div>
-
-                    <div class="form-item">
-                        <label>Giá trị giảm</label>
-                        <input type="number" name="discountValue" placeholder="VD: 20" required>
-                    </div>
-
-                    <div class="form-item">
-                        <label>Loại giảm</label>
-                        <select name="discountType">
-                            <option value="percent">Phần trăm (%)</option>
-                            <option value="amount">Giá trị (VNĐ)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-item">
-                        <label>Số lượng</label>
-                        <input type="number" name="quantity">
-                    </div>
-
-                    <div class="form-item">
-                        <label>Ngày bắt đầu</label>
-                        <input type="date" name="startDate">
-                    </div>
-
-                    <div class="form-item">
-                        <label>Ngày kết thúc</label>
-                        <input type="date" name="endDate">
-                    </div>
-
-                    <button type="submit" class="btn-primary">
-                        Tạo Voucher
-                    </button>
-                </form>
-            </section>
-
-            <!-- DANH SÁCH VOUCHER -->
-            <section class="voucher-list">
-                <h3>Danh sách Voucher</h3>
-
-                <table class="data-table">
-                    <thead>
+                <tbody>
+                <c:forEach var="v" items="${vouchers}">
                     <tr>
-                        <th>Mã</th>
-                        <th>Giảm</th>
-                        <th>Loại</th>
-                        <th>Số lượng</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                    </thead>
+                        <td>#${v.voucherId}</td>
 
-                    <tbody>
-                    <!-- Demo – sau này thay bằng c:forEach -->
-                    <tr>
-                        <td>SALE50</td>
-                        <td>50%</td>
-                        <td>Phần trăm</td>
-                        <td>120</td>
+                        <!-- IMAGE -->
                         <td>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider"></span>
-                            </label>
+                            <c:if test="${not empty v.voucherImage}">
+                                <img src="${v.voucherImage}"
+                                     alt="voucher"
+                                     style="width:60px;height:40px;object-fit:cover;border-radius:6px"/>
+                            </c:if>
                         </td>
+
+                        <td><strong>${v.voucherCode}</strong></td>
+                        <td>${v.voucherName}</td>
+                        <td>${v.discountAmount} đ</td>
+                        <td>${v.startDate}</td>
+                        <td>${v.endDate}</td>
+
                         <td>
-                            <button class="btn-small btn-on">Sửa</button>
-                            <button class="btn-small btn-delete">Xóa</button>
+                            <a class="btn-small btn-on"
+                               href="${pageContext.request.contextPath}/admin/vouchers?action=edit&id=${v.voucherId}">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <form method="post"
+                                  action="${pageContext.request.contextPath}/admin/vouchers"
+                                  style="display:inline"
+                                  onsubmit="return confirm('Xóa voucher này?')">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="id" value="${v.voucherId}"/>
+                                <button class="btn-small btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>NEWYEAR2025</td>
-                        <td>200.000đ</td>
-                        <td>Giá trị</td>
-                        <td>50</td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button class="btn-small btn-on">Sửa</button>
-                            <button class="btn-small btn-delete">Xóa</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
-
+                </c:forEach>
+                </tbody>
+            </table>
         </main>
 
-        <aside class="right-panel"></aside>
+        <!-- RIGHT PANEL -->
+        <aside class="right-panel">
+            <c:if test="${param.action == 'add' || param.action == 'edit'}">
+                <div class="voucher-form">
+                    <h3>
+                        <c:choose>
+                            <c:when test="${param.action == 'add'}">Thêm voucher</c:when>
+                            <c:otherwise>Sửa voucher</c:otherwise>
+                        </c:choose>
+                    </h3>
+
+                    <form method="post"
+                          action="${pageContext.request.contextPath}/admin/vouchers">
+
+                        <c:if test="${param.action == 'edit'}">
+                            <input type="hidden" name="id" value="${voucherToEdit.voucherId}"/>
+                        </c:if>
+
+                        <div class="form-grid">
+                            <div class="form-item">
+                                <label>Mã voucher</label>
+                                <input type="text" name="voucherCode"
+                                       value="${voucherToEdit.voucherCode}" required/>
+                            </div>
+
+                            <div class="form-item">
+                                <label>Link hình ảnh</label>
+                                <input type="text"
+                                       name="voucherImage"
+                                       placeholder="https://..."
+                                       value="${voucherToEdit.voucherImage}"/>
+                            </div>
+
+
+                            <div class="form-item">
+                                <label>Tên voucher</label>
+                                <input type="text" name="voucherName"
+                                       value="${voucherToEdit.voucherName}" required/>
+                            </div>
+
+                            <div class="form-item">
+                                <label>Giá trị giảm (VNĐ)</label>
+                                <input type="number" name="discountAmount"
+                                       value="${voucherToEdit.discountAmount}" required/>
+                            </div>
+
+                            <div class="form-item">
+                                <label>Ngày bắt đầu</label>
+                                <input type="date" name="startDate"
+                                       value="${voucherToEdit.startDate}" required/>
+                            </div>
+
+                            <div class="form-item">
+                                <label>Ngày kết thúc</label>
+                                <input type="date" name="endDate"
+                                       value="${voucherToEdit.endDate}" required/>
+                            </div>
+
+                            <div class="form-item textarea-full">
+                                <label>Mô tả</label>
+                                <textarea name="description">${voucherToEdit.description}</textarea>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:20px;text-align:right">
+                            <button class="btn-primary" type="submit">
+                                <i class="fa-solid fa-save"></i>
+                                <c:choose>
+                                    <c:when test="${param.action == 'add'}">Thêm</c:when>
+                                    <c:otherwise>Cập nhật</c:otherwise>
+                                </c:choose>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </c:if>
+        </aside>
+
     </div>
 </div>
-
 </body>
 </html>

@@ -1,27 +1,46 @@
+############################
+# Maven
+############################
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+############################
+# Compiled files
+############################
+*.class
+
+############################
+# IntelliJ IDEA
+############################
+.idea/
 *.iml
+*.iws
 *.ipr
 
-### Eclipse ###
-.apt_generated
+############################
+# IntelliJ / Tomcat build
+############################
+out/
+artifacts/
+*.war
+*.ear
+
+############################
+# Eclipse
+############################
 .classpath
-.factorypath
 .project
-.settings
+.settings/
+.apt_generated
+.factorypath
 .springBeans
 .sts4-cache
 
-### NetBeans ###
+############################
+# NetBeans
+############################
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -31,12 +50,23 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+############################
+# VS Code
+############################
 .vscode/
 
-### Mac OS ###
+############################
+# OS files
+############################
 .DS_Store
+Thumbs.db
 
-### IntelliJ build / Tomcat ###
-out/
-*.class
+############################
+# Logs
+############################
+*.log
+
+############################
+# Runtime / Config (nếu có)
+############################
+**/db.properties

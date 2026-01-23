@@ -6,9 +6,10 @@ import vn.edu.nlu.fit.be.model.Voucher;
 import java.util.List;
 
 public class VoucherService {
-    private VoucherDao voucherDao = new VoucherDao();
 
-    // ADMIN: lấy toàn bộ voucher
+    private final VoucherDao voucherDao = new VoucherDao();
+
+    // ADMIN
     public List<Voucher> getAll() {
         return voucherDao.getAll();
     }
@@ -17,10 +18,19 @@ public class VoucherService {
         voucherDao.insert(v);
     }
 
+    public void update(Voucher v) {
+        voucherDao.update(v);
+    }
+
     public void delete(int id) {
         voucherDao.delete(id);
     }
 
+    public Voucher findById(int id) {
+        return voucherDao.findById(id);
+    }
+
+    // USER
     public Voucher findByCode(String code) {
         return voucherDao.findByCode(code);
     }
@@ -36,7 +46,5 @@ public class VoucherService {
     public int countAll() {
         return voucherDao.countAll();
     }
-    public Voucher findById(int id) {
-        return voucherDao.findById(id);
-    }
+
 }
