@@ -1,0 +1,39 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: babyshop-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: db_babyshop
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # file dump .sql nằm cùng thư mục với docker-compose.yml
+      - ./db_babyshop.sql:/docker-entrypoint-initdb.d/01-db_babyshop.sql:ro
+    networks:
+      - babyshop-net
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: babyshop-web:latest
+    container_name: babyshop-web
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - babyshop-net
+
+networks:
+  babyshop-net:
+
+volumes:
+  mysql_data:

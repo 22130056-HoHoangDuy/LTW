@@ -28,8 +28,8 @@ public class StockProductDao extends BaseDao {
                     SELECT stock_id
                     FROM stock_products
                     WHERE product_id = :pid
-                      AND (total_quantity - sold_quantity) >= :qty
-                    ORDER BY (total_quantity - sold_quantity) DESC
+                      AND total_quantity >= :qty
+                    ORDER BY total_quantity DESC
                     LIMIT 1
                 """;
 
@@ -85,6 +85,24 @@ public class StockProductDao extends BaseDao {
             }
         }
         return null;
+    }
+
+    /**
+     * Lấy tổng số lượng tồn kho của sản phẩm
+     */
+    public int getTotalAvailableQuantity(int productId) {
+        String sql = """
+                    SELECT COALESCE(SUM(total_quantity), 0)
+                    FROM stock_products
+                    WHERE product_id = :pid
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("pid", productId)
+                        .mapTo(Integer.class)
+                        .one()
+        );
     }
 
     public int getTotalSoldQuantity(int stockProductId) {
