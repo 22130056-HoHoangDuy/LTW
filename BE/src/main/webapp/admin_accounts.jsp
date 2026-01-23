@@ -82,10 +82,19 @@
                         <td>${a.createdAt}</td>
 
                         <td>
-                            <select onchange="updateStatus(this,'${a.accountId}')">
-                                <option value="Active" ${a.status == AccountStatus.Active ? 'selected' : ''}>Active</option>
-                                <option value="UnActive" ${a.status == AccountStatus.UnActive ? 'selected' : ''}>UnActive</option>
-                            </select>
+                            <form action="${pageContext.request.contextPath}/admin/accounts/status"
+                                  method="post">
+                                <input type="hidden" name="id" value="${a.accountId}"/>
+
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="Active" ${a.status == 'Active' ? 'selected' : ''}>
+                                        Active
+                                    </option>
+                                    <option value="UnActive" ${a.status == 'UnActive' ? 'selected' : ''}>
+                                        UnActive
+                                    </option>
+                                </select>
+                            </form>
                         </td>
 
                         <td>

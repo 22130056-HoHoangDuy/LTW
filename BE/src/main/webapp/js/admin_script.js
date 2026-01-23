@@ -35,13 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ================= ACCOUNT STATUS ================= */
-    window.updateStatus = function (select, id) {
-        fetch(`${contextPath}/admin/accounts/status?id=${id}&status=${select.value}`)
+    window.updateStatus = function (id, status) {
+        fetch(`${contextPath}/admin/accounts/status?id=${id}&status=${status}`)
             .then(res => res.text())
             .then(txt => {
                 if (txt !== "OK") alert("Cập nhật thất bại");
             });
     };
+
 
     /* ================= PROFILE POPUP ================= */
     const popup = document.getElementById("profile-popup");

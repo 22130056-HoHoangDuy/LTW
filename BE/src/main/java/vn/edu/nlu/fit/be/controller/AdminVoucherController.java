@@ -50,11 +50,26 @@ public class AdminVoucherController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
 
         if ("delete".equals(action)) {
+
             int id = Integer.parseInt(req.getParameter("id"));
             service.delete(id);
+
+        } else if ("edit".equals(action)) {
+            Voucher v = new Voucher();
+            v.setVoucherId(Integer.parseInt(req.getParameter("id"))); // ⭐ QUAN TRỌNG
+            v.setVoucherCode(req.getParameter("voucherCode"));
+            v.setVoucherImage(req.getParameter("voucherImage"));
+            v.setVoucherName(req.getParameter("voucherName"));
+            v.setDiscountAmount(Integer.parseInt(req.getParameter("discountAmount")));
+            v.setStartDate(Date.valueOf(req.getParameter("startDate")));
+            v.setEndDate(Date.valueOf(req.getParameter("endDate")));
+            v.setDescription(req.getParameter("description"));
+            service.update(v);
+
         } else {
             Voucher v = new Voucher();
             v.setVoucherCode(req.getParameter("voucherCode"));
@@ -64,10 +79,8 @@ public class AdminVoucherController extends HttpServlet {
             v.setStartDate(Date.valueOf(req.getParameter("startDate")));
             v.setEndDate(Date.valueOf(req.getParameter("endDate")));
             v.setDescription(req.getParameter("description"));
-
             service.insert(v);
         }
-
         resp.sendRedirect(req.getContextPath() + "/admin/vouchers");
     }
 }
