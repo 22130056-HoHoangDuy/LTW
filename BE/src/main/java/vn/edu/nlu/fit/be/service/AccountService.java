@@ -8,6 +8,7 @@ import vn.edu.nlu.fit.be.dao.ProfileDao;
 import vn.edu.nlu.fit.be.model.Account;
 import vn.edu.nlu.fit.be.model.AccountStatus;
 import vn.edu.nlu.fit.be.model.Profile;
+
 import java.util.List;
 
 import java.util.List;
@@ -27,19 +28,19 @@ public class AccountService extends BaseDao {
         return DBConnect.get().inTransaction(handle -> {
 
             int profileId = handle.createUpdate("""
-                    INSERT INTO profiles (email)
-                    VALUES (:email)
-                """)
+                                INSERT INTO profiles (email)
+                                VALUES (:email)
+                            """)
                     .bind("email", email)
                     .executeAndReturnGeneratedKeys("profile_id")
                     .mapTo(Integer.class)
                     .one();
 
             int rows = handle.createUpdate("""
-                    INSERT INTO accounts
-                    (profile_id, email, username, password, status, role)
-                    VALUES (:pid, :email, :username, :pass, :status, :role)
-                """)
+                                INSERT INTO accounts
+                                (profile_id, email, username, password, status, role)
+                                VALUES (:pid, :email, :username, :pass, :status, :role)
+                            """)
                     .bind("pid", profileId)
                     .bind("email", email)
                     .bind("username", userName)
@@ -54,11 +55,30 @@ public class AccountService extends BaseDao {
 
     /* ================= Login ================= */
     public Account login(String key, String rawPassword) {
-        return accountDao.findByUsernameOrEmail(key)
-                .filter(a -> a.getStatus() == AccountStatus.Active)
-                .filter(a -> a.getRole() >= 0)
-                .filter(a -> BCrypt.checkpw(rawPassword, a.getPassword()))
-                .orElse(null);
+        Optional<Account> opt = accountDao.findByUsernameOrEmail(key);
+
+        if (opt.isEmpty()) {
+            return null; // Không tìm thấy tài khoản
+        }
+
+        Account acc = opt.get();
+
+        // Kiểm tra mật khẩu trước
+        if (!BCrypt.checkpw(rawPassword, acc.getPassword())) {
+            return null; // Sai mật khẩu
+        }
+
+        // Kiểm tra tài khoản bị khoá
+        if (acc.getStatus() != AccountStatus.Active) {
+            throw new IllegalStateException("Tài khoản của bạn đã bị khoá. Vui lòng liên hệ quản trị viên.");
+        }
+
+        // Kiểm tra role hợp lệ
+        if (acc.getRole() < 0) {
+            return null;
+        }
+
+        return acc;
     }
 
     /* ================= ChangePassword ================= */
@@ -66,10 +86,10 @@ public class AccountService extends BaseDao {
 
         Optional<Account> opt = jdbi.withHandle(h ->
                 h.createQuery("""
-                SELECT *
-                FROM accounts
-                WHERE account_id = :id
-            """)
+                                    SELECT *
+                                    FROM accounts
+                                    WHERE account_id = :id
+                                """)
                         .bind("id", accountId)
                         .mapToBean(Account.class)
                         .findOne()
@@ -105,19 +125,19 @@ public class AccountService extends BaseDao {
         return DBConnect.get().inTransaction(handle -> {
 
             int profileId = handle.createUpdate("""
-                INSERT INTO profiles (email)
-                VALUES (:email)
-            """)
+                                INSERT INTO profiles (email)
+                                VALUES (:email)
+                            """)
                     .bind("email", email)
                     .executeAndReturnGeneratedKeys("profile_id")
                     .mapTo(Integer.class)
                     .one();
 
             handle.createUpdate("""
-                INSERT INTO accounts
-                (profile_id, email, username, password, status, role)
-                VALUES (:pid, :email, :username, NULL, :status, :role)
-            """)
+                                INSERT INTO accounts
+                                (profile_id, email, username, password, status, role)
+                                VALUES (:pid, :email, :username, NULL, :status, :role)
+                            """)
                     .bind("pid", profileId)
                     .bind("email", email)
                     .bind("username", name)
@@ -128,6 +148,7 @@ public class AccountService extends BaseDao {
             return accountDao.findByEmail(email).orElse(null);
         });
     }
+
     public boolean delete(int id) {
         return accountDao.deleteById(id);
     }
@@ -141,19 +162,19 @@ public class AccountService extends BaseDao {
         return DBConnect.get().inTransaction(handle -> {
 
             int profileId = handle.createUpdate("""
-            INSERT INTO profiles (email)
-            VALUES (:email)
-        """)
+                                INSERT INTO profiles (email)
+                                VALUES (:email)
+                            """)
                     .bind("email", a.getEmail())
                     .executeAndReturnGeneratedKeys("profile_id")
                     .mapTo(Integer.class)
                     .one();
 
             int rows = handle.createUpdate("""
-            INSERT INTO accounts
-            (profile_id, email, username, password, status, role)
-            VALUES (:pid, :email, :username, :pass, :status, :role)
-        """)
+                                INSERT INTO accounts
+                                (profile_id, email, username, password, status, role)
+                                VALUES (:pid, :email, :username, :pass, :status, :role)
+                            """)
                     .bind("pid", profileId)
                     .bind("email", a.getEmail())
                     .bind("username", a.getUsername())

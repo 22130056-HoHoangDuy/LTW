@@ -29,7 +29,7 @@ public class CartController extends HttpServlet {
                 currentUrl += "?" + queryString;
             }
             String encodedUrl = URLEncoder.encode(currentUrl, StandardCharsets.UTF_8);
-            response.sendRedirect(request.getContextPath() + "/login?returnUrl=" + encodedUrl);
+            safeRedirect(response, request.getContextPath() + "/login?returnUrl=" + encodedUrl);
             return;
         }
         Cart cart = (Cart) session.getAttribute("cart");
@@ -48,7 +48,7 @@ public class CartController extends HttpServlet {
             ProductService ps = new ProductService();
             Product product = ps.getProductById(productId);
             if (product == null) {
-                response.sendRedirect("productList.jsp");
+                safeRedirect(response, "productList.jsp");
                 return;
             }
             switch (action) {
@@ -58,21 +58,21 @@ public class CartController extends HttpServlet {
                     String returnUrl = request.getParameter("returnUrl");
 
                     if (returnUrl != null && !returnUrl.isEmpty()) {
-                        response.sendRedirect(returnUrl);
+                        safeRedirect(response, returnUrl);
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/product-list");
+                        safeRedirect(response, request.getContextPath() + "/product-list");
                     }
                     return;
 
                 case "remove":
                     cart.removeItem(productId);
                     session.setAttribute("cart", cart);
-                    response.sendRedirect(request.getContextPath() + "/cart");
+                    safeRedirect(response, request.getContextPath() + "/cart");
                     return;
                 case "buy_now":
                     cart.addItem(product,quantity);
                     session.setAttribute("cart", cart);
-                    response.sendRedirect(request.getContextPath() + "/cart");
+                    safeRedirect(response, request.getContextPath() + "/cart");
                     return;
 
             }
@@ -80,7 +80,7 @@ public class CartController extends HttpServlet {
         if ("remove_all".equals(action)) {
             cart.removeAllItems();
             session.setAttribute("cart", cart);
-            response.sendRedirect(request.getContextPath() + "/cart");
+            safeRedirect(response, request.getContextPath() + "/cart");
             return;
         }
 
@@ -98,7 +98,7 @@ public class CartController extends HttpServlet {
             // Lưu URL cart để quay lại sau khi đăng nhập
             String returnUrl = request.getContextPath() + "/cart";
             String encodedUrl = URLEncoder.encode(returnUrl, StandardCharsets.UTF_8);
-            response.sendRedirect(request.getContextPath() + "/login?returnUrl=" + encodedUrl);
+            safeRedirect(response, request.getContextPath() + "/login?returnUrl=" + encodedUrl);
             return;
         }
 
@@ -111,7 +111,7 @@ public class CartController extends HttpServlet {
                 session.setAttribute("voucherError", "Vui lòng nhập mã voucher!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");
-                response.sendRedirect(request.getContextPath() + "/cart");
+                safeRedirect(response, request.getContextPath() + "/cart");
                 return;
             }
 
@@ -122,7 +122,7 @@ public class CartController extends HttpServlet {
                 session.setAttribute("voucherError", "Mã voucher không tồn tại!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");
-                response.sendRedirect(request.getContextPath() + "/cart");
+                safeRedirect(response, request.getContextPath() + "/cart");
                 return;
             }
 
@@ -132,14 +132,14 @@ public class CartController extends HttpServlet {
                 session.setAttribute("voucherError", "Mã voucher chưa có hiệu lực!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");
-                response.sendRedirect(request.getContextPath() + "/cart");
+                safeRedirect(response, request.getContextPath() + "/cart");
                 return;
             }
             if (voucher.getEndDate() != null && today.after(voucher.getEndDate())) {
                 session.setAttribute("voucherError", "Mã voucher đã hết hạn!");
                 session.removeAttribute("appliedVoucher");
                 session.removeAttribute("voucherCode");
-                response.sendRedirect(request.getContextPath() + "/cart");
+                safeRedirect(response, request.getContextPath() + "/cart");
                 return;
             }
 
@@ -149,7 +149,7 @@ public class CartController extends HttpServlet {
             session.removeAttribute("voucherError");
             session.setAttribute("voucherSuccess", "Áp dụng mã \"" + voucherCode.trim() + "\" thành công!");
             
-            response.sendRedirect(request.getContextPath() + "/cart");
+            safeRedirect(response, request.getContextPath() + "/cart");
             return;
         }
 
@@ -158,11 +158,16 @@ public class CartController extends HttpServlet {
             session.removeAttribute("voucherCode");
             session.removeAttribute("voucherError");
             session.removeAttribute("voucherSuccess");
-            response.sendRedirect(request.getContextPath() + "/cart");
+            safeRedirect(response, request.getContextPath() + "/cart");
             return;
         }
 
         // Default: redirect back to cart
-        response.sendRedirect(request.getContextPath() + "/cart");
+        safeRedirect(response, request.getContextPath() + "/cart");
+    }
+
+    private void safeRedirect(HttpServletResponse response, String url) {
+        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", url);
     }
 }
