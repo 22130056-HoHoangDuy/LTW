@@ -39,7 +39,8 @@ body {
 /* --- NÂNG CẤP HERO SECTION --- */
 .hero {
     position: relative;
-    height: 500px; /* Tăng chiều cao */
+    height: 400px;
+    /* Tăng chiều cao */
 }
 
 .hero-content {
@@ -50,8 +51,7 @@ body {
 
 .hero .banner-img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Lớp phủ tối để chữ dễ đọc hơn */
@@ -61,7 +61,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 74, 173, 0.6), transparent); /* Màu xanh của bạn */
+    background: linear-gradient(to right, rgba(0, 74, 173, 0.6), transparent);
+    /* Màu xanh của bạn */
     pointer-events: none;
 }
 
@@ -81,6 +82,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(-50%);
@@ -104,7 +106,8 @@ body {
 .btn-hero {
     display: inline-block;
     padding: 12px 35px;
-    background: #e63946; /* Màu đỏ chủ đạo */
+    background: #e63946;
+    /* Màu đỏ chủ đạo */
     color: #fff;
     border-radius: 30px;
     text-decoration: none;
@@ -128,7 +131,7 @@ body {
 
 .category h2 {
     color: #004aad;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .category-grid {
@@ -193,7 +196,8 @@ body {
 /* --- NÂNG CẤP SECTION POLICIES --- */
 .policies {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cột trên 1 hàng */
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 cột trên 1 hàng */
     gap: 20px;
     background: #fff;
     padding: 40px 20px;
@@ -219,7 +223,8 @@ body {
 
 .policy i {
     font-size: 35px;
-    color: #004aad; /* Màu xanh thương hiệu */
+    color: #004aad;
+    /* Màu xanh thương hiệu */
 }
 
 .policy-text h4 {
