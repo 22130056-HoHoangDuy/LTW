@@ -17,7 +17,9 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String clientId = getServletContext().getInitParameter("GOOGLE_CLIENT_ID");
+        String redirectUri = getServletContext().getInitParameter("GOOGLE_REDIRECT_URI");
         req.setAttribute("GOOGLE_CLIENT_ID", clientId);
+        req.setAttribute("GOOGLE_REDIRECT_URI", redirectUri);
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
@@ -28,11 +30,19 @@ public class LoginController extends HttpServlet {
         String key = req.getParameter("username");
         String password = req.getParameter("password");
 
-        Account acc = service.login(key, password);
+        Account acc;
+        try {
+            acc = service.login(key, password);
+        } catch (IllegalStateException e) {
+            // Tài khoản bị khoá
+            req.setAttribute("error", e.getMessage());
+            req.setAttribute("returnUrl", req.getParameter("returnUrl"));
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            return;
+        }
 
         if (acc == null) {
-            req.setAttribute("error",
-                    "Sai tài khoản, mật khẩu hoặc tài khoản bị khoá!");
+            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
             req.setAttribute("returnUrl", req.getParameter("returnUrl"));
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
@@ -42,10 +52,10 @@ public class LoginController extends HttpServlet {
         session.setAttribute("USER", acc);
         session.setMaxInactiveInterval(30 * 60); // 30 phút
 
-        // 🔑 kiểm tra role
+        // kiểm tra role
         if (acc.getRole() == 1) {
             // admin
-            resp.sendRedirect(req.getContextPath() + "/admin/overview");
+            safeRedirect(resp, req.getContextPath() + "/admin/overview");
             return;
         }
 
@@ -58,9 +68,14 @@ public class LoginController extends HttpServlet {
         }
 
         if (returnUrl != null) {
-            resp.sendRedirect(returnUrl);
+            safeRedirect(resp, returnUrl);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/");
+            safeRedirect(resp, req.getContextPath() + "/");
         }
+    }
+
+    private void safeRedirect(HttpServletResponse response, String url) {
+        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", url);
     }
 }

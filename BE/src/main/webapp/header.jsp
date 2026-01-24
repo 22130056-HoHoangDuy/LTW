@@ -138,37 +138,39 @@
             });
             //Add cart
             const logOutBtn = document.querySelector(".logout-btn");
-            logOutBtn.addEventListener("click", (event) => {
-                event.preventDefault();
+            if (logOutBtn) {
+                logOutBtn.addEventListener("click", (event) => {
+                    event.preventDefault();
 
-                // 1. Lấy đường dẫn từ thẻ a
-                const url = logOutBtn.getAttribute("href");
+                    // 1. Lấy đường dẫn từ thẻ a
+                    const url = logOutBtn.getAttribute("href");
 
-                // 2. Gửi yêu cầu xuống Server bằng fetch (AJAX)
-                fetch(url)
-                    .then(response => {
+                    // 2. Gửi yêu cầu xuống Server bằng fetch (AJAX)
+                    fetch(url)
+                        .then(response => {
 
-                        Swal.fire({
-                            icon: "success",
-                            title: "Đã đăng xuất",
-                            text: "Đăng xuất khỏi tài khoản thành công.",
-                            timer: 1500,
-                            showConfirmButton: false,
-                        }).then(() => {
-                            window.location.href = response.url;
+                            Swal.fire({
+                                icon: "success",
+                                title: "Đã đăng xuất",
+                                text: "Đăng xuất khỏi tài khoản thành công.",
+                                timer: 1500,
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.href = response.url;
+                            });
+                            return;
+                            // 3️⃣ LỖI KHÁC
+                            throw new Error("Server error");
+
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Lỗi",
+                                text: "Có lỗi xảy ra, vui lòng thử lại sau.",
+                            });
                         });
-                        return;
-                        // 3️⃣ LỖI KHÁC
-                        throw new Error("Server error");
-
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Lỗi",
-                            text: "Có lỗi xảy ra, vui lòng thử lại sau.",
-                        });
-                    });
-            })
+                })
+            }
         </script>

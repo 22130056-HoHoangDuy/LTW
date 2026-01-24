@@ -72,4 +72,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.hideProfile = () => popup.style.display = "none";
+
+    /* ================= TOGGLE ADD FORM ================= */
+    window.toggleAddForm = function () {
+        const form = document.getElementById("add-account-form");
+        if (!form) return;
+        
+        if (form.style.display === "none" || !form.style.display) {
+            form.style.display = "block";
+            // Optional: Scroll to form
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            form.style.display = "none";
+        }
+    };
 });
