@@ -109,7 +109,7 @@
 
                 <div class="card-small">
                     <div class="card-info">
-                        <h4>Số lượng khách hàng</h4>
+                        <h4>Số lượng tài khoản</h4>
                         <p class="value">${totalCustomers}</p>
                     </div>
                     <i class="fa-solid fa-user-group icon"></i>
@@ -141,7 +141,6 @@
                     </div>
                     <canvas id="categoryChart"></canvas>
                 </div>
-
             </section>
 
             <!-- RECENT ORDERS -->
@@ -183,6 +182,13 @@
         </main>
     </div>
 </div>
+<script>
+    window.ADMIN_DATA = {
+        revenueByMonth: ${revenueByMonthJson},
+        ordersByCategory: ${ordersByCategoryJson},
+        contextPath: "${pageContext.request.contextPath}"
+    };
+</script>
 <script src="${pageContext.request.contextPath}/js/admin_script.js"></script>
 </body>
 </html>

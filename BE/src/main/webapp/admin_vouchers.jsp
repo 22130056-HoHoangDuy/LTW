@@ -79,7 +79,7 @@
 
             <a href="${pageContext.request.contextPath}/admin/vouchers?action=add"
                class="btn-add" style="margin-bottom:20px">
-                <i class="fa-solid fa-plus"></i> Thêm voucher
+                <i class="fa-solid fa-plus"></i> Thêm Voucher
             </a>
 
             <table class="data-table">
