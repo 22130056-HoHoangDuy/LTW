@@ -22,8 +22,8 @@
 
     <context-param>
         <param-name>GOOGLE_REDIRECT_URI</param-name>
-        <param-value>http://localhost:8080/BE_war/login-google</param-value>
-<!--        <param-value>https://babystorefitnlu.id.vn/login-google</param-value>-->
+<!--        <param-value>http://localhost:8080/BE_war/login-google</param-value>-->
+        <param-value>https://babystorefitnlu.id.vn/login-google</param-value>
     </context-param>
     <session-config>
         <session-timeout>10</session-timeout>
