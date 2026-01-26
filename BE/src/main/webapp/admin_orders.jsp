@@ -9,9 +9,9 @@
                 <meta charset="UTF-8">
                 <title>Admin - Quản lý đơn hàng</title>
 
-                <!-- FONT -->
-                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-                    rel="stylesheet">
+<%--                <!-- FONT -->--%>
+<%--                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"--%>
+<%--                    rel="stylesheet">--%>
 
                 <!-- CSS -->
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css" />
