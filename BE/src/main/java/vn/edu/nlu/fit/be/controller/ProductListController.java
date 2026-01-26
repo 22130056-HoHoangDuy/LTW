@@ -48,7 +48,6 @@ public class ProductListController extends HttpServlet {
         String sort = request.getParameter("sort");
 
         //* Chia làm hai: không lọc theo category và lọc theo category
-
         Integer categoryId = null;
         if (categoryIdToStr != null && !categoryIdToStr.isEmpty()) {
             categoryId = Integer.parseInt(categoryIdToStr);
@@ -62,7 +61,7 @@ public class ProductListController extends HttpServlet {
 
         int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 
-        //
+        //Lấy số lượng đã bán
         Map<Integer, Integer> soldMap = ps.getSoldMap(products);
 
         // Lưu vào trong request
