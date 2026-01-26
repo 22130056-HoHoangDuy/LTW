@@ -46,8 +46,6 @@ public class AdminOverviewDao extends BaseDao{
         );
     }
 
-    // ===== Chart =====
-
     public List<RevenueByMonth> getRevenueByMonth() {
         return jdbi.withHandle(h ->
                 h.createQuery("""

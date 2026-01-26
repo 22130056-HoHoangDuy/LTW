@@ -48,19 +48,18 @@ public class AdminOverviewController extends HttpServlet {
         req.setAttribute("totalCustomers", dao.getTotalCustomers());
         req.setAttribute("totalProducts", dao.getTotalProducts());
 
-        // 1️⃣ Revenue by month
+        //Revenue by month
         List<RevenueByMonth> revenueByMonth = dao.getRevenueByMonth();
         req.setAttribute("revenueByMonthJson", gson.toJson(revenueByMonth));
 
-        // 2️⃣ Orders by category
+        //Orders by category
         var ordersByCategory = dao.getOrdersByCategory();
         req.setAttribute("ordersByCategoryJson", gson.toJson(ordersByCategory));
 
-        // 3️⃣ Recent orders
+        //Recent orders
         List<RecentOrderDto> recentOrders = dao.getRecentOrders(5);
         req.setAttribute("recentOrders", recentOrders);
 
-        /* ================== VIEW ================== */
         req.getRequestDispatcher("/admin_overview.jsp")
                 .forward(req, resp);
     }
