@@ -38,10 +38,10 @@
                                     class="fa-solid fa-layer-group"></i><span>Danh mục sản phẩm</span></a>
                             <a href="${pageContext.request.contextPath}/admin/brands"><i
                                     class="fa-solid fa-tags"></i><span>Thương hiệu</span></a>
-                            <a href="${pageContext.request.contextPath}/admin/contacts"><i
-                                    class="fa-solid fa-envelope"></i><span>Liên hệ</span></a>
-                            <a href="${pageContext.request.contextPath}/admin/stocks"><i
-                                    class="fa-solid fa-warehouse"></i><span>Kho</span></a>
+                <a href="${pageContext.request.contextPath}/admin/contacts"><i
+                    class="fa-solid fa-envelope"></i><span>Liên hệ</span></a>
+                <a href="${pageContext.request.contextPath}/admin/stocks"><i
+                    class="fa-solid fa-warehouse"></i><span>Kho hàng</span></a>
                             <a href="${pageContext.request.contextPath}/admin/vouchers"><i
                                     class="fa-solid fa-ticket"></i><span>Vouchers</span></a>
                             <a href="${pageContext.request.contextPath}/admin/settings"><i

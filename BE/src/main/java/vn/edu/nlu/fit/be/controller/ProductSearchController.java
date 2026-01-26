@@ -24,6 +24,7 @@ public class ProductSearchController extends HttpServlet {
         ProductService productService = new ProductService();
         List<Product> products;
 
+
         //Phân trang trước tiên
         int pageIndex = 1;
         int pageSize = 20;
@@ -44,10 +45,13 @@ public class ProductSearchController extends HttpServlet {
         } else {
             products = productService.getProducts(null, null, null, keyword, pageIndex, pageSize);
         }
+        //Thêm số lượng đã bán
+        Map<Integer, Integer> soldMap = productService.getSoldMap(products);
         int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 
 
         request.setAttribute("products", products);
+        request.setAttribute("soldMap", soldMap);
         request.setAttribute("currentPage", pageIndex);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentSort", sort);
