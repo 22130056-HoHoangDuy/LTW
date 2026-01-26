@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { revenueByMonth, ordersByCategory, contextPath } = window.ADMIN_DATA || {};
 
-    /* ================= REVENUE CHART ================= */
     if (revenueByMonth && revenueByMonth.length) {
 
         const labels = revenueByMonth.map(r => `Tháng ${r.month}`);
@@ -20,9 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ================= CATEGORY CHART ================= */
     if (ordersByCategory && ordersByCategory.length) {
-
         new Chart(document.getElementById('categoryChart'), {
             type: 'doughnut',
             data: {
@@ -34,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ================= ACCOUNT STATUS ================= */
     window.updateStatus = function (id, status) {
         fetch(`${contextPath}/admin/accounts/status?id=${id}&status=${status}`)
             .then(res => res.text())

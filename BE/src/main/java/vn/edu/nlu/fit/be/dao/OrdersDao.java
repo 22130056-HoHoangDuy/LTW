@@ -80,8 +80,9 @@ public class OrdersDao extends BaseDao {
                             o.setOrderDate(rs.getTimestamp("orderDate"));
                             o.setTotalAmount(rs.getInt("totalAmount"));
                             o.setDeliveryAddress(rs.getString("deliveryAddress"));
+                            String pm = rs.getString("paymentMethod");
                             o.setPaymentMethod(
-                                    PaymentMethod.valueOf(rs.getString("paymentMethod"))
+                                    pm == null ? PaymentMethod.COD : PaymentMethod.valueOf(pm.trim())
                             );
                             o.setStatusOrder(
                                     OrderStatus.valueOf(rs.getString("statusOrder"))
